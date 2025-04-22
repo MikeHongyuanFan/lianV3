@@ -15,6 +15,8 @@ from .services import get_or_create_notification_preferences
 from django.contrib.auth import authenticate
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView, ListAPIView
 import logging
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 
 # Set up logger
 logger = logging.getLogger(__name__)
@@ -295,3 +297,48 @@ class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
         """
         count = self.get_queryset().filter(is_read=False).count()
         return Response({'unread_count': count})
+
+class NotificationUnreadCountView(APIView):
+    """
+    API endpoint for getting unread notification count
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        """
+        Get count of unread notifications
+        """
+        count = Notification.objects.filter(user=request.user, is_read=False).count()
+        return Response({'unread_count': count})
+
+class NotificationMarkAsReadView(APIView):
+    """
+    API endpoint for marking a notification as read
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request, pk):
+        """
+        Mark a notification as read
+        """
+        try:
+            notification = Notification.objects.get(id=pk, user=request.user)
+            notification.is_read = True
+            notification.save()
+            
+            # Send WebSocket update for unread count
+            try:
+                from users.services import send_notification_via_websocket
+                
+                # Send WebSocket update
+                send_notification_via_websocket(
+                    user=request.user,
+                    update_count=True
+                )
+            except Exception as e:
+                # Log the error but don't fail the operation
+                print(f"Error sending WebSocket notification: {str(e)}")
+            
+            return Response({'status': 'notification marked as read'})
+        except Notification.DoesNotExist:
+            return Response({'error': 'Notification not found'}, status=status.HTTP_404_NOT_FOUND)

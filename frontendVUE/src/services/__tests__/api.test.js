@@ -86,8 +86,11 @@ describe('API Service', () => {
       // Ignore errors
     }
     
-    // Check that token refresh was attempted
-    expect(axios.post).toHaveBeenCalled()
+    // Check that token refresh was attempted with correct endpoint
+    expect(axios.post).toHaveBeenCalledWith(
+      expect.stringContaining('/api/users/auth/refresh/'),
+      { refresh: 'fake-refresh-token' }
+    )
     expect(useAuthStore().setTokens).toHaveBeenCalledWith('new-token', 'fake-refresh-token')
   })
   

@@ -12,6 +12,8 @@ from .services import update_application_stage, process_signature_data
 from users.permissions import IsAdmin, IsAdminOrBroker, IsAdminOrBD, IsOwnerOrAdmin
 from documents.models import Note, Ledger
 from documents.serializers import NoteSerializer, DocumentSerializer, FeeSerializer, RepaymentSerializer, LedgerSerializer
+from django.utils import timezone
+from datetime import datetime
 
 
 class ApplicationViewSet(viewsets.ModelViewSet):
@@ -227,23 +229,8 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         Get all fees for an application
         """
         application = self.get_object()
-        print(f"DEBUG: Application ID in view: {application.id}")
-        print(f"DEBUG: Application object: {application}")
-        
-        # Get all fees directly from the database
-        all_fees = Fee.objects.all()
-        print(f"DEBUG: All fees in database: {all_fees.count()}")
-        for fee in all_fees:
-            print(f"DEBUG: Fee ID: {fee.id}, Type: {fee.fee_type}, App ID: {fee.application_id}")
-        
-        # Get fees for this application
         fees = Fee.objects.filter(application=application).order_by('-created_at')
-        print(f"DEBUG: Found {fees.count()} fees for application {application.id}")
-        for fee in fees:
-            print(f"DEBUG: Fee ID: {fee.id}, Type: {fee.fee_type}, Amount: {fee.amount}")
-        
         serializer = FeeSerializer(fees, many=True, context={'request': request})
-        print(f"DEBUG: Serialized data: {serializer.data}")
         return Response(serializer.data)
     
     @action(detail=True, methods=['post'])
@@ -369,7 +356,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
             transaction_type='payment_received',
             amount=payment_amount,
             description=f"Payment received for repayment due on {repayment.due_date}",
-            transaction_date=payment_date,
+            transaction_date=timezone.make_aware(datetime.combine(payment_date, datetime.min.time())) if payment_date else timezone.now(),
             related_repayment=repayment,
             created_by=request.user
         )
@@ -448,3 +435,31 @@ class ApplicationViewSet(viewsets.ModelViewSet):
             
         except Application.DoesNotExist:
             return Response({"error": "Application not found"}, status=status.HTTP_404_NOT_FOUND)
+from rest_framework.views import APIView
+
+class NewApplicationTemplateView(APIView):
+    """
+    API endpoint for getting a new application template
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        """
+        Get a new application template
+        """
+        # Return a template for a new application
+        template = {
+            "application_type": "personal",
+            "loan_amount": 0,
+            "term_months": 12,
+            "interest_rate": 5.0,
+            "purpose": "",
+            "stage": "draft",
+            "borrowers": [],
+            "guarantors": [],
+            "documents": [],
+            "fees": [],
+            "repayments": []
+        }
+        return Response(template)
+

@@ -233,6 +233,8 @@ def process_signature_data(application_id, signature_data, signed_by, signature_
     import os
     from django.conf import settings
     from django.core.files.base import ContentFile
+    from documents.models import Note
+    from users.services import create_application_notification
     
     try:
         application = Application.objects.get(id=application_id)
@@ -261,6 +263,21 @@ def process_signature_data(application_id, signature_data, signed_by, signature_
         application.signature_date = signature_date
         application.uploaded_pdf_path.save(filename, ContentFile(binary_data), save=False)
         application.save()
+        
+        # Create note about signature
+        Note.objects.create(
+            application=application,
+            content=f"Application signed by {signed_by} on {signature_date}",
+            created_by=user
+        )
+        
+        # Create notification
+        create_application_notification(
+            application=application,
+            notification_type='signature_required',
+            title=f'Application {application.reference_number} signed',
+            message=f'Application has been signed by {signed_by}'
+        )
     
     return application
 
@@ -321,45 +338,16 @@ def validate_application_schema(data):
             "security_value": {
                 "type": ["number", "null"],
                 "minimum": 0
-            }
-        }
-    }
-    
-    # Validate against schema
-    try:
-        jsonschema.validate(instance=data, schema=application_schema)
-        return True, None
-    except jsonschema.exceptions.ValidationError as e:
-        return False, str(e)
-def validate_application_schema(application_data):
-    """
-    Validate application data against JSON schema
-    
-    Args:
-        application_data: Dictionary of application data
-        
-    Returns:
-        Tuple of (is_valid, errors)
-    """
-    schema = {
-        "type": "object",
-        "required": ["loan_amount", "loan_term", "interest_rate", "purpose", "application_type"],
-        "properties": {
-            "loan_amount": {"type": "number", "minimum": 0},
-            "loan_term": {"type": "integer", "minimum": 1},
-            "interest_rate": {"type": "number", "minimum": 0},
-            "purpose": {"type": "string", "minLength": 1},
-            "application_type": {"type": "string", "minLength": 1},
-            "repayment_frequency": {"type": "string", "enum": ["monthly", "quarterly", "annually"]},
-            "estimated_settlement_date": {"type": "string", "format": "date"},
+            },
             "stage": {"type": "string"},
             "valuer_info": {"type": "object"},
             "qs_info": {"type": "object"}
         }
     }
     
+    # Validate against schema
     try:
-        jsonschema.validate(instance=application_data, schema=schema)
+        jsonschema.validate(instance=data, schema=application_schema)
         return True, None
     except jsonschema.exceptions.ValidationError as e:
         return False, str(e)
@@ -405,43 +393,7 @@ def update_application_stage(application_id, new_stage, user):
         raise ValueError(f"Application with ID {application_id} not found")
 
 
-def process_signature_data(application_id, signature_data, signed_by, user):
-    """
-    Process signature data for an application
-    
-    Args:
-        application_id: Application ID
-        signature_data: Base64 encoded signature data
-        signed_by: Name of person who signed
-        user: User processing the signature
-        
-    Returns:
-        Updated Application object
-    """
-    try:
-        application = Application.objects.get(id=application_id)
-        
-        # Update application with signature data
-        application.signature_data = signature_data
-        application.signed_by = signed_by
-        application.signature_date = datetime.now().date()
-        application.save()
-        
-        # Create note about signature
-        Note.objects.create(
-            application=application,
-            content=f"Application signed by {signed_by}",
-            created_by=user
-        )
-        
-        # Create notification
-        create_application_notification(
-            application=application,
-            notification_type='signature_required',
-            title=f'Application {application.reference_number} signed',
-            message=f'Application has been signed by {signed_by}'
-        )
-        
-        return application
-    except Application.DoesNotExist:
-        raise ValueError(f"Application with ID {application_id} not found")
+# This function has been merged with the earlier definition of process_signature_data
+
+
+

@@ -119,7 +119,10 @@ AUTH_USER_MODEL = 'users.User'
 ASGI_APPLICATION = 'crm_backend.asgi.application'
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('redis', 6379)],
+        },
     },
 }
 
@@ -216,3 +219,7 @@ LOGGING = {
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+# Channels configuration
+# Removed duplicate CHANNEL_LAYERS configuration - using the one at line ~120
+

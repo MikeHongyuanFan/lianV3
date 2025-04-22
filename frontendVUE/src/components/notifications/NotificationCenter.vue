@@ -127,7 +127,7 @@ const fetchNotifications = async () => {
   loading.value = true
   
   try {
-    const response = await axios.get('/api/notifications/', {
+    const response = await axios.get('/api/users/notifications/', {
       params: {
         limit: 10
       }
@@ -142,7 +142,7 @@ const fetchNotifications = async () => {
 
 const fetchUnreadCount = async () => {
   try {
-    const response = await axios.get('/api/notifications/unread_count/')
+    const response = await axios.get('/api/users/notifications/unread_count/')
     unreadCount.value = response.data.unread_count
   } catch (error) {
     console.error('Error fetching unread count:', error)
@@ -151,7 +151,7 @@ const fetchUnreadCount = async () => {
 
 const markAsRead = async (notification) => {
   try {
-    await axios.post(`/api/notifications/${notification.id}/mark_as_read/`)
+    await axios.post(`/api/users/notifications/${notification.id}/mark-read/`)
     notification.is_read = true
     // No need to fetch unread count as it will be updated via WebSocket
   } catch (error) {
@@ -161,7 +161,7 @@ const markAsRead = async (notification) => {
 
 const markAllAsRead = async () => {
   try {
-    await axios.post('/api/notifications/mark_all_as_read/')
+    await axios.post('/api/users/notifications/mark-read/')
     notifications.value.forEach(notification => {
       notification.is_read = true
     })
@@ -286,3 +286,7 @@ onUnmounted(() => {
   removeWebSocketListeners()
 })
 </script>
+
+
+
+

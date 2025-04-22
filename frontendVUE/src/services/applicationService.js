@@ -20,7 +20,7 @@ export default {
     })
     
     const queryString = queryParams.toString() ? `?${queryParams.toString()}` : ''
-    return api.get(`/applications/${queryString}`)
+    return api.get(`/api/applications/${queryString}`)
   },
   
   /**
@@ -29,7 +29,7 @@ export default {
    * @returns {Promise} - Promise with application data
    */
   getApplication(id) {
-    return api.get(`/applications/${id}/`)
+    return api.get(`/api/applications/${id}/`)
   },
   
   /**
@@ -38,7 +38,7 @@ export default {
    * @returns {Promise} - Promise with created application
    */
   createApplication(applicationData) {
-    return api.post('/applications/', applicationData)
+    return api.post('/api/applications/', applicationData)
   },
   
   /**
@@ -48,7 +48,7 @@ export default {
    * @returns {Promise} - Promise with updated application
    */
   updateApplication(id, applicationData) {
-    return api.put(`/applications/${id}/`, applicationData)
+    return api.put(`/api/applications/${id}/`, applicationData)
   },
   
   /**
@@ -58,7 +58,7 @@ export default {
    * @returns {Promise} - Promise with updated application
    */
   updateApplicationStage(id, stage) {
-    return api.post(`/applications/${id}/update_stage/`, { stage })
+    return api.post(`/api/applications/${id}/update_stage/`, { stage })
   },
   
   /**
@@ -68,7 +68,7 @@ export default {
    * @returns {Promise} - Promise with updated application
    */
   addBorrowers(id, borrowerIds) {
-    return api.post(`/applications/${id}/add_borrowers/`, { borrower_ids: borrowerIds })
+    return api.post(`/api/applications/${id}/add_borrowers/`, { borrower_ids: borrowerIds })
   },
   
   /**
@@ -78,7 +78,7 @@ export default {
    * @returns {Promise} - Promise with updated application
    */
   removeBorrowers(id, borrowerIds) {
-    return api.post(`/applications/${id}/remove_borrowers/`, { borrower_ids: borrowerIds })
+    return api.post(`/api/applications/${id}/remove_borrowers/`, { borrower_ids: borrowerIds })
   },
   
   /**
@@ -89,7 +89,7 @@ export default {
    * @returns {Promise} - Promise with updated application
    */
   processSignature(id, signatureData, signedBy) {
-    return api.post(`/applications/${id}/process_signature/`, {
+    return api.post(`/api/applications/${id}/process_signature/`, {
       signature_data: signatureData,
       signed_by: signedBy
     })
@@ -102,7 +102,7 @@ export default {
    * @returns {Promise} - Promise with upload result
    */
   uploadDocuments(id, formData) {
-    return api.post(`/applications/${id}/upload_document/`, formData, {
+    return api.post(`/api/applications/${id}/documents/`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -116,7 +116,7 @@ export default {
    * @returns {Promise} - Promise with upload result
    */
   uploadSignature(id, formData) {
-    return api.post(`/applications/${id}/signature/`, formData, {
+    return api.post(`/api/applications/${id}/process_signature/`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -129,7 +129,7 @@ export default {
    * @returns {Promise} - Promise with documents data
    */
   getDocuments(id) {
-    return api.get(`/applications/${id}/documents/`)
+    return api.get(`/api/applications/${id}/documents/`)
   },
   
   /**
@@ -138,7 +138,7 @@ export default {
    * @returns {Promise} - Promise with notes data
    */
   getNotes(id) {
-    return api.get(`/applications/${id}/notes/`)
+    return api.get(`/api/applications/${id}/notes/`)
   },
   
   /**
@@ -148,7 +148,7 @@ export default {
    * @returns {Promise} - Promise with created note
    */
   addNote(id, noteData) {
-    return api.post(`/applications/${id}/add_note/`, noteData)
+    return api.post(`/api/applications/${id}/notes/`, noteData)
   },
   
   /**
@@ -157,8 +157,12 @@ export default {
    * @returns {Promise} - Promise with deletion result
    */
   deleteApplication(id) {
-    return api.delete(`/applications/${id}/`)
+    return api.delete(`/api/applications/${id}/`)
   }
 }
+
+
+
+
 
 

@@ -2239,3 +2239,1709 @@ WARNING 2025-04-22 00:54:16,944 log Method Not Allowed: /api/borrowers/guarantor
 WARNING 2025-04-22 00:54:16,944 log Method Not Allowed: /api/borrowers/guarantors/
 WARNING 2025-04-22 00:54:17,274 log Not Found: /api/borrowers/guarantors/
 WARNING 2025-04-22 00:54:17,600 log Forbidden: /api/borrowers/guarantors/1/
+ERROR 2025-04-22 01:09:59,194 log Internal Server Error: /api/brokers/bdms/1/applications/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 182, in applications
+    from applications.serializers import ApplicationListSerializer
+ImportError: cannot import name 'ApplicationListSerializer' from 'applications.serializers' (/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/applications/serializers.py)
+WARNING 2025-04-22 01:10:00,045 log Method Not Allowed: /api/brokers/bdms/
+WARNING 2025-04-22 01:10:00,724 log Not Found: /api/brokers/bdms/
+ERROR 2025-04-22 01:10:01,383 log Internal Server Error: /api/brokers/bdms/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/generics.py", line 83, in get_object
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 90, in get_queryset
+    return queryset.filter(bdms=user)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1464, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1275, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1252, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "bd@example.com": Must be "BDM" instance.
+WARNING 2025-04-22 01:10:02,053 log Not Found: /api/brokers/bdms/
+ERROR 2025-04-22 01:10:03,375 log Internal Server Error: /api/brokers/branches/1/bdms/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 55, in bdms
+    bdms = branch.bdms.all()
+AttributeError: 'Branch' object has no attribute 'bdms'
+ERROR 2025-04-22 01:10:04,049 log Internal Server Error: /api/brokers/branches/1/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 45, in brokers
+    brokers = branch.brokers.all()
+AttributeError: 'Branch' object has no attribute 'brokers'
+WARNING 2025-04-22 01:10:04,715 log Method Not Allowed: /api/brokers/branches/
+WARNING 2025-04-22 01:10:05,386 log Method Not Allowed: /api/brokers/branches/
+WARNING 2025-04-22 01:10:06,735 log Not Found: /api/brokers/branches/
+WARNING 2025-04-22 01:10:07,401 log Unauthorized: /api/brokers/branches/
+WARNING 2025-04-22 01:10:08,073 log Not Found: /api/brokers/branches/
+ERROR 2025-04-22 01:10:09,398 log Internal Server Error: /api/brokers/1/applications/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 107, in applications
+    from applications.serializers import ApplicationListSerializer
+ImportError: cannot import name 'ApplicationListSerializer' from 'applications.serializers' (/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/applications/serializers.py)
+ERROR 2025-04-22 01:10:10,724 log Internal Server Error: /api/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/serializers.py", line 38, in get_application_count
+    return obj.applications.count()
+AttributeError: 'Broker' object has no attribute 'applications'
+ERROR 2025-04-22 01:10:11,395 log Internal Server Error: /api/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 90, in get_queryset
+    return queryset.filter(bdms=user)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1464, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1275, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1252, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "bd@example.com": Must be "BDM" instance.
+ERROR 2025-04-22 01:10:12,069 log Internal Server Error: /api/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/serializers.py", line 38, in get_application_count
+    return obj.applications.count()
+AttributeError: 'Broker' object has no attribute 'applications'
+ERROR 2025-04-22 01:10:12,736 log Internal Server Error: /api/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/serializers.py", line 38, in get_application_count
+    return obj.applications.count()
+AttributeError: 'Broker' object has no attribute 'applications'
+ERROR 2025-04-22 01:10:13,403 log Internal Server Error: /api/brokers/1/stats/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 120, in stats
+    applications = broker.applications.all()
+AttributeError: 'Broker' object has no attribute 'applications'
+WARNING 2025-04-22 01:31:20,029 log Method Not Allowed: /api/brokers/bdms/
+WARNING 2025-04-22 01:31:20,689 log Not Found: /api/brokers/bdms/
+ERROR 2025-04-22 01:31:21,355 log Internal Server Error: /api/brokers/bdms/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/generics.py", line 83, in get_object
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 90, in get_queryset
+    return queryset.filter(bdms=user)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1464, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1275, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1252, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "bd@example.com": Must be "BDM" instance.
+WARNING 2025-04-22 01:31:22,043 log Not Found: /api/brokers/bdms/
+ERROR 2025-04-22 01:31:23,384 log Internal Server Error: /api/brokers/branches/1/bdms/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 55, in bdms
+    bdms = branch.bdms.all()
+AttributeError: 'Branch' object has no attribute 'bdms'
+ERROR 2025-04-22 01:31:24,043 log Internal Server Error: /api/brokers/branches/1/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 45, in brokers
+    brokers = branch.brokers.all()
+AttributeError: 'Branch' object has no attribute 'brokers'
+WARNING 2025-04-22 01:31:28,047 log Not Found: /api/brokers/branches/
+ERROR 2025-04-22 01:31:37,626 log Internal Server Error: /api/brokers/1/stats/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/renderers.py", line 99, in render
+    ret = json.dumps(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/utils/encoders.py", line 53, in default
+    return obj.tolist()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1093, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1097, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1169, in _execute_mock_call
+    return self.return_value
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 519, in __get_return_value
+    ret = self._get_child_mock(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1019, in _get_child_mock
+    return klass(**kw)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 2035, in __init__
+    _safe_super(MagicMixin, self).__init__(*args, **kw)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1075, in __init__
+    _safe_super(CallableMixin, self).__init__(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 437, in __init__
+    self._mock_add_spec(spec, spec_set, _spec_as_instance, _eat_self)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 492, in _mock_add_spec
+    if iscoroutinefunction(getattr(spec, attr, None)):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/coroutines.py", line 166, in iscoroutinefunction
+    return (inspect.iscoroutinefunction(func) or
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 195, in iscoroutinefunction
+    return _has_code_flag(obj, CO_COROUTINE)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 176, in _has_code_flag
+    while ismethod(f):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 89, in ismethod
+    return isinstance(object, types.MethodType)
+RecursionError: maximum recursion depth exceeded while calling a Python object
+WARNING 2025-04-22 01:35:50,368 log Method Not Allowed: /api/brokers/bdms/
+WARNING 2025-04-22 01:35:51,036 log Not Found: /api/brokers/bdms/
+ERROR 2025-04-22 01:35:51,707 log Internal Server Error: /api/brokers/bdms/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/generics.py", line 83, in get_object
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 90, in get_queryset
+    return queryset.filter(bdms=user)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1464, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1275, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1252, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "bd@example.com": Must be "BDM" instance.
+WARNING 2025-04-22 01:35:52,388 log Not Found: /api/brokers/bdms/
+ERROR 2025-04-22 01:35:53,717 log Internal Server Error: /api/brokers/branches/1/bdms/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 55, in bdms
+    bdms = branch.bdms.all()
+AttributeError: 'Branch' object has no attribute 'bdms'
+ERROR 2025-04-22 01:35:54,386 log Internal Server Error: /api/brokers/branches/1/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 45, in brokers
+    brokers = branch.brokers.all()
+AttributeError: 'Branch' object has no attribute 'brokers'
+WARNING 2025-04-22 01:35:58,570 log Not Found: /api/brokers/branches/
+ERROR 2025-04-22 01:36:08,235 log Internal Server Error: /api/brokers/1/stats/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/renderers.py", line 99, in render
+    ret = json.dumps(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/utils/encoders.py", line 53, in default
+    return obj.tolist()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1093, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1097, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1169, in _execute_mock_call
+    return self.return_value
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 519, in __get_return_value
+    ret = self._get_child_mock(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1019, in _get_child_mock
+    return klass(**kw)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 2035, in __init__
+    _safe_super(MagicMixin, self).__init__(*args, **kw)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1075, in __init__
+    _safe_super(CallableMixin, self).__init__(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 437, in __init__
+    self._mock_add_spec(spec, spec_set, _spec_as_instance, _eat_self)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 492, in _mock_add_spec
+    if iscoroutinefunction(getattr(spec, attr, None)):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/coroutines.py", line 166, in iscoroutinefunction
+    return (inspect.iscoroutinefunction(func) or
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 195, in iscoroutinefunction
+    return _has_code_flag(obj, CO_COROUTINE)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 176, in _has_code_flag
+    while ismethod(f):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 89, in ismethod
+    return isinstance(object, types.MethodType)
+RecursionError: maximum recursion depth exceeded while calling a Python object
+WARNING 2025-04-22 01:44:02,035 log Method Not Allowed: /api/brokers/bdms/
+WARNING 2025-04-22 01:44:02,692 log Not Found: /api/brokers/bdms/
+ERROR 2025-04-22 01:44:03,357 log Internal Server Error: /api/brokers/bdms/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/generics.py", line 83, in get_object
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 91, in get_queryset
+    return queryset.filter(bdms=user)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1464, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1275, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1252, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "bd@example.com": Must be "BDM" instance.
+WARNING 2025-04-22 01:44:04,038 log Not Found: /api/brokers/bdms/
+ERROR 2025-04-22 01:44:06,021 log Internal Server Error: /api/brokers/branches/1/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 48, in brokers
+    return Response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/serializers.py", line 38, in get_application_count
+    return obj.applications.count()
+AttributeError: 'Broker' object has no attribute 'applications'
+WARNING 2025-04-22 01:44:06,694 log Method Not Allowed: /api/brokers/branches/
+WARNING 2025-04-22 01:44:07,357 log Method Not Allowed: /api/brokers/branches/
+WARNING 2025-04-22 01:44:08,694 log Not Found: /api/brokers/branches/
+WARNING 2025-04-22 01:44:09,350 log Unauthorized: /api/brokers/branches/
+WARNING 2025-04-22 01:44:10,012 log Not Found: /api/brokers/branches/
+ERROR 2025-04-22 01:44:19,362 log Internal Server Error: /api/brokers/1/stats/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/renderers.py", line 99, in render
+    ret = json.dumps(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/utils/encoders.py", line 53, in default
+    return obj.tolist()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1093, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1097, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1169, in _execute_mock_call
+    return self.return_value
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 519, in __get_return_value
+    ret = self._get_child_mock(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1019, in _get_child_mock
+    return klass(**kw)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 2035, in __init__
+    _safe_super(MagicMixin, self).__init__(*args, **kw)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1075, in __init__
+    _safe_super(CallableMixin, self).__init__(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 437, in __init__
+    self._mock_add_spec(spec, spec_set, _spec_as_instance, _eat_self)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 492, in _mock_add_spec
+    if iscoroutinefunction(getattr(spec, attr, None)):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/coroutines.py", line 166, in iscoroutinefunction
+    return (inspect.iscoroutinefunction(func) or
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 195, in iscoroutinefunction
+    return _has_code_flag(obj, CO_COROUTINE)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 176, in _has_code_flag
+    while ismethod(f):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 89, in ismethod
+    return isinstance(object, types.MethodType)
+RecursionError: maximum recursion depth exceeded while calling a Python object
+WARNING 2025-04-22 02:01:10,553 log Forbidden: /api/brokers/branches/
+WARNING 2025-04-22 02:01:11,213 log Method Not Allowed: /api/brokers/branches/1/
+WARNING 2025-04-22 02:01:12,527 log Unauthorized: /api/brokers/branches/
+ERROR 2025-04-22 02:01:22,457 log Internal Server Error: /api/brokers/1/stats/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/renderers.py", line 99, in render
+    ret = json.dumps(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/utils/encoders.py", line 53, in default
+    return obj.tolist()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1093, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1097, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1169, in _execute_mock_call
+    return self.return_value
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 519, in __get_return_value
+    ret = self._get_child_mock(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1019, in _get_child_mock
+    return klass(**kw)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 2035, in __init__
+    _safe_super(MagicMixin, self).__init__(*args, **kw)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 1075, in __init__
+    _safe_super(CallableMixin, self).__init__(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 437, in __init__
+    self._mock_add_spec(spec, spec_set, _spec_as_instance, _eat_self)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/unittest/mock.py", line 492, in _mock_add_spec
+    if iscoroutinefunction(getattr(spec, attr, None)):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/coroutines.py", line 166, in iscoroutinefunction
+    return (inspect.iscoroutinefunction(func) or
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 195, in iscoroutinefunction
+    return _has_code_flag(obj, CO_COROUTINE)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 176, in _has_code_flag
+    while ismethod(f):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/inspect.py", line 89, in ismethod
+    return isinstance(object, types.MethodType)
+RecursionError: maximum recursion depth exceeded while calling a Python object
+WARNING 2025-04-22 02:09:23,779 log Forbidden: /api/brokers/branches/
+WARNING 2025-04-22 02:09:24,438 log Method Not Allowed: /api/brokers/branches/1/
+WARNING 2025-04-22 02:09:25,749 log Unauthorized: /api/brokers/branches/
+ERROR 2025-04-22 02:09:31,692 log Internal Server Error: /api/brokers/1/stats/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 126, in stats
+    total_applications = applications.count()
+TypeError: list.count() takes exactly one argument (0 given)
+WARNING 2025-04-22 02:18:17,027 log Forbidden: /api/brokers/branches/
+WARNING 2025-04-22 02:18:17,697 log Method Not Allowed: /api/brokers/branches/1/
+WARNING 2025-04-22 02:18:19,051 log Unauthorized: /api/brokers/branches/
+ERROR 2025-04-22 02:18:25,063 log Internal Server Error: /api/brokers/1/stats/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Desktop/LoanAPPV3/backenddjango/brokers/views.py", line 127, in stats
+    total_loan_amount = applications.aggregate(Sum('loan_amount'))['loan_amount__sum'] or 0
+AttributeError: 'list' object has no attribute 'aggregate'
+WARNING 2025-04-22 02:19:15,113 log Forbidden: /api/brokers/branches/
+WARNING 2025-04-22 02:19:15,772 log Method Not Allowed: /api/brokers/branches/1/
+WARNING 2025-04-22 02:19:17,090 log Unauthorized: /api/brokers/branches/
+WARNING 2025-04-22 02:27:27,525 log Unauthorized: /api/users/users/
+WARNING 2025-04-22 02:27:27,526 log Unauthorized: /api/users/notifications-viewset/
+WARNING 2025-04-22 02:27:27,527 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-22 02:27:27,527 log Unauthorized: /api/borrowers/
+WARNING 2025-04-22 02:27:27,527 log Unauthorized: /api/documents/
+WARNING 2025-04-22 02:30:06,853 log Forbidden: /api/users/users/
+WARNING 2025-04-22 02:30:06,855 log Forbidden: /api/users/users/3/
+WARNING 2025-04-22 02:30:07,027 log Forbidden: /api/users/users/4/
+WARNING 2025-04-22 02:36:21,895 log Bad Request: /api/documents/
+WARNING 2025-04-22 02:36:22,397 log Forbidden: /api/users/users/
+WARNING 2025-04-22 02:37:30,662 log Forbidden: /api/users/users/
+WARNING 2025-04-22 02:38:03,365 log Forbidden: /api/users/users/
+INFO 2025-04-22 03:40:25,751 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 03:41:47,621 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 03:43:13,106 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-22 03:43:50,770 log Not Found: /api/
+WARNING 2025-04-22 03:43:50,771 basehttp "HEAD /api/ HTTP/1.1" 404 0
+INFO 2025-04-22 03:44:00,329 basehttp "HEAD /swagger/ HTTP/1.1" 200 0
+INFO 2025-04-22 03:44:17,850 basehttp "HEAD /swagger/ HTTP/1.1" 200 0
+INFO 2025-04-22 03:44:26,525 basehttp "HEAD /admin/ HTTP/1.1" 302 0
+INFO 2025-04-22 03:47:43,844 basehttp "OPTIONS /api/users/auth/login/ HTTP/1.1" 200 0
+INFO 2025-04-22 03:47:43,853 views Login attempt for email: test@example.com
+WARNING 2025-04-22 03:47:43,985 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-22 03:47:43,985 basehttp "POST /api/users/auth/login/ HTTP/1.1" 401 31
+INFO 2025-04-22 03:47:50,504 views Login attempt for email: test@example.com
+WARNING 2025-04-22 03:47:50,656 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-22 03:47:50,656 basehttp "POST /api/users/auth/login/ HTTP/1.1" 401 31
+INFO 2025-04-22 03:49:17,714 views Login attempt for email: admin@example.com
+INFO 2025-04-22 03:49:17,870 basehttp "POST /api/users/auth/login/ HTTP/1.1" 200 549
+INFO 2025-04-22 03:49:17,877 basehttp "OPTIONS /api/notifications/unread_count/ HTTP/1.1" 200 0
+WARNING 2025-04-22 03:49:17,885 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:17,885 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:49:17,885 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 03:49:17,886 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+INFO 2025-04-22 03:49:17,906 basehttp "OPTIONS /api/reports/application-volume/ HTTP/1.1" 200 0
+WARNING 2025-04-22 03:49:17,908 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:17,910 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:49:17,920 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 03:49:17,922 basehttp "OPTIONS /api/reports/application-status/ HTTP/1.1" 200 0
+INFO 2025-04-22 03:49:17,932 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 03:49:17,934 basehttp "OPTIONS /api/reports/repayment-compliance/ HTTP/1.1" 200 0
+INFO 2025-04-22 03:49:17,940 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 03:49:17,941 basehttp "OPTIONS /api/applications/?limit=5 HTTP/1.1" 200 0
+INFO 2025-04-22 03:49:17,944 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 03:49:19,926 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:19,927 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:49:28,051 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:28,053 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:49:32,332 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:32,335 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:49:32,533 basehttp "OPTIONS /api/applications/new/ HTTP/1.1" 200 0
+WARNING 2025-04-22 03:49:32,541 log Not Found: /api/applications/new/
+WARNING 2025-04-22 03:49:32,541 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 03:49:36,145 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:36,148 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:49:36,156 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 03:49:36,168 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 03:49:36,179 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 03:49:36,183 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 03:49:38,329 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:38,330 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:49:40,405 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:40,406 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:49:40,412 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 03:49:40,426 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 03:49:40,438 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 03:49:40,442 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 03:49:41,415 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:41,416 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:49:41,491 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 03:49:41,500 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 03:49:41,508 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+WARNING 2025-04-22 03:49:43,919 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:43,920 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:49:44,000 basehttp "OPTIONS /api/reports/repayment-compliance/?start_date=2024-10-22&end_date=2025-04-22 HTTP/1.1" 200 0
+INFO 2025-04-22 03:49:44,009 basehttp "GET /api/reports/repayment-compliance/?start_date=2024-10-22&end_date=2025-04-22 HTTP/1.1" 200 205
+WARNING 2025-04-22 03:49:46,696 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:46,698 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:49:46,707 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 03:49:46,721 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 03:49:46,731 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+WARNING 2025-04-22 03:49:47,099 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:47,101 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:49:47,111 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 03:49:47,126 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 03:49:47,138 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 03:49:47,143 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 03:49:48,542 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:48,545 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:49:48,582 basehttp "OPTIONS /api/notification-preferences/ HTTP/1.1" 200 0
+WARNING 2025-04-22 03:49:48,586 log Not Found: /api/notification-preferences/
+WARNING 2025-04-22 03:49:48,586 basehttp "GET /api/notification-preferences/ HTTP/1.1" 404 3235
+INFO 2025-04-22 03:49:51,653 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+WARNING 2025-04-22 03:49:51,658 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:49:51,660 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:49:51,670 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 03:49:51,680 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 03:49:51,685 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+INFO 2025-04-22 03:52:18,267 basehttp "OPTIONS /api/notifications/unread_count/ HTTP/1.1" 200 0
+WARNING 2025-04-22 03:52:18,272 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:52:18,274 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:52:18,273 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 03:52:18,275 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+INFO 2025-04-22 03:52:18,279 basehttp "OPTIONS /api/reports/application-volume/ HTTP/1.1" 200 0
+WARNING 2025-04-22 03:52:18,292 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:52:18,292 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:52:18,300 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 03:52:18,352 basehttp "OPTIONS /api/reports/application-status/ HTTP/1.1" 200 0
+INFO 2025-04-22 03:52:18,362 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 03:52:18,364 basehttp "OPTIONS /api/reports/repayment-compliance/ HTTP/1.1" 200 0
+INFO 2025-04-22 03:52:18,373 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 03:52:18,374 basehttp "OPTIONS /api/applications/?limit=5 HTTP/1.1" 200 0
+INFO 2025-04-22 03:52:18,377 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 03:52:20,317 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:52:20,318 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:52:24,895 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:52:24,897 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 03:52:25,007 basehttp "OPTIONS /api/applications/new/ HTTP/1.1" 200 0
+WARNING 2025-04-22 03:52:25,019 log Not Found: /api/applications/new/
+WARNING 2025-04-22 03:52:25,019 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 03:52:41,022 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:52:41,024 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:52:45,858 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:52:45,860 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 03:52:45,861 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:52:45,863 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 03:52:45,873 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:52:45,874 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:52:45,884 log Not Found: /api/applications/new/
+WARNING 2025-04-22 03:52:45,884 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 03:52:47,873 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:52:47,874 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:52:55,890 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:52:55,892 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:53:11,941 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:53:11,942 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 03:53:41,960 log Not Found: /ws/notifications/
+WARNING 2025-04-22 03:53:41,962 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:06:14,722 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:06:14,725 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:06:14,740 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:06:14,756 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:06:14,764 log Not Found: /api/applications/new/
+WARNING 2025-04-22 04:06:14,764 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:06:14,765 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 04:06:16,712 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:06:16,713 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:06:24,744 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:06:24,746 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:06:52,975 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-22 04:06:53,554 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:06:53,557 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:06:53,557 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:06:53,558 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:06:53,581 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:06:53,582 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:06:53,705 log Not Found: /api/applications/new/
+WARNING 2025-04-22 04:06:53,706 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 04:06:55,576 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:06:55,578 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:07:03,596 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:07:03,598 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:07:06,486 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:07:06,495 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:07:06,498 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:07:06,498 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:07:06,504 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:07:06,510 log Not Found: /api/applications/new/
+WARNING 2025-04-22 04:07:06,511 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 04:07:06,511 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:07:07,103 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:07:07,107 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:07:07,111 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:07:07,112 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:07:07,112 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:07:07,115 log Not Found: /api/applications/new/
+WARNING 2025-04-22 04:07:07,115 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:07:07,115 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 04:07:07,647 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:07:07,649 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:07:07,656 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:07:07,657 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:07:07,659 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:07:07,661 log Not Found: /api/applications/new/
+WARNING 2025-04-22 04:07:07,661 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:07:07,662 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 04:07:09,656 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:07:09,658 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:07:17,692 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:07:17,698 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:07:33,725 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:07:33,728 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:09:33,357 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-22 04:09:34,273 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:09:34,276 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:09:34,277 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:09:34,277 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:09:34,277 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:09:34,278 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:09:34,376 log Not Found: /api/applications/new/
+WARNING 2025-04-22 04:09:34,377 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 04:09:36,260 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:09:36,262 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:09:44,281 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:09:44,282 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:10:00,303 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:10:00,305 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:10:30,333 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:10:30,336 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:10:46,498 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:10:46,503 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:10:46,507 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:10:46,512 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:10:46,513 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:10:46,520 log Not Found: /api/applications/new/
+WARNING 2025-04-22 04:10:46,521 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:10:46,523 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 04:10:47,061 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:10:47,062 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:10:47,066 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:10:47,070 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:10:47,071 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:10:47,071 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:10:47,073 log Not Found: /api/applications/new/
+WARNING 2025-04-22 04:10:47,074 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 04:10:47,657 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:10:47,660 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:10:47,683 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:10:47,694 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:10:47,711 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:10:47,742 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:10:49,064 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:10:49,068 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:10:55,081 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:10:55,082 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:10:55,260 basehttp "OPTIONS /api/reports/application-status/?start_date=2024-10-22&end_date=2025-04-22 HTTP/1.1" 200 0
+INFO 2025-04-22 04:10:55,300 basehttp "GET /api/reports/application-status/?start_date=2024-10-22&end_date=2025-04-22 HTTP/1.1" 200 343
+WARNING 2025-04-22 04:11:10,372 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:11:10,376 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:11:11,018 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:11:11,021 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:11:11,851 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:11:11,860 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:11:11,867 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+WARNING 2025-04-22 04:11:22,004 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:11:22,005 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:11:22,015 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:11:22,025 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:11:22,037 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:11:22,041 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:11:32,496 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:11:32,497 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:11:32,573 basehttp "OPTIONS /api/notification-preferences/ HTTP/1.1" 200 0
+WARNING 2025-04-22 04:11:32,584 log Not Found: /api/notification-preferences/
+WARNING 2025-04-22 04:11:32,585 basehttp "GET /api/notification-preferences/ HTTP/1.1" 404 3235
+WARNING 2025-04-22 04:11:35,926 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:11:35,927 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:11:35,934 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:11:35,943 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:11:35,954 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:11:35,958 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:11:37,500 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:11:37,501 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:11:59,879 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:11:59,880 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:11:59,899 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:11:59,912 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:11:59,923 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:11:59,928 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:12:02,567 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:12:02,568 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:12:02,572 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:12:02,572 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:12:02,573 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:12:02,574 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:12:02,577 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:12:02,585 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:12:02,593 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:12:02,596 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:12:04,557 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:12:04,557 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:12:12,608 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:12:12,609 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:12:13,729 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:12:13,730 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:12:13,881 log Not Found: /api/applications/new/
+WARNING 2025-04-22 04:12:13,881 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 04:12:17,095 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:12:17,096 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:12:17,101 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:12:17,106 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:12:17,110 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:12:17,112 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:12:17,114 log Not Found: /api/applications/new/
+WARNING 2025-04-22 04:12:17,115 basehttp "GET /api/applications/new/ HTTP/1.1" 404 14445
+WARNING 2025-04-22 04:12:19,093 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:12:19,095 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:12:27,115 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:12:27,117 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:12:43,142 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:12:43,145 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:13:13,166 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:13:13,167 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:13:16,346 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:13:16,348 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:13:16,360 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:13:16,374 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:13:16,384 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:13:16,389 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:13:21,266 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:13:21,267 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:13:28,334 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:13:28,336 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:13:28,346 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:13:28,359 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:13:28,370 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:13:28,374 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+INFO 2025-04-22 04:15:42,862 autoreload /app/users/urls.py changed, reloading.
+INFO 2025-04-22 04:15:43,410 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 04:16:09,193 autoreload /app/users/views.py changed, reloading.
+INFO 2025-04-22 04:16:09,672 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 04:16:36,438 autoreload /app/users/views.py changed, reloading.
+INFO 2025-04-22 04:16:36,936 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 04:17:02,826 autoreload /app/applications/urls.py changed, reloading.
+INFO 2025-04-22 04:17:03,376 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 04:17:30,114 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-22 04:17:30,621 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 04:17:53,452 autoreload /app/crm_backend/settings.py changed, reloading.
+INFO 2025-04-22 04:17:53,950 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 04:18:53,809 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 04:20:08,598 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 04:21:51,761 basehttp "OPTIONS /api/notifications/unread_count/ HTTP/1.1" 200 0
+WARNING 2025-04-22 04:21:51,775 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:21:51,776 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:21:51,776 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:21:51,776 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:21:51,792 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:21:51,793 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:21:53,795 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:21:53,796 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:22:01,815 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:22:01,817 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk3MzU3LCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjI3ZTlhYmFjZjZiNTRmNGM5MmY5ZmFjZjljMWMyNzVhIiwidXNlcl9pZCI6Mn0.pyAao3WNtZZhQmUbwGiVcaH4CumdEe9D22MvtqYSOCI HTTP/1.1" 404 3434
+INFO 2025-04-22 04:22:04,983 basehttp "OPTIONS /api/users/auth/login/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:22:04,998 views Login attempt for email: admin@example.com
+WARNING 2025-04-22 04:22:05,120 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-22 04:22:05,120 basehttp "POST /api/users/auth/login/ HTTP/1.1" 401 31
+INFO 2025-04-22 04:22:05,123 basehttp "OPTIONS /api/users/auth/refresh/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:22:05,127 basehttp "POST /api/users/auth/refresh/ HTTP/1.1" 200 241
+INFO 2025-04-22 04:22:05,129 views Login attempt for email: admin@example.com
+WARNING 2025-04-22 04:22:05,243 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-22 04:22:05,243 basehttp "POST /api/users/auth/login/ HTTP/1.1" 401 31
+INFO 2025-04-22 04:22:10,786 views Login attempt for email: admin@example.com
+WARNING 2025-04-22 04:22:10,933 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-22 04:22:10,934 basehttp "POST /api/users/auth/login/ HTTP/1.1" 401 31
+INFO 2025-04-22 04:22:10,940 basehttp "POST /api/users/auth/refresh/ HTTP/1.1" 200 241
+INFO 2025-04-22 04:22:10,943 views Login attempt for email: admin@example.com
+WARNING 2025-04-22 04:22:11,058 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-22 04:22:11,058 basehttp "POST /api/users/auth/login/ HTTP/1.1" 401 31
+WARNING 2025-04-22 04:22:17,838 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:22:17,839 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzMwLCJpYXQiOjE3NDUyOTM3NTcsImp0aSI6IjU0NWM2YTc4M2RkMjQ4MjFhODU5NjVhZDZjZGExZDBhIiwidXNlcl9pZCI6Mn0.BvxFIRSJQAw1DptYM4p_BYT0ZhL5T1hMrPwfDqZAP0w HTTP/1.1" 404 3434
+INFO 2025-04-22 04:22:42,864 views Login attempt for email: admin@example.com
+INFO 2025-04-22 04:22:43,002 basehttp "POST /api/users/auth/login/ HTTP/1.1" 200 549
+WARNING 2025-04-22 04:22:43,011 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:22:43,012 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+INFO 2025-04-22 04:22:43,030 basehttp "OPTIONS /api/reports/application-volume/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:22:43,040 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:22:43,042 basehttp "OPTIONS /api/reports/application-status/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:22:43,052 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:22:43,054 basehttp "OPTIONS /api/reports/repayment-compliance/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:22:43,060 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:22:43,061 basehttp "OPTIONS /api/applications/?limit=5 HTTP/1.1" 200 0
+INFO 2025-04-22 04:22:43,073 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:22:45,760 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:22:45,761 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+INFO 2025-04-22 04:22:46,018 basehttp "OPTIONS /api/applications/new/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:22:46,024 basehttp "GET /api/applications/new/ HTTP/1.1" 200 185
+WARNING 2025-04-22 04:23:12,971 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:23:12,973 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+INFO 2025-04-22 04:23:12,985 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:23:12,996 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:23:13,007 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:23:13,010 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:23:15,878 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:23:15,879 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+INFO 2025-04-22 04:23:15,881 basehttp "GET /api/applications/new/ HTTP/1.1" 200 185
+WARNING 2025-04-22 04:23:20,250 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:23:20,251 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+INFO 2025-04-22 04:23:20,257 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:23:20,270 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:23:20,282 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:23:20,286 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:23:23,583 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:23:23,584 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:23:35,040 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:23:35,041 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+INFO 2025-04-22 04:23:35,052 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:23:35,062 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:23:35,073 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:23:35,078 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:23:37,889 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:23:37,890 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:23:37,890 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:23:37,891 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:23:37,906 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:23:37,907 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+INFO 2025-04-22 04:23:37,907 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:23:37,916 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:23:37,924 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:23:37,927 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:23:39,908 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:23:39,908 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:23:43,487 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:23:43,488 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+INFO 2025-04-22 04:23:43,583 basehttp "GET /api/applications/new/ HTTP/1.1" 200 185
+WARNING 2025-04-22 04:23:59,566 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:23:59,570 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:24:12,993 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:24:13,001 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+INFO 2025-04-22 04:24:13,021 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:24:13,032 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:24:13,042 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:24:13,046 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+INFO 2025-04-22 04:25:41,804 basehttp "OPTIONS /api/notifications/unread_count/ HTTP/1.1" 200 0
+WARNING 2025-04-22 04:25:41,812 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:25:41,814 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:25:41,814 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:25:41,815 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:25:41,827 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:25:41,827 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:25:43,829 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:25:43,830 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5MzYzLCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjlhNzk4MWQyNTFkNjQxMThhZjE5OGRiMWQzY2FmM2ZlIiwidXNlcl9pZCI6Mn0.QyKSQDJ_IY5hvOav6-ZfqkyYjGMPPPSVaYm4lOyXS6E HTTP/1.1" 404 3434
+INFO 2025-04-22 04:25:49,749 basehttp "OPTIONS /api/users/auth/login/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:25:49,761 views Login attempt for email: admin@example.com
+WARNING 2025-04-22 04:25:49,882 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-22 04:25:49,882 basehttp "POST /api/users/auth/login/ HTTP/1.1" 401 31
+INFO 2025-04-22 04:25:49,884 basehttp "OPTIONS /api/users/auth/refresh/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:25:49,887 basehttp "POST /api/users/auth/refresh/ HTTP/1.1" 200 241
+INFO 2025-04-22 04:25:49,890 views Login attempt for email: admin@example.com
+WARNING 2025-04-22 04:25:50,004 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-22 04:25:50,004 basehttp "POST /api/users/auth/login/ HTTP/1.1" 401 31
+WARNING 2025-04-22 04:25:51,850 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:25:51,851 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTQ5LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjA2NjZkNjZjOGFkNTQyNWI5OTE2MmQwMDc3MWU1YjMzIiwidXNlcl9pZCI6Mn0.dM3W8lKRLHRNOrRKb7Ufm7qaiJkZtsPb6tG2whJXlsQ HTTP/1.1" 404 3434
+INFO 2025-04-22 04:25:57,586 views Login attempt for email: admin@example.com
+WARNING 2025-04-22 04:25:57,731 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-22 04:25:57,732 basehttp "POST /api/users/auth/login/ HTTP/1.1" 401 31
+INFO 2025-04-22 04:25:57,736 basehttp "POST /api/users/auth/refresh/ HTTP/1.1" 200 241
+INFO 2025-04-22 04:25:57,739 views Login attempt for email: admin@example.com
+WARNING 2025-04-22 04:25:57,854 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-22 04:25:57,854 basehttp "POST /api/users/auth/login/ HTTP/1.1" 401 31
+WARNING 2025-04-22 04:26:03,214 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:03,215 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:03,231 basehttp "OPTIONS /api/reports/application-volume/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:26:03,245 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:26:03,247 basehttp "OPTIONS /api/reports/application-status/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:26:03,258 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:26:03,260 basehttp "OPTIONS /api/reports/repayment-compliance/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:26:03,269 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:26:03,270 basehttp "OPTIONS /api/applications/?limit=5 HTTP/1.1" 200 0
+INFO 2025-04-22 04:26:03,273 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:26:06,061 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:06,062 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:06,079 basehttp "OPTIONS /api/applications/new/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:26:06,084 basehttp "GET /api/applications/new/ HTTP/1.1" 200 185
+WARNING 2025-04-22 04:26:08,747 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:08,748 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:08,758 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:26:08,773 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:26:08,784 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:26:08,788 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:26:10,057 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:10,057 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:26:11,089 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:11,093 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:11,101 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:26:11,114 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:26:11,125 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:26:11,129 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:26:12,240 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:12,241 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:12,326 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:26:12,334 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:26:12,341 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+WARNING 2025-04-22 04:26:14,099 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:14,100 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:14,180 basehttp "OPTIONS /api/reports/repayment-compliance/?start_date=2024-10-22&end_date=2025-04-22 HTTP/1.1" 200 0
+INFO 2025-04-22 04:26:14,188 basehttp "GET /api/reports/repayment-compliance/?start_date=2024-10-22&end_date=2025-04-22 HTTP/1.1" 200 205
+WARNING 2025-04-22 04:26:17,594 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:17,596 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:17,604 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:26:17,618 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:26:17,629 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+WARNING 2025-04-22 04:26:18,598 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:18,602 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:18,644 basehttp "OPTIONS /api/brokers/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:26:18,645 basehttp "OPTIONS /api/brokers/bdm/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:26:18,645 basehttp "OPTIONS /api/reports/application-volume/?start_date=2024-10-22&end_date=2025-04-22&time_grouping=month HTTP/1.1" 200 0
+WARNING 2025-04-22 04:26:18,657 log Not Found: /api/brokers/bdm/
+INFO 2025-04-22 04:26:18,658 basehttp "GET /api/brokers/ HTTP/1.1" 200 52
+WARNING 2025-04-22 04:26:18,658 basehttp "GET /api/brokers/bdm/ HTTP/1.1" 404 23
+INFO 2025-04-22 04:26:18,663 basehttp "GET /api/reports/application-volume/?start_date=2024-10-22&end_date=2025-04-22&time_grouping=month HTTP/1.1" 200 315
+WARNING 2025-04-22 04:26:22,677 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:22,679 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:22,685 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:26:22,693 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:26:22,700 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+WARNING 2025-04-22 04:26:24,559 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:24,560 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:24,637 basehttp "OPTIONS /api/reports/application-status/?start_date=2024-10-22&end_date=2025-04-22 HTTP/1.1" 200 0
+INFO 2025-04-22 04:26:24,648 basehttp "GET /api/reports/application-status/?start_date=2024-10-22&end_date=2025-04-22 HTTP/1.1" 200 343
+WARNING 2025-04-22 04:26:27,070 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:27,071 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:27,078 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:26:27,088 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:26:27,096 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:26:29,932 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+WARNING 2025-04-22 04:26:29,940 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:26:29,942 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:26:29,952 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:26:29,962 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:26:29,966 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+INFO 2025-04-22 04:29:30,323 basehttp "OPTIONS /api/notifications/unread_count/ HTTP/1.1" 200 0
+WARNING 2025-04-22 04:29:30,329 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:29:30,330 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 04:29:30,331 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:29:30,331 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 04:29:30,346 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:29:30,347 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:29:31,537 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:29:31,538 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:29:31,558 basehttp "OPTIONS /api/reports/application-volume/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:29:31,577 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 04:29:31,581 basehttp "OPTIONS /api/reports/application-status/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:29:31,591 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 04:29:31,593 basehttp "OPTIONS /api/reports/repayment-compliance/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:29:31,602 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 04:29:31,604 basehttp "OPTIONS /api/applications/?limit=5 HTTP/1.1" 200 0
+INFO 2025-04-22 04:29:31,607 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 04:29:32,343 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:29:32,343 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+WARNING 2025-04-22 04:29:36,989 log Not Found: /ws/notifications/
+WARNING 2025-04-22 04:29:36,990 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 04:29:37,023 basehttp "OPTIONS /api/applications/new/ HTTP/1.1" 200 0
+INFO 2025-04-22 04:29:37,030 basehttp "GET /api/applications/new/ HTTP/1.1" 200 185
+INFO 2025-04-22 04:38:05,563 autoreload /app/users/services.py changed, reloading.
+INFO 2025-04-22 04:38:06,143 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 04:38:55,559 autoreload /app/users/services.py changed, reloading.
+INFO 2025-04-22 04:38:56,113 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 05:47:44,705 basehttp "OPTIONS /api/notifications/unread_count/ HTTP/1.1" 200 0
+WARNING 2025-04-22 05:47:44,724 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 05:47:44,725 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 05:47:44,726 log Not Found: /ws/notifications/
+WARNING 2025-04-22 05:47:44,727 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+WARNING 2025-04-22 05:47:44,737 log Not Found: /ws/notifications/
+WARNING 2025-04-22 05:47:44,737 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+WARNING 2025-04-22 05:47:46,374 log Not Found: /ws/notifications/
+WARNING 2025-04-22 05:47:46,374 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Mjk5NTU3LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjQ0ODIzNzZiNDQ5MDQ3ZDhhOTQ1YTcxNTJiYjJjNzBkIiwidXNlcl9pZCI6Mn0.k8zhiW1tprg58IC_2Ro8qgvGaXvXFxHgM2F9mqGr9ew HTTP/1.1" 404 3434
+INFO 2025-04-22 05:47:46,390 basehttp "OPTIONS /api/reports/application-volume/ HTTP/1.1" 200 0
+WARNING 2025-04-22 05:47:46,402 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-22 05:47:46,402 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 401 172
+INFO 2025-04-22 05:47:46,405 basehttp "OPTIONS /api/users/auth/refresh/ HTTP/1.1" 200 0
+INFO 2025-04-22 05:47:46,412 basehttp "POST /api/users/auth/refresh/ HTTP/1.1" 200 241
+INFO 2025-04-22 05:47:46,422 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 05:47:46,425 basehttp "OPTIONS /api/reports/application-status/ HTTP/1.1" 200 0
+INFO 2025-04-22 05:47:46,432 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 05:47:46,433 basehttp "OPTIONS /api/reports/repayment-compliance/ HTTP/1.1" 200 0
+INFO 2025-04-22 05:47:46,441 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 05:47:46,442 basehttp "OPTIONS /api/applications/?limit=5 HTTP/1.1" 200 0
+INFO 2025-04-22 05:47:46,454 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 05:47:46,736 log Not Found: /ws/notifications/
+WARNING 2025-04-22 05:47:46,737 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzA0NDY2LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjAwZGVmMTQyMTZlZDQwNGM5NWFhODFiY2EzOTIyNmZkIiwidXNlcl9pZCI6Mn0.wq1-OhpIBrMq8w1DxVkhKEoukEWeppPU2l3SkmntcRg HTTP/1.1" 404 3434
+WARNING 2025-04-22 05:47:51,109 log Not Found: /ws/notifications/
+WARNING 2025-04-22 05:47:51,111 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzA0NDY2LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjAwZGVmMTQyMTZlZDQwNGM5NWFhODFiY2EzOTIyNmZkIiwidXNlcl9pZCI6Mn0.wq1-OhpIBrMq8w1DxVkhKEoukEWeppPU2l3SkmntcRg HTTP/1.1" 404 3434
+INFO 2025-04-22 05:47:51,158 basehttp "OPTIONS /api/applications/new/ HTTP/1.1" 200 0
+INFO 2025-04-22 05:47:51,168 basehttp "GET /api/applications/new/ HTTP/1.1" 200 185
+WARNING 2025-04-22 05:48:21,171 log Not Found: /ws/notifications/
+WARNING 2025-04-22 05:48:21,174 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzA0NDY2LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjAwZGVmMTQyMTZlZDQwNGM5NWFhODFiY2EzOTIyNmZkIiwidXNlcl9pZCI6Mn0.wq1-OhpIBrMq8w1DxVkhKEoukEWeppPU2l3SkmntcRg HTTP/1.1" 404 3434
+INFO 2025-04-22 05:50:55,411 autoreload /app/users/urls.py changed, reloading.
+INFO 2025-04-22 05:50:55,964 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 05:52:09,848 autoreload /app/users/views.py changed, reloading.
+INFO 2025-04-22 05:52:10,415 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 06:21:26,014 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 06:27:00,117 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 07:28:27,617 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 07:28:54,548 basehttp "OPTIONS /api/notifications/unread_count/ HTTP/1.1" 200 0
+WARNING 2025-04-22 07:28:54,563 log Not Found: /api/notifications/unread_count/
+WARNING 2025-04-22 07:28:54,563 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:28:54,564 basehttp "GET /api/notifications/unread_count/ HTTP/1.1" 404 3241
+WARNING 2025-04-22 07:28:54,564 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzA0NDY2LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjAwZGVmMTQyMTZlZDQwNGM5NWFhODFiY2EzOTIyNmZkIiwidXNlcl9pZCI6Mn0.wq1-OhpIBrMq8w1DxVkhKEoukEWeppPU2l3SkmntcRg HTTP/1.1" 404 3434
+INFO 2025-04-22 07:28:54,567 basehttp "OPTIONS /api/reports/application-volume/ HTTP/1.1" 200 0
+WARNING 2025-04-22 07:28:54,574 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-22 07:28:54,574 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 401 172
+WARNING 2025-04-22 07:28:54,579 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:28:54,580 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzA0NDY2LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6IjAwZGVmMTQyMTZlZDQwNGM5NWFhODFiY2EzOTIyNmZkIiwidXNlcl9pZCI6Mn0.wq1-OhpIBrMq8w1DxVkhKEoukEWeppPU2l3SkmntcRg HTTP/1.1" 404 3434
+INFO 2025-04-22 07:28:54,628 basehttp "OPTIONS /api/users/auth/refresh/ HTTP/1.1" 200 0
+INFO 2025-04-22 07:28:54,644 basehttp "POST /api/users/auth/refresh/ HTTP/1.1" 200 241
+INFO 2025-04-22 07:28:54,656 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:28:54,659 basehttp "OPTIONS /api/reports/application-status/ HTTP/1.1" 200 0
+INFO 2025-04-22 07:28:54,666 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:28:54,668 basehttp "OPTIONS /api/reports/repayment-compliance/ HTTP/1.1" 200 0
+INFO 2025-04-22 07:28:54,673 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:28:54,675 basehttp "OPTIONS /api/applications/?limit=5 HTTP/1.1" 200 0
+INFO 2025-04-22 07:28:54,685 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:28:56,693 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:28:56,694 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:29:04,892 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:29:04,906 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:29:05,376 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:29:05,376 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:29:20,017 basehttp "OPTIONS /api/borrowers/borrowers/ HTTP/1.1" 200 0
+WARNING 2025-04-22 07:29:20,036 log Not Found: /api/borrowers/borrowers/
+WARNING 2025-04-22 07:29:20,036 basehttp "GET /api/borrowers/borrowers/ HTTP/1.1" 404 23
+INFO 2025-04-22 07:29:34,656 basehttp "OPTIONS /api/applications/applications/ HTTP/1.1" 200 0
+WARNING 2025-04-22 07:29:34,668 log Forbidden: /api/applications/applications/
+WARNING 2025-04-22 07:29:34,668 basehttp "POST /api/applications/applications/ HTTP/1.1" 403 63
+WARNING 2025-04-22 07:29:36,231 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:29:36,231 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:29:51,338 log Not Found: /api/borrowers/borrowers/
+WARNING 2025-04-22 07:29:51,339 basehttp "GET /api/borrowers/borrowers/ HTTP/1.1" 404 23
+WARNING 2025-04-22 07:29:55,880 log Forbidden: /api/applications/applications/
+WARNING 2025-04-22 07:29:55,881 basehttp "POST /api/applications/applications/ HTTP/1.1" 403 63
+WARNING 2025-04-22 07:29:56,571 log Forbidden: /api/applications/applications/
+WARNING 2025-04-22 07:29:56,572 basehttp "POST /api/applications/applications/ HTTP/1.1" 403 63
+WARNING 2025-04-22 07:30:06,433 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:30:06,435 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:30:13,721 log Forbidden: /api/applications/applications/
+WARNING 2025-04-22 07:30:13,721 basehttp "POST /api/applications/applications/ HTTP/1.1" 403 63
+WARNING 2025-04-22 07:30:35,632 log Forbidden: /api/applications/applications/
+WARNING 2025-04-22 07:30:35,633 basehttp "POST /api/applications/applications/ HTTP/1.1" 403 63
+WARNING 2025-04-22 07:30:36,982 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:30:36,984 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:30:41,893 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:30:41,895 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:30:41,920 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:30:41,932 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:30:41,940 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:30:41,952 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:30:43,522 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:30:43,523 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:30:43,608 basehttp "OPTIONS /api/borrowers/borrowers/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-04-22 07:30:43,615 log Not Found: /api/borrowers/borrowers/
+WARNING 2025-04-22 07:30:43,616 basehttp "GET /api/borrowers/borrowers/?page=1&page_size=10 HTTP/1.1" 404 23
+WARNING 2025-04-22 07:30:45,122 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:30:45,123 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:30:47,150 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:30:47,151 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:30:47,154 log Not Found: /api/borrowers/borrowers/
+WARNING 2025-04-22 07:30:47,154 basehttp "GET /api/borrowers/borrowers/?page=1&page_size=10 HTTP/1.1" 404 23
+WARNING 2025-04-22 07:30:48,015 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:30:48,016 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:30:48,018 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:30:48,029 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:30:48,038 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:30:48,042 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:30:49,329 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:30:49,330 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:30:49,369 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:30:49,380 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:30:49,389 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+WARNING 2025-04-22 07:30:51,878 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:30:51,879 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:30:51,883 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:30:51,893 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:30:51,903 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:30:51,907 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:30:52,959 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:30:52,961 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:30:53,007 basehttp "OPTIONS /api/notification-preferences/ HTTP/1.1" 200 0
+WARNING 2025-04-22 07:30:53,011 log Not Found: /api/notification-preferences/
+WARNING 2025-04-22 07:30:53,012 basehttp "GET /api/notification-preferences/ HTTP/1.1" 404 3235
+INFO 2025-04-22 07:30:57,910 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:30:57,922 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+WARNING 2025-04-22 07:30:57,931 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:30:57,932 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:30:57,951 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:30:57,957 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:31:01,093 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:31:01,095 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:31:01,136 basehttp "OPTIONS /api/applications/applications/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-04-22 07:31:01,155 basehttp "GET /api/applications/applications/?page=1&page_size=10 HTTP/1.1" 200 942
+WARNING 2025-04-22 07:31:03,645 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:31:03,649 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:31:03,759 basehttp "OPTIONS /api/applications/1/ HTTP/1.1" 200 0
+WARNING 2025-04-22 07:31:03,765 log Not Found: /api/applications/1/
+WARNING 2025-04-22 07:31:03,766 basehttp "GET /api/applications/1/ HTTP/1.1" 404 14640
+WARNING 2025-04-22 07:31:45,200 log Not Found: /api/
+WARNING 2025-04-22 07:31:45,202 basehttp "GET /api/ HTTP/1.1" 404 3160
+INFO 2025-04-22 07:31:59,788 basehttp "GET /swagger/ HTTP/1.1" 200 2226
+WARNING 2025-04-22 07:35:45,168 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:35:45,172 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:35:47,175 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:35:47,176 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:35:48,036 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:35:48,037 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:35:49,350 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:35:49,351 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:35:51,683 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:35:51,684 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:35:51,894 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:35:51,895 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:35:52,986 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:35:52,987 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:35:55,082 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:35:55,084 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:35:57,993 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:35:57,994 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:36:00,707 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:36:00,708 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:36:01,253 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:36:01,254 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:36:03,983 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:36:03,984 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:36:06,605 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:36:06,606 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:36:15,892 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:36:15,895 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:36:34,314 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:36:34,315 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:37:10,025 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:37:10,026 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:37:42,504 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:37:42,506 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:38:13,257 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:38:13,259 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:38:43,409 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:38:43,411 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:39:14,361 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:39:14,365 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:39:45,276 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:39:45,277 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:41:59,594 autoreload /app/crm_backend/settings.py changed, reloading.
+INFO 2025-04-22 07:42:00,682 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 07:46:43,447 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 07:46:44,785 basehttp "OPTIONS /api/users/notifications/unread_count/ HTTP/1.1" 200 0
+WARNING 2025-04-22 07:46:44,822 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:46:44,825 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:46:44,831 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:46:44,834 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:46:44,873 basehttp "GET /api/users/notifications/unread_count/ HTTP/1.1" 200 18
+WARNING 2025-04-22 07:46:45,009 log Not Found: /api/applications/1/
+WARNING 2025-04-22 07:46:45,010 basehttp "GET /api/applications/1/ HTTP/1.1" 404 14640
+WARNING 2025-04-22 07:46:47,351 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:46:47,352 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:46:55,494 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:46:55,496 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:47:12,291 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:47:12,304 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:47:43,182 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:47:43,191 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:47:48,609 basehttp "GET /swagger/ HTTP/1.1" 200 2226
+WARNING 2025-04-22 07:48:13,567 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:48:13,573 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:48:43,705 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:48:43,710 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:49:14,180 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:49:14,182 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:49:24,415 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:49:24,418 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:49:24,432 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:49:24,450 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:49:24,460 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:49:24,464 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:49:26,237 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:49:26,237 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:49:38,871 log Not Found: /api/borrowers/borrowers/
+WARNING 2025-04-22 07:49:38,872 basehttp "GET /api/borrowers/borrowers/ HTTP/1.1" 404 23
+WARNING 2025-04-22 07:49:50,021 log Forbidden: /api/applications/applications/
+WARNING 2025-04-22 07:49:50,022 basehttp "POST /api/applications/applications/ HTTP/1.1" 403 63
+WARNING 2025-04-22 07:50:12,222 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:50:12,226 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:50:12,234 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:50:12,244 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:50:12,255 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:50:12,259 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:50:23,299 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:50:23,302 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:50:23,374 log Not Found: /api/borrowers/borrowers/
+WARNING 2025-04-22 07:50:23,374 basehttp "GET /api/borrowers/borrowers/?page=1&page_size=10 HTTP/1.1" 404 23
+WARNING 2025-04-22 07:50:26,657 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:50:26,658 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:50:26,667 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:50:26,675 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:50:26,683 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:50:26,687 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:50:28,241 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:50:28,242 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:50:28,307 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:50:28,315 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:50:28,322 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+WARNING 2025-04-22 07:50:30,519 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:50:30,523 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:50:30,525 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:50:30,539 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:50:30,549 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:50:30,554 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:50:31,814 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:50:31,815 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:50:49,526 log Not Found: /api/borrowers/borrowers/
+WARNING 2025-04-22 07:50:49,527 basehttp "GET /api/borrowers/borrowers/ HTTP/1.1" 404 23
+WARNING 2025-04-22 07:51:02,229 log Forbidden: /api/applications/applications/
+WARNING 2025-04-22 07:51:02,230 basehttp "POST /api/applications/applications/ HTTP/1.1" 403 63
+WARNING 2025-04-22 07:51:05,012 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:51:05,014 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:51:05,017 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:51:05,030 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:51:05,041 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:51:05,045 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:51:17,207 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:51:17,209 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:51:17,295 basehttp "GET /api/applications/applications/?page=1&page_size=10 HTTP/1.1" 200 942
+WARNING 2025-04-22 07:51:26,611 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:51:26,612 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:51:26,622 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:51:26,632 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:51:26,640 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:51:26,643 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:51:29,944 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:51:29,945 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:51:29,950 log Not Found: /api/borrowers/borrowers/
+WARNING 2025-04-22 07:51:29,950 basehttp "GET /api/borrowers/borrowers/?page=1&page_size=10 HTTP/1.1" 404 23
+WARNING 2025-04-22 07:51:32,530 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:51:32,533 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:51:32,538 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:51:32,547 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:51:32,554 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:51:32,558 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:51:39,122 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:51:39,124 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:51:39,132 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:51:39,152 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:51:39,159 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:51:54,463 basehttp "OPTIONS /api/users/notifications/unread_count/ HTTP/1.1" 200 0
+INFO 2025-04-22 07:51:54,474 basehttp "GET /api/users/notifications/unread_count/ HTTP/1.1" 200 18
+WARNING 2025-04-22 07:51:54,974 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:51:54,975 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:51:54,976 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:51:54,977 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:51:56,367 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:51:56,369 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:51:56,390 basehttp "OPTIONS /api/reports/application-volume/ HTTP/1.1" 200 0
+INFO 2025-04-22 07:51:56,403 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:51:56,406 basehttp "OPTIONS /api/reports/application-status/ HTTP/1.1" 200 0
+INFO 2025-04-22 07:51:56,417 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:51:56,419 basehttp "OPTIONS /api/reports/repayment-compliance/ HTTP/1.1" 200 0
+INFO 2025-04-22 07:51:56,428 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:51:56,430 basehttp "OPTIONS /api/applications/?limit=5 HTTP/1.1" 200 0
+INFO 2025-04-22 07:51:56,433 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:51:56,667 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:51:56,668 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:52:12,848 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:52:12,850 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:52:32,302 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:52:32,304 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:52:43,900 basehttp "OPTIONS /api/borrowers/borrowers/ HTTP/1.1" 200 0
+WARNING 2025-04-22 07:52:43,929 log Not Found: /api/borrowers/borrowers/
+WARNING 2025-04-22 07:52:43,929 basehttp "GET /api/borrowers/borrowers/ HTTP/1.1" 404 23
+INFO 2025-04-22 07:52:52,755 basehttp "OPTIONS /api/applications/applications/ HTTP/1.1" 200 0
+WARNING 2025-04-22 07:52:52,766 log Forbidden: /api/applications/applications/
+WARNING 2025-04-22 07:52:52,767 basehttp "POST /api/applications/applications/ HTTP/1.1" 403 63
+WARNING 2025-04-22 07:53:02,993 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:53:02,994 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:53:05,667 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:53:05,668 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:53:05,704 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:53:05,714 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:53:05,723 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+WARNING 2025-04-22 07:53:07,557 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:53:07,559 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:53:07,663 basehttp "OPTIONS /api/reports/repayment-compliance/?start_date=2024-10-22&end_date=2025-04-22 HTTP/1.1" 200 0
+INFO 2025-04-22 07:53:07,679 basehttp "GET /api/reports/repayment-compliance/?start_date=2024-10-22&end_date=2025-04-22 HTTP/1.1" 200 205
+WARNING 2025-04-22 07:53:32,276 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:53:32,278 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:53:32,289 basehttp "GET /api/reports/application-volume/ HTTP/1.1" 200 315
+INFO 2025-04-22 07:53:32,298 basehttp "GET /api/reports/application-status/ HTTP/1.1" 200 343
+INFO 2025-04-22 07:53:32,307 basehttp "GET /api/reports/repayment-compliance/ HTTP/1.1" 200 205
+INFO 2025-04-22 07:53:32,311 basehttp "GET /api/applications/?limit=5 HTTP/1.1" 200 71
+WARNING 2025-04-22 07:53:38,595 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:53:38,597 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+INFO 2025-04-22 07:53:38,721 basehttp "OPTIONS /api/notification-preferences/ HTTP/1.1" 200 0
+WARNING 2025-04-22 07:53:38,726 log Not Found: /api/notification-preferences/
+WARNING 2025-04-22 07:53:38,726 basehttp "GET /api/notification-preferences/ HTTP/1.1" 404 3235
+INFO 2025-04-22 07:54:45,762 autoreload /app/crm_backend/settings.py changed, reloading.
+INFO 2025-04-22 07:54:46,421 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 07:55:09,186 autoreload /app/crm_backend/settings.py changed, reloading.
+INFO 2025-04-22 07:55:09,788 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 07:55:23,329 autoreload Watching for file changes with StatReloader
+INFO 2025-04-22 07:56:12,995 basehttp "GET /swagger/ HTTP/1.1" 200 2226
+WARNING 2025-04-22 07:58:38,704 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:58:38,705 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:58:41,446 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:58:41,452 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:58:45,736 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:58:45,738 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:58:54,728 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:58:54,732 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:59:11,356 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:59:11,357 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 07:59:41,680 log Not Found: /ws/notifications/
+WARNING 2025-04-22 07:59:41,685 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434
+WARNING 2025-04-22 08:00:11,964 log Not Found: /ws/notifications/
+WARNING 2025-04-22 08:00:11,966 basehttp "GET /ws/notifications/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzEwNTM0LCJpYXQiOjE3NDUyOTU3NjMsImp0aSI6ImQ0ODVlNWE2Mjc1MTQ5NzBiMDg5NWYyNDNiYjM3MTgzIiwidXNlcl9pZCI6Mn0.fUJFnwi7dMeKOjrv8HYHSjDJt9dIZJYOr7S0CwlOzns HTTP/1.1" 404 3434

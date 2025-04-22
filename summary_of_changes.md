@@ -2,74 +2,93 @@
 
 ## Issues Identified and Fixed
 
-### 1. Role-Based Access Control for Client Users
+### 1. Inconsistent API URL Configuration
 
-In the file `/workspace/backenddjango/applications/views.py`, we implemented proper filtering for client users:
+- **Problem**: The frontend was using inconsistent environment variables for API URLs (`VITE_API_URL` in some places and `VITE_API_BASE_URL` in others).
+- **Solution**: Updated all references to use `VITE_API_BASE_URL` consistently throughout the codebase.
 
-- **Problem**: The ApplicationViewSet didn't filter applications for client users, allowing them to potentially see applications they shouldn't have access to.
-- **Solution**: Implemented a `get_queryset` method in the ApplicationViewSet that filters applications for client users to only show applications they're associated with as borrowers.
+Changes made in `/workspace/frontendVUE/src/services/api.js`:
+```javascript
+// Changed from:
+baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
 
-```python
-def get_queryset(self):
-    """
-    Filter applications based on user role:
-    - Admin, BD, Broker: All applications
-    - Client: Only applications they're associated with
-    """
-    queryset = Application.objects.all().order_by('-created_at')
-    
-    # If user is a client, only show applications they're associated with
-    if self.request.user.role == 'client':
-        from borrowers.models import Borrower
-        borrower = Borrower.objects.filter(user=self.request.user).first()
-        if borrower:
-            return queryset.filter(borrowers=borrower)
-        return Application.objects.none()
-    
-    return queryset
+// To:
+baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
 ```
 
-### 2. Enhanced Role-Based Access Control Tests
+### 2. Incorrect API URL Format in Environment File
 
-In the file `/workspace/backenddjango/tests/integration/test_api_connections.py`, we enhanced the role-based access control tests:
+- **Problem**: The `.env` file had an incorrect URL format with `/api` suffix, which would cause double `/api` in paths.
+- **Solution**: Updated the environment variable to use the correct base URL without the `/api` suffix.
 
-- **Problem**: The test didn't verify that client users could only see applications they're associated with.
-- **Solution**: Enhanced the `test_role_based_access` method to verify that client users can only see applications they're associated with and cannot see applications they're not associated with.
+Changes made in `/workspace/frontendVUE/.env`:
+```
+// Changed from:
+VITE_API_BASE_URL=http://localhost:8000/api
 
-### 3. Enhanced API Error Handling Tests
+// To:
+VITE_API_BASE_URL=http://localhost:8000
+```
 
-In the file `/workspace/backenddjango/tests/integration/test_api_connections.py`, we enhanced the API error handling tests:
+### 3. Incorrect API Response Handling
 
-- **Problem**: The test didn't comprehensively test error scenarios.
-- **Solution**: Enhanced the `test_api_error_handling` method to test more error scenarios, including:
-  - Validation errors when updating an application with invalid data
-  - Forbidden access when a client tries to access an application they're not associated with
+- **Problem**: The auth store was not correctly accessing the API response data (using `response.access` instead of `response.data.access`).
+- **Solution**: Updated the auth store to correctly access the response data.
 
-### 4. Enhanced Cross-Service Communication Tests
+Changes made in `/workspace/frontendVUE/src/store/auth.js`:
+```javascript
+// Changed from:
+token.value = response.access
+refreshToken.value = response.refresh
 
-In the file `/workspace/backenddjango/tests/integration/test_api_connections.py`, we enhanced the cross-service communication tests:
+// To:
+token.value = response.data.access
+refreshToken.value = response.data.refresh
+```
 
-- **Problem**: The test didn't comprehensively verify interactions between different services.
-- **Solution**: Enhanced the `test_cross_service_communication` method to:
-  - Verify that an application is created with a borrower
-  - Verify that a note is created and associated with an application
-  - Test adding a fee and verifying it's correctly associated with an application
-  - Test ledger entries to verify they're correctly associated with an application
+### 4. Missing Token Management Function
+
+- **Problem**: The auth store was missing the `setTokens` function that was referenced in the API service.
+- **Solution**: Added the missing function to the auth store.
+
+Added to `/workspace/frontendVUE/src/store/auth.js`:
+```javascript
+function setTokens(accessToken, refreshTokenValue) {
+  token.value = accessToken
+  if (refreshTokenValue) {
+    refreshToken.value = refreshTokenValue
+    localStorage.setItem('refreshToken', refreshToken.value)
+  }
+  localStorage.setItem('token', token.value)
+}
+```
+
+### 5. Added Comprehensive API Connection Tests
+
+- **Problem**: There were no specific tests for API connections between frontend and backend.
+- **Solution**: Created new test files to verify API connections.
+
+New test files created:
+- `/workspace/frontendVUE/src/services/__tests__/api_connection.test.js`
+- `/workspace/frontendVUE/src/services/__tests__/backend_connection.test.js`
+
+These tests verify:
+- Correct base URL configuration
+- Proper authentication token handling
+- Correct endpoint paths for various API calls
+- Proper response handling
 
 ## Testing
 
-We were unable to run the tests directly due to environment issues, but we've fixed the known issues in the code. The changes we've made should resolve the issues mentioned in the request.
+We were unable to run the tests directly due to environment issues, but we've fixed the known issues in the code. The changes we've made should resolve the API connection issues between the frontend and backend.
 
 To verify the fixes, you should run the tests using the following commands:
 
 ```bash
-# For backend tests
-cd backenddjango
-python manage.py test tests.integration
-
 # For frontend tests
 cd frontendVUE
 npm run test
 ```
 
 These commands will run the tests and verify that our fixes have resolved the issues.
+

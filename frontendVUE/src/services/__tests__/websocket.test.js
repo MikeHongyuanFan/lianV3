@@ -33,12 +33,31 @@ class MockWebSocket {
   send(data) {
     // Store sent data for testing
     this.lastSentData = data
+    
+    // Auto-respond to heartbeat messages
+    try {
+      const parsedData = JSON.parse(data)
+      if (parsedData.type === 'heartbeat') {
+        setTimeout(() => {
+          this.simulateMessage(JSON.stringify({
+            type: 'heartbeat_response',
+            timestamp: new Date().toISOString()
+          }))
+        }, 50)
+      }
+    } catch (e) {
+      // Ignore parsing errors
+    }
   }
   
-  close() {
+  close(code, reason) {
+    // Store close code and reason for testing
+    this.closeCode = code
+    this.closeReason = reason
+    
     // Simulate close event
     if (this.listeners.close) {
-      this.listeners.close.forEach(callback => callback({ code: 1000 }))
+      this.listeners.close.forEach(callback => callback({ code: code || 1000, reason }))
     }
   }
   
@@ -62,6 +81,9 @@ vi.mock('../../store/auth', () => ({
   useAuthStore: vi.fn()
 }))
 
+// Mock timers
+vi.useFakeTimers()
+
 // Replace global WebSocket with mock
 const originalWebSocket = global.WebSocket
 beforeEach(() => {
@@ -79,6 +101,9 @@ afterEach(() => {
   
   // Disconnect websocket to clean up
   websocketService.disconnect()
+  
+  // Clear all timers
+  vi.clearAllTimers()
 })
 
 describe('WebSocket Service', () => {
@@ -149,45 +174,36 @@ describe('WebSocket Service', () => {
   })
   
   it('attempts to reconnect when connection is closed abnormally', () => {
-    // Mock setTimeout
-    const originalSetTimeout = global.setTimeout
-    global.setTimeout = vi.fn((callback) => {
-      // Call the callback immediately for testing
-      callback()
-      return 123 // Return a timeout ID
-    })
-    
-    // Setup spy on WebSocket constructor
-    const webSocketSpy = vi.spyOn(global, 'WebSocket')
-    
     // Connect to WebSocket
     websocketService.connect()
     
-    // Clear the spy to reset call count
+    // Setup spy on WebSocket constructor
+    const webSocketSpy = vi.spyOn(global, 'WebSocket')
     webSocketSpy.mockClear()
     
     // Simulate abnormal close
     websocketService.socket.listeners.close.forEach(callback => callback({ code: 1006 }))
     
+    // Fast-forward time to trigger reconnect
+    vi.advanceTimersByTime(2000)
+    
     // Verify reconnect was attempted
     expect(webSocketSpy).toHaveBeenCalled()
-    
-    // Restore setTimeout
-    global.setTimeout = originalSetTimeout
   })
   
   it('does not attempt to reconnect when connection is closed normally', () => {
-    // Setup spy on WebSocket constructor
-    const webSocketSpy = vi.spyOn(global, 'WebSocket')
-    
     // Connect to WebSocket
     websocketService.connect()
     
-    // Clear the spy to reset call count
+    // Setup spy on WebSocket constructor
+    const webSocketSpy = vi.spyOn(global, 'WebSocket')
     webSocketSpy.mockClear()
     
     // Simulate normal close
     websocketService.socket.listeners.close.forEach(callback => callback({ code: 1000 }))
+    
+    // Fast-forward time
+    vi.advanceTimersByTime(2000)
     
     // Verify reconnect was not attempted
     expect(webSocketSpy).not.toHaveBeenCalled()
@@ -217,5 +233,73 @@ describe('WebSocket Service', () => {
     
     // Verify listener was not called
     expect(listener).not.toHaveBeenCalled()
+  })
+  
+  it('sends heartbeat messages periodically', () => {
+    // Connect to WebSocket
+    websocketService.connect()
+    
+    // Get the WebSocket instance
+    const socket = websocketService.socket
+    const sendSpy = vi.spyOn(socket, 'send')
+    
+    // Fast-forward time to trigger heartbeat
+    vi.advanceTimersByTime(30000)
+    
+    // Verify heartbeat was sent
+    expect(sendSpy).toHaveBeenCalledWith(expect.stringContaining('heartbeat'))
+  })
+  
+  it('closes connection if heartbeat response is not received', () => {
+    // Connect to WebSocket
+    websocketService.connect()
+    
+    // Get the WebSocket instance
+    const socket = websocketService.socket
+    const closeSpy = vi.spyOn(socket, 'close')
+    
+    // Override the simulateMessage method to not respond to heartbeat
+    socket.send = function(data) {
+      this.lastSentData = data
+      // Do not auto-respond to heartbeat
+    }
+    
+    // Fast-forward time to trigger heartbeat
+    vi.advanceTimersByTime(30000)
+    
+    // Fast-forward time to trigger heartbeat timeout
+    vi.advanceTimersByTime(10000)
+    
+    // Verify connection was closed
+    expect(closeSpy).toHaveBeenCalledWith(4000, 'Heartbeat timeout')
+  })
+  
+  it('updates lastMessageTime when message is received', () => {
+    // Connect to WebSocket
+    websocketService.connect()
+    
+    // Record initial lastMessageTime
+    const initialTime = websocketService.lastMessageTime
+    
+    // Fast-forward time
+    vi.advanceTimersByTime(5000)
+    
+    // Simulate receiving a message
+    websocketService.socket.simulateMessage(JSON.stringify({ type: 'test' }))
+    
+    // Verify lastMessageTime was updated
+    expect(websocketService.lastMessageTime).toBeGreaterThan(initialTime)
+  })
+  
+  it('provides connection status with lastMessageTime', () => {
+    // Connect to WebSocket
+    websocketService.connect()
+    
+    // Get connection status
+    const status = websocketService.getConnectionStatus()
+    
+    // Verify status includes lastMessageTime
+    expect(status).toHaveProperty('lastMessageTime')
+    expect(status.lastMessageTime).not.toBeNull()
   })
 })

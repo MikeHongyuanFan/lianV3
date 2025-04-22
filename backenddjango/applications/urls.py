@@ -18,4 +18,7 @@ urlpatterns = [
     
     # Application signature
     path('<int:pk>/signature/', views.ApplicationViewSet.as_view({'post': 'signature'}), name='application-signature'),
+    
+    # New application template
+    path('new/', views.NewApplicationTemplateView.as_view(), name='new-application-template'),
 ]

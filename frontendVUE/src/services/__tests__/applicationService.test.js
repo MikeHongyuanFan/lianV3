@@ -27,7 +27,7 @@ describe('Application Service', () => {
       await applicationService.getApplications()
       
       // Verify
-      expect(api.get).toHaveBeenCalledWith('/applications/')
+      expect(api.get).toHaveBeenCalledWith('/api/applications/')
     })
     
     it('calls the correct API endpoint with filters', async () => {
@@ -39,7 +39,7 @@ describe('Application Service', () => {
       await applicationService.getApplications(filters)
       
       // Verify
-      expect(api.get).toHaveBeenCalledWith('/applications/?stage=inquiry&broker=1')
+      expect(api.get).toHaveBeenCalledWith('/api/applications/?stage=inquiry&broker=1')
     })
   })
   
@@ -53,7 +53,7 @@ describe('Application Service', () => {
       await applicationService.getApplication(id)
       
       // Verify
-      expect(api.get).toHaveBeenCalledWith('/applications/123/')
+      expect(api.get).toHaveBeenCalledWith('/api/applications/123/')
     })
   })
   
@@ -71,7 +71,7 @@ describe('Application Service', () => {
       await applicationService.createApplication(applicationData)
       
       // Verify
-      expect(api.post).toHaveBeenCalledWith('/applications/', applicationData)
+      expect(api.post).toHaveBeenCalledWith('/api/applications/', applicationData)
     })
   })
   
@@ -89,7 +89,7 @@ describe('Application Service', () => {
       await applicationService.updateApplication(id, applicationData)
       
       // Verify
-      expect(api.put).toHaveBeenCalledWith('/applications/123/', applicationData)
+      expect(api.put).toHaveBeenCalledWith('/api/applications/123/', applicationData)
     })
   })
   
@@ -104,7 +104,7 @@ describe('Application Service', () => {
       await applicationService.updateApplicationStage(id, stage)
       
       // Verify
-      expect(api.post).toHaveBeenCalledWith('/applications/123/update_stage/', { stage })
+      expect(api.post).toHaveBeenCalledWith('/api/applications/123/update_stage/', { stage })
     })
   })
   
@@ -119,7 +119,7 @@ describe('Application Service', () => {
       await applicationService.addBorrowers(id, borrowerIds)
       
       // Verify
-      expect(api.post).toHaveBeenCalledWith('/applications/123/add_borrowers/', { borrower_ids: borrowerIds })
+      expect(api.post).toHaveBeenCalledWith('/api/applications/123/add_borrowers/', { borrower_ids: borrowerIds })
     })
   })
   
@@ -134,7 +134,7 @@ describe('Application Service', () => {
       await applicationService.removeBorrowers(id, borrowerIds)
       
       // Verify
-      expect(api.post).toHaveBeenCalledWith('/applications/123/remove_borrowers/', { borrower_ids: borrowerIds })
+      expect(api.post).toHaveBeenCalledWith('/api/applications/123/remove_borrowers/', { borrower_ids: borrowerIds })
     })
   })
   
@@ -150,7 +150,7 @@ describe('Application Service', () => {
       await applicationService.processSignature(id, signatureData, signedBy)
       
       // Verify
-      expect(api.post).toHaveBeenCalledWith('/applications/123/process_signature/', {
+      expect(api.post).toHaveBeenCalledWith('/api/applications/123/process_signature/', {
         signature_data: signatureData,
         signed_by: signedBy
       })
@@ -168,7 +168,7 @@ describe('Application Service', () => {
       await applicationService.uploadDocuments(id, formData)
       
       // Verify
-      expect(api.post).toHaveBeenCalledWith('/applications/123/upload_document/', formData, {
+      expect(api.post).toHaveBeenCalledWith('/api/applications/123/documents/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -187,7 +187,7 @@ describe('Application Service', () => {
       await applicationService.uploadSignature(id, formData)
       
       // Verify
-      expect(api.post).toHaveBeenCalledWith('/applications/123/signature/', formData, {
+      expect(api.post).toHaveBeenCalledWith('/api/applications/123/process_signature/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -205,7 +205,7 @@ describe('Application Service', () => {
       await applicationService.getDocuments(id)
       
       // Verify
-      expect(api.get).toHaveBeenCalledWith('/applications/123/documents/')
+      expect(api.get).toHaveBeenCalledWith('/api/applications/123/documents/')
     })
   })
   
@@ -219,7 +219,7 @@ describe('Application Service', () => {
       await applicationService.getNotes(id)
       
       // Verify
-      expect(api.get).toHaveBeenCalledWith('/applications/123/notes/')
+      expect(api.get).toHaveBeenCalledWith('/api/applications/123/notes/')
     })
   })
   
@@ -237,7 +237,7 @@ describe('Application Service', () => {
       await applicationService.addNote(id, noteData)
       
       // Verify
-      expect(api.post).toHaveBeenCalledWith('/applications/123/add_note/', noteData)
+      expect(api.post).toHaveBeenCalledWith('/api/applications/123/notes/', noteData)
     })
   })
   
@@ -251,7 +251,7 @@ describe('Application Service', () => {
       await applicationService.deleteApplication(id)
       
       // Verify
-      expect(api.delete).toHaveBeenCalledWith('/applications/123/')
+      expect(api.delete).toHaveBeenCalledWith('/api/applications/123/')
     })
   })
 })

@@ -24,6 +24,12 @@ const router = createRouter({
       component: RegisterView
     },
     {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('../views/ProfileView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
       path: '/admin',
       name: 'admin',
       component: () => import('../views/AdminView.vue'),
@@ -42,9 +48,39 @@ const router = createRouter({
       meta: { requiresAuth: true, requiresBD: true }
     },
     {
+      path: '/applications',
+      name: 'applications',
+      component: () => import('../views/ApplicationsView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/applications/new',
+      name: 'application-new',
+      component: () => import('../views/ApplicationFormView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
       path: '/applications/:id',
       name: 'application-detail',
       component: () => import('../views/ApplicationDetailView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/borrowers/new',
+      name: 'borrower-new',
+      component: () => import('../views/BorrowerFormView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/borrowers',
+      name: 'borrowers',
+      component: () => import('../views/BorrowersView.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/borrowers/:id',
+      name: 'borrower-detail',
+      component: () => import('../views/BorrowerDetailView.vue'),
       meta: { requiresAuth: true }
     },
     {
@@ -115,3 +151,5 @@ router.beforeEach((to, from, next) => {
 })
 
 export default router
+
+

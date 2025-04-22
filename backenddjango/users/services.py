@@ -6,6 +6,48 @@ from asgiref.sync import async_to_sync
 import json
 
 
+def send_notification_via_websocket(user, notification_data=None, update_count=True):
+    """
+    Send a notification via WebSocket to a user
+    
+    Args:
+        user: User to send notification to
+        notification_data: Notification data to send (optional)
+        update_count: Whether to update the unread count (default: True)
+        
+    Returns:
+        Boolean indicating success or failure
+    """
+    try:
+        channel_layer = get_channel_layer()
+        
+        # Send notification data if provided
+        if notification_data:
+            async_to_sync(channel_layer.group_send)(
+                f"user_{user.id}_notifications",
+                {
+                    'type': 'notification_message',
+                    'notification': notification_data
+                }
+            )
+        
+        # Update unread count if requested
+        if update_count:
+            unread_count = Notification.objects.filter(user=user, is_read=False).count()
+            async_to_sync(channel_layer.group_send)(
+                f"user_{user.id}_notifications",
+                {
+                    'type': 'notification_count',
+                    'count': unread_count
+                }
+            )
+        
+        return True
+    except Exception as e:
+        print(f"Error sending WebSocket notification: {str(e)}")
+        return False
+
+
 def create_notification(user, title, message, notification_type, related_object_id=None, related_object_type=None):
     """
     Create a notification for a user
@@ -44,7 +86,6 @@ def create_notification(user, title, message, notification_type, related_object_
     
     # Send real-time notification via WebSocket
     try:
-        channel_layer = get_channel_layer()
         notification_data = {
             'id': notification.id,
             'title': notification.title,
@@ -56,24 +97,8 @@ def create_notification(user, title, message, notification_type, related_object_
             'created_at': notification.created_at.isoformat()
         }
         
-        # Send notification to user's group
-        async_to_sync(channel_layer.group_send)(
-            f"user_{user.id}_notifications",
-            {
-                'type': 'notification_message',
-                'notification': notification_data
-            }
-        )
-        
-        # Update unread count
-        unread_count = Notification.objects.filter(user=user, is_read=False).count()
-        async_to_sync(channel_layer.group_send)(
-            f"user_{user.id}_notifications",
-            {
-                'type': 'notification_count',
-                'count': unread_count
-            }
-        )
+        # Send notification via WebSocket
+        send_notification_via_websocket(user, notification_data)
     except Exception as e:
         # Log the error but don't fail the notification creation
         print(f"Error sending WebSocket notification: {str(e)}")

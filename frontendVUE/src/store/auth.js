@@ -29,13 +29,13 @@ export const useAuthStore = defineStore('auth', () => {
       const response = await authService.login(credentials)
       
       // Store tokens and user data
-      token.value = response.access
-      refreshToken.value = response.refresh
+      token.value = response.data.access
+      refreshToken.value = response.data.refresh
       user.value = {
-        id: response.user_id,
-        email: response.email,
-        role: response.role,
-        name: response.name
+        id: response.data.user_id,
+        email: response.data.email,
+        role: response.data.role,
+        name: response.data.name
       }
       
       // Save to localStorage
@@ -55,13 +55,13 @@ export const useAuthStore = defineStore('auth', () => {
       const response = await authService.register(userData)
       
       // Store tokens and user data
-      token.value = response.access
-      refreshToken.value = response.refresh
+      token.value = response.data.access
+      refreshToken.value = response.data.refresh
       user.value = {
-        id: response.user_id,
-        email: response.email,
-        role: response.role,
-        name: response.name
+        id: response.data.user_id,
+        email: response.data.email,
+        role: response.data.role,
+        name: response.data.name
       }
       
       // Save to localStorage
@@ -82,7 +82,7 @@ export const useAuthStore = defineStore('auth', () => {
         refresh: refreshToken.value
       })
       
-      token.value = response.access
+      token.value = response.data.access
       localStorage.setItem('token', token.value)
       
       return true
@@ -108,6 +108,15 @@ export const useAuthStore = defineStore('auth', () => {
     router.push('/login')
   }
   
+  function setTokens(accessToken, refreshTokenValue) {
+    token.value = accessToken
+    if (refreshTokenValue) {
+      refreshToken.value = refreshTokenValue
+      localStorage.setItem('refreshToken', refreshToken.value)
+    }
+    localStorage.setItem('token', token.value)
+  }
+  
   return {
     // State
     token,
@@ -126,6 +135,11 @@ export const useAuthStore = defineStore('auth', () => {
     login,
     register,
     refreshAccessToken,
-    logout
+    logout,
+    setTokens
   }
 })
+
+
+
+
