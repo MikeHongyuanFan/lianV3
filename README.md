@@ -235,4 +235,3 @@ This project follows an agile development process with the following phases:
    - Verification of frontend-backend integration
 
 8. Deployment & DevOps (Planned)
-
