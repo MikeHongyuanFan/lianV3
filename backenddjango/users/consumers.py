@@ -17,51 +17,69 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         """
         Connect to the WebSocket
         """
-        # Get token from query string
-        token = self.scope['query_string'].decode().split('token=')[1].split('&')[0]
-        
-        # Authenticate user from token
         try:
-            # Decode the token
-            decoded_token = jwt.decode(
-                token,
-                settings.SECRET_KEY,
-                algorithms=["HS256"],
-                options={"verify_signature": True}
-            )
+            # Get token from query string
+            query_string = self.scope['query_string'].decode()
             
-            # Get user from token
-            user_id = decoded_token.get('user_id')
-            if not user_id:
+            # Handle case where token might not be in query string
+            if 'token=' not in query_string:
+                print("WebSocket authentication error: No token provided")
                 await self.close()
                 return
                 
-            # Get user from database
-            self.user = await self.get_user(user_id)
-            if not self.user:
+            token = query_string.split('token=')[1].split('&')[0] if '&' in query_string else query_string.split('token=')[1]
+            
+            # Authenticate user from token
+            try:
+                # Decode the token
+                decoded_token = jwt.decode(
+                    token,
+                    settings.SECRET_KEY,
+                    algorithms=["HS256"],
+                    options={"verify_signature": True}
+                )
+                
+                # Get user from token
+                user_id = decoded_token.get('user_id')
+                if not user_id:
+                    print("WebSocket authentication error: No user_id in token")
+                    await self.close()
+                    return
+                    
+                # Get user from database
+                self.user = await self.get_user(user_id)
+                if not self.user:
+                    print(f"WebSocket authentication error: User {user_id} not found")
+                    await self.close()
+                    return
+                    
+                # Set the group name to the user's ID
+                self.group_name = f"user_{self.user.id}_notifications"
+                
+                # Join the group
+                await self.channel_layer.group_add(
+                    self.group_name,
+                    self.channel_name
+                )
+                
+                await self.accept()
+                
+                # Send initial unread count
+                unread_count = await self.get_unread_count()
+                await self.send(text_data=json.dumps({
+                    'type': 'unread_count',
+                    'count': unread_count
+                }))
+                
+                print(f"WebSocket connection established for user {self.user.id}")
+                
+            except (InvalidToken, TokenError, jwt.PyJWTError) as e:
+                print(f"WebSocket authentication error: {str(e)}")
                 await self.close()
                 return
                 
-            # Set the group name to the user's ID
-            self.group_name = f"user_{self.user.id}_notifications"
-            
-            # Join the group
-            await self.channel_layer.group_add(
-                self.group_name,
-                self.channel_name
-            )
-            
-            await self.accept()
-            
-            # Send initial unread count
-            unread_count = await self.get_unread_count()
-            await self.send(text_data=json.dumps({
-                'type': 'unread_count',
-                'count': unread_count
-            }))
-            
-        except (InvalidToken, TokenError, jwt.PyJWTError, IndexError) as e:
-            print(f"WebSocket authentication error: {str(e)}")
+        except Exception as e:
+            print(f"WebSocket connection error: {str(e)}")
             await self.close()
             return
 
@@ -125,4 +143,5 @@ class NotificationConsumer(AsyncWebsocketConsumer):
             return User.objects.get(id=user_id)
         except User.DoesNotExist:
             return None
+
 

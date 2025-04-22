@@ -51,6 +51,17 @@ class WebSocketService {
         
         // Start heartbeat to keep connection alive
         this.startHeartbeat()
+        
+        // Notify any listeners that we're connected
+        if (this.listeners['connection_status']) {
+          this.listeners['connection_status'].forEach(callback => {
+            try {
+              callback({ status: 'connected' })
+            } catch (error) {
+              console.error('Error in connection status callback:', error)
+            }
+          })
+        }
       })
       
       // Listen for messages
@@ -89,6 +100,21 @@ class WebSocketService {
         this.isConnected = false
         this.stopHeartbeat()
         
+        // Notify any listeners that we're disconnected
+        if (this.listeners['connection_status']) {
+          this.listeners['connection_status'].forEach(callback => {
+            try {
+              callback({ 
+                status: 'disconnected', 
+                code: event.code, 
+                reason: event.reason 
+              })
+            } catch (error) {
+              console.error('Error in connection status callback:', error)
+            }
+          })
+        }
+        
         // Attempt to reconnect if not a normal closure
         if (event.code !== 1000) {
           this.attemptReconnect()
@@ -100,10 +126,32 @@ class WebSocketService {
         console.error('WebSocket error:', error)
         this.isConnected = false
         this.connectionError = error
+        
+        // Notify any listeners about the error
+        if (this.listeners['connection_error']) {
+          this.listeners['connection_error'].forEach(callback => {
+            try {
+              callback({ error })
+            } catch (err) {
+              console.error('Error in error callback:', err)
+            }
+          })
+        }
       })
     } catch (error) {
       console.error('Error creating WebSocket connection:', error)
       this.connectionError = error
+      
+      // Notify any listeners about the error
+      if (this.listeners['connection_error']) {
+        this.listeners['connection_error'].forEach(callback => {
+          try {
+            callback({ error })
+          } catch (err) {
+            console.error('Error in error callback:', err)
+          }
+        })
+      }
     }
   }
   
@@ -230,4 +278,5 @@ class WebSocketService {
 const websocketService = new WebSocketService()
 
 export default websocketService
+
 

@@ -80,10 +80,16 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         # Admin users have full access to everything
         if self.request.user.is_authenticated and self.request.user.role == 'admin':
             permission_classes = [IsAuthenticated]
-        elif self.action in ['create', 'update', 'partial_update', 'destroy']:
+        # For create action, allow any authenticated user
+        elif self.action == 'create':
+            permission_classes = [IsAuthenticated]
+        # For update and delete, require admin or broker
+        elif self.action in ['update', 'partial_update', 'destroy']:
             permission_classes = [IsAuthenticated, IsAdminOrBroker]
+        # For stage updates, require admin or BD
         elif self.action in ['update_stage']:
             permission_classes = [IsAuthenticated, IsAdminOrBD]
+        # For all other actions, just require authentication
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
@@ -462,4 +468,5 @@ class NewApplicationTemplateView(APIView):
             "repayments": []
         }
         return Response(template)
+
 
