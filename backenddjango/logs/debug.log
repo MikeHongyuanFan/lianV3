@@ -1,0 +1,3 @@
+INFO 2025-04-21 01:18:21,912 autoreload Watching for file changes with StatReloader
+INFO 2025-04-21 01:19:11,596 autoreload Watching for file changes with StatReloader
+INFO 2025-04-21 01:19:41,483 autoreload /app/crm_backend/settings.py changed, reloading.
