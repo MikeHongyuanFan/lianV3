@@ -210,3 +210,32 @@ def notification_preference(admin_user):
         repayment_reminder=True,
         email_notifications=True
     )
+
+
+@pytest.fixture
+def fee_factory(admin_user, application):
+    """Factory for creating fees."""
+    from django.utils import timezone
+    from documents.models import Fee
+    
+    class FeeFactory:
+        def create(self, **kwargs):
+            # Default values
+            defaults = {
+                'fee_type': 'application',
+                'description': 'Test fee',
+                'amount': 500.00,
+                'due_date': timezone.now().date(),
+                'application': application,
+                'created_by': admin_user
+            }
+            
+            # Override defaults with provided kwargs
+            defaults.update(kwargs)
+            
+            return Fee.objects.create(**defaults)
+        
+        def create_batch(self, count, **kwargs):
+            return [self.create(**kwargs) for _ in range(count)]
+    
+    return FeeFactory()

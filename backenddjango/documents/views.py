@@ -286,7 +286,7 @@ class FeeMarkPaidView(APIView):
     """
     View for marking a fee as paid
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminOrBD]
     
     def post(self, request, pk):
         """
@@ -297,15 +297,41 @@ class FeeMarkPaidView(APIView):
         except Fee.DoesNotExist:
             return Response({'error': 'Fee not found'}, status=status.HTTP_404_NOT_FOUND)
         
+        # Check if fee is already paid
+        if fee.paid_date:
+            return Response({
+                'message': 'Fee already marked as paid',
+                'fee_id': fee.id,
+                'paid_date': fee.paid_date,
+                'status': 'paid'
+            })
+        
         # Set paid date
         from django.utils import timezone
         fee.paid_date = request.data.get('paid_date', timezone.now().date())
         fee.save()
         
+        # Create ledger entry for the payment
+        from .models import Ledger
+        Ledger.objects.create(
+            application=fee.application,
+            transaction_type='fee_paid',
+            amount=fee.amount,
+            description=f"Payment received for {fee.get_fee_type_display()}",
+            transaction_date=timezone.now(),
+            related_fee=fee,
+            created_by=request.user
+        )
+        
+        # Get serializer for consistent response format
+        serializer = FeeSerializer(fee, context={'request': request})
+        
         return Response({
             'message': 'Fee marked as paid',
             'fee_id': fee.id,
-            'paid_date': fee.paid_date
+            'paid_date': fee.paid_date,
+            'status': 'paid',
+            'fee': serializer.data
         })
 
 
