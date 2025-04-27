@@ -2510,3 +2510,1812 @@ Traceback (most recent call last):
     raise SuspiciousFileOperation(
 django.core.exceptions.SuspiciousFileOperation: The joined path (/tmp/tmpod3hydja.pdf) is located outside of the base path component (/app/media)
 WARNING 2025-04-25 01:08:39,879 log Bad Request: /api/documents/documents/1/download/
+INFO 2025-04-25 01:28:38,030 autoreload /app/documents/views.py changed, reloading.
+INFO 2025-04-25 01:28:38,677 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-25 01:28:59,563 log Not Found: /api/documents/fees/9999/mark-paid/
+ERROR 2025-04-25 01:31:49,982 log Internal Server Error: /api/documents/fees/1/mark-paid/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/documents/views.py", line 315, in post
+    Ledger.objects.create(
+NameError: name 'Ledger' is not defined
+INFO 2025-04-25 01:32:33,631 autoreload /app/documents/views.py changed, reloading.
+INFO 2025-04-25 01:32:34,203 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-25 01:32:53,116 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-04-25 01:32:53,469 log Forbidden: /api/documents/fees/1/mark-paid/
+INFO 2025-04-25 01:53:07,987 autoreload /app/borrowers/urls.py changed, reloading.
+INFO 2025-04-25 01:53:08,593 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-25 01:53:29,281 log Not Found: /api/borrowers/guarantors/
+INFO 2025-04-25 01:54:09,380 autoreload /app/borrowers/urls.py changed, reloading.
+INFO 2025-04-25 01:54:09,960 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-25 01:54:32,576 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 01:56:28,821 log Not Found: /api/borrowers/guarantors/
+INFO 2025-04-25 02:00:08,291 autoreload /app/borrowers/filters.py changed, reloading.
+INFO 2025-04-25 02:00:08,855 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-25 02:00:29,772 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 02:00:29,921 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 02:00:30,040 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 02:00:30,532 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 02:00:30,654 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 02:00:30,774 log Not Found: /api/borrowers/guarantors/
+INFO 2025-04-25 02:00:59,330 autoreload /app/borrowers/urls.py changed, reloading.
+INFO 2025-04-25 02:00:59,886 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-25 02:01:14,270 log Not Found: /api/borrowers/guarantors/
+INFO 2025-04-25 02:01:31,288 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-25 02:01:44,348 log Not Found: /api/borrowers/guarantors/
+INFO 2025-04-25 02:02:45,541 autoreload /app/crm_backend/urls.py changed, reloading.
+INFO 2025-04-25 02:02:46,125 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:03:20,789 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:27:55,786 autoreload /app/users/views.py changed, reloading.
+INFO 2025-04-25 02:27:56,355 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:28:29,470 autoreload /app/users/views.py changed, reloading.
+INFO 2025-04-25 02:28:30,044 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:29:16,526 autoreload /app/users/views.py changed, reloading.
+INFO 2025-04-25 02:29:17,103 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:29:39,919 autoreload /app/users/views.py changed, reloading.
+INFO 2025-04-25 02:29:40,470 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:30:01,247 autoreload /app/users/views.py changed, reloading.
+INFO 2025-04-25 02:30:01,810 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:30:17,365 autoreload /app/users/views.py changed, reloading.
+INFO 2025-04-25 02:30:17,891 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:30:50,997 autoreload /app/users/serializers.py changed, reloading.
+INFO 2025-04-25 02:30:51,537 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:32:07,829 autoreload /app/users/urls.py changed, reloading.
+INFO 2025-04-25 02:32:08,404 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:57:56,329 autoreload /app/users/urls.py changed, reloading.
+INFO 2025-04-25 02:57:57,011 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:58:40,424 autoreload /app/users/views.py changed, reloading.
+INFO 2025-04-25 02:58:41,018 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 02:58:58,738 autoreload /app/users/views.py changed, reloading.
+INFO 2025-04-25 02:58:59,280 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-25 03:11:09,718 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 03:11:09,719 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 03:11:09,720 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 03:11:09,722 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 03:11:10,069 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 03:11:10,414 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 03:11:11,159 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 03:11:11,510 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 03:11:12,204 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 03:11:12,556 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 03:11:13,259 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 03:11:13,603 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 03:11:13,950 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 03:11:14,296 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 03:11:14,988 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 03:11:15,220 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 03:11:15,460 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 03:11:15,690 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 03:11:15,919 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 03:11:16,151 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 03:11:16,385 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 03:11:16,385 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 03:11:16,620 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 03:11:16,851 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 03:11:17,907 log Unsupported Media Type: /api/documents/documents/1/
+WARNING 2025-04-25 03:11:18,163 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 03:11:18,284 log Bad Request: /api/documents/documents/1/create-version/
+WARNING 2025-04-25 03:11:22,913 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 03:11:22,914 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 03:11:22,914 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 03:11:23,617 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 03:11:23,732 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 03:11:24,081 views Login attempt for email: admin@example.com
+INFO 2025-04-25 03:11:26,362 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 03:11:27,189 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 03:11:27,191 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 03:11:27,191 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 03:11:27,534 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 03:11:28,686 log Forbidden: /api/users/users/
+WARNING 2025-04-25 03:11:29,525 log Unauthorized: /api/users/notifications-viewset/unread_count/
+WARNING 2025-04-25 03:11:29,526 log Unauthorized: /api/users/notifications-viewset/1/mark_as_read/
+WARNING 2025-04-25 03:11:29,527 log Unauthorized: /api/users/notifications-viewset/mark_all_as_read/
+WARNING 2025-04-25 04:25:38,267 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 04:25:38,268 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 04:25:38,269 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 04:25:38,271 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 04:25:38,618 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 04:25:38,965 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 04:25:39,658 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 04:25:40,006 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 04:25:40,696 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 04:25:41,045 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 04:25:41,766 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 04:25:42,113 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 04:25:42,457 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 04:25:42,834 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 04:25:43,524 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 04:25:43,757 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:25:43,987 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:25:44,215 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:25:44,444 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 04:25:44,676 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 04:25:44,916 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:25:44,917 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:25:45,152 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:25:45,383 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 04:25:46,595 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 04:25:46,713 log Bad Request: /api/documents/documents/1/create-version/
+WARNING 2025-04-25 04:25:52,934 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 04:25:52,935 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 04:25:52,936 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 04:25:53,625 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 04:25:53,739 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 04:25:54,095 views Login attempt for email: admin@example.com
+INFO 2025-04-25 04:25:56,355 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 04:25:57,170 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 04:25:57,173 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 04:25:57,173 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 04:25:57,523 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 04:25:58,676 log Forbidden: /api/users/users/
+WARNING 2025-04-25 04:25:59,511 log Unauthorized: /api/users/notifications-viewset/unread_count/
+WARNING 2025-04-25 04:25:59,512 log Unauthorized: /api/users/notifications-viewset/1/mark_as_read/
+WARNING 2025-04-25 04:25:59,512 log Unauthorized: /api/users/notifications-viewset/mark_all_as_read/
+WARNING 2025-04-25 04:38:53,375 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 04:38:53,376 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 04:38:53,377 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 04:38:53,378 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 04:38:53,720 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 04:38:54,064 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 04:38:54,756 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 04:38:55,099 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 04:38:55,782 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 04:38:56,126 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 04:38:56,852 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 04:38:57,194 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 04:38:57,537 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 04:38:57,883 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 04:38:58,567 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 04:38:58,795 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:38:59,024 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:38:59,252 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:38:59,480 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 04:38:59,708 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 04:38:59,936 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:38:59,936 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:39:00,167 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 04:39:00,397 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 04:39:01,599 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 04:39:01,716 log Bad Request: /api/documents/documents/1/create-version/
+WARNING 2025-04-25 04:39:07,917 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 04:39:07,918 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 04:39:07,919 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 04:39:09,751 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 04:39:09,864 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 04:39:10,206 views Login attempt for email: admin@example.com
+INFO 2025-04-25 04:39:12,397 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 04:39:13,198 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 04:39:13,200 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 04:39:13,200 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 04:39:13,545 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 04:39:14,681 log Forbidden: /api/users/users/
+WARNING 2025-04-25 04:39:15,489 log Unauthorized: /api/users/notifications-viewset/unread_count/
+WARNING 2025-04-25 04:39:15,490 log Unauthorized: /api/users/notifications-viewset/1/mark_as_read/
+WARNING 2025-04-25 04:39:15,491 log Unauthorized: /api/users/notifications-viewset/mark_all_as_read/
+INFO 2025-04-25 05:46:51,492 autoreload /app/users/filters.py changed, reloading.
+INFO 2025-04-25 05:46:52,104 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 05:49:14,019 autoreload /app/users/filters.py changed, reloading.
+INFO 2025-04-25 05:49:14,598 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-25 06:05:37,819 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 06:05:37,820 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 06:05:37,821 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 06:05:37,823 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 06:05:38,177 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 06:05:38,533 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 06:05:39,307 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 06:05:39,659 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 06:05:45,191 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-25 06:05:47,224 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 06:05:47,648 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 06:05:48,421 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 06:05:48,777 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 06:05:49,124 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 06:05:49,546 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 06:05:50,259 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 06:05:50,538 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 06:05:50,820 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 06:05:51,090 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 06:05:51,370 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 06:05:51,670 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 06:05:51,940 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 06:05:51,941 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 06:05:52,176 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 06:05:52,408 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 06:05:56,436 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 06:05:59,090 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 06:05:59,215 log Bad Request: /api/documents/documents/1/create-version/
+ERROR 2025-04-25 06:06:08,946 exception The joined path (/tmp/tmpf9vu1kuo.pdf) is located outside of the base path component (/app/media)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/app/documents/views.py", line 108, in download
+    file_path = document.file.path
+  File "/usr/local/lib/python3.9/site-packages/django/db/models/fields/files.py", line 62, in path
+    return self.storage.path(self.name)
+  File "/usr/local/lib/python3.9/site-packages/django/core/files/storage/filesystem.py", line 179, in path
+    return safe_join(self.location, name)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/_os.py", line 31, in safe_join
+    raise SuspiciousFileOperation(
+django.core.exceptions.SuspiciousFileOperation: The joined path (/tmp/tmpf9vu1kuo.pdf) is located outside of the base path component (/app/media)
+WARNING 2025-04-25 06:06:08,948 log Bad Request: /api/documents/documents/1/download/
+WARNING 2025-04-25 06:06:11,478 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-04-25 06:06:11,834 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-04-25 06:06:21,608 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 06:06:21,610 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 06:06:21,611 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 06:06:24,477 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 06:06:24,593 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 06:06:24,952 views Login attempt for email: admin@example.com
+INFO 2025-04-25 06:06:27,251 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 06:06:28,082 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 06:06:28,083 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 06:06:28,084 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 06:06:28,437 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 06:06:29,627 log Forbidden: /api/users/users/
+WARNING 2025-04-25 06:06:30,520 log Unauthorized: /api/users/notifications-viewset/unread_count/
+WARNING 2025-04-25 06:06:30,520 log Unauthorized: /api/users/notifications-viewset/1/mark_as_read/
+WARNING 2025-04-25 06:06:30,521 log Unauthorized: /api/users/notifications-viewset/mark_all_as_read/
+WARNING 2025-04-25 06:28:12,840 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 06:30:14,547 log Bad Request: /api/applications/applications/
+WARNING 2025-04-25 06:30:14,719 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 06:30:15,559 log Bad Request: /api/applications/applications/1/update_stage/
+WARNING 2025-04-25 06:31:38,699 log Bad Request: /api/applications/applications/
+WARNING 2025-04-25 06:31:53,885 log Bad Request: /api/applications/applications/
+WARNING 2025-04-25 06:32:16,500 log Bad Request: /api/applications/applications/
+WARNING 2025-04-25 06:33:50,772 log Bad Request: /api/applications/applications/
+WARNING 2025-04-25 06:38:26,153 log Bad Request: /api/applications/applications/
+WARNING 2025-04-25 06:38:26,323 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 06:38:27,152 log Bad Request: /api/applications/applications/1/update_stage/
+WARNING 2025-04-25 06:38:31,243 log Bad Request: /api/documents/documents/
+WARNING 2025-04-25 06:38:31,756 log Forbidden: /api/documents/documents/
+WARNING 2025-04-25 06:38:32,263 log Unsupported Media Type: /api/documents/documents/1/
+WARNING 2025-04-25 06:38:32,764 log Bad Request: /api/documents/documents/
+WARNING 2025-04-25 06:38:35,493 log Bad Request: /api/documents/fees/
+INFO 2025-04-25 06:38:37,574 views Login attempt for email: user@example.com
+INFO 2025-04-25 06:38:37,970 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 06:38:38,148 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 06:38:38,150 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 06:38:38,499 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 06:38:38,499 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 06:38:38,500 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 06:38:38,673 log Unauthorized: /api/users/profile/
+INFO 2025-04-25 06:40:56,659 autoreload /app/users/urls.py changed, reloading.
+INFO 2025-04-25 06:40:57,263 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 06:50:47,217 autoreload /app/applications/filters.py changed, reloading.
+INFO 2025-04-25 06:50:47,801 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 06:51:35,350 autoreload /app/documents/views.py changed, reloading.
+INFO 2025-04-25 06:51:35,968 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 06:52:47,667 views Login attempt for email: user@example.com
+INFO 2025-04-25 06:52:47,879 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 06:52:48,045 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 06:52:48,047 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 06:52:48,381 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 06:52:48,383 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 06:52:48,383 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 06:52:48,551 log Unauthorized: /api/users/profile/
+INFO 2025-04-25 06:55:14,951 autoreload /app/users/filters.py changed, reloading.
+INFO 2025-04-25 06:55:15,527 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 06:56:07,566 views Login attempt for email: user@example.com
+INFO 2025-04-25 06:56:07,780 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 06:56:07,950 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 06:56:07,952 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 06:56:08,298 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 06:56:08,299 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 06:56:08,299 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 06:56:08,470 log Unauthorized: /api/users/profile/
+INFO 2025-04-25 06:56:58,659 views Login attempt for email: user@example.com
+INFO 2025-04-25 06:56:58,874 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 06:56:59,043 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 06:56:59,045 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 06:56:59,397 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 06:56:59,398 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 06:56:59,398 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 06:56:59,578 log Unauthorized: /api/users/profile/
+WARNING 2025-04-25 06:57:26,567 log Bad Request: /api/applications/applications/
+WARNING 2025-04-25 06:57:26,738 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 06:57:27,605 log Bad Request: /api/applications/applications/1/update_stage/
+WARNING 2025-04-25 06:58:53,614 log Bad Request: /api/documents/documents/
+WARNING 2025-04-25 06:58:54,179 log Forbidden: /api/documents/documents/
+WARNING 2025-04-25 06:58:54,686 log Unsupported Media Type: /api/documents/documents/1/
+WARNING 2025-04-25 06:58:55,262 log Bad Request: /api/documents/documents/
+WARNING 2025-04-25 06:58:57,943 log Bad Request: /api/documents/fees/
+INFO 2025-04-25 07:04:08,259 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-04-25 07:04:08,841 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 07:04:41,965 autoreload /app/documents/views.py changed, reloading.
+INFO 2025-04-25 07:04:42,551 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-25 07:06:08,728 log Bad Request: /api/applications/applications/
+WARNING 2025-04-25 07:06:33,229 log Bad Request: /api/applications/applications/
+WARNING 2025-04-25 07:12:24,370 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 07:12:29,962 log Forbidden: /api/documents/documents/
+INFO 2025-04-25 07:12:35,622 views Login attempt for email: user@example.com
+INFO 2025-04-25 07:12:35,823 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 07:12:35,989 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 07:12:35,991 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 07:12:36,333 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 07:12:36,334 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 07:12:36,334 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 07:12:36,501 log Unauthorized: /api/users/profile/
+WARNING 2025-04-25 07:15:40,394 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 07:15:45,935 log Forbidden: /api/documents/documents/
+INFO 2025-04-25 07:15:51,653 views Login attempt for email: user@example.com
+INFO 2025-04-25 07:15:51,858 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 07:15:52,025 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 07:15:52,027 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 07:15:52,368 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 07:15:52,369 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 07:15:52,369 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 07:15:52,539 log Unauthorized: /api/users/profile/
+WARNING 2025-04-25 07:19:51,652 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 07:19:57,244 log Forbidden: /api/documents/documents/
+INFO 2025-04-25 07:20:02,995 views Login attempt for email: user@example.com
+INFO 2025-04-25 07:20:03,206 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 07:20:03,379 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 07:20:03,381 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 07:20:03,726 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 07:20:03,726 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 07:20:03,727 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 07:20:03,899 log Unauthorized: /api/users/profile/
+WARNING 2025-04-25 21:42:57,926 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 21:42:57,927 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 21:42:57,927 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 21:42:57,930 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 21:42:58,425 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 21:42:58,912 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 21:42:59,912 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 21:43:00,409 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 21:43:01,409 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 21:43:01,907 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 21:43:02,903 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 21:43:03,414 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 21:43:03,905 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 21:43:04,397 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 21:43:05,391 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 21:43:05,722 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:43:06,050 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:43:06,380 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:43:06,709 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 21:43:07,041 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 21:43:07,370 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:43:07,370 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:43:07,699 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:43:08,027 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 21:43:09,723 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 21:43:09,893 log Bad Request: /api/documents/documents/1/create-version/
+WARNING 2025-04-25 21:43:18,870 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 21:43:18,871 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 21:43:18,871 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 21:43:21,507 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 21:43:21,673 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 21:43:22,170 views Login attempt for email: admin@example.com
+INFO 2025-04-25 21:43:25,388 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 21:43:26,560 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 21:43:26,561 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 21:43:26,561 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 21:43:27,058 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 21:43:28,730 log Forbidden: /api/users/users/
+WARNING 2025-04-25 21:48:18,430 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 21:48:18,431 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 21:48:18,432 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 21:48:18,434 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 21:48:18,922 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 21:48:19,420 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 21:48:20,440 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 21:48:20,928 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 21:48:21,911 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 21:48:22,409 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 21:48:23,398 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 21:48:23,891 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 21:48:24,379 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 21:48:24,877 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 21:48:25,871 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 21:48:26,199 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:48:26,527 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:48:26,853 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:48:27,177 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 21:48:27,506 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 21:48:27,845 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:48:27,845 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:48:28,184 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:48:28,514 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 21:48:30,210 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 21:48:30,377 log Bad Request: /api/documents/documents/1/create-version/
+WARNING 2025-04-25 21:48:39,288 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 21:48:39,289 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 21:48:39,290 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 21:48:41,920 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 21:48:42,084 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 21:48:42,628 views Login attempt for email: admin@example.com
+INFO 2025-04-25 21:48:45,863 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 21:48:47,044 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 21:48:47,044 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 21:48:47,045 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 21:48:47,547 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 21:48:49,207 log Forbidden: /api/users/users/
+WARNING 2025-04-25 21:53:33,749 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 21:53:33,750 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 21:53:33,751 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 21:53:33,753 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 21:53:34,257 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 21:53:34,749 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 21:53:35,768 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 21:53:36,263 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 21:53:37,274 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 21:53:37,772 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 21:53:38,781 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 21:53:39,276 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 21:53:39,771 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 21:53:40,276 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 21:53:41,268 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 21:53:41,603 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:53:41,940 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:53:42,305 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:53:42,640 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 21:53:42,978 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 21:53:43,306 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:53:43,307 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:53:43,643 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 21:53:43,978 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 21:53:45,707 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 21:53:45,878 log Bad Request: /api/documents/documents/1/create-version/
+WARNING 2025-04-25 21:53:54,957 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 21:53:54,958 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 21:53:54,959 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 21:53:57,610 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 21:53:57,775 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 21:53:58,264 views Login attempt for email: admin@example.com
+INFO 2025-04-25 21:54:01,523 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 21:54:02,679 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 21:54:02,680 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 21:54:02,680 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 21:54:03,177 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 21:54:04,831 log Forbidden: /api/users/users/
+WARNING 2025-04-25 22:00:14,848 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 22:00:14,849 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 22:00:14,849 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 22:00:14,851 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 22:00:15,346 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 22:00:15,843 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 22:00:16,870 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:00:17,367 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:00:18,364 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 22:00:18,864 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 22:00:19,878 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:00:20,376 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 22:00:20,867 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:00:21,367 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:00:22,356 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:00:22,687 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:00:23,020 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:00:23,350 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:00:23,684 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:00:24,014 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:00:24,344 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:00:24,344 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:00:24,672 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:00:25,000 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:00:26,722 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 22:00:26,890 log Bad Request: /api/documents/documents/1/create-version/
+WARNING 2025-04-25 22:00:35,772 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 22:00:35,774 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 22:00:35,774 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 22:00:38,406 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 22:00:38,571 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 22:00:39,089 views Login attempt for email: admin@example.com
+INFO 2025-04-25 22:00:42,363 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 22:00:43,547 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 22:00:43,548 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 22:00:43,549 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 22:00:44,054 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 22:00:45,767 log Forbidden: /api/users/users/
+WARNING 2025-04-25 22:09:11,349 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 22:09:11,350 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 22:09:11,350 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 22:09:11,352 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 22:09:11,860 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 22:09:12,365 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 22:09:13,404 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:09:13,911 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:09:24,504 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-25 22:09:28,286 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 22:09:28,828 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 22:09:29,863 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:09:30,368 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 22:09:30,879 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:09:31,388 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:09:32,398 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:09:32,738 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:09:33,072 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:09:33,405 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:09:33,736 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:09:34,074 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:09:34,409 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:09:34,409 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:09:34,743 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:09:35,077 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:09:43,677 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 22:09:48,362 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 22:09:48,536 log Bad Request: /api/documents/documents/1/create-version/
+ERROR 2025-04-25 22:10:04,535 exception The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmpju07w5to.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/documents/views.py", line 108, in download
+    file_path = document.file.path
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/fields/files.py", line 62, in path
+    return self.storage.path(self.name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/files/storage/filesystem.py", line 179, in path
+    return safe_join(self.location, name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/_os.py", line 31, in safe_join
+    raise SuspiciousFileOperation(
+django.core.exceptions.SuspiciousFileOperation: The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmpju07w5to.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+WARNING 2025-04-25 22:10:04,558 log Bad Request: /api/documents/documents/1/download/
+WARNING 2025-04-25 22:10:09,939 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-04-25 22:10:10,444 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-04-25 22:10:29,854 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 22:10:29,855 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 22:10:29,855 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 22:10:36,356 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 22:10:36,527 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 22:10:37,034 views Login attempt for email: admin@example.com
+INFO 2025-04-25 22:10:40,395 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 22:10:41,604 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 22:10:41,605 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 22:10:41,606 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 22:10:42,110 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 22:10:43,847 log Forbidden: /api/users/users/
+WARNING 2025-04-25 22:10:51,741 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 22:10:58,443 log Forbidden: /api/documents/documents/
+INFO 2025-04-25 22:11:05,221 views Login attempt for email: user@example.com
+INFO 2025-04-25 22:11:05,427 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 22:11:05,596 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 22:11:05,598 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 22:11:05,950 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 22:11:05,952 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 22:11:05,952 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 22:11:06,127 log Unauthorized: /api/users/profile/
+INFO 2025-04-25 22:20:19,236 autoreload /app/applications/services/__init__.py changed, reloading.
+INFO 2025-04-25 22:20:19,959 autoreload Watching for file changes with StatReloader
+INFO 2025-04-25 22:27:53,022 autoreload /app/applications/services_impl.py changed, reloading.
+INFO 2025-04-25 22:27:53,614 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-25 22:34:40,373 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 22:34:40,374 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 22:34:40,374 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 22:34:40,377 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 22:34:40,880 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 22:34:41,379 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 22:34:42,421 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:34:42,923 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:34:43,922 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 22:34:44,425 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 22:34:45,441 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:34:45,934 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 22:34:46,430 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:34:46,931 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:34:47,966 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:34:48,296 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:34:48,624 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:34:48,961 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:34:49,289 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:34:49,619 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:34:49,950 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:34:49,950 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:34:50,281 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:34:50,609 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:34:52,329 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 22:34:52,497 log Bad Request: /api/documents/documents/1/create-version/
+WARNING 2025-04-25 22:35:01,495 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 22:35:01,497 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 22:35:01,497 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 22:35:04,194 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 22:35:04,359 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 22:35:04,855 views Login attempt for email: admin@example.com
+INFO 2025-04-25 22:35:08,072 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 22:35:09,250 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 22:35:09,251 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 22:35:09,252 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 22:35:09,741 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 22:35:11,418 log Forbidden: /api/users/users/
+WARNING 2025-04-25 22:39:03,618 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 22:39:03,619 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 22:39:03,620 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 22:39:03,622 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 22:39:04,122 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 22:39:04,625 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 22:39:05,655 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:39:06,154 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:39:16,550 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-25 22:39:20,338 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 22:39:20,842 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 22:39:21,861 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:39:22,382 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 22:39:22,893 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:39:23,421 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:39:24,448 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:39:24,822 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:39:25,175 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:39:25,536 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:39:25,874 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:39:26,213 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:39:26,548 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:39:26,548 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:39:26,887 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:39:27,234 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:39:35,831 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 22:39:40,436 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 22:39:40,608 log Bad Request: /api/documents/documents/1/create-version/
+ERROR 2025-04-25 22:39:56,737 exception The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmp0r1a_f4r.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/documents/views.py", line 108, in download
+    file_path = document.file.path
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/fields/files.py", line 62, in path
+    return self.storage.path(self.name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/files/storage/filesystem.py", line 179, in path
+    return safe_join(self.location, name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/_os.py", line 31, in safe_join
+    raise SuspiciousFileOperation(
+django.core.exceptions.SuspiciousFileOperation: The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmp0r1a_f4r.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+WARNING 2025-04-25 22:39:56,761 log Bad Request: /api/documents/documents/1/download/
+WARNING 2025-04-25 22:40:02,120 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-04-25 22:40:02,624 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-04-25 22:40:22,090 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 22:40:22,091 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 22:40:22,091 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 22:40:28,644 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 22:40:28,810 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 22:40:29,316 views Login attempt for email: admin@example.com
+INFO 2025-04-25 22:40:32,640 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 22:40:33,833 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 22:40:33,834 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 22:40:33,834 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 22:40:34,368 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 22:40:36,062 log Forbidden: /api/users/users/
+WARNING 2025-04-25 22:40:43,766 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 22:40:50,263 log Forbidden: /api/documents/documents/
+INFO 2025-04-25 22:40:57,135 views Login attempt for email: user@example.com
+INFO 2025-04-25 22:40:57,349 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 22:40:57,520 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 22:40:57,523 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 22:40:57,878 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 22:40:57,880 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 22:40:57,880 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 22:40:58,055 log Unauthorized: /api/users/profile/
+WARNING 2025-04-25 22:50:00,978 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 22:50:00,979 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 22:50:00,979 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 22:50:00,981 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 22:50:01,496 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 22:50:01,995 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 22:50:03,035 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:50:03,533 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:50:13,991 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-25 22:50:17,743 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 22:50:18,249 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 22:50:19,261 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:50:19,764 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 22:50:20,270 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:50:20,770 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:50:21,775 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:50:22,109 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:50:22,447 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:50:22,779 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:50:23,112 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:50:23,445 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:50:23,775 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:50:23,776 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:50:24,109 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:50:24,442 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:50:32,918 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 22:50:37,546 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 22:50:37,715 log Bad Request: /api/documents/documents/1/create-version/
+ERROR 2025-04-25 22:50:53,888 exception The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmp80mw_j_w.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/documents/views.py", line 108, in download
+    file_path = document.file.path
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/fields/files.py", line 62, in path
+    return self.storage.path(self.name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/files/storage/filesystem.py", line 179, in path
+    return safe_join(self.location, name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/_os.py", line 31, in safe_join
+    raise SuspiciousFileOperation(
+django.core.exceptions.SuspiciousFileOperation: The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmp80mw_j_w.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+WARNING 2025-04-25 22:50:53,913 log Bad Request: /api/documents/documents/1/download/
+WARNING 2025-04-25 22:50:59,318 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-04-25 22:50:59,827 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-04-25 22:51:20,030 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 22:51:20,030 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 22:51:20,031 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 22:51:26,536 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 22:51:26,708 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 22:51:27,221 views Login attempt for email: admin@example.com
+INFO 2025-04-25 22:51:30,481 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 22:51:31,696 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 22:51:31,697 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 22:51:31,697 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 22:51:32,206 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 22:51:33,905 log Forbidden: /api/users/users/
+WARNING 2025-04-25 22:51:41,584 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 22:51:48,083 log Forbidden: /api/documents/documents/
+INFO 2025-04-25 22:51:55,038 views Login attempt for email: user@example.com
+INFO 2025-04-25 22:51:55,241 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 22:51:55,409 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 22:51:55,411 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 22:51:55,761 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 22:51:55,762 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 22:51:55,762 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 22:51:55,935 log Unauthorized: /api/users/profile/
+WARNING 2025-04-25 22:54:49,120 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 22:54:49,120 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 22:54:49,121 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 22:54:49,123 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 22:54:49,650 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 22:54:50,165 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 22:54:51,266 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:54:51,774 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 22:55:02,372 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-25 22:55:06,176 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 22:55:06,691 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 22:55:07,709 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:55:08,215 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 22:55:08,722 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:55:09,229 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 22:55:10,232 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 22:55:10,567 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:55:10,904 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:55:11,238 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:55:11,574 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:55:11,911 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:55:12,244 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:55:12,244 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:55:12,583 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 22:55:12,920 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 22:55:21,387 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 22:55:26,080 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 22:55:26,253 log Bad Request: /api/documents/documents/1/create-version/
+ERROR 2025-04-25 22:55:42,346 exception The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmp_npuz0i1.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/documents/views.py", line 108, in download
+    file_path = document.file.path
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/fields/files.py", line 62, in path
+    return self.storage.path(self.name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/files/storage/filesystem.py", line 179, in path
+    return safe_join(self.location, name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/_os.py", line 31, in safe_join
+    raise SuspiciousFileOperation(
+django.core.exceptions.SuspiciousFileOperation: The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmp_npuz0i1.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+WARNING 2025-04-25 22:55:42,375 log Bad Request: /api/documents/documents/1/download/
+WARNING 2025-04-25 22:55:47,845 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-04-25 22:55:48,360 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-04-25 22:56:08,008 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 22:56:08,010 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 22:56:08,010 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 22:56:14,576 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 22:56:14,748 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 22:56:15,258 views Login attempt for email: admin@example.com
+INFO 2025-04-25 22:56:18,552 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 22:56:19,757 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 22:56:19,759 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 22:56:19,759 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 22:56:20,271 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 22:56:22,027 log Forbidden: /api/users/users/
+WARNING 2025-04-25 22:56:30,188 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 22:56:36,953 log Forbidden: /api/documents/documents/
+INFO 2025-04-25 22:56:44,000 views Login attempt for email: user@example.com
+INFO 2025-04-25 22:56:44,209 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 22:56:44,381 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 22:56:44,384 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 22:56:44,740 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 22:56:44,742 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 22:56:44,742 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 22:56:44,921 log Unauthorized: /api/users/profile/
+WARNING 2025-04-25 23:02:35,542 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 23:02:35,542 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 23:02:35,543 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 23:02:35,545 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 23:02:36,071 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 23:02:36,590 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 23:02:37,649 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 23:02:38,187 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 23:04:17,420 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 23:04:17,421 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 23:04:17,422 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 23:04:17,424 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 23:04:17,941 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 23:04:18,459 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 23:04:19,526 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 23:04:20,093 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 23:04:30,724 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-25 23:04:34,532 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 23:04:35,052 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 23:04:36,097 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 23:04:36,614 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 23:04:37,121 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 23:04:37,636 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 23:04:38,680 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 23:04:39,030 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:04:39,380 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:04:39,728 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:04:40,076 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:04:40,427 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:04:40,771 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:04:40,772 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:04:41,115 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:04:41,454 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:04:50,231 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 23:04:55,001 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 23:04:55,176 log Bad Request: /api/documents/documents/1/create-version/
+ERROR 2025-04-25 23:05:11,614 exception The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmp4efgo46v.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/documents/views.py", line 108, in download
+    file_path = document.file.path
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/fields/files.py", line 62, in path
+    return self.storage.path(self.name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/files/storage/filesystem.py", line 179, in path
+    return safe_join(self.location, name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/_os.py", line 31, in safe_join
+    raise SuspiciousFileOperation(
+django.core.exceptions.SuspiciousFileOperation: The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmp4efgo46v.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+WARNING 2025-04-25 23:05:11,639 log Bad Request: /api/documents/documents/1/download/
+WARNING 2025-04-25 23:05:17,177 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-04-25 23:05:17,691 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-04-25 23:05:37,349 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 23:05:37,351 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 23:05:37,351 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 23:05:43,870 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 23:05:44,043 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 23:05:44,606 views Login attempt for email: admin@example.com
+INFO 2025-04-25 23:05:47,875 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 23:05:49,076 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 23:05:49,077 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 23:05:49,077 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 23:05:49,582 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 23:05:51,295 log Forbidden: /api/users/users/
+WARNING 2025-04-25 23:05:59,106 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 23:06:05,837 log Forbidden: /api/documents/documents/
+INFO 2025-04-25 23:06:12,797 views Login attempt for email: user@example.com
+INFO 2025-04-25 23:06:13,000 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 23:06:13,169 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 23:06:13,171 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 23:06:13,521 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 23:06:13,522 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 23:06:13,523 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 23:06:13,696 log Unauthorized: /api/users/profile/
+WARNING 2025-04-25 23:08:07,443 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 23:08:07,443 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 23:08:07,444 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 23:08:07,446 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 23:08:07,949 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 23:08:08,450 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 23:08:09,483 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 23:08:09,983 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 23:08:10,991 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 23:08:11,492 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 23:08:12,512 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 23:08:13,019 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 23:08:13,523 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 23:08:14,029 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 23:08:15,035 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 23:08:15,377 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:08:15,710 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:08:16,048 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:08:16,379 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:08:16,715 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:08:17,046 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:08:17,046 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:08:17,382 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:08:17,724 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:08:19,470 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 23:08:19,640 log Bad Request: /api/documents/documents/1/create-version/
+WARNING 2025-04-25 23:09:52,376 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 23:09:52,377 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 23:09:52,377 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 23:09:52,379 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 23:09:52,914 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 23:09:53,420 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 23:09:54,460 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 23:09:54,962 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 23:10:05,649 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-25 23:10:09,459 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 23:10:09,977 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 23:10:11,049 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 23:10:11,561 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 23:10:12,076 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 23:10:12,585 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 23:10:13,616 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 23:10:13,958 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:10:14,300 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:10:14,638 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:10:14,977 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:10:15,320 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:10:15,661 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:10:15,661 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:10:16,004 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:10:16,344 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:10:24,939 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 23:10:29,623 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 23:10:29,795 log Bad Request: /api/documents/documents/1/create-version/
+ERROR 2025-04-25 23:10:46,177 exception The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmpzi4u4jcm.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/documents/views.py", line 108, in download
+    file_path = document.file.path
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/fields/files.py", line 62, in path
+    return self.storage.path(self.name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/files/storage/filesystem.py", line 179, in path
+    return safe_join(self.location, name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/_os.py", line 31, in safe_join
+    raise SuspiciousFileOperation(
+django.core.exceptions.SuspiciousFileOperation: The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmpzi4u4jcm.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+WARNING 2025-04-25 23:10:46,200 log Bad Request: /api/documents/documents/1/download/
+WARNING 2025-04-25 23:10:51,698 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-04-25 23:10:52,218 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-04-25 23:11:11,704 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 23:11:11,705 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 23:11:11,706 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 23:11:18,274 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 23:11:18,444 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 23:11:18,951 views Login attempt for email: admin@example.com
+INFO 2025-04-25 23:11:22,216 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 23:11:23,448 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 23:11:23,449 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 23:11:23,449 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 23:11:23,950 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 23:11:25,663 log Forbidden: /api/users/users/
+WARNING 2025-04-25 23:11:33,536 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 23:11:40,282 log Forbidden: /api/documents/documents/
+INFO 2025-04-25 23:11:47,244 views Login attempt for email: user@example.com
+INFO 2025-04-25 23:11:47,451 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 23:11:47,623 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 23:11:47,625 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 23:11:47,983 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 23:11:47,985 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 23:11:47,986 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 23:11:48,215 log Unauthorized: /api/users/profile/
+WARNING 2025-04-25 23:49:12,244 log Not Found: /api/applications/applications/99999/
+WARNING 2025-04-25 23:49:12,245 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 23:49:12,245 log Forbidden: /api/applications/applications/1/
+WARNING 2025-04-25 23:49:12,247 log Unauthorized: /api/applications/applications/
+WARNING 2025-04-25 23:49:12,765 log Bad Request: /api/applications/1/signature/
+WARNING 2025-04-25 23:49:13,263 log Not Found: /api/applications/99999/signature/
+WARNING 2025-04-25 23:49:14,298 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 23:49:14,793 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-25 23:49:25,326 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-25 23:49:29,061 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-04-25 23:49:29,562 log Not Found: /api/borrowers/1/guarantors/
+WARNING 2025-04-25 23:49:30,602 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 23:49:31,100 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 23:49:31,602 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 23:49:32,108 log Not Found: /api/borrowers/1/
+WARNING 2025-04-25 23:49:33,114 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-25 23:49:33,445 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:49:33,816 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:49:34,148 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:49:34,479 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:49:34,812 log Not Found: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:49:35,144 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:49:35,145 log Method Not Allowed: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:49:35,476 log Not Found: /api/borrowers/guarantors/
+WARNING 2025-04-25 23:49:35,805 log Forbidden: /api/borrowers/guarantors/1/
+WARNING 2025-04-25 23:49:44,366 log Forbidden: /api/borrowers/
+WARNING 2025-04-25 23:49:49,126 log Not Found: /api/documents/documents/9999/create-version/
+WARNING 2025-04-25 23:49:49,297 log Bad Request: /api/documents/documents/1/create-version/
+ERROR 2025-04-25 23:50:05,239 exception The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmpi9tvtp38.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/documents/views.py", line 108, in download
+    file_path = document.file.path
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/fields/files.py", line 62, in path
+    return self.storage.path(self.name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/files/storage/filesystem.py", line 179, in path
+    return safe_join(self.location, name)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/_os.py", line 31, in safe_join
+    raise SuspiciousFileOperation(
+django.core.exceptions.SuspiciousFileOperation: The joined path (/var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmpi9tvtp38.pdf) is located outside of the base path component (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media)
+WARNING 2025-04-25 23:50:05,262 log Bad Request: /api/documents/documents/1/download/
+WARNING 2025-04-25 23:50:10,580 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-04-25 23:50:11,084 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-04-25 23:50:30,537 log Unauthorized: /api/reports/repayment-compliance/
+WARNING 2025-04-25 23:50:30,538 log Unauthorized: /api/reports/application-volume/
+WARNING 2025-04-25 23:50:30,539 log Unauthorized: /api/reports/application-status/
+INFO 2025-04-25 23:50:37,256 views Login attempt for email: admin@example.com
+WARNING 2025-04-25 23:50:37,429 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 23:50:37,940 views Login attempt for email: admin@example.com
+INFO 2025-04-25 23:50:41,224 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 23:50:42,441 views Registration attempt with data: {'email': 'admin@example.com', 'password': 'newpassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 23:50:42,442 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 23:50:42,442 log Bad Request: /api/users/auth/register/
+INFO 2025-04-25 23:50:42,993 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'newpassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+WARNING 2025-04-25 23:50:44,690 log Forbidden: /api/users/users/
+WARNING 2025-04-25 23:50:52,625 log Forbidden: /api/applications/applications/
+WARNING 2025-04-25 23:50:59,098 log Forbidden: /api/documents/documents/
+INFO 2025-04-25 23:51:05,862 views Login attempt for email: user@example.com
+INFO 2025-04-25 23:51:06,073 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-25 23:51:06,241 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-25 23:51:06,244 views Registration attempt with data: {'email': 'newuser@example.com', 'password': 'securepassword123', 'first_name': 'New', 'last_name': 'User', 'role': 'client'}
+INFO 2025-04-25 23:51:06,591 views Registration attempt with data: {'email': 'user@example.com', 'password': 'securepassword123', 'first_name': 'Duplicate', 'last_name': 'User', 'role': 'client'}
+ERROR 2025-04-25 23:51:06,592 views Registration validation errors: {'email': [ErrorDetail(string='user with this email address already exists.', code='unique')]}
+WARNING 2025-04-25 23:51:06,593 log Bad Request: /api/users/auth/register/
+WARNING 2025-04-25 23:51:06,766 log Unauthorized: /api/users/profile/
+INFO 2025-04-26 01:03:52,010 views Login attempt for email: None
+WARNING 2025-04-26 01:03:52,011 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-26 01:04:52,705 views Login attempt for email: test@example.com
+INFO 2025-04-26 01:05:04,735 views Login attempt for email: test@example.com
+INFO 2025-04-26 01:05:05,100 views Login attempt for email: test@example.com
+WARNING 2025-04-26 01:05:05,263 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-26 01:05:05,264 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-26 01:05:05,434 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-26 01:05:05,605 log Unauthorized: /api/users/auth/refresh/
+WARNING 2025-04-26 01:05:05,944 log Unauthorized: /api/users/profile/
+WARNING 2025-04-26 01:05:06,110 log Unauthorized: /api/users/profile/
+WARNING 2025-04-26 01:05:16,366 log Method Not Allowed: /api/users/profile/
+WARNING 2025-04-26 01:05:17,050 log Bad Request: /api/users/users/
+WARNING 2025-04-26 01:05:17,226 log Forbidden: /api/users/users/
+WARNING 2025-04-26 01:05:18,932 log Forbidden: /api/users/users/2/
+INFO 2025-04-26 01:09:57,925 views Login attempt for email: test@example.com
+INFO 2025-04-26 01:09:58,291 views Login attempt for email: test@example.com
+WARNING 2025-04-26 01:09:58,457 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-26 01:09:58,459 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-26 01:09:58,624 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-26 01:09:58,793 log Unauthorized: /api/users/auth/refresh/
+WARNING 2025-04-26 01:09:59,126 log Unauthorized: /api/users/profile/
+WARNING 2025-04-26 01:09:59,294 log Unauthorized: /api/users/profile/
+WARNING 2025-04-26 01:16:05,946 log Forbidden: /api/users/users/
+WARNING 2025-04-26 01:16:07,641 log Forbidden: /api/users/users/2/
+WARNING 2025-04-26 01:18:04,997 log Forbidden: /api/users/users/
+WARNING 2025-04-26 01:18:06,681 log Forbidden: /api/users/users/2/
+INFO 2025-04-26 01:24:05,650 views Login attempt for email: test@example.com
+INFO 2025-04-26 01:24:06,015 views Login attempt for email: test@example.com
+WARNING 2025-04-26 01:24:06,184 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-26 01:24:06,185 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-26 01:24:06,353 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-26 01:24:06,527 log Unauthorized: /api/users/auth/refresh/
+WARNING 2025-04-26 01:24:06,865 log Unauthorized: /api/users/profile/
+WARNING 2025-04-26 01:24:07,034 log Unauthorized: /api/users/profile/
+WARNING 2025-04-26 01:24:08,377 log Forbidden: /api/users/users/
+WARNING 2025-04-26 01:24:10,055 log Forbidden: /api/users/users/2/
+INFO 2025-04-26 01:33:35,816 views Login attempt for email: test@example.com
+INFO 2025-04-26 01:33:36,199 views Login attempt for email: test@example.com
+WARNING 2025-04-26 01:33:36,367 log Unauthorized: /api/users/auth/login/
+INFO 2025-04-26 01:33:36,370 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-26 01:33:36,538 log Unauthorized: /api/users/auth/login/
+WARNING 2025-04-26 01:33:36,706 log Unauthorized: /api/users/auth/refresh/
+WARNING 2025-04-26 01:33:37,037 log Unauthorized: /api/users/profile/
+WARNING 2025-04-26 01:33:37,202 log Unauthorized: /api/users/profile/
+WARNING 2025-04-26 01:33:40,063 log Forbidden: /api/users/users/
+WARNING 2025-04-26 01:33:41,726 log Forbidden: /api/users/users/2/
+WARNING 2025-04-26 01:52:51,125 log Forbidden: /api/borrowers/
+WARNING 2025-04-26 01:54:47,787 log Forbidden: /api/borrowers/
+WARNING 2025-04-26 01:54:48,459 log Not Found: /api/borrowers/1/
+WARNING 2025-04-26 01:54:49,144 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-26 01:54:49,486 log Not Found: /api/borrowers/company/
+WARNING 2025-04-26 01:56:06,675 log Forbidden: /api/borrowers/
+WARNING 2025-04-26 01:56:07,349 log Not Found: /api/borrowers/1/
+WARNING 2025-04-26 01:56:08,020 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-26 01:56:45,407 log Forbidden: /api/guarantors/
+WARNING 2025-04-26 02:01:53,129 log Forbidden: /api/borrowers/
+WARNING 2025-04-26 02:01:53,800 log Not Found: /api/borrowers/1/
+WARNING 2025-04-26 02:01:54,471 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-26 02:01:55,694 log Method Not Allowed: /api/brokers/branches/
+WARNING 2025-04-26 02:01:55,864 log Method Not Allowed: /api/brokers/branches/
+WARNING 2025-04-26 02:01:58,533 log Forbidden: /api/brokers/
+WARNING 2025-04-26 02:02:02,008 log Forbidden: /api/guarantors/
+WARNING 2025-04-26 02:03:07,257 log Forbidden: /api/guarantors/
+WARNING 2025-04-26 02:03:08,153 log Forbidden: /api/guarantors/1/
+WARNING 2025-04-26 02:03:22,222 log Forbidden: /api/borrowers/
+WARNING 2025-04-26 02:03:22,896 log Not Found: /api/borrowers/1/
+WARNING 2025-04-26 02:03:23,571 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-26 02:03:38,099 log Forbidden: /api/brokers/
+ERROR 2025-04-26 02:04:21,959 log Internal Server Error: /api/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/serializers.py", line 38, in get_application_count
+    return obj.applications.count()
+AttributeError: 'Broker' object has no attribute 'applications'
+ERROR 2025-04-26 02:04:22,452 log Internal Server Error: /api/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/serializers.py", line 38, in get_application_count
+    return obj.applications.count()
+AttributeError: 'Broker' object has no attribute 'applications'
+WARNING 2025-04-26 02:04:22,864 log Forbidden: /api/brokers/
+WARNING 2025-04-26 02:04:23,525 log Not Found: /api/brokers/2/
+WARNING 2025-04-26 02:04:23,856 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:04:24,193 log Forbidden: /api/brokers/1/
+ERROR 2025-04-26 02:04:24,360 log Internal Server Error: /api/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/serializers.py", line 38, in get_application_count
+    return obj.applications.count()
+AttributeError: 'Broker' object has no attribute 'applications'
+ERROR 2025-04-26 02:04:24,624 log Internal Server Error: /api/brokers/1/applications/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/views.py", line 107, in applications
+    from applications.serializers import ApplicationListSerializer
+ImportError: cannot import name 'ApplicationListSerializer' from 'applications.serializers' (/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/serializers.py)
+ERROR 2025-04-26 02:04:24,832 log Internal Server Error: /api/brokers/1/stats/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/views.py", line 120, in stats
+    applications = broker.applications.all()
+AttributeError: 'Broker' object has no attribute 'applications'
+INFO 2025-04-26 02:04:53,708 autoreload /app/brokers/serializers.py changed, reloading.
+INFO 2025-04-26 02:04:54,327 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 02:05:25,426 autoreload /app/brokers/views.py changed, reloading.
+INFO 2025-04-26 02:05:26,046 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-26 02:05:39,898 log Forbidden: /api/brokers/
+WARNING 2025-04-26 02:05:40,574 log Not Found: /api/brokers/2/
+WARNING 2025-04-26 02:05:40,910 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:05:41,244 log Forbidden: /api/brokers/1/
+INFO 2025-04-26 02:06:15,620 autoreload /app/brokers/views.py changed, reloading.
+INFO 2025-04-26 02:06:16,258 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-26 02:06:29,964 log Forbidden: /api/brokers/
+WARNING 2025-04-26 02:06:30,643 log Not Found: /api/brokers/2/
+WARNING 2025-04-26 02:06:30,989 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:06:31,327 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:06:50,663 log Method Not Allowed: /api/brokers/branches/
+WARNING 2025-04-26 02:06:50,835 log Method Not Allowed: /api/brokers/branches/
+WARNING 2025-04-26 02:07:30,035 log Forbidden: /api/borrowers/
+WARNING 2025-04-26 02:07:30,701 log Not Found: /api/borrowers/1/
+WARNING 2025-04-26 02:07:31,368 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-26 02:07:32,670 log Method Not Allowed: /api/brokers/branches/
+WARNING 2025-04-26 02:07:32,839 log Method Not Allowed: /api/brokers/branches/
+WARNING 2025-04-26 02:07:35,823 log Forbidden: /api/brokers/
+WARNING 2025-04-26 02:07:36,485 log Not Found: /api/brokers/2/
+WARNING 2025-04-26 02:07:36,820 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:07:37,153 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:07:38,987 log Forbidden: /api/guarantors/
+WARNING 2025-04-26 02:07:39,825 log Forbidden: /api/guarantors/1/
+WARNING 2025-04-26 02:08:35,052 log Forbidden: /api/borrowers/
+WARNING 2025-04-26 02:08:35,776 log Not Found: /api/borrowers/1/
+WARNING 2025-04-26 02:08:36,448 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-26 02:08:38,314 log Forbidden: /api/guarantors/
+WARNING 2025-04-26 02:08:39,158 log Forbidden: /api/guarantors/1/
+WARNING 2025-04-26 02:08:40,523 log Forbidden: /api/brokers/
+WARNING 2025-04-26 02:08:41,195 log Not Found: /api/brokers/2/
+WARNING 2025-04-26 02:08:41,530 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:08:41,867 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:16:59,623 log Not Found: /api/brokers/branches/
+WARNING 2025-04-26 02:18:06,215 log Not Found: /api/borrowers/company/
+WARNING 2025-04-26 02:20:18,135 log Not Found: /api/brokers/branches/
+WARNING 2025-04-26 02:21:50,722 log Forbidden: /api/borrowers/
+WARNING 2025-04-26 02:21:51,387 log Not Found: /api/borrowers/1/
+WARNING 2025-04-26 02:21:52,056 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-26 02:21:53,395 log Forbidden: /api/brokers/
+WARNING 2025-04-26 02:21:54,058 log Not Found: /api/brokers/2/
+WARNING 2025-04-26 02:21:54,391 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:21:54,720 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:21:56,550 log Forbidden: /api/guarantors/
+WARNING 2025-04-26 02:21:57,458 log Forbidden: /api/guarantors/1/
+WARNING 2025-04-26 02:27:52,837 log Not Found: /api/borrowers/company/
+INFO 2025-04-26 02:29:57,528 autoreload /app/borrowers/serializers.py changed, reloading.
+INFO 2025-04-26 02:29:58,157 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-26 02:30:47,943 log Forbidden: /api/borrowers/
+WARNING 2025-04-26 02:30:48,624 log Not Found: /api/borrowers/1/
+WARNING 2025-04-26 02:30:49,308 log Forbidden: /api/borrowers/1/
+WARNING 2025-04-26 02:30:50,844 log Forbidden: /api/brokers/
+WARNING 2025-04-26 02:30:51,512 log Not Found: /api/brokers/2/
+WARNING 2025-04-26 02:30:51,844 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:30:52,180 log Forbidden: /api/brokers/1/
+WARNING 2025-04-26 02:30:54,038 log Forbidden: /api/guarantors/
+WARNING 2025-04-26 02:30:54,879 log Forbidden: /api/guarantors/1/
+WARNING 2025-04-26 02:50:29,231 log Forbidden: /api/applications/applications/
+WARNING 2025-04-26 02:50:32,752 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-26 02:52:06,352 log Forbidden: /api/applications/applications/
+WARNING 2025-04-26 02:52:07,368 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-26 02:52:09,866 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-26 02:53:13,721 log Forbidden: /api/applications/applications/
+WARNING 2025-04-26 02:53:14,729 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-26 02:53:16,950 log Bad Request: /api/applications/1/borrowers/
+WARNING 2025-04-26 02:53:17,171 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-26 02:53:53,468 log Forbidden: /api/applications/applications/
+WARNING 2025-04-26 02:53:54,496 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-26 02:53:57,123 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-26 02:55:45,809 log Forbidden: /api/applications/applications/
+WARNING 2025-04-26 02:55:46,804 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-26 02:55:49,236 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-26 02:56:10,113 log Bad Request: /api/applications/1/borrowers/
+ERROR 2025-04-26 02:56:11,189 log Internal Server Error: /api/applications/applications/1/upload_document/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 656, in create
+    obj = self.model(**kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Document() got unexpected keyword arguments: 'uploaded_by'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/views.py", line 225, in upload_document
+    document = serializer.save(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 981, in create
+    raise TypeError(msg)
+TypeError: Got a `TypeError` when calling `Document.objects.create()`. This may be because you have a writable field on the serializer class that is not a valid argument to `Document.objects.create()`. You may need to make the field read-only, or override the DocumentSerializer.create() method to handle this correctly.
+Original exception was:
+ Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 962, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 656, in create
+    obj = self.model(**kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Document() got unexpected keyword arguments: 'uploaded_by'
+
+ERROR 2025-04-26 02:56:11,640 log Internal Server Error: /api/applications/applications/1/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `relationship_to_borrower` is not valid for model `Guarantor`.
+INFO 2025-04-26 03:10:54,415 autoreload /app/borrowers/serializers.py changed, reloading.
+INFO 2025-04-26 03:10:55,025 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:11:15,847 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:11:16,489 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:12:16,599 autoreload /app/borrowers/views.py changed, reloading.
+INFO 2025-04-26 03:12:17,221 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:12:39,041 autoreload /app/applications/urls.py changed, reloading.
+INFO 2025-04-26 03:12:39,638 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:12:51,163 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:12:51,764 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:13:04,325 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:13:04,870 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:13:18,394 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:13:18,999 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-26 03:23:39,218 log Bad Request: /api/applications/1/borrowers/
+ERROR 2025-04-26 03:23:40,632 log Internal Server Error: /api/applications/applications/1/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `relationship_to_borrower` is not valid for model `Guarantor`.
+INFO 2025-04-26 03:25:40,581 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-04-26 03:25:41,179 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:26:12,324 autoreload /app/brokers/views.py changed, reloading.
+INFO 2025-04-26 03:26:12,922 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:26:41,910 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-04-26 03:26:42,495 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:26:56,066 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:26:56,684 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:27:21,592 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:27:22,194 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:28:22,985 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:28:23,565 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:29:08,017 autoreload /app/borrowers/serializers.py changed, reloading.
+INFO 2025-04-26 03:29:08,606 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:29:24,256 autoreload /app/borrowers/views.py changed, reloading.
+INFO 2025-04-26 03:29:24,790 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:30:13,310 autoreload /app/borrowers/serializers.py changed, reloading.
+INFO 2025-04-26 03:30:13,913 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:30:30,610 autoreload /app/borrowers/views.py changed, reloading.
+INFO 2025-04-26 03:30:31,112 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:37:24,247 autoreload /app/applications/urls.py changed, reloading.
+INFO 2025-04-26 03:37:24,854 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:39:51,015 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:39:51,623 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:40:13,476 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:40:14,077 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:40:30,773 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:40:31,420 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:40:58,419 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:40:59,047 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:41:26,002 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:41:26,593 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:41:46,379 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:41:46,955 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:42:07,743 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:42:08,351 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:42:32,268 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:42:32,905 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:42:49,634 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:42:50,264 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:43:20,364 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:43:20,985 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-26 03:43:38,947 log Bad Request: /api/applications/1/borrowers/
+INFO 2025-04-26 03:45:16,386 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:45:17,014 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:45:46,023 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:45:46,628 autoreload Watching for file changes with StatReloader
+INFO 2025-04-26 03:46:11,537 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:46:12,147 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-26 03:46:29,187 log Bad Request: /api/applications/1/borrowers/
+INFO 2025-04-26 03:48:14,645 autoreload /app/borrowers/serializers.py changed, reloading.
+INFO 2025-04-26 03:48:15,238 autoreload Watching for file changes with StatReloader
+ERROR 2025-04-26 03:49:53,478 log Internal Server Error: /api/guarantors/1/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/borrowers/serializers.py", line 93, in get_guaranteed_applications
+    applications = obj.application_guarantors.all()
+AttributeError: 'Guarantor' object has no attribute 'application_guarantors'
+INFO 2025-04-26 03:50:14,558 autoreload /app/borrowers/serializers.py changed, reloading.
+INFO 2025-04-26 03:50:15,140 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-26 03:52:08,187 log Not Found: /api/documents/documents/1/
+ERROR 2025-04-26 03:52:10,454 log Internal Server Error: /api/applications/1/sign/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/views.py", line 521, in sign
+    Note.objects.create(
+NameError: name 'Note' is not defined
+INFO 2025-04-26 03:52:43,314 autoreload /app/applications/views.py changed, reloading.
+INFO 2025-04-26 03:52:44,009 autoreload Watching for file changes with StatReloader
+WARNING 2025-04-26 03:53:28,886 log Not Found: /api/documents/documents/1/
+WARNING 2025-04-26 03:53:59,132 log Forbidden: /api/applications/applications/
+WARNING 2025-04-26 03:54:00,144 log Not Found: /api/applications/applications/1/
+WARNING 2025-04-26 03:54:02,536 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-04-26 03:54:04,588 log Not Found: /api/documents/documents/1/
+WARNING 2025-04-26 04:15:59,372 log Method Not Allowed: /api/users/notifications-list/
+WARNING 2025-04-26 04:15:59,552 log Method Not Allowed: /api/users/notifications-list/
+WARNING 2025-04-26 04:15:59,719 log Method Not Allowed: /api/users/notifications-list/
+WARNING 2025-04-26 04:16:19,426 log Method Not Allowed: /api/users/notifications-list/
+WARNING 2025-04-26 04:16:19,644 log Method Not Allowed: /api/users/notifications-list/
+ERROR 2025-04-26 04:16:19,821 log Internal Server Error: /api/users/notifications-list/count/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/users/views.py", line 155, in get
+    count = Notification.objects.filter(user=request.user, is_read=False).count()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor = self.connection.cursor()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/asyncio.py", line 24, in inner
+    raise SynchronousOnlyOperation(message)
+django.core.exceptions.SynchronousOnlyOperation: You cannot call this from an async context - use a thread or sync_to_async.
+WARNING 2025-04-26 04:16:20,116 log Method Not Allowed: /api/users/notifications-list/
+WARNING 2025-04-26 04:16:20,285 log Method Not Allowed: /api/users/notifications-list/
+WARNING 2025-04-26 04:16:20,452 log Method Not Allowed: /api/users/notifications-list/
+ERROR 2025-04-26 04:46:11,995 websocket_auth Unexpected error in WebSocket authentication: database table is locked: users_user
+DEBUG 2025-04-26 04:46:11,995 websocket_auth WebSocket authenticated user: 
+ERROR 2025-04-26 04:46:12,214 websocket_auth Unexpected error in WebSocket authentication: database table is locked: users_user
+DEBUG 2025-04-26 04:46:12,214 websocket_auth WebSocket authenticated user: 
+ERROR 2025-04-26 04:46:13,392 websocket_auth Error authenticating WebSocket token: Token is invalid or expired
+DEBUG 2025-04-26 04:46:13,393 websocket_auth WebSocket authenticated user: 
+DEBUG 2025-04-26 04:46:13,400 websocket_auth WebSocket anonymous user (no token)
+INFO 2025-04-26 04:54:53,293 views Login attempt for email: test@example.com
+INFO 2025-04-26 04:54:53,669 views Login attempt for email: test@example.com
+INFO 2025-04-26 04:54:53,837 views Login attempt for email: nonexistent@example.com
+WARNING 2025-04-26 23:44:57,495 log Method Not Allowed: /api/applications/
+WARNING 2025-04-26 23:51:13,696 log Not Found: /api/applications/create/
+WARNING 2025-04-26 23:51:13,865 log Not Found: /api/applications/create/
+WARNING 2025-04-26 23:53:09,597 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:53:10,144 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:53:10,643 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:53:10,991 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:53:11,322 log Not Found: /api/create-with-cascade/
+WARNING 2025-04-26 23:53:11,489 log Not Found: /api/create-with-cascade/
+WARNING 2025-04-26 23:53:11,819 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:53:12,158 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:55:59,127 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:55:59,630 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:55:59,630 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:00,137 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:00,138 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:00,480 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:00,811 log Not Found: /api/create-with-cascade/
+WARNING 2025-04-26 23:56:00,976 log Not Found: /api/create-with-cascade/
+WARNING 2025-04-26 23:56:01,307 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:01,308 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:01,641 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:30,816 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:31,316 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:31,317 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:31,812 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:31,812 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:32,146 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:32,480 log Not Found: /api/create-with-cascade/
+WARNING 2025-04-26 23:56:32,648 log Not Found: /api/create-with-cascade/
+WARNING 2025-04-26 23:56:32,981 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:32,981 log Not Found: /api/applications/1/
+WARNING 2025-04-26 23:56:33,315 log Not Found: /api/applications/1/

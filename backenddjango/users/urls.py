@@ -6,7 +6,7 @@ from . import views
 # Create a router for ViewSets
 router = DefaultRouter()
 router.register(r'users', views.UserViewSet, basename='user')
-router.register(r'notifications-viewset', views.NotificationViewSet, basename='notification')
+router.register(r'notifications', views.NotificationViewSet, basename='notifications')
 
 urlpatterns = [
     # Authentication
@@ -19,9 +19,10 @@ urlpatterns = [
     path('profile/update/', views.UserProfileUpdateView.as_view(), name='user-profile-update'),
     
     # Notifications
-    path('notifications/', views.NotificationListView.as_view(), name='notification-list'),
-    path('notifications/mark-read/', views.NotificationMarkReadView.as_view(), name='notification-mark-read'),
-    path('notifications/count/', views.NotificationCountView.as_view(), name='notification-count'),
+    path('notifications-list/', views.NotificationListView.as_view(), name='notification-list'),
+    path('notifications-list/mark-read/', views.NotificationMarkReadView.as_view(), name='notification-mark-read'),
+    path('notifications-list/count/', views.NotificationCountView.as_view(), name='notification-count'),
+    path('notifications-list/search/', views.NotificationListView.as_view(), name='notification-search'),
     
     # Notification preferences
     path('notification-preferences/', views.NotificationPreferenceView.as_view(), name='notification-preferences'),

@@ -27,6 +27,7 @@ urlpatterns = [
     path('api/users/', include('users.urls')),
     path('api/applications/', include('applications.urls')),
     path('api/borrowers/', include('borrowers.urls')),
+    path('api/guarantors/', include('borrowers.urls_guarantors')),  # Direct guarantors endpoint
     path('api/brokers/', include('brokers.urls')),
     path('api/documents/', include('documents.urls')),
     path('api/reports/', include('reports.urls')),

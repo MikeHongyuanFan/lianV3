@@ -12,6 +12,7 @@ from .serializers import (
 )
 from .permissions import IsAdmin
 from .services import get_or_create_notification_preferences
+from .filters import NotificationFilter
 from django.contrib.auth import authenticate
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView, ListAPIView
 import logging
@@ -111,8 +112,9 @@ class NotificationListView(ListAPIView):
     """
     permission_classes = [IsAuthenticated]
     serializer_class = NotificationListSerializer
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['is_read', 'notification_type']
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
+    filterset_class = NotificationFilter
+    search_fields = ['title', 'message']
     ordering_fields = ['created_at']
     ordering = ['-created_at']
     
@@ -218,8 +220,9 @@ class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
     """
     serializer_class = NotificationSerializer
     permission_classes = [IsAuthenticated]
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['is_read', 'notification_type']
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
+    filterset_class = NotificationFilter
+    search_fields = ['title', 'message']
     ordering_fields = ['created_at']
     ordering = ['-created_at']
     
@@ -287,6 +290,23 @@ class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
             print(f"Error sending WebSocket notification: {str(e)}")
             
         return Response({'status': 'all notifications marked as read'})
+    
+    @action(detail=False, methods=['get'])
+    def advanced_search(self, request):
+        """
+        Advanced search endpoint for notifications with additional filtering options
+        """
+        queryset = self.filter_queryset(self.get_queryset())
+        
+        # Additional custom filtering logic can be added here if needed
+        
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
     
     @action(detail=False, methods=['get'])
     def unread_count(self, request):

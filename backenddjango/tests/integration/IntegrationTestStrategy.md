@@ -14,7 +14,7 @@ This document outlines the integration testing strategy for the CRM Loan Managem
 - Ensure data integrity across the entire system
 - Identify integration issues that unit tests might miss
 - Validate error handling and recovery mechanisms
-- Test performance under realistic conditions
+- Test performance under realistic conditionsy
 
 ## Test Environment
 

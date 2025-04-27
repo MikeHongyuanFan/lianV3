@@ -71,6 +71,7 @@ class BorrowerSerializer(serializers.ModelSerializer):
 
 class GuarantorSerializer(serializers.ModelSerializer):
     address = serializers.SerializerMethodField()
+    relationship_to_borrower = serializers.CharField(required=False, allow_blank=True, allow_null=True)
     
     class Meta:
         model = Guarantor
@@ -90,6 +91,9 @@ class GuarantorSerializer(serializers.ModelSerializer):
     
     def create(self, validated_data):
         address_data = validated_data.pop('address', None)
+        # Remove relationship_to_borrower as it's not in the model
+        if 'relationship_to_borrower' in validated_data:
+            validated_data.pop('relationship_to_borrower')
         
         guarantor = Guarantor.objects.create(**validated_data)
         
@@ -174,7 +178,7 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
             'id', 'reference_number', 'loan_amount', 'loan_term',
             'interest_rate', 'purpose', 'repayment_frequency',
             'application_type', 'product_id', 'estimated_settlement_date',
-            'stage', 'branch_id', 'bd_id', 'borrowers', 'guarantors',
+            'stage', 'broker', 'bd', 'branch', 'borrowers', 'guarantors',
             'company_borrowers', 'security_address', 'security_type', 'security_value',
             'valuer_company_name', 'valuer_contact_name', 'valuer_phone',
             'valuer_email', 'qs_company_name', 'qs_contact_name', 'qs_phone', 'qs_email'
@@ -356,6 +360,23 @@ class ApplicationDetailSerializer(serializers.ModelSerializer):
         from documents.models import Ledger
         ledger_entries = Ledger.objects.filter(application=obj).order_by('-transaction_date')
         return LedgerSerializer(ledger_entries, many=True, context=self.context).data
+
+class ApplicationListSerializer(serializers.ModelSerializer):
+    """Serializer for listing applications with minimal information"""
+    stage_display = serializers.CharField(source='get_stage_display', read_only=True)
+    broker_name = serializers.StringRelatedField(source='broker')
+    borrower_count = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Application
+        fields = [
+            'id', 'reference_number', 'application_type', 'purpose',
+            'loan_amount', 'stage', 'stage_display', 'created_at',
+            'broker_name', 'borrower_count', 'estimated_settlement_date'
+        ]
+    
+    def get_borrower_count(self, obj):
+        return obj.borrowers.count()
 
 class ApplicationStageUpdateSerializer(serializers.Serializer):
     stage = serializers.ChoiceField(choices=Application.STAGE_CHOICES)

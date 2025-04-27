@@ -99,6 +99,26 @@ API documentation is automatically generated and available at:
 - Swagger UI: http://localhost:8000/swagger/
 - ReDoc: http://localhost:8000/redoc/
 
+## Notification System
+
+The system includes a comprehensive notification system with:
+
+- Real-time notifications via WebSockets
+- Notification history with advanced search and filtering
+- Customizable notification preferences
+- Email notifications for important events
+
+### Notification API Endpoints:
+
+- List notifications: `GET /api/users/notifications/`
+- Search notifications: `GET /api/users/notifications/?search=term`
+- Filter by type: `GET /api/users/notifications/?notification_type=application_status`
+- Filter by read status: `GET /api/users/notifications/?is_read=true`
+- Advanced search: `GET /api/users/notifications-viewset/advanced_search/?search=term&date_from=2023-01-01`
+- Mark as read: `POST /api/users/notifications/mark-read/`
+- Get unread count: `GET /api/users/notifications/count/`
+- Notification preferences: `GET/PUT /api/users/notification-preferences/`
+
 ## API Relationships
 
 The API relationships between the frontend and backend are documented in [APIRelationship.md](APIRelationship.md). This document outlines:

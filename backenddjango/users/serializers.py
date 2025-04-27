@@ -56,10 +56,40 @@ class NotificationListSerializer(serializers.ModelSerializer):
     Serializer for listing notifications
     """
     notification_type_display = serializers.CharField(source='get_notification_type_display', read_only=True)
+    related_object_info = serializers.SerializerMethodField()
     
     class Meta:
         model = Notification
-        fields = ['id', 'title', 'notification_type', 'notification_type_display', 'is_read', 'created_at']
+        fields = ['id', 'title', 'message', 'notification_type', 'notification_type_display', 
+                  'is_read', 'created_at', 'related_object_id', 'related_object_type', 'related_object_info']
+    
+    def get_related_object_info(self, obj):
+        """
+        Get basic information about the related object if available
+        """
+        if not obj.related_object_id or not obj.related_object_type:
+            return None
+            
+        # This could be expanded to include more object types and information
+        if obj.related_object_type == 'application':
+            try:
+                from applications.models import Application
+                from applications.serializers import ApplicationListSerializer
+                
+                application = Application.objects.filter(id=obj.related_object_id).first()
+                if application:
+                    return {
+                        'id': application.id,
+                        'reference': application.reference,
+                        'status': application.status
+                    }
+            except ImportError:
+                pass
+                
+        return {
+            'id': obj.related_object_id,
+            'type': obj.related_object_type
+        }
 
 
 class NotificationPreferenceSerializer(serializers.ModelSerializer):

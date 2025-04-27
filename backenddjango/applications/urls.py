@@ -27,4 +27,27 @@ urlpatterns = [
     
     # Application sign
     path('<int:pk>/sign/', views.ApplicationViewSet.as_view({'post': 'sign'}), name='application-sign'),
+    
+    # Application guarantors
+    path('<int:pk>/guarantors/', views.ApplicationViewSet.as_view({'get': 'guarantors'}), name='application-guarantors'),
+    
+    # Application notes
+    path('<int:pk>/notes/', views.ApplicationViewSet.as_view({'get': 'notes'}), name='application-notes'),
+    path('<int:pk>/add-note/', views.ApplicationViewSet.as_view({'post': 'add_note'}), name='application-add-note'),
+    
+    # Application documents
+    path('<int:pk>/documents/', views.ApplicationViewSet.as_view({'get': 'documents'}), name='application-documents'),
+    path('<int:pk>/upload-document/', views.ApplicationViewSet.as_view({'post': 'upload_document'}), name='application-upload-document'),
+    
+    # Application fees
+    path('<int:pk>/fees/', views.ApplicationViewSet.as_view({'get': 'fees'}), name='application-fees'),
+    path('<int:pk>/add-fee/', views.ApplicationViewSet.as_view({'post': 'add_fee'}), name='application-add-fee'),
+    
+    # Application repayments
+    path('<int:pk>/repayments/', views.ApplicationViewSet.as_view({'get': 'repayments'}), name='application-repayments'),
+    path('<int:pk>/add-repayment/', views.ApplicationViewSet.as_view({'post': 'add_repayment'}), name='application-add-repayment'),
+    path('<int:pk>/record-payment/', views.ApplicationViewSet.as_view({'post': 'record_payment'}), name='application-record-payment'),
+    
+    # Application ledger
+    path('<int:pk>/ledger/', views.ApplicationViewSet.as_view({'get': 'ledger'}), name='application-ledger'),
 ]

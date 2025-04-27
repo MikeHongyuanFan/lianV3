@@ -8,8 +8,11 @@ from .models import Borrower, Guarantor
 from .serializers import (
     BorrowerListSerializer,
     BorrowerDetailSerializer,
-    GuarantorSerializer
+    GuarantorSerializer,
+    GuarantorDetailSerializer
 )
+from .filters import BorrowerFilter, GuarantorFilter
+from users.permissions import IsAdmin, IsAdminOrBroker
 from .filters import BorrowerFilter, GuarantorFilter
 from users.permissions import IsAdmin, IsAdminOrBroker
 
@@ -82,10 +85,15 @@ class GuarantorViewSet(viewsets.ModelViewSet):
     API endpoint for managing guarantors
     """
     queryset = Guarantor.objects.all().order_by('-created_at')
-    serializer_class = GuarantorSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_class = GuarantorFilter
     search_fields = ['first_name', 'last_name', 'email', 'company_name']
+    
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            from .serializers import GuarantorDetailSerializer
+            return GuarantorDetailSerializer
+        return GuarantorSerializer
     
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
@@ -93,6 +101,17 @@ class GuarantorViewSet(viewsets.ModelViewSet):
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
+    
+    @action(detail=True, methods=['get'])
+    def guaranteed_applications(self, request, pk=None):
+        """
+        Get all applications guaranteed by this guarantor
+        """
+        guarantor = self.get_object()
+        from applications.serializers import ApplicationListSerializer
+        applications = guarantor.application_guarantors.all()
+        serializer = ApplicationListSerializer(applications, many=True)
+        return Response(serializer.data)
     
     def get_queryset(self):
         user = self.request.user

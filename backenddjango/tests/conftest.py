@@ -115,8 +115,7 @@ def individual_borrower():
         last_name='Doe',
         email='john@example.com',
         phone='1234567890',
-        residential_address='123 Main St',
-        borrower_type='individual'
+        residential_address='123 Main St'
     )
 
 
@@ -239,3 +238,33 @@ def fee_factory(admin_user, application):
             return [self.create(**kwargs) for _ in range(count)]
     
     return FeeFactory()
+
+
+@pytest.fixture
+def guarantor_factory(admin_user, individual_borrower):
+    """Factory for creating guarantors."""
+    from borrowers.models import Guarantor
+    
+    class GuarantorFactory:
+        def create(self, **kwargs):
+            # Default values
+            defaults = {
+                'guarantor_type': 'individual',
+                'first_name': 'Test',
+                'last_name': 'Guarantor',
+                'email': 'test.guarantor@example.com',
+                'phone': '1234567890',
+                'address': '123 Guarantor St',
+                'borrower': individual_borrower,
+                'created_by': admin_user
+            }
+            
+            # Override defaults with provided kwargs
+            defaults.update(kwargs)
+            
+            return Guarantor.objects.create(**defaults)
+        
+        def create_batch(self, count, **kwargs):
+            return [self.create(**kwargs) for _ in range(count)]
+    
+    return GuarantorFactory()

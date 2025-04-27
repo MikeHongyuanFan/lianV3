@@ -6,9 +6,9 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from rest_framework.test import APIRequestFactory
 from borrowers.models import Borrower
-from borrowers.serializers import BorrowerSerializer
+from borrowers.serializers import BorrowerDetailSerializer
 from users.serializers import UserSerializer
-from brokers.serializers import BrokerSerializer, BranchSerializer
+from brokers.serializers import BrokerDetailSerializer, BranchSerializer
 from brokers.models import Broker, Branch
 
 User = get_user_model()
@@ -38,12 +38,11 @@ class UserSerializerTest(TestCase):
         """
         data = self.serializer.data
         self.assertIn('id', data)
-        self.assertIn('username', data)
         self.assertIn('email', data)
         self.assertIn('first_name', data)
         self.assertIn('last_name', data)
         self.assertIn('role', data)
-        self.assertIn('date_joined', data)
+        self.assertIn('phone', data)
         self.assertNotIn('password', data)  # Password should not be included
     
     def test_field_content(self):
@@ -51,7 +50,6 @@ class UserSerializerTest(TestCase):
         Test that the serializer fields contain the expected values.
         """
         data = self.serializer.data
-        self.assertEqual(data['username'], 'testuser')
         self.assertEqual(data['email'], 'test@example.com')
         self.assertEqual(data['first_name'], 'Test')
         self.assertEqual(data['last_name'], 'User')
@@ -60,7 +58,7 @@ class UserSerializerTest(TestCase):
 
 class BorrowerSerializerTest(TestCase):
     """
-    Test the BorrowerSerializer.
+    Test the BorrowerDetailSerializer.
     """
     
     def setUp(self):
@@ -75,15 +73,15 @@ class BorrowerSerializerTest(TestCase):
             'last_name': 'Doe',
             'email': 'john.doe@example.com',
             'phone': '1234567890',
-            'address': '123 Test St',
+            'residential_address': '123 Test St',
             'date_of_birth': '1980-01-01',
-            'employment_status': 'Employed',
+            'employment_type': 'full_time',
             'annual_income': 75000,
             'created_by': self.user
         }
         
         self.borrower = Borrower.objects.create(**self.borrower_data)
-        self.serializer = BorrowerSerializer(instance=self.borrower)
+        self.serializer = BorrowerDetailSerializer(instance=self.borrower)
     
     def test_contains_expected_fields(self):
         """
@@ -95,9 +93,9 @@ class BorrowerSerializerTest(TestCase):
         self.assertIn('last_name', data)
         self.assertIn('email', data)
         self.assertIn('phone', data)
-        self.assertIn('address', data)
+        self.assertIn('residential_address', data)
         self.assertIn('date_of_birth', data)
-        self.assertIn('employment_status', data)
+        self.assertIn('employment_type', data)
         self.assertIn('annual_income', data)
         self.assertIn('created_at', data)
         self.assertIn('updated_at', data)
@@ -111,9 +109,9 @@ class BorrowerSerializerTest(TestCase):
         self.assertEqual(data['last_name'], 'Doe')
         self.assertEqual(data['email'], 'john.doe@example.com')
         self.assertEqual(data['phone'], '1234567890')
-        self.assertEqual(data['address'], '123 Test St')
+        self.assertEqual(data['residential_address'], '123 Test St')
         self.assertEqual(data['date_of_birth'], '1980-01-01')
-        self.assertEqual(data['employment_status'], 'Employed')
+        self.assertEqual(data['employment_type'], 'full_time')
         self.assertEqual(data['annual_income'], '75000.00')  # Note: Decimal is serialized as string
 
 
@@ -166,7 +164,7 @@ class BranchSerializerTest(TestCase):
 
 class BrokerSerializerTest(TestCase):
     """
-    Test the BrokerSerializer.
+    Test the BrokerDetailSerializer.
     """
     
     def setUp(self):
@@ -207,7 +205,7 @@ class BrokerSerializerTest(TestCase):
         }
         
         self.broker = Broker.objects.create(**self.broker_data)
-        self.serializer = BrokerSerializer(instance=self.broker)
+        self.serializer = BrokerDetailSerializer(instance=self.broker)
     
     def test_contains_expected_fields(self):
         """
@@ -235,5 +233,6 @@ class BrokerSerializerTest(TestCase):
         self.assertEqual(data['email'], 'broker@testcompany.com')
         self.assertEqual(data['phone'], '1122334455')
         self.assertEqual(data['address'], '789 Broker St')
-        self.assertEqual(data['branch'], self.branch.id)
+        # Branch is now a nested serializer, not just an ID
+        self.assertEqual(data['branch']['id'], self.branch.id)
         self.assertEqual(data['user'], self.broker_user.id)

@@ -1,0 +1,19 @@
+services:
+  postgres-test:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=test_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5434:5432"  # Changed from 5433 to 5434 to avoid port conflict
+    volumes:
+      - postgres-test-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres-test-data:

@@ -12,14 +12,17 @@ from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 import users.routing
+from users.websocket_auth import JWTAuthMiddleware
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'crm_backend.settings')
 
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
-    "websocket": AuthMiddlewareStack(
-        URLRouter(
-            users.routing.websocket_urlpatterns
+    "websocket": JWTAuthMiddleware(
+        AuthMiddlewareStack(
+            URLRouter(
+                users.routing.websocket_urlpatterns
+            )
         )
     ),
 })

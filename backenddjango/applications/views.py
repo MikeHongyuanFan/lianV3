@@ -3,15 +3,13 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Application, Document, Fee, Repayment
+from .models import Application
 from .serializers import (
     ApplicationDetailSerializer, ApplicationCreateSerializer,
     ApplicationStageUpdateSerializer, ApplicationBorrowerSerializer
 )
 from .services import update_application_stage, process_signature_data
 from users.permissions import IsAdmin, IsAdminOrBroker, IsAdminOrBD, IsOwnerOrAdmin
-from documents.models import Note, Ledger
-from documents.serializers import NoteSerializer, DocumentSerializer, FeeSerializer, RepaymentSerializer, LedgerSerializer
 from datetime import datetime
 from .filters import ApplicationFilter
 
@@ -77,6 +75,9 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         elif self.action == 'sign':
             from .serializers import ApplicationSignatureSerializer
             return ApplicationSignatureSerializer
+        elif self.action == 'list':
+            from .serializers import ApplicationListSerializer
+            return ApplicationListSerializer
         return ApplicationDetailSerializer
     
     def get_permissions(self):
@@ -145,6 +146,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         application.borrowers.add(*borrowers)
         
         # Create note
+        from documents.models import Note
         Note.objects.create(
             application=application,
             content=f"Updated borrowers: {', '.join([str(b) for b in borrowers])}",
@@ -169,6 +171,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         application.borrowers.remove(*borrowers)
         
         # Create note
+        from documents.models import Note
         Note.objects.create(
             application=application,
             content=f"Removed borrowers: {', '.join([str(b) for b in borrowers])}",
@@ -183,7 +186,9 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         Get all notes for an application
         """
         application = self.get_object()
+        from documents.models import Note
         notes = Note.objects.filter(application=application).order_by('-created_at')
+        from documents.serializers import NoteSerializer
         serializer = NoteSerializer(notes, many=True, context={'request': request})
         return Response(serializer.data)
     
@@ -193,6 +198,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         Add a note to an application
         """
         application = self.get_object()
+        from documents.serializers import NoteSerializer
         serializer = NoteSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         
@@ -209,7 +215,9 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         Get all documents for an application
         """
         application = self.get_object()
-        documents = Document.objects.filter(application=application).order_by('-uploaded_at')
+        from documents.models import Document
+        documents = Document.objects.filter(application=application).order_by('-created_at')
+        from documents.serializers import DocumentSerializer
         serializer = DocumentSerializer(documents, many=True, context={'request': request})
         return Response(serializer.data)
     
@@ -219,15 +227,17 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         Upload a document for an application
         """
         application = self.get_object()
+        from documents.serializers import DocumentSerializer
         serializer = DocumentSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         
         document = serializer.save(
             application=application,
-            uploaded_by=request.user
+            created_by=request.user
         )
         
         # Create note about document upload
+        from documents.models import Note
         Note.objects.create(
             application=application,
             content=f"Document uploaded: {document.get_document_type_display()}",
@@ -242,23 +252,10 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         Get all fees for an application
         """
         application = self.get_object()
-        print(f"DEBUG: Application ID in view: {application.id}")
-        print(f"DEBUG: Application object: {application}")
-        
-        # Get all fees directly from the database
-        all_fees = Fee.objects.all()
-        print(f"DEBUG: All fees in database: {all_fees.count()}")
-        for fee in all_fees:
-            print(f"DEBUG: Fee ID: {fee.id}, Type: {fee.fee_type}, App ID: {fee.application_id}")
-        
-        # Get fees for this application
+        from documents.models import Fee
         fees = Fee.objects.filter(application=application).order_by('-created_at')
-        print(f"DEBUG: Found {fees.count()} fees for application {application.id}")
-        for fee in fees:
-            print(f"DEBUG: Fee ID: {fee.id}, Type: {fee.fee_type}, Amount: {fee.amount}")
-        
+        from documents.serializers import FeeSerializer
         serializer = FeeSerializer(fees, many=True, context={'request': request})
-        print(f"DEBUG: Serialized data: {serializer.data}")
         return Response(serializer.data)
     
     @action(detail=True, methods=['post'])
@@ -272,6 +269,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         data = request.data.copy()
         data['application'] = application.id
         
+        from documents.serializers import FeeSerializer
         serializer = FeeSerializer(data=data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -283,6 +281,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         )
         
         # Create note about fee addition
+        from documents.models import Note
         Note.objects.create(
             application=application,
             content=f"Fee added: {fee.get_fee_type_display()} - ${fee.amount}",
@@ -290,6 +289,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         )
         
         # Create ledger entry for the fee
+        from documents.models import Ledger
         Ledger.objects.create(
             application=application,
             transaction_type='fee_added',
@@ -307,7 +307,9 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         Get all repayments for an application
         """
         application = self.get_object()
+        from documents.models import Repayment
         repayments = Repayment.objects.filter(application=application).order_by('due_date')
+        from documents.serializers import RepaymentSerializer
         serializer = RepaymentSerializer(repayments, many=True, context={'request': request})
         return Response(serializer.data)
     
@@ -322,6 +324,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         data = request.data.copy()
         data['application'] = application.id
         
+        from documents.serializers import RepaymentSerializer
         serializer = RepaymentSerializer(data=data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -333,6 +336,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         )
         
         # Create note about repayment addition
+        from documents.models import Note
         Note.objects.create(
             application=application,
             content=f"Repayment scheduled: ${repayment.amount} due on {repayment.due_date}",
@@ -340,6 +344,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         )
         
         # Create ledger entry for the repayment
+        from documents.models import Ledger
         Ledger.objects.create(
             application=application,
             transaction_type='repayment_added',
@@ -362,6 +367,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         payment_date = request.data.get('payment_date')
         
         try:
+            from documents.models import Repayment
             repayment = Repayment.objects.get(id=repayment_id, application=application)
         except Repayment.DoesNotExist:
             return Response({'error': 'Repayment not found'}, status=status.HTTP_404_NOT_FOUND)
@@ -372,6 +378,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         repayment.save()
         
         # Create note about payment
+        from documents.models import Note
         Note.objects.create(
             application=application,
             content=f"Payment recorded: ${payment_amount} for repayment due on {repayment.due_date}",
@@ -379,6 +386,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         )
         
         # Create ledger entry for the payment
+        from documents.models import Ledger
         Ledger.objects.create(
             application=application,
             transaction_type='payment_received',
@@ -389,15 +397,31 @@ class ApplicationViewSet(viewsets.ModelViewSet):
             created_by=request.user
         )
         
+        from documents.serializers import RepaymentSerializer
         return Response(RepaymentSerializer(repayment, context={'request': request}).data)
     
+    @action(detail=True, methods=['get'])
+    def guarantors(self, request, pk=None):
+        """
+        Get all guarantors for an application
+        """
+        application = self.get_object()
+        from borrowers.serializers import GuarantorSerializer
+        guarantors = application.guarantors.all()
+        serializer = GuarantorSerializer(guarantors, many=True, context={'request': request})
+        return Response(serializer.data)
+        
     @action(detail=True, methods=['get'])
     def ledger(self, request, pk=None):
         """
         Get ledger entries for an application
         """
         application = self.get_object()
+        from documents.models import Ledger
         ledger_entries = Ledger.objects.filter(application=application).order_by('-transaction_date')
+        from documents.serializers import LedgerSerializer
+        serializer = LedgerSerializer(ledger_entries, many=True, context={'request': request})
+        return Response(serializer.data)
         serializer = LedgerSerializer(ledger_entries, many=True, context={'request': request})
         return Response(serializer.data)
         
@@ -494,6 +518,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
             )
         
         # Create note about signature
+        from documents.models import Note
         Note.objects.create(
             application=application,
             content=f"Application signed by {signed_by} on {signature_date}",

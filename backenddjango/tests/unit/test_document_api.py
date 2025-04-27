@@ -137,7 +137,8 @@ class DocumentAPITestCase(TestCase):
             'description': 'Updated document description'
         }
         
-        response = self.client.patch(url, data, format='json')
+        # Use multipart/form-data format instead of json
+        response = self.client.patch(url, data, format='multipart')
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.document.refresh_from_db()

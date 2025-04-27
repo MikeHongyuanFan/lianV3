@@ -3,24 +3,32 @@ source = .
 omit =
     */migrations/*
     */tests/*
-    */venv/*
-    */env/*
+    */test_*.py
     */settings.py
     */wsgi.py
     */asgi.py
-    */urls.py
-    */admin.py
     */apps.py
-    manage.py
-    conftest.py
-    
+    */admin.py
+    */urls.py
+    */manage.py
+    */__init__.py
+    */conftest.py
+    */venv/*
+    */env/*
+    */site-packages/*
+
 [report]
 exclude_lines =
     pragma: no cover
     def __repr__
+    def __str__
     raise NotImplementedError
     if __name__ == .__main__.:
     pass
     raise ImportError
     except ImportError
-    def __str__
+    def setUp
+    def tearDown
+
+[html]
+directory = coverage_reports/combined

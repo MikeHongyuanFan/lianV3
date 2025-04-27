@@ -86,8 +86,7 @@ class TestNotificationService:
             
             mock_channel = MagicMock()
             mock_channel_layer.return_value = mock_channel
-            mock_async_func = MagicMock()
-            mock_async_to_sync.return_value = mock_async_func
+            mock_async_to_sync.return_value = MagicMock()
             
             # Create notification
             notification = create_notification(
@@ -98,8 +97,19 @@ class TestNotificationService:
             )
             
             # Verify WebSocket message was sent
-            assert mock_async_to_sync.call_count >= 1
-            assert mock_async_func.call_count >= 1
+            assert mock_async_to_sync.call_count == 2  # One for notification, one for count
+            
+            # Check notification message
+            notification_call = mock_async_to_sync.call_args_list[0]
+            assert notification_call[0][0] == mock_channel.group_send
+            assert f"user_{client_user.id}_notifications" in notification_call[0][1]
+            assert notification_call[0][1][1]['type'] == 'notification_message'
+            
+            # Check count message
+            count_call = mock_async_to_sync.call_args_list[1]
+            assert count_call[0][0] == mock_channel.group_send
+            assert f"user_{client_user.id}_notifications" in count_call[0][1]
+            assert count_call[0][1][1]['type'] == 'notification_count'
     
     def test_create_notification_email(self, client_user):
         """Test creating a notification sends email."""
@@ -128,7 +138,22 @@ class TestNotificationService:
     
     def test_create_application_notification(self, staff_user, broker_user, client_user, admin_user):
         """Test creating notifications for users related to an application."""
-        # Create a borrower with user account
+        # Create broker, BD, and borrower
+        branch = BDM.objects.create(
+            name="Test BDM",
+            email=staff_user.email,
+            user=staff_user,
+            created_by=staff_user
+        ).branch
+        
+        broker = Broker.objects.create(
+            name="Test Broker",
+            email=broker_user.email,
+            user=broker_user,
+            branch=branch,
+            created_by=broker_user
+        )
+        
         borrower = Borrower.objects.create(
             first_name="Test",
             last_name="Borrower",
@@ -137,7 +162,7 @@ class TestNotificationService:
             created_by=client_user
         )
         
-        # Create application directly
+        # Create application
         application = Application.objects.create(
             reference_number="APP-TEST-001",
             stage="assessment",
@@ -146,37 +171,39 @@ class TestNotificationService:
             interest_rate=4.5,
             purpose="Home purchase",
             application_type="residential",
-            created_by=staff_user
+            broker=broker,
+            bd=branch.bdm_set.first(),
+            created_by=broker_user
         )
         
         # Add borrower to application
         application.borrowers.add(borrower)
         
-        # Mock the notification creation to avoid WebSocket issues
-        with patch('users.services.create_notification') as mock_create_notification:
-            mock_create_notification.return_value = MagicMock()
-            
-            # Create application notification
-            notifications = create_application_notification(
-                application=application,
-                notification_type="application_status",
-                title="Application Status Changed",
-                message="The application status has changed to Assessment"
-            )
-            
-            # Verify create_notification was called for admin users
-            admin_call = False
-            for call in mock_create_notification.call_args_list:
-                args, kwargs = call
-                if kwargs.get('user') == admin_user:
-                    admin_call = True
-                    assert kwargs.get('title') == "Application Status Changed"
-                    assert kwargs.get('message') == "The application status has changed to Assessment"
-                    assert kwargs.get('notification_type') == "application_status"
-                    assert kwargs.get('related_object_id') == application.id
-                    assert kwargs.get('related_object_type') == "application"
-            
-            assert admin_call, "No notification was created for admin user"
+        # Create application notification
+        notifications = create_application_notification(
+            application=application,
+            notification_type="application_status",
+            title="Application Status Changed",
+            message="The application status has changed to Assessment"
+        )
+        
+        # Verify notifications were created for all related users
+        assert len(notifications) == 4  # Broker, BD, Borrower, Admin
+        
+        # Verify notification details
+        for notification in notifications:
+            assert notification.title == "Application Status Changed"
+            assert notification.message == "The application status has changed to Assessment"
+            assert notification.notification_type == "application_status"
+            assert notification.related_object_id == application.id
+            assert notification.related_object_type == "application"
+        
+        # Verify notifications were created for the right users
+        user_ids = [n.user.id for n in notifications]
+        assert broker_user.id in user_ids
+        assert staff_user.id in user_ids
+        assert client_user.id in user_ids
+        assert admin_user.id in user_ids
     
     def test_send_email_notification(self, client_user):
         """Test sending an email notification."""

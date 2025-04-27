@@ -1,63 +1,46 @@
 import django_filters
-from django.db.models import Q
 from .models import Borrower, Guarantor
 
 
 class BorrowerFilter(django_filters.FilterSet):
     """
-    Custom filter for borrowers with advanced filtering options
+    Filter for borrowers
     """
-    search = django_filters.CharFilter(method='search_filter')
-    has_applications = django_filters.BooleanFilter(method='filter_has_applications')
+    created_at_after = django_filters.DateTimeFilter(field_name='created_at', lookup_expr='gte')
+    created_at_before = django_filters.DateTimeFilter(field_name='created_at', lookup_expr='lte')
+    is_company = django_filters.BooleanFilter(field_name='is_company')
     
     class Meta:
         model = Borrower
-        fields = [
-            'residency_status', 'marital_status', 'search', 'has_applications'
-        ]
-    
-    def search_filter(self, queryset, name, value):
-        """
-        Search across multiple fields
-        """
-        return queryset.filter(
-            Q(first_name__icontains=value) |
-            Q(last_name__icontains=value) |
-            Q(email__icontains=value) |
-            Q(phone__icontains=value) |
-            Q(residential_address__icontains=value)
-        )
-    
-    def filter_has_applications(self, queryset, name, value):
-        """
-        Filter borrowers with or without applications
-        """
-        if value:
-            return queryset.filter(applications__isnull=False).distinct()
-        return queryset.filter(applications__isnull=True)
+        fields = {
+            'first_name': ['exact', 'icontains'],
+            'last_name': ['exact', 'icontains'],
+            'email': ['exact', 'icontains'],
+            'phone': ['exact', 'icontains'],
+            'company_name': ['exact', 'icontains'],
+            'company_abn': ['exact', 'icontains'],
+            'created_by': ['exact'],
+        }
 
 
 class GuarantorFilter(django_filters.FilterSet):
     """
-    Custom filter for guarantors with advanced filtering options
+    Filter for guarantors
     """
-    search = django_filters.CharFilter(method='search_filter')
+    created_at_after = django_filters.DateTimeFilter(field_name='created_at', lookup_expr='gte')
+    created_at_before = django_filters.DateTimeFilter(field_name='created_at', lookup_expr='lte')
+    guarantor_type = django_filters.ChoiceFilter(choices=Guarantor.GUARANTOR_TYPE_CHOICES)
     
     class Meta:
         model = Guarantor
-        fields = [
-            'guarantor_type', 'borrower', 'application', 'search'
-        ]
-    
-    def search_filter(self, queryset, name, value):
-        """
-        Search across multiple fields
-        """
-        return queryset.filter(
-            Q(first_name__icontains=value) |
-            Q(last_name__icontains=value) |
-            Q(email__icontains=value) |
-            Q(phone__icontains=value) |
-            Q(company_name__icontains=value) |
-            Q(address__icontains=value)
-        )
+        fields = {
+            'first_name': ['exact', 'icontains'],
+            'last_name': ['exact', 'icontains'],
+            'email': ['exact', 'icontains'],
+            'phone': ['exact', 'icontains'],
+            'company_name': ['exact', 'icontains'],
+            'company_abn': ['exact', 'icontains'],
+            'borrower': ['exact'],
+            'application': ['exact'],
+            'created_by': ['exact'],
+        }

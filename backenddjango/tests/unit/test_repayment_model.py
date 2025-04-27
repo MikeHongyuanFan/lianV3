@@ -17,6 +17,7 @@ class RepaymentModelTest(TestCase):
         """Set up test data"""
         # Create a test user
         self.user = User.objects.create_user(
+            username='testuser',  # Added username parameter
             email='test@example.com',
             password='testpass123',
             first_name='Test',
