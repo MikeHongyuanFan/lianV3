@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import applicationService from '@/services/application.service'
 import feeService from '@/services/fee.service'
+import repaymentService from '@/services/repayment.service'
 
 export const useApplicationStore = defineStore('application', {
   state: () => ({
@@ -198,13 +199,11 @@ export const useApplicationStore = defineStore('application', {
         const index = this.applications.findIndex(app => app.id === id)
         if (index !== -1) {
           this.applications[index].stage = stage
-          this.applications[index].stage_display = response.stage_display
         }
         
         // Update current application if it's the one being edited
         if (this.currentApplication && this.currentApplication.id === id) {
           this.currentApplication.stage = stage
-          this.currentApplication.stage_display = response.stage_display
         }
         
         return response
@@ -216,189 +215,138 @@ export const useApplicationStore = defineStore('application', {
       }
     },
     
-    async validateApplicationSchema(schemaData) {
+    // Fee-related actions
+    async fetchApplicationFees(applicationId, limit = 10, offset = 0, isPaid = null, feeType = null) {
       this.loading = true
       this.error = null
       
       try {
-        const response = await applicationService.validateSchema(schemaData)
+        const params = {
+          application: applicationId,
+          limit,
+          offset
+        }
+        
+        if (isPaid !== null) {
+          params.is_paid = isPaid
+        }
+        
+        if (feeType) {
+          params.fee_type = feeType
+        }
+        
+        const response = await feeService.getFees(params)
         return response
       } catch (error) {
-        this.error = error.message || 'Failed to validate application schema'
+        this.error = error.message || 'Failed to fetch application fees'
         throw error
       } finally {
         this.loading = false
       }
     },
     
-    async fetchApplicationGuarantors(id) {
+    async addApplicationFee(applicationId, feeData) {
+      this.loading = true
+      this.error = null
+      
       try {
-        const response = await applicationService.getGuarantors(id)
-        return response
-      } catch (error) {
-        this.error = error.message || `Failed to fetch guarantors for application with ID ${id}`
-        throw error
-      }
-    },
-    
-    async fetchApplicationNotes(id, limit = 10, offset = 0) {
-      try {
-        const params = { limit, offset }
-        const response = await applicationService.getNotes(id, params)
-        return response
-      } catch (error) {
-        this.error = error.message || `Failed to fetch notes for application with ID ${id}`
-        throw error
-      }
-    },
-    
-    async addApplicationNote(id, content) {
-      try {
-        const noteData = { content }
-        const response = await applicationService.addNote(id, noteData)
-        return response
-      } catch (error) {
-        this.error = error.message || `Failed to add note to application with ID ${id}`
-        throw error
-      }
-    },
-    
-    async fetchApplicationDocuments(id, limit = 10, offset = 0, documentType = null) {
-      try {
-        const params = { 
-          limit, 
-          offset,
-          document_type: documentType || undefined
+        const data = {
+          ...feeData,
+          application: applicationId
         }
-        const response = await applicationService.getDocuments(id, params)
+        
+        const response = await feeService.createFee(data)
         return response
       } catch (error) {
-        this.error = error.message || `Failed to fetch documents for application with ID ${id}`
+        this.error = error.message || 'Failed to add fee'
         throw error
+      } finally {
+        this.loading = false
       }
     },
     
-    async uploadApplicationDocument(id, documentData) {
+    async markFeePaid(feeId, paymentData) {
+      this.loading = true
+      this.error = null
+      
       try {
-        const response = await applicationService.uploadDocument(id, documentData)
+        const response = await feeService.markFeePaid(feeId, paymentData)
         return response
       } catch (error) {
-        this.error = error.message || `Failed to upload document to application with ID ${id}`
+        this.error = error.message || 'Failed to mark fee as paid'
         throw error
+      } finally {
+        this.loading = false
       }
     },
     
-    async fetchApplicationFees(id, limit = 10, offset = 0, isPaid = null, feeType = null) {
+    // Repayment-related actions
+    async fetchApplicationRepayments(applicationId, limit = 10, offset = 0, isPaid = null, dateFrom = null, dateTo = null) {
+      this.loading = true
+      this.error = null
+      
       try {
-        const params = { 
-          limit, 
-          offset,
-          is_paid: isPaid !== null ? isPaid : undefined,
-          fee_type: feeType || undefined
+        const params = {
+          application: applicationId,
+          limit,
+          offset
         }
-        const response = await applicationService.getFees(id, params)
-        return response
-      } catch (error) {
-        this.error = error.message || `Failed to fetch fees for application with ID ${id}`
-        throw error
-      }
-    },
-    
-    async addApplicationFee(id, feeData) {
-      try {
-        const response = await applicationService.addFee(id, feeData)
-        return response
-      } catch (error) {
-        this.error = error.message || `Failed to add fee to application with ID ${id}`
-        throw error
-      }
-    },
-    
-    async markFeePaid(id, paymentData) {
-      try {
-        const response = await feeService.markFeePaid(id, paymentData)
-        return response
-      } catch (error) {
-        this.error = error.message || `Failed to mark fee with ID ${id} as paid`
-        throw error
-      }
-    },
-    
-    async fetchApplicationRepayments(id, limit = 10, offset = 0, isPaid = null) {
-      try {
-        const params = { 
-          limit, 
-          offset,
-          is_paid: isPaid !== null ? isPaid : undefined
+        
+        if (isPaid !== null) {
+          params.is_paid = isPaid
         }
-        const response = await applicationService.getRepayments(id, params)
+        
+        if (dateFrom) {
+          params.date_from = dateFrom
+        }
+        
+        if (dateTo) {
+          params.date_to = dateTo
+        }
+        
+        const response = await repaymentService.getRepayments(params)
         return response
       } catch (error) {
-        this.error = error.message || `Failed to fetch repayments for application with ID ${id}`
+        this.error = error.message || 'Failed to fetch application repayments'
         throw error
+      } finally {
+        this.loading = false
       }
     },
     
-    async addApplicationRepayment(id, repaymentData) {
+    async addApplicationRepayment(applicationId, repaymentData) {
+      this.loading = true
+      this.error = null
+      
       try {
-        const response = await applicationService.addRepayment(id, repaymentData)
+        const data = {
+          ...repaymentData,
+          application: applicationId
+        }
+        
+        const response = await repaymentService.createRepayment(data)
         return response
       } catch (error) {
-        this.error = error.message || `Failed to add repayment to application with ID ${id}`
+        this.error = error.message || 'Failed to add repayment'
         throw error
+      } finally {
+        this.loading = false
       }
     },
     
-    async recordApplicationPayment(id, paymentData) {
+    async markRepaymentPaid(repaymentId, paymentData) {
+      this.loading = true
+      this.error = null
+      
       try {
-        const response = await applicationService.recordPayment(id, paymentData)
+        const response = await repaymentService.markRepaymentPaid(repaymentId, paymentData)
         return response
       } catch (error) {
-        this.error = error.message || `Failed to record payment for application with ID ${id}`
+        this.error = error.message || 'Failed to mark repayment as paid'
         throw error
+      } finally {
+        this.loading = false
       }
-    },
-    
-    async fetchApplicationLedger(id, limit = 10, offset = 0) {
-      try {
-        const params = { limit, offset }
-        const response = await applicationService.getLedger(id, params)
-        return response
-      } catch (error) {
-        this.error = error.message || `Failed to fetch ledger for application with ID ${id}`
-        throw error
-      }
-    },
-    
-    // Pagination and filtering actions
-    setPage(page) {
-      const offset = (page - 1) * this.pagination.limit
-      this.pagination.offset = offset
-      this.fetchApplications()
-    },
-    
-    setLimit(limit) {
-      this.pagination.limit = limit
-      this.pagination.offset = 0 // Reset to first page
-      this.fetchApplications()
-    },
-    
-    setFilters(filters) {
-      this.filters = { ...this.filters, ...filters }
-      this.pagination.offset = 0 // Reset to first page
-      this.fetchApplications()
-    },
-    
-    clearFilters() {
-      this.filters = {
-        search: '',
-        status: '',
-        stage: '',
-        borrower: null,
-        dateFrom: null,
-        dateTo: null
-      }
-      this.fetchApplications()
     }
   }
 })

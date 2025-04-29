@@ -186,6 +186,93 @@
         </nav>
       </div>
     </div>
+
+    <!-- Add Repayment Modal -->
+    <div class="modal fade" id="addRepaymentModal" tabindex="-1" aria-labelledby="addRepaymentModalLabel" aria-hidden="true" ref="addRepaymentModalRef">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addRepaymentModalLabel">Add New Repayment</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeAddRepaymentModal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="repaymentApplication" class="form-label">Application</label>
+              <select class="form-select" id="repaymentApplication" v-model="newRepayment.application" required>
+                <option value="">Select Application</option>
+                <option v-for="app in applications" :key="app.id" :value="app.id">
+                  {{ app.reference_number }}
+                </option>
+              </select>
+              <div class="invalid-feedback" v-if="repaymentErrors.application">{{ repaymentErrors.application }}</div>
+            </div>
+            <div class="mb-3">
+              <label for="repaymentAmount" class="form-label">Amount</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="repaymentAmount" v-model.number="newRepayment.amount" step="0.01" min="0" required>
+              </div>
+              <div class="invalid-feedback" v-if="repaymentErrors.amount">{{ repaymentErrors.amount }}</div>
+            </div>
+            <div class="mb-3">
+              <label for="repaymentDueDate" class="form-label">Due Date</label>
+              <input type="date" class="form-control" id="repaymentDueDate" v-model="newRepayment.due_date" required>
+              <div class="invalid-feedback" v-if="repaymentErrors.due_date">{{ repaymentErrors.due_date }}</div>
+            </div>
+            <div class="alert alert-danger" v-if="repaymentErrors.general">{{ repaymentErrors.general }}</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeAddRepaymentModal">Cancel</button>
+            <button type="button" class="btn btn-primary" @click="submitRepayment" :disabled="submittingRepayment">
+              <span v-if="submittingRepayment" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Save Repayment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Record Payment Modal -->
+    <div class="modal fade" id="recordPaymentModal" tabindex="-1" aria-labelledby="recordPaymentModalLabel" aria-hidden="true" ref="recordPaymentModalRef">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="recordPaymentModalLabel">Record Payment</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeRecordPaymentModal"></button>
+          </div>
+          <div class="modal-body">
+            <p>Record payment for repayment due on <strong>{{ selectedRepayment ? formatDate(selectedRepayment.due_date) : '' }}</strong> 
+               for <strong>${{ selectedRepayment ? formatCurrency(selectedRepayment.amount) : '0.00' }}</strong>.</p>
+            <div class="mb-3">
+              <label for="paymentDate" class="form-label">Payment Date</label>
+              <input type="date" class="form-control" id="paymentDate" v-model="paymentData.paid_date" required>
+              <div class="invalid-feedback" v-if="recordPaymentErrors.paid_date">{{ recordPaymentErrors.paid_date }}</div>
+            </div>
+            <div class="mb-3">
+              <label for="paymentMethod" class="form-label">Payment Method</label>
+              <select class="form-select" id="paymentMethod" v-model="paymentData.payment_method" required>
+                <option value="">Select Payment Method</option>
+                <option value="bank_transfer">Bank Transfer</option>
+                <option value="credit_card">Credit Card</option>
+                <option value="debit_card">Debit Card</option>
+                <option value="cash">Cash</option>
+                <option value="check">Check</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="invalid-feedback" v-if="recordPaymentErrors.payment_method">{{ recordPaymentErrors.payment_method }}</div>
+            </div>
+            <div class="alert alert-danger" v-if="recordPaymentErrors.general">{{ recordPaymentErrors.general }}</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeRecordPaymentModal">Cancel</button>
+            <button type="button" class="btn btn-success" @click="confirmRecordPayment" :disabled="recordingPayment">
+              <span v-if="recordingPayment" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Confirm Payment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -193,7 +280,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRepaymentStore } from '@/store/repayment'
 import { useApplicationStore } from '@/store/application'
-import repaymentService from '@/services/repayment.service'
+import { Modal } from 'bootstrap'
 
 export default {
   name: 'RepaymentsView',
@@ -209,6 +296,39 @@ export default {
       date_to: ''
     })
     
+    // Modal references
+    const addRepaymentModalRef = ref(null)
+    const recordPaymentModalRef = ref(null)
+    let addRepaymentModal = null
+    let recordPaymentModal = null
+    
+    // New repayment form
+    const newRepayment = ref({
+      application: '',
+      amount: null,
+      due_date: new Date().toISOString().split('T')[0]
+    })
+    const repaymentErrors = ref({
+      application: '',
+      amount: '',
+      due_date: '',
+      general: ''
+    })
+    const submittingRepayment = ref(false)
+    
+    // Record payment form
+    const selectedRepayment = ref(null)
+    const paymentData = ref({
+      paid_date: new Date().toISOString().split('T')[0],
+      payment_method: ''
+    })
+    const recordPaymentErrors = ref({
+      paid_date: '',
+      payment_method: '',
+      general: ''
+    })
+    const recordingPayment = ref(false)
+    
     // Computed properties
     const repayments = computed(() => repaymentStore.repayments)
     const applications = computed(() => applicationStore.applications)
@@ -221,11 +341,11 @@ export default {
     })
     
     const totalAmount = computed(() => {
-      return repayments.value.reduce((total, repayment) => total + repayment.amount, 0)
+      return repayments.value.reduce((total, repayment) => total + parseFloat(repayment.amount), 0)
     })
     
     const paidAmount = computed(() => {
-      return repayments.value.filter(repayment => repayment.is_paid).reduce((total, repayment) => total + repayment.amount, 0)
+      return repayments.value.filter(repayment => repayment.is_paid).reduce((total, repayment) => total + parseFloat(repayment.amount), 0)
     })
     
     const paidCount = computed(() => {
@@ -233,7 +353,7 @@ export default {
     })
     
     const dueSoonAmount = computed(() => {
-      return repayments.value.filter(repayment => repayment.status && repayment.status.includes('due_soon')).reduce((total, repayment) => total + repayment.amount, 0)
+      return repayments.value.filter(repayment => repayment.status && repayment.status.includes('due_soon')).reduce((total, repayment) => total + parseFloat(repayment.amount), 0)
     })
     
     const dueSoonCount = computed(() => {
@@ -241,7 +361,7 @@ export default {
     })
     
     const overdueAmount = computed(() => {
-      return repayments.value.filter(repayment => repayment.status && repayment.status.includes('overdue')).reduce((total, repayment) => total + repayment.amount, 0)
+      return repayments.value.filter(repayment => repayment.status && repayment.status.includes('overdue')).reduce((total, repayment) => total + parseFloat(repayment.amount), 0)
     })
     
     const overdueCount = computed(() => {
@@ -268,7 +388,7 @@ export default {
     const applyFilters = () => {
       repaymentStore.setFilters({
         application: filters.value.application,
-        is_paid: filters.value.is_paid,
+        is_paid: filters.value.is_paid === '' ? null : filters.value.is_paid === 'true',
         date_from: filters.value.date_from,
         date_to: filters.value.date_to
       })
@@ -290,7 +410,7 @@ export default {
     }
     
     const formatCurrency = (value) => {
-      return value ? value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0.00'
+      return value ? parseFloat(value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0.00'
     }
     
     const formatDate = (dateString) => {
@@ -337,22 +457,156 @@ export default {
       }
     }
     
-    const showAddRepaymentModal = () => {
-      // In a real implementation, this would open a modal to add a new repayment
-      console.log('Show add repayment modal')
+    // Initialize modals
+    const initModals = () => {
+      if (addRepaymentModalRef.value) {
+        addRepaymentModal = new Modal(addRepaymentModalRef.value)
+      }
+      if (recordPaymentModalRef.value) {
+        recordPaymentModal = new Modal(recordPaymentModalRef.value)
+      }
     }
     
+    // Add repayment modal
+    const showAddRepaymentModal = () => {
+      // Reset form
+      newRepayment.value = {
+        application: '',
+        amount: null,
+        due_date: new Date().toISOString().split('T')[0]
+      }
+      repaymentErrors.value = {
+        application: '',
+        amount: '',
+        due_date: '',
+        general: ''
+      }
+      
+      // Show modal
+      if (addRepaymentModal) {
+        addRepaymentModal.show()
+      }
+    }
+    
+    const closeAddRepaymentModal = () => {
+      if (addRepaymentModal) {
+        addRepaymentModal.hide()
+      }
+    }
+    
+    const validateRepaymentForm = () => {
+      let isValid = true
+      repaymentErrors.value = {
+        application: '',
+        amount: '',
+        due_date: '',
+        general: ''
+      }
+      
+      if (!newRepayment.value.application) {
+        repaymentErrors.value.application = 'Application is required'
+        isValid = false
+      }
+      
+      if (!newRepayment.value.amount || newRepayment.value.amount <= 0) {
+        repaymentErrors.value.amount = 'Amount must be greater than 0'
+        isValid = false
+      }
+      
+      if (!newRepayment.value.due_date) {
+        repaymentErrors.value.due_date = 'Due date is required'
+        isValid = false
+      }
+      
+      return isValid
+    }
+    
+    const submitRepayment = async () => {
+      if (!validateRepaymentForm()) {
+        return
+      }
+      
+      submittingRepayment.value = true
+      
+      try {
+        await repaymentStore.createRepayment(newRepayment.value)
+        closeAddRepaymentModal()
+        fetchRepayments()
+      } catch (error) {
+        repaymentErrors.value.general = error.message || 'Failed to create repayment'
+        console.error('Error creating repayment:', error)
+      } finally {
+        submittingRepayment.value = false
+      }
+    }
+    
+    // View repayment
     const viewRepayment = (repayment) => {
-      // In a real implementation, this would show repayment details
+      // In a real implementation, this would navigate to repayment detail page
       console.log('View repayment:', repayment.id)
     }
     
-    const recordPayment = async (repayment) => {
+    // Record payment modal
+    const recordPayment = (repayment) => {
+      selectedRepayment.value = repayment
+      paymentData.value = {
+        paid_date: new Date().toISOString().split('T')[0],
+        payment_method: ''
+      }
+      recordPaymentErrors.value = {
+        paid_date: '',
+        payment_method: '',
+        general: ''
+      }
+      
+      if (recordPaymentModal) {
+        recordPaymentModal.show()
+      }
+    }
+    
+    const closeRecordPaymentModal = () => {
+      if (recordPaymentModal) {
+        recordPaymentModal.hide()
+      }
+    }
+    
+    const validateRecordPaymentForm = () => {
+      let isValid = true
+      recordPaymentErrors.value = {
+        paid_date: '',
+        payment_method: '',
+        general: ''
+      }
+      
+      if (!paymentData.value.paid_date) {
+        recordPaymentErrors.value.paid_date = 'Payment date is required'
+        isValid = false
+      }
+      
+      if (!paymentData.value.payment_method) {
+        recordPaymentErrors.value.payment_method = 'Payment method is required'
+        isValid = false
+      }
+      
+      return isValid
+    }
+    
+    const confirmRecordPayment = async () => {
+      if (!validateRecordPaymentForm()) {
+        return
+      }
+      
+      recordingPayment.value = true
+      
       try {
-        // In a real implementation, this would open a modal to record payment
-        console.log('Record payment for repayment:', repayment.id)
+        await repaymentStore.markRepaymentPaid(selectedRepayment.value.id, paymentData.value)
+        closeRecordPaymentModal()
+        fetchRepayments()
       } catch (error) {
+        recordPaymentErrors.value.general = error.message || 'Failed to record payment'
         console.error('Error recording payment:', error)
+      } finally {
+        recordingPayment.value = false
       }
     }
     
@@ -360,6 +614,11 @@ export default {
     onMounted(() => {
       fetchRepayments()
       fetchApplications()
+      
+      // Initialize modals after DOM is ready
+      setTimeout(() => {
+        initModals()
+      }, 100)
     })
     
     return {
@@ -386,9 +645,28 @@ export default {
       getApplicationReference,
       getStatusClass,
       formatStatus,
+      
+      // Add repayment modal
+      addRepaymentModalRef,
+      newRepayment,
+      repaymentErrors,
+      submittingRepayment,
       showAddRepaymentModal,
+      closeAddRepaymentModal,
+      submitRepayment,
+      
+      // View repayment
       viewRepayment,
-      recordPayment
+      
+      // Record payment modal
+      recordPaymentModalRef,
+      selectedRepayment,
+      paymentData,
+      recordPaymentErrors,
+      recordingPayment,
+      recordPayment,
+      closeRecordPaymentModal,
+      confirmRecordPayment
     }
   }
 }
@@ -397,5 +675,9 @@ export default {
 <style scoped>
 .repayments-view {
   min-height: 100vh;
+}
+
+.invalid-feedback {
+  display: block;
 }
 </style>

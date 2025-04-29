@@ -181,6 +181,95 @@
         </nav>
       </div>
     </div>
+
+    <!-- Add Fee Modal -->
+    <div class="modal fade" id="addFeeModal" tabindex="-1" aria-labelledby="addFeeModalLabel" aria-hidden="true" ref="addFeeModalRef">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addFeeModalLabel">Add New Fee</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeAddFeeModal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="feeApplication" class="form-label">Application</label>
+              <select class="form-select" id="feeApplication" v-model="newFee.application" required>
+                <option value="">Select Application</option>
+                <option v-for="app in applications" :key="app.id" :value="app.id">
+                  {{ app.reference_number }}
+                </option>
+              </select>
+              <div class="invalid-feedback" v-if="feeErrors.application">{{ feeErrors.application }}</div>
+            </div>
+            <div class="mb-3">
+              <label for="feeType" class="form-label">Fee Type</label>
+              <select class="form-select" id="feeType" v-model="newFee.fee_type" required>
+                <option value="">Select Fee Type</option>
+                <option value="application">Application</option>
+                <option value="valuation">Valuation</option>
+                <option value="legal">Legal</option>
+                <option value="broker">Broker</option>
+                <option value="settlement">Settlement</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="invalid-feedback" v-if="feeErrors.fee_type">{{ feeErrors.fee_type }}</div>
+            </div>
+            <div class="mb-3">
+              <label for="feeAmount" class="form-label">Amount</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="feeAmount" v-model.number="newFee.amount" step="0.01" min="0" required>
+              </div>
+              <div class="invalid-feedback" v-if="feeErrors.amount">{{ feeErrors.amount }}</div>
+            </div>
+            <div class="mb-3">
+              <label for="feeDueDate" class="form-label">Due Date</label>
+              <input type="date" class="form-control" id="feeDueDate" v-model="newFee.due_date" required>
+              <div class="invalid-feedback" v-if="feeErrors.due_date">{{ feeErrors.due_date }}</div>
+            </div>
+            <div class="mb-3">
+              <label for="feeDescription" class="form-label">Description (Optional)</label>
+              <textarea class="form-control" id="feeDescription" v-model="newFee.description" rows="3"></textarea>
+            </div>
+            <div class="alert alert-danger" v-if="feeErrors.general">{{ feeErrors.general }}</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeAddFeeModal">Cancel</button>
+            <button type="button" class="btn btn-primary" @click="submitFee" :disabled="submittingFee">
+              <span v-if="submittingFee" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Save Fee
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mark as Paid Modal -->
+    <div class="modal fade" id="markAsPaidModal" tabindex="-1" aria-labelledby="markAsPaidModalLabel" aria-hidden="true" ref="markAsPaidModalRef">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="markAsPaidModalLabel">Mark Fee as Paid</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeMarkAsPaidModal"></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to mark this fee as paid?</p>
+            <div class="mb-3">
+              <label for="paidDate" class="form-label">Payment Date</label>
+              <input type="date" class="form-control" id="paidDate" v-model="paymentDate" required>
+              <div class="invalid-feedback" v-if="markAsPaidError">{{ markAsPaidError }}</div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeMarkAsPaidModal">Cancel</button>
+            <button type="button" class="btn btn-success" @click="confirmMarkAsPaid" :disabled="markingAsPaid">
+              <span v-if="markingAsPaid" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Confirm Payment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -189,6 +278,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useFeeStore } from '@/store/fee'
 import { useApplicationStore } from '@/store/application'
 import feeService from '@/services/fee.service'
+import { Modal } from 'bootstrap'
 
 export default {
   name: 'FeesView',
@@ -205,6 +295,35 @@ export default {
       date_to: ''
     })
     
+    // Modal references
+    const addFeeModalRef = ref(null)
+    const markAsPaidModalRef = ref(null)
+    let addFeeModal = null
+    let markAsPaidModal = null
+    
+    // New fee form
+    const newFee = ref({
+      application: '',
+      fee_type: '',
+      amount: null,
+      due_date: new Date().toISOString().split('T')[0],
+      description: ''
+    })
+    const feeErrors = ref({
+      application: '',
+      fee_type: '',
+      amount: '',
+      due_date: '',
+      general: ''
+    })
+    const submittingFee = ref(false)
+    
+    // Mark as paid form
+    const selectedFee = ref(null)
+    const paymentDate = ref(new Date().toISOString().split('T')[0])
+    const markAsPaidError = ref('')
+    const markingAsPaid = ref(false)
+    
     // Computed properties
     const fees = computed(() => feeStore.fees)
     const applications = computed(() => applicationStore.applications)
@@ -217,15 +336,15 @@ export default {
     })
     
     const totalFees = computed(() => {
-      return fees.value.reduce((total, fee) => total + fee.amount, 0)
+      return fees.value.reduce((total, fee) => total + parseFloat(fee.amount), 0)
     })
     
     const paidFees = computed(() => {
-      return fees.value.filter(fee => fee.is_paid).reduce((total, fee) => total + fee.amount, 0)
+      return fees.value.filter(fee => fee.is_paid).reduce((total, fee) => total + parseFloat(fee.amount), 0)
     })
     
     const pendingFees = computed(() => {
-      return fees.value.filter(fee => !fee.is_paid).reduce((total, fee) => total + fee.amount, 0)
+      return fees.value.filter(fee => !fee.is_paid).reduce((total, fee) => total + parseFloat(fee.amount), 0)
     })
     
     const paidPercentage = computed(() => {
@@ -253,7 +372,7 @@ export default {
       feeStore.setFilters({
         application: filters.value.application,
         fee_type: filters.value.fee_type,
-        is_paid: filters.value.is_paid,
+        is_paid: filters.value.is_paid === '' ? null : filters.value.is_paid === 'true',
         date_from: filters.value.date_from,
         date_to: filters.value.date_to
       })
@@ -276,7 +395,7 @@ export default {
     }
     
     const formatCurrency = (value) => {
-      return value ? value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0.00'
+      return value ? parseFloat(value).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0.00'
     }
     
     const formatDate = (dateString) => {
@@ -291,28 +410,144 @@ export default {
       return app ? app.reference_number : `App #${applicationId}`
     }
     
-    const showAddFeeModal = () => {
-      // In a real implementation, this would open a modal to add a new fee
-      console.log('Show add fee modal')
+    // Initialize modals
+    const initModals = () => {
+      if (addFeeModalRef.value) {
+        addFeeModal = new Modal(addFeeModalRef.value)
+      }
+      if (markAsPaidModalRef.value) {
+        markAsPaidModal = new Modal(markAsPaidModalRef.value)
+      }
     }
     
+    // Add fee modal
+    const showAddFeeModal = () => {
+      // Reset form
+      newFee.value = {
+        application: '',
+        fee_type: '',
+        amount: null,
+        due_date: new Date().toISOString().split('T')[0],
+        description: ''
+      }
+      feeErrors.value = {
+        application: '',
+        fee_type: '',
+        amount: '',
+        due_date: '',
+        general: ''
+      }
+      
+      // Show modal
+      if (addFeeModal) {
+        addFeeModal.show()
+      }
+    }
+    
+    const closeAddFeeModal = () => {
+      if (addFeeModal) {
+        addFeeModal.hide()
+      }
+    }
+    
+    const validateFeeForm = () => {
+      let isValid = true
+      feeErrors.value = {
+        application: '',
+        fee_type: '',
+        amount: '',
+        due_date: '',
+        general: ''
+      }
+      
+      if (!newFee.value.application) {
+        feeErrors.value.application = 'Application is required'
+        isValid = false
+      }
+      
+      if (!newFee.value.fee_type) {
+        feeErrors.value.fee_type = 'Fee type is required'
+        isValid = false
+      }
+      
+      if (!newFee.value.amount || newFee.value.amount <= 0) {
+        feeErrors.value.amount = 'Amount must be greater than 0'
+        isValid = false
+      }
+      
+      if (!newFee.value.due_date) {
+        feeErrors.value.due_date = 'Due date is required'
+        isValid = false
+      }
+      
+      return isValid
+    }
+    
+    const submitFee = async () => {
+      if (!validateFeeForm()) {
+        return
+      }
+      
+      submittingFee.value = true
+      
+      try {
+        await feeStore.createFee(newFee.value)
+        closeAddFeeModal()
+        fetchFees()
+      } catch (error) {
+        feeErrors.value.general = error.message || 'Failed to create fee'
+        console.error('Error creating fee:', error)
+      } finally {
+        submittingFee.value = false
+      }
+    }
+    
+    // View fee
     const viewFee = (fee) => {
-      // In a real implementation, this would show fee details
+      // In a real implementation, this would navigate to fee detail page
       console.log('View fee:', fee.id)
     }
     
+    // Edit fee
     const editFee = (fee) => {
       // In a real implementation, this would open a modal to edit the fee
       console.log('Edit fee:', fee.id)
     }
     
-    const markAsPaid = async (fee) => {
+    // Mark as paid modal
+    const markAsPaid = (fee) => {
+      selectedFee.value = fee
+      paymentDate.value = new Date().toISOString().split('T')[0]
+      markAsPaidError.value = ''
+      
+      if (markAsPaidModal) {
+        markAsPaidModal.show()
+      }
+    }
+    
+    const closeMarkAsPaidModal = () => {
+      if (markAsPaidModal) {
+        markAsPaidModal.hide()
+      }
+    }
+    
+    const confirmMarkAsPaid = async () => {
+      if (!paymentDate.value) {
+        markAsPaidError.value = 'Payment date is required'
+        return
+      }
+      
+      markingAsPaid.value = true
+      
       try {
-        await feeService.markFeePaid(fee.id)
-        // Refresh fees after marking as paid
+        await feeStore.markFeePaid(selectedFee.value.id, { paid_date: paymentDate.value })
+        closeMarkAsPaidModal()
         fetchFees()
       } catch (error) {
+        markAsPaidError.value = error.message || 'Failed to mark fee as paid'
         console.error('Error marking fee as paid:', error)
+      } finally {
+        markingAsPaid.value = false
       }
     }
     
@@ -320,6 +555,11 @@ export default {
     onMounted(() => {
       fetchFees()
       fetchApplications()
+      
+      // Initialize modals after DOM is ready
+      setTimeout(() => {
+        initModals()
+      }, 100)
     })
     
     return {
@@ -341,10 +581,29 @@ export default {
       formatCurrency,
       formatDate,
       getApplicationReference,
+      
+      // Add fee modal
+      addFeeModalRef,
+      newFee,
+      feeErrors,
+      submittingFee,
       showAddFeeModal,
+      closeAddFeeModal,
+      submitFee,
+      
+      // View and edit fee
       viewFee,
       editFee,
-      markAsPaid
+      
+      // Mark as paid modal
+      markAsPaidModalRef,
+      selectedFee,
+      paymentDate,
+      markAsPaidError,
+      markingAsPaid,
+      markAsPaid,
+      closeMarkAsPaidModal,
+      confirmMarkAsPaid
     }
   }
 }
@@ -353,5 +612,9 @@ export default {
 <style scoped>
 .fees-view {
   min-height: 100vh;
+}
+
+.invalid-feedback {
+  display: block;
 }
 </style>
