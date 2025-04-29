@@ -35,9 +35,18 @@ class ApplicationService {
    */
   async getApplicationById(id) {
     try {
-      const response = await api.get(`/applications/applications/${id}/`)
-      return response.data
+      // Try the direct endpoint first
+      try {
+        const response = await api.get(`/applications/${id}/`)
+        return response.data
+      } catch (directError) {
+        // If direct endpoint fails, try the nested endpoint
+        console.log('Direct endpoint failed, trying nested endpoint')
+        const response = await api.get(`/applications/applications/${id}/`)
+        return response.data
+      }
     } catch (error) {
+      console.error('Error fetching application details:', error)
       throw this.handleError(error)
     }
   }
