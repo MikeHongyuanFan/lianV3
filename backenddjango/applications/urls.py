@@ -10,14 +10,11 @@ urlpatterns = [
     # Include router URLs
     path('', include(router.urls)),
     
-    # Application creation with cascade
-    path('create-with-cascade/', views.ApplicationViewSet.as_view({'post': 'create'}), name='application-list-create'),
+    # Application creation with cascade (uses the same 'create' method as the regular endpoint)
+    path('create-with-cascade/', views.ApplicationViewSet.as_view({'post': 'create'}), name='application-cascade-create'),
     
     # Application validation
     path('validate-schema/', views.ApplicationViewSet.as_view({'post': 'validate_schema'}), name='validate-application-schema'),
-    
-    # Application signature
-    path('<int:pk>/signature/', views.ApplicationViewSet.as_view({'post': 'signature'}), name='application-signature'),
     
     # Application stage update
     path('<int:pk>/stage/', views.ApplicationViewSet.as_view({'put': 'update_stage'}), name='application-stage-update'),
@@ -25,8 +22,8 @@ urlpatterns = [
     # Application borrowers update
     path('<int:pk>/borrowers/', views.ApplicationViewSet.as_view({'put': 'borrowers'}), name='application-borrowers-update'),
     
-    # Application sign
-    path('<int:pk>/sign/', views.ApplicationViewSet.as_view({'post': 'sign'}), name='application-sign'),
+    # Application signature (consolidated endpoint)
+    path('<int:pk>/signature/', views.ApplicationViewSet.as_view({'post': 'sign'}), name='application-signature'),
     
     # Application guarantors
     path('<int:pk>/guarantors/', views.ApplicationViewSet.as_view({'get': 'guarantors'}), name='application-guarantors'),

@@ -160,6 +160,16 @@ class Guarantor(models.Model):
         ('company', 'Company'),
     ]
     
+    RELATIONSHIP_CHOICES = [
+        ('spouse', 'Spouse'),
+        ('parent', 'Parent'),
+        ('child', 'Child'),
+        ('sibling', 'Sibling'),
+        ('business_partner', 'Business Partner'),
+        ('friend', 'Friend'),
+        ('other', 'Other'),
+    ]
+    
     # Basic information
     guarantor_type = models.CharField(max_length=20, choices=GUARANTOR_TYPE_CHOICES, default='individual')
     first_name = models.CharField(max_length=100, null=True, blank=True)
@@ -168,6 +178,9 @@ class Guarantor(models.Model):
     email = models.EmailField(null=True, blank=True)
     phone = models.CharField(max_length=20, null=True, blank=True)
     address = models.TextField(null=True, blank=True)
+    
+    # Relationship to borrower
+    relationship_to_borrower = models.CharField(max_length=20, choices=RELATIONSHIP_CHOICES, null=True, blank=True)
     
     # Company information (for company guarantors)
     company_name = models.CharField(max_length=255, null=True, blank=True)

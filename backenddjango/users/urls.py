@@ -18,12 +18,6 @@ urlpatterns = [
     path('profile/', views.UserProfileView.as_view(), name='user-profile'),
     path('profile/update/', views.UserProfileUpdateView.as_view(), name='user-profile-update'),
     
-    # Notifications
-    path('notifications-list/', views.NotificationListView.as_view(), name='notification-list'),
-    path('notifications-list/mark-read/', views.NotificationMarkReadView.as_view(), name='notification-mark-read'),
-    path('notifications-list/count/', views.NotificationCountView.as_view(), name='notification-count'),
-    path('notifications-list/search/', views.NotificationListView.as_view(), name='notification-search'),
-    
     # Notification preferences
     path('notification-preferences/', views.NotificationPreferenceView.as_view(), name='notification-preferences'),
     

@@ -44,7 +44,6 @@ class BorrowerDetailSerializer(serializers.ModelSerializer):
 class GuarantorSerializer(serializers.ModelSerializer):
     """Serializer for guarantor information"""
     created_by = UserSerializer(read_only=True)
-    relationship_to_borrower = serializers.CharField(required=False, allow_blank=True, allow_null=True)
     
     class Meta:
         model = Guarantor
@@ -52,10 +51,6 @@ class GuarantorSerializer(serializers.ModelSerializer):
         read_only_fields = ['created_at', 'updated_at', 'created_by']
     
     def create(self, validated_data):
-        # Remove relationship_to_borrower if present as it's not in the model
-        if 'relationship_to_borrower' in validated_data:
-            validated_data.pop('relationship_to_borrower')
-            
         # Set the created_by field to the current user
         user = self.context['request'].user
         validated_data['created_by'] = user
@@ -80,8 +75,8 @@ class GuarantorSerializer(serializers.ModelSerializer):
 class GuarantorDetailSerializer(serializers.ModelSerializer):
     """Serializer for detailed guarantor information"""
     created_by = UserSerializer(read_only=True)
-    relationship_to_borrower = serializers.CharField(required=False, allow_blank=True, allow_null=True)
     guaranteed_applications = serializers.SerializerMethodField()
+    borrower_name = serializers.SerializerMethodField()
     
     class Meta:
         model = Guarantor
@@ -90,5 +85,10 @@ class GuarantorDetailSerializer(serializers.ModelSerializer):
     
     def get_guaranteed_applications(self, obj):
         from applications.serializers import ApplicationListSerializer
-        applications = obj.guaranteed_applications.all()
+        applications = obj.application_guarantors.all()
         return ApplicationListSerializer(applications, many=True).data
+        
+    def get_borrower_name(self, obj):
+        if obj.borrower:
+            return str(obj.borrower)
+        return None

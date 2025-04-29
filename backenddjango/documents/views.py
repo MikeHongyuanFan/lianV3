@@ -350,15 +350,41 @@ class RepaymentMarkPaidView(APIView):
         except Repayment.DoesNotExist:
             return Response({'error': 'Repayment not found'}, status=status.HTTP_404_NOT_FOUND)
         
+        # Check if repayment is already paid
+        if repayment.paid_date:
+            return Response({
+                'message': 'Repayment already marked as paid',
+                'repayment_id': repayment.id,
+                'paid_date': repayment.paid_date,
+                'status': 'paid'
+            })
+            
         # Set paid date
         from django.utils import timezone
         repayment.paid_date = request.data.get('paid_date', timezone.now().date())
         repayment.save()
         
+        # Create ledger entry for the payment
+        from .models import Ledger
+        Ledger.objects.create(
+            application=repayment.application,
+            transaction_type='repayment_received',
+            amount=repayment.amount,
+            description=f"Payment received for repayment due on {repayment.due_date}",
+            transaction_date=timezone.now(),
+            related_repayment=repayment,
+            created_by=request.user
+        )
+        
+        # Get serializer for consistent response format
+        serializer = RepaymentSerializer(repayment, context={'request': request})
+        
         return Response({
             'message': 'Repayment marked as paid',
             'repayment_id': repayment.id,
-            'paid_date': repayment.paid_date
+            'paid_date': repayment.paid_date,
+            'status': 'paid',
+            'repayment': serializer.data
         })
 
 

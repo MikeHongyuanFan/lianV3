@@ -30,6 +30,7 @@ class GuarantorFilter(django_filters.FilterSet):
     created_at_after = django_filters.DateTimeFilter(field_name='created_at', lookup_expr='gte')
     created_at_before = django_filters.DateTimeFilter(field_name='created_at', lookup_expr='lte')
     guarantor_type = django_filters.ChoiceFilter(choices=Guarantor.GUARANTOR_TYPE_CHOICES)
+    relationship_to_borrower = django_filters.ChoiceFilter(choices=Guarantor.RELATIONSHIP_CHOICES)
     
     class Meta:
         model = Guarantor

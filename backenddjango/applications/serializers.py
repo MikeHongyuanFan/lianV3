@@ -168,6 +168,15 @@ class QSInfoSerializer(serializers.Serializer):
     notes = serializers.CharField(allow_blank=True, required=False)
 
 class ApplicationCreateSerializer(serializers.ModelSerializer):
+    """
+    Serializer for creating applications
+    
+    This serializer is used by both the regular create endpoint (/api/applications/)
+    and the create-with-cascade endpoint (/api/applications/create-with-cascade/).
+    The difference is that the create-with-cascade endpoint is specifically intended
+    for creating an application along with related entities (borrowers, guarantors,
+    company borrowers) in a single request.
+    """
     borrowers = BorrowerSerializer(many=True, required=False)
     guarantors = GuarantorSerializer(many=True, required=False)
     company_borrowers = CompanyBorrowerSerializer(many=True, required=False)

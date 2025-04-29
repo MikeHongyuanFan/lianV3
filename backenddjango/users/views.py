@@ -106,54 +106,7 @@ class UserProfileUpdateView(UpdateAPIView):
         return self.request.user
 
 
-class NotificationListView(ListAPIView):
-    """
-    API endpoint for listing user notifications
-    """
-    permission_classes = [IsAuthenticated]
-    serializer_class = NotificationListSerializer
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
-    filterset_class = NotificationFilter
-    search_fields = ['title', 'message']
-    ordering_fields = ['created_at']
-    ordering = ['-created_at']
-    
-    def get_queryset(self):
-        return Notification.objects.filter(user=self.request.user)
-
-
-class NotificationMarkReadView(APIView):
-    """
-    API endpoint for marking notifications as read
-    """
-    permission_classes = [IsAuthenticated]
-    
-    def post(self, request):
-        notification_id = request.data.get('notification_id')
-        
-        if notification_id:
-            try:
-                notification = Notification.objects.get(id=notification_id, user=request.user)
-                notification.is_read = True
-                notification.save()
-                return Response({'status': 'notification marked as read'})
-            except Notification.DoesNotExist:
-                return Response({'error': 'Notification not found'}, status=status.HTTP_404_NOT_FOUND)
-        else:
-            # Mark all as read
-            Notification.objects.filter(user=request.user, is_read=False).update(is_read=True)
-            return Response({'status': 'all notifications marked as read'})
-
-
-class NotificationCountView(APIView):
-    """
-    API endpoint for getting unread notification count
-    """
-    permission_classes = [IsAuthenticated]
-    
-    def get(self, request):
-        count = Notification.objects.filter(user=request.user, is_read=False).count()
-        return Response({'unread_count': count})
+# Legacy notification views are removed in favor of the NotificationViewSet
 
 
 class NotificationPreferenceView(APIView):

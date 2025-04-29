@@ -452,45 +452,12 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         return Response({"valid": True})
     
     @action(detail=True, methods=['post'])
-    def signature(self, request, pk=None):
-        """
-        Process signature for an application
-        """
-        try:
-            application = self.get_object()
-            
-            # Get signature data from request
-            signature_data = request.data.get('signature_data')
-            signed_by = request.data.get('signed_by')
-            signature_date = request.data.get('signature_date')
-            
-            if not signature_data or not signed_by or not signature_date:
-                return Response({"error": "Missing required signature data"}, 
-                               status=status.HTTP_400_BAD_REQUEST)
-            
-            # Process signature (in a real app, this would save the signature image)
-            application.signed_by = signed_by
-            application.signature_date = signature_date
-            
-            # Simulate PDF generation
-            application.uploaded_pdf_path = f"signatures/application_{application.id}_signed.pdf"
-            application.save()
-            
-            # Create note about signature
-            Note.objects.create(
-                application=application,
-                content=f"Application signed by {signed_by} on {signature_date}",
-                created_by=request.user
-            )
-            
-            return Response({"status": "signature processed successfully"})
-            
-        except Application.DoesNotExist:
-            return Response({"error": "Application not found"}, status=status.HTTP_404_NOT_FOUND)
-    @action(detail=True, methods=['post'])
     def sign(self, request, pk=None):
         """
         Sign an application
+        
+        This endpoint processes a signature for an application, updating the signature data,
+        signed by name, and signature date. It also creates a note about the signature.
         """
         application = self.get_object()
         from .serializers import ApplicationSignatureSerializer
@@ -524,10 +491,6 @@ class ApplicationViewSet(viewsets.ModelViewSet):
             content=f"Application signed by {signed_by} on {signature_date}",
             created_by=request.user
         )
-        
-        # Return updated application
-        return Response(ApplicationDetailSerializer(updated_application, context={'request': request}).data)
-        
         
         # Return updated application
         return Response(ApplicationDetailSerializer(updated_application, context={'request': request}).data)

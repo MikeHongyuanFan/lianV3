@@ -72,12 +72,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'crm_backend.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Use PostgreSQL if DATABASE_URL is set, otherwise use SQLite
+database_url = os.environ.get('DATABASE_URL')
+if database_url:
+    # Parse database URL
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.parse(database_url)
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -117,11 +126,24 @@ AUTH_USER_MODEL = 'users.User'
 
 # Channels settings
 ASGI_APPLICATION = 'crm_backend.asgi.application'
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
-    },
-}
+
+# Configure channel layers based on environment
+redis_url = os.environ.get('REDIS_URL', 'redis://redis:6379/0')
+if redis_url:
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels_redis.core.RedisChannelLayer',
+            'CONFIG': {
+                'hosts': [redis_url],
+            },
+        },
+    }
+else:
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        },
+    }
 
 # REST Framework settings
 REST_FRAMEWORK = {
