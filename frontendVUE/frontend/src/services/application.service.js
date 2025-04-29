@@ -37,12 +37,21 @@ class ApplicationService {
     try {
       // Try the direct endpoint first
       try {
-        const response = await api.get(`/applications/${id}/`)
+        const response = await api.get(`/applications/applications/${id}/`)
         return response.data
       } catch (directError) {
-        // If direct endpoint fails, try the nested endpoint
-        console.log('Direct endpoint failed, trying nested endpoint')
-        const response = await api.get(`/applications/applications/${id}/`)
+        // If the error is 404, the application doesn't exist
+        if (directError.response && directError.response.status === 404) {
+          throw {
+            status: 404,
+            message: `Application with ID ${id} not found`,
+            errors: { detail: `Application with ID ${id} not found` }
+          }
+        }
+        
+        // For other errors, try the alternative endpoint structure
+        console.warn('First endpoint attempt failed, trying alternative endpoint structure')
+        const response = await api.get(`/applications/${id}/`)
         return response.data
       }
     } catch (error) {
