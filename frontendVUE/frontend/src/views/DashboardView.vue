@@ -308,7 +308,43 @@ export default {
       } catch (err) {
         // If dashboard data fetch fails, continue with other data
         console.error('Error fetching dashboard data:', err)
-        // Don't set error.value here to allow the dashboard to still show other data
+        // Set dashboardData to default values to prevent errors
+        dashboardData.value = {
+          applicationVolume: {
+            total_applications: 0,
+            total_loan_amount: 0,
+            average_loan_amount: 0,
+            stage_breakdown: {},
+            time_breakdown: [],
+            bd_breakdown: [],
+            type_breakdown: {}
+          },
+          applicationStatus: {
+            total_active: 0,
+            total_settled: 0,
+            total_declined: 0,
+            total_withdrawn: 0,
+            active_by_stage: {},
+            avg_time_in_stage: {},
+            inquiry_to_approval_rate: 0,
+            approval_to_settlement_rate: 0,
+            overall_success_rate: 0
+          },
+          repaymentCompliance: {
+            total_repayments: 0,
+            paid_on_time: 0,
+            paid_late: 0,
+            missed: 0,
+            compliance_rate: 0,
+            average_days_late: 0,
+            total_amount_due: 0,
+            total_amount_paid: 0,
+            payment_rate: 0,
+            monthly_breakdown: []
+          }
+        }
+        
+        // Continue with other data fetches
         fetchRecentApplications()
         fetchRecentNotifications()
         fetchUpcomingRepayments()

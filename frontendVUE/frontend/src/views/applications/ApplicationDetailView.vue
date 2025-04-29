@@ -85,8 +85,21 @@ export default {
         await applicationStore.fetchApplication(id);
       } catch (e) {
         console.error('Failed to fetch application:', e);
-        // If application not found (404), redirect to applications list
-        if (e.status === 404) {
+        // If application not found (404) or unauthorized (401), redirect to applications list
+        if (e.status === 404 || e.status === 401) {
+          // Show error notification
+          const errorMessage = e.status === 401 
+            ? 'You do not have permission to view this application' 
+            : 'Application not found';
+          
+          // Use toast or notification system if available
+          if (window.$toast) {
+            window.$toast.error(errorMessage);
+          } else {
+            alert(errorMessage);
+          }
+          
+          // Redirect to applications list
           router.push('/applications');
         }
       }

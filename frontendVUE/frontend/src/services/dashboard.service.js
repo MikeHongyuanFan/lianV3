@@ -10,10 +10,21 @@ class DashboardService {
    */
   async getDashboardData() {
     try {
-      // Using only the implemented report endpoints
-      const applicationVolumePromise = api.get('/reports/application-volume/')
-      const applicationStatusPromise = api.get('/reports/application-status/')
-      const repaymentCompliancePromise = api.get('/reports/repayment-compliance/')
+      // Using only the implemented report endpoints with error handling for each request
+      const applicationVolumePromise = this.getApplicationVolumeReport().catch(error => {
+        console.warn('Failed to fetch application volume report:', error)
+        return { data: this.getDefaultApplicationVolumeData() }
+      })
+      
+      const applicationStatusPromise = this.getApplicationStatusReport().catch(error => {
+        console.warn('Failed to fetch application status report:', error)
+        return { data: this.getDefaultApplicationStatusData() }
+      })
+      
+      const repaymentCompliancePromise = this.getRepaymentComplianceReport().catch(error => {
+        console.warn('Failed to fetch repayment compliance report:', error)
+        return { data: this.getDefaultRepaymentComplianceData() }
+      })
       
       // Wait for all requests to complete
       const [
@@ -54,56 +65,8 @@ class DashboardService {
       }
     } catch (error) {
       console.error('Error fetching dashboard data:', error)
-      // Return mock data on error
-      return {
-        applicationVolume: {
-          total_applications: 0,
-          total_loan_amount: 0,
-          average_loan_amount: 0,
-          stage_breakdown: {},
-          time_breakdown: [],
-          bd_breakdown: [],
-          type_breakdown: {}
-        },
-        applicationStatus: {
-          total_active: 0,
-          total_settled: 0,
-          total_declined: 0,
-          total_withdrawn: 0,
-          active_by_stage: {},
-          avg_time_in_stage: {},
-          inquiry_to_approval_rate: 0,
-          approval_to_settlement_rate: 0,
-          overall_success_rate: 0
-        },
-        repaymentCompliance: {
-          total_repayments: 0,
-          paid_on_time: 0,
-          paid_late: 0,
-          missed: 0,
-          compliance_rate: 0,
-          average_days_late: 0,
-          total_amount_due: 0,
-          total_amount_paid: 0,
-          payment_rate: 0,
-          monthly_breakdown: []
-        },
-        brokerPerformance: {
-          brokers: [],
-          applications_by_broker: {},
-          loan_amount_by_broker: {},
-          success_rate_by_broker: {}
-        },
-        loanPortfolio: {
-          total_active_loans: 0,
-          total_loan_amount: 0,
-          avg_interest_rate: 0,
-          avg_loan_term: 0,
-          loans_by_type: {},
-          loans_by_purpose: {},
-          risk_distribution: {}
-        }
-      }
+      // Return default data on error
+      return this.getDefaultDashboardData()
     }
   }
   
@@ -115,7 +78,7 @@ class DashboardService {
   async getApplicationVolumeReport(params = {}) {
     try {
       const response = await api.get('/reports/application-volume/', { params })
-      return response.data
+      return response
     } catch (error) {
       console.error('Error fetching application volume report:', error)
       throw error
@@ -130,7 +93,7 @@ class DashboardService {
   async getApplicationStatusReport(params = {}) {
     try {
       const response = await api.get('/reports/application-status/', { params })
-      return response.data
+      return response
     } catch (error) {
       console.error('Error fetching application status report:', error)
       throw error
@@ -145,7 +108,7 @@ class DashboardService {
   async getRepaymentComplianceReport(params = {}) {
     try {
       const response = await api.get('/reports/repayment-compliance/', { params })
-      return response.data
+      return response
     } catch (error) {
       console.error('Error fetching repayment compliance report:', error)
       throw error
@@ -153,36 +116,21 @@ class DashboardService {
   }
   
   /**
-   * Get broker performance report (not yet implemented in backend)
-   * @param {Object} params - Filter parameters
-   * @returns {Promise<Object>} Broker performance report data
+   * Get default dashboard data
+   * @returns {Object} Default dashboard data
    */
-  async getBrokerPerformanceReport(params = {}) {
-    try {
-      // This endpoint is not yet implemented in the backend
-      // Return mock data instead
-      return {
+  getDefaultDashboardData() {
+    return {
+      applicationVolume: this.getDefaultApplicationVolumeData(),
+      applicationStatus: this.getDefaultApplicationStatusData(),
+      repaymentCompliance: this.getDefaultRepaymentComplianceData(),
+      brokerPerformance: {
         brokers: [],
         applications_by_broker: {},
         loan_amount_by_broker: {},
         success_rate_by_broker: {}
-      }
-    } catch (error) {
-      console.error('Error fetching broker performance report:', error)
-      throw error
-    }
-  }
-  
-  /**
-   * Get loan portfolio report (not yet implemented in backend)
-   * @param {Object} params - Filter parameters
-   * @returns {Promise<Object>} Loan portfolio report data
-   */
-  async getLoanPortfolioReport(params = {}) {
-    try {
-      // This endpoint is not yet implemented in the backend
-      // Return mock data instead
-      return {
+      },
+      loanPortfolio: {
         total_active_loans: 0,
         total_loan_amount: 0,
         avg_interest_rate: 0,
@@ -191,15 +139,61 @@ class DashboardService {
         loans_by_purpose: {},
         risk_distribution: {}
       }
-    } catch (error) {
-      console.error('Error fetching loan portfolio report:', error)
-      throw error
+    }
+  }
+  
+  /**
+   * Get default application volume data
+   * @returns {Object} Default application volume data
+   */
+  getDefaultApplicationVolumeData() {
+    return {
+      total_applications: 0,
+      total_loan_amount: 0,
+      average_loan_amount: 0,
+      stage_breakdown: {},
+      time_breakdown: [],
+      bd_breakdown: [],
+      type_breakdown: {}
+    }
+  }
+  
+  /**
+   * Get default application status data
+   * @returns {Object} Default application status data
+   */
+  getDefaultApplicationStatusData() {
+    return {
+      total_active: 0,
+      total_settled: 0,
+      total_declined: 0,
+      total_withdrawn: 0,
+      active_by_stage: {},
+      avg_time_in_stage: {},
+      inquiry_to_approval_rate: 0,
+      approval_to_settlement_rate: 0,
+      overall_success_rate: 0
+    }
+  }
+  
+  /**
+   * Get default repayment compliance data
+   * @returns {Object} Default repayment compliance data
+   */
+  getDefaultRepaymentComplianceData() {
+    return {
+      total_repayments: 0,
+      paid_on_time: 0,
+      paid_late: 0,
+      missed: 0,
+      compliance_rate: 0,
+      average_days_late: 0,
+      total_amount_due: 0,
+      total_amount_paid: 0,
+      payment_rate: 0,
+      monthly_breakdown: []
     }
   }
 }
 
-// Create a single instance of the service
-const dashboardService = new DashboardService()
-
-// Export the instance
-export default dashboardService
+export default new DashboardService()
