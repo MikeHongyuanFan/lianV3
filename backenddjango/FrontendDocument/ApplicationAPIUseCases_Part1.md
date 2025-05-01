@@ -607,12 +607,14 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
   }
   ```
 
+
 ## 3. Create Application with Cascade API
 
 ### API Details
 - **Endpoint**: `/api/applications/create-with-cascade/`
 - **HTTP Method**: `POST`
 - **Authentication Required**: Yes
+- **Note**: This endpoint points to the same implementation as the regular create endpoint (`/api/applications/`). The cascade functionality is implemented in the ApplicationCreateSerializer.create method.
 
 ### Use Cases
 

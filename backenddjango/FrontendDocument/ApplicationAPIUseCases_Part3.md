@@ -116,9 +116,10 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 ## 12. Upload Application Document API
 
 ### API Details
-- **Endpoint**: `/api/applications/{id}/upload-document/`
+- **Endpoint**: `/api/applications/{id}/upload_document/`
 - **HTTP Method**: `POST`
 - **Authentication Required**: Yes
+- **Note**: The endpoint uses an underscore (`upload_document`) rather than a hyphen (`upload-document`) in the actual implementation.
 
 ### Use Cases
 
@@ -138,7 +139,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: New document is added to application
 - **Request Example**:
   ```
-  POST /api/applications/123/upload-document/
+  POST /api/applications/123/upload_document/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: multipart/form-data
 
@@ -176,7 +177,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: No document is added to application
 - **Request Example**:
   ```
-  POST /api/applications/123/upload-document/
+  POST /api/applications/123/upload_document/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: multipart/form-data
 
@@ -206,7 +207,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: No document is added to application
 - **Request Example**:
   ```
-  POST /api/applications/123/upload-document/
+  POST /api/applications/123/upload_document/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: multipart/form-data
 
@@ -330,9 +331,10 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 ## 14. Add Application Fee API
 
 ### API Details
-- **Endpoint**: `/api/applications/{id}/add-fee/`
+- **Endpoint**: `/api/applications/{id}/add_fee/`
 - **HTTP Method**: `POST`
 - **Authentication Required**: Yes
+- **Note**: The endpoint uses an underscore (`add_fee`) rather than a hyphen (`add-fee`) in the actual implementation.
 
 ### Use Cases
 
@@ -352,7 +354,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: New fee is added to application
 - **Request Example**:
   ```
-  POST /api/applications/123/add-fee/
+  POST /api/applications/123/add_fee/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: application/json
 
@@ -389,7 +391,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: No fee is added to application
 - **Request Example**:
   ```
-  POST /api/applications/123/add-fee/
+  POST /api/applications/123/add_fee/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: application/json
 
@@ -518,9 +520,10 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 ## 16. Add Application Repayment API
 
 ### API Details
-- **Endpoint**: `/api/applications/{id}/add-repayment/`
+- **Endpoint**: `/api/applications/{id}/add_repayment/`
 - **HTTP Method**: `POST`
 - **Authentication Required**: Yes
+- **Note**: The endpoint uses an underscore (`add_repayment`) rather than a hyphen (`add-repayment`) in the actual implementation.
 
 ### Use Cases
 
@@ -540,7 +543,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: New repayment is added to application
 - **Request Example**:
   ```
-  POST /api/applications/123/add-repayment/
+  POST /api/applications/123/add_repayment/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: application/json
 
@@ -576,7 +579,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: No repayment is added to application
 - **Request Example**:
   ```
-  POST /api/applications/123/add-repayment/
+  POST /api/applications/123/add_repayment/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: application/json
 
@@ -596,9 +599,10 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 ## 17. Record Payment API
 
 ### API Details
-- **Endpoint**: `/api/applications/{id}/record-payment/`
+- **Endpoint**: `/api/applications/{id}/record_payment/`
 - **HTTP Method**: `POST`
 - **Authentication Required**: Yes
+- **Note**: The endpoint uses an underscore (`record_payment`) rather than a hyphen (`record-payment`) in the actual implementation.
 
 ### Use Cases
 
@@ -619,7 +623,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: Repayment is marked as paid
 - **Request Example**:
   ```
-  POST /api/applications/123/record-payment/
+  POST /api/applications/123/record_payment/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: application/json
 
@@ -657,7 +661,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: No payment is recorded
 - **Request Example**:
   ```
-  POST /api/applications/123/record-payment/
+  POST /api/applications/123/record_payment/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: application/json
 
@@ -691,7 +695,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: Repayment payment details remain unchanged
 - **Request Example**:
   ```
-  POST /api/applications/123/record-payment/
+  POST /api/applications/123/record_payment/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: application/json
 

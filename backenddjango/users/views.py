@@ -10,7 +10,7 @@ from .serializers import (
     UserSerializer, UserCreateSerializer, NotificationSerializer, 
     NotificationListSerializer, NotificationPreferenceSerializer
 )
-from .permissions import IsAdmin
+from .permissions import IsAdmin, IsSelfOrAdmin
 from .services import get_or_create_notification_preferences
 from django.contrib.auth import authenticate
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView, ListAPIView
@@ -197,9 +197,17 @@ class UserViewSet(viewsets.ModelViewSet):
         return UserSerializer
     
     def get_permissions(self):
-        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+        if self.action == 'list':
+            # Only admin users can list all users
+            permission_classes = [IsAuthenticated, IsAdmin]
+        elif self.action == 'retrieve':
+            # Admin users can retrieve any user, other users can only retrieve themselves
+            permission_classes = [IsAuthenticated, IsSelfOrAdmin]
+        elif self.action in ['create', 'update', 'partial_update', 'destroy']:
+            # Only admin users can create, update, or delete users
             permission_classes = [IsAuthenticated, IsAdmin]
         else:
+            # Default to authenticated users for other actions
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
     

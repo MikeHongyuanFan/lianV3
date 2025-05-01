@@ -91,7 +91,12 @@
    - Create `Reminder` model
    - Implement Celery task for checking and sending reminders
    - Add API endpoints for managing reminders
-
+   - User can set automated email reminders to either other team members or client or both (user can choose who the reminder email will be sent to)
+   - User can change who the email is sent from (MAYBE POSSBILE NEED TO DOUBLE CHECK WITH
+MIKE)
+      -Example: Benson asks Ivan to help send an email for Benson to a client. The client will
+receive the email with the sender being Benson. When client replies to email it will send
+email to Benson NOT Ivan.
 ## Milestone 5: Application Enhancements (Week 6)
 
 1. **Day 28: Stage Name Updates**
@@ -101,13 +106,13 @@
 
 2. **Day 29: Product Column**
    - Add `product_name` field to application serializer
-   - Update API responses to include product information
+   - Update API responses to include product information 
 
 3. **Day 30: Loan Extension API**
    - Create `POST /api/applications/{id}/extend-loan/` endpoint
    - Implement logic for loan extension and repayment recalculation
    - Add tests for loan extension functionality
-
+   - input fields: new rate, new loan amount, new repayment
 ## Milestone 6: Additional Features (Week 7-8)
 
 1. **Day 31-32: Duplicate Borrower Detection**
@@ -147,9 +152,10 @@
 
 1. DocuSign Integration
 2. Email Send-As Functionality
-3. Calculator API Improvements
+3. Calculator API 
 4. Mail Merge and Export as Word
 5. PDF Form Handling
 6. Notification & Reminder Enhancements
 7. Application Enhancements
 8. Additional Features (Duplicate Detection, Commission Tracking, etc.)
+9. Product function

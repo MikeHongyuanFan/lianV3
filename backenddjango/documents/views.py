@@ -5,15 +5,16 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Document, Note, Fee, Repayment
+from .models import Document, Note, Fee, Repayment, Ledger
 from .serializers import (
     DocumentSerializer,
     NoteSerializer,
     FeeSerializer,
-    RepaymentSerializer
+    RepaymentSerializer,
+    LedgerSerializer
 )
 from .filters import DocumentFilter, NoteFilter, FeeFilter, RepaymentFilter
-from users.permissions import IsAdmin, IsAdminOrBroker, IsAdminOrBD
+from users.permissions import IsAdmin, IsAdminOrBroker, IsAdminOrBD, IsAdminOrBrokerOrBD
 from django.http import FileResponse
 import os
 
@@ -31,7 +32,7 @@ class DocumentViewSet(viewsets.ModelViewSet):
     
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            permission_classes = [IsAuthenticated, IsAdminOrBroker]
+            permission_classes = [IsAuthenticated, IsAdminOrBrokerOrBD]
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
@@ -130,7 +131,7 @@ class NoteViewSet(viewsets.ModelViewSet):
     
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            permission_classes = [IsAuthenticated, IsAdminOrBroker]
+            permission_classes = [IsAuthenticated, IsAdminOrBrokerOrBD]
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
@@ -236,11 +237,13 @@ class RepaymentViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
+
+
 class DocumentCreateVersionView(APIView):
     """
     View for creating a new version of a document
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminOrBrokerOrBD]
     parser_classes = [MultiPartParser, FormParser]
     
     def post(self, request, pk):
@@ -286,7 +289,7 @@ class FeeMarkPaidView(APIView):
     """
     View for marking a fee as paid
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminOrBD]
     
     def post(self, request, pk):
         """
@@ -313,7 +316,7 @@ class RepaymentMarkPaidView(APIView):
     """
     View for marking a repayment as paid
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminOrBD]
     
     def post(self, request, pk):
         """

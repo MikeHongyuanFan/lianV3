@@ -62,7 +62,7 @@ class BorrowerViewSet(viewsets.ModelViewSet):
         """
         borrower = self.get_object()
         from applications.serializers import ApplicationListSerializer
-        applications = borrower.applications.all().order_by('-created_at')
+        applications = borrower.borrower_applications.all().order_by('-created_at')
         serializer = ApplicationListSerializer(applications, many=True)
         return Response(serializer.data)
     
@@ -72,7 +72,7 @@ class BorrowerViewSet(viewsets.ModelViewSet):
         Get all guarantors for a borrower
         """
         borrower = self.get_object()
-        guarantors = borrower.guarantors.all()
+        guarantors = borrower.borrower_guarantors.all()
         serializer = GuarantorSerializer(guarantors, many=True)
         return Response(serializer.data)
 
@@ -112,6 +112,17 @@ class GuarantorViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
+        
+    @action(detail=True, methods=['get'])
+    def guaranteed_applications(self, request, pk=None):
+        """
+        Get all applications guaranteed by a guarantor
+        """
+        guarantor = self.get_object()
+        from applications.serializers import ApplicationListSerializer
+        applications = guarantor.guaranteed_applications.all().order_by('-created_at')
+        serializer = ApplicationListSerializer(applications, many=True)
+        return Response(serializer.data)
 class CompanyBorrowerListView(generics.ListAPIView):
     """
     View for listing company borrowers

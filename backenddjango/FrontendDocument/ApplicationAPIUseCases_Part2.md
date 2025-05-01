@@ -273,13 +273,97 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
     "error": "Borrowers with IDs [999, 1000] not found"
   }
   ```
+## 6.5 Remove Borrowers from Application API
+
+### API Details
+- **Endpoint**: `/api/applications/{id}/remove_borrowers/`
+- **HTTP Method**: `POST`
+- **Authentication Required**: Yes
+
+### Use Cases
+
+#### 6.5.1 Remove Borrowers from Application
+- **Actor**: Authenticated user with appropriate permissions
+- **Description**: User removes specific borrowers from an application
+- **Preconditions**: 
+  - User is authenticated with valid JWT token
+  - Application exists and user has permission to update it
+  - Borrowers to be removed are currently associated with the application
+- **Steps**:
+  1. User sends authenticated POST request with application ID and borrower IDs to remove
+  2. System validates authentication token
+  3. System verifies user has permission to update application
+  4. System validates all borrower IDs exist
+  5. System removes specified borrowers from application
+  6. System returns updated application information
+- **Postconditions**: Specified borrowers are removed from the application
+- **Request Example**:
+  ```
+  POST /api/applications/123/remove_borrowers/
+  Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
+  Content-Type: application/json
+
+  {
+    "borrower_ids": [202, 205]
+  }
+  ```
+- **Response Example (200 OK)**:
+  ```json
+  {
+    "id": 123,
+    "reference_number": "A12345",
+    "borrowers": [
+      {
+        "id": 201,
+        "first_name": "Michael",
+        "last_name": "Johnson",
+        "email": "michael@example.com"
+      }
+    ],
+    // ... other application details
+  }
+  ```
+
+#### 6.5.2 Failed Borrower Removal (Invalid Borrower IDs)
+- **Actor**: Authenticated user with appropriate permissions
+- **Description**: User attempts to remove non-existent borrowers from an application
+- **Preconditions**: 
+  - User is authenticated with valid JWT token
+  - Application exists and user has permission to update it
+  - Some borrower IDs don't exist in the system
+- **Steps**:
+  1. User sends authenticated POST request with application ID and some invalid borrower IDs
+  2. System validates authentication token
+  3. System verifies user has permission to update application
+  4. System validates borrower IDs and finds some don't exist
+  5. System returns validation error
+- **Postconditions**: Application borrowers remain unchanged
+- **Request Example**:
+  ```
+  POST /api/applications/123/remove_borrowers/
+  Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
+  Content-Type: application/json
+
+  {
+    "borrower_ids": [201, 999, 1000]
+  }
+  ```
+- **Response Example (400 Bad Request)**:
+  ```json
+  {
+    "error": "Borrowers with IDs [999, 1000] not found"
+  }
+  ```
 
 ## 7. Sign Application API
 
 ### API Details
-- **Endpoint**: `/api/applications/{id}/signature/`
+- **Endpoints**: 
+  - `/api/applications/{id}/signature/` - For processing signature data
+  - `/api/applications/{id}/sign/` - Alternative endpoint for signing applications
 - **HTTP Method**: `POST`
 - **Authentication Required**: Yes
+- **Note**: The system provides two endpoints for signing applications with slightly different implementations.
 
 ### Use Cases
 
@@ -298,9 +382,9 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
   5. System stores signature information
   6. System returns updated application with signature information
 - **Postconditions**: Application is marked as signed
-- **Request Example**:
+- **Request Example (using /sign/ endpoint)**:
   ```
-  POST /api/applications/123/signature/
+  POST /api/applications/123/sign/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: application/json
 
@@ -338,29 +422,29 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
   4. System validates signature data and finds it's invalid
   5. System returns validation error
 - **Postconditions**: Application remains unsigned
-- **Request Example**:
+- **Request Example (using /signature/ endpoint)**:
   ```
   POST /api/applications/123/signature/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: application/json
 
   {
-    "signature": "invalid-data",
-    "name": ""
+    "signature_data": "invalid-data",
+    "signed_by": ""
   }
   ```
 - **Response Example (400 Bad Request)**:
   ```json
   {
-    "signature": ["Invalid signature format. Must be a valid Base64 encoded image."],
-    "name": ["This field may not be blank."]
+    "error": "Missing required signature data"
   }
   ```
 
 ## 8. Get Application Guarantors API
 
 ### API Details
-- **Endpoint**: `/api/applications/{id}/guarantors/`
+- **Note**: There is no dedicated endpoint for getting guarantors. Guarantors are included in the application detail response.
+- **Endpoint**: `/api/applications/{id}/` (Use the Application Detail API)
 - **HTTP Method**: `GET`
 - **Authentication Required**: Yes
 
@@ -373,43 +457,49 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
   - User is authenticated with valid JWT token
   - Application exists and user has access to it
 - **Steps**:
-  1. User sends authenticated GET request with application ID
+  1. User sends authenticated GET request to the application detail endpoint
   2. System validates authentication token
   3. System verifies user has access to application
-  4. System retrieves guarantors associated with application
-  5. System returns guarantor list
-- **Postconditions**: User receives list of application guarantors
+  4. System retrieves application details including guarantors
+  5. System returns application data with guarantors list
+- **Postconditions**: User receives application data including guarantors
 - **Request Example**:
   ```
-  GET /api/applications/123/guarantors/
+  GET /api/applications/123/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   ```
 - **Response Example (200 OK)**:
   ```json
-  [
-    {
-      "id": 101,
-      "first_name": "Robert",
-      "last_name": "Smith",
-      "email": "robert@example.com",
-      "phone_number": "+1234567892",
-      "guarantor_type": "individual",
-      "relationship_to_borrower": "parent",
-      "address": "789 Pine St, Anytown",
-      "date_of_birth": "1955-03-10"
-    },
-    {
-      "id": 102,
-      "first_name": "Jennifer",
-      "last_name": "Brown",
-      "email": "jennifer@example.com",
-      "phone_number": "+1234567893",
-      "guarantor_type": "individual",
-      "relationship_to_borrower": "sibling",
-      "address": "456 Elm St, Anytown",
-      "date_of_birth": "1978-07-22"
-    }
-  ]
+  {
+    "id": 123,
+    "reference_number": "A12345",
+    // ... other application fields
+    "guarantors": [
+      {
+        "id": 101,
+        "first_name": "Robert",
+        "last_name": "Smith",
+        "email": "robert@example.com",
+        "phone_number": "+1234567892",
+        "guarantor_type": "individual",
+        "relationship_to_borrower": "parent",
+        "address": "789 Pine St, Anytown",
+        "date_of_birth": "1955-03-10"
+      },
+      {
+        "id": 102,
+        "first_name": "Jennifer",
+        "last_name": "Brown",
+        "email": "jennifer@example.com",
+        "phone_number": "+1234567893",
+        "guarantor_type": "individual",
+        "relationship_to_borrower": "sibling",
+        "address": "456 Elm St, Anytown",
+        "date_of_birth": "1978-07-22"
+      }
+    ],
+    // ... other application fields
+  }
   ```
 
 #### 8.2 Get Application Guarantors (No Guarantors)
@@ -420,20 +510,26 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
   - Application exists and user has access to it
   - Application has no guarantors
 - **Steps**:
-  1. User sends authenticated GET request with application ID
+  1. User sends authenticated GET request to the application detail endpoint
   2. System validates authentication token
   3. System verifies user has access to application
   4. System finds no guarantors associated with application
-  5. System returns empty list
-- **Postconditions**: User receives empty guarantor list
+  5. System returns application data with empty guarantors list
+- **Postconditions**: User receives application data with empty guarantors list
 - **Request Example**:
   ```
-  GET /api/applications/124/guarantors/
+  GET /api/applications/124/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   ```
 - **Response Example (200 OK)**:
   ```json
-  []
+  {
+    "id": 124,
+    "reference_number": "A12346",
+    // ... other application fields
+    "guarantors": [],
+    // ... other application fields
+  }
   ```
 
 ## 9. Get Application Notes API
@@ -542,9 +638,10 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 ## 10. Add Application Note API
 
 ### API Details
-- **Endpoint**: `/api/applications/{id}/add-note/`
+- **Endpoint**: `/api/applications/{id}/add_note/`
 - **HTTP Method**: `POST`
 - **Authentication Required**: Yes
+- **Note**: The endpoint uses an underscore (`add_note`) rather than a hyphen (`add-note`) in the actual implementation.
 
 ### Use Cases
 
@@ -564,7 +661,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: New note is added to application
 - **Request Example**:
   ```
-  POST /api/applications/123/add-note/
+  POST /api/applications/123/add_note/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: application/json
 
@@ -600,7 +697,7 @@ This document outlines the use cases for the Application APIs in the CRM Loan Ma
 - **Postconditions**: No note is added to application
 - **Request Example**:
   ```
-  POST /api/applications/123/add-note/
+  POST /api/applications/123/add_note/
   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
   Content-Type: application/json
 

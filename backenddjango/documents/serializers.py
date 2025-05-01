@@ -106,23 +106,13 @@ class LedgerSerializer(serializers.ModelSerializer):
     Serializer for ledger entries
     """
     transaction_type_display = serializers.CharField(source='get_transaction_type_display', read_only=True)
-    created_by_name = serializers.StringRelatedField(source='created_by')
-    
-    class Meta:
-        model = Ledger
-        fields = '__all__'
-        read_only_fields = ['created_by', 'created_at']
-class LedgerSerializer(serializers.ModelSerializer):
-    """
-    Serializer for ledger entries
-    """
-    transaction_type_display = serializers.CharField(source='get_transaction_type_display', read_only=True)
     related_fee_type = serializers.CharField(source='related_fee.get_fee_type_display', read_only=True)
+    created_by_name = serializers.StringRelatedField(source='created_by')
     
     class Meta:
         model = Ledger
         fields = [
             'id', 'application', 'transaction_type', 'transaction_type_display',
             'amount', 'description', 'transaction_date', 'related_fee',
-            'related_fee_type', 'related_repayment', 'created_by', 'created_at'
+            'related_fee_type', 'related_repayment', 'created_by', 'created_by_name', 'created_at'
         ]

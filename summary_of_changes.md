@@ -2,7 +2,19 @@
 
 ## Issues Identified and Fixed
 
-### 1. Role-Based Access Control for Client Users
+### 1. Broker API Use Cases Documentation Verification
+
+In the file `/workspace/backenddjango/brokers/views.py`, we fixed discrepancies between the documented API use cases and the actual implementation:
+
+- **Problem**: The BranchViewSet's 'brokers' action used `branch.brokers.all()` but the model relationship was defined with `related_name='branch_brokers'`
+- **Solution**: Updated the 'brokers' action to use `branch.branch_brokers.all()` to match the model definition
+
+- **Problem**: The BranchViewSet's 'bdms' action used `branch.bdms.all()` but the model relationship was defined with `related_name='branch_bdms'`
+- **Solution**: Updated the 'bdms' action to use `branch.branch_bdms.all()` to match the model definition
+
+- **Added Tests**: Created a new test file `/workspace/backenddjango/tests/unit/test_broker_api.py` to verify that the branch-related API endpoints work correctly with the updated code
+
+### 2. Role-Based Access Control for Client Users
 
 In the file `/workspace/backenddjango/applications/views.py`, we implemented proper filtering for client users:
 

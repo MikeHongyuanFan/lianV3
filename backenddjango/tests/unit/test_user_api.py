@@ -289,10 +289,10 @@ class UserAPITest(TestCase):
         response = self.api_client.get(users_url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         
-        # Test non-admin access to user list
+        # Test non-admin access to user list (should be forbidden)
         self.api_client.force_authenticate(user=self.broker_user)
         response = self.api_client.get(users_url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)  # Can view but not modify
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         
         # Test non-admin trying to create user
         new_user_data = {
@@ -302,6 +302,28 @@ class UserAPITest(TestCase):
             'username': 'newuser'  # Add username parameter
         }
         response = self.api_client.post(users_url, new_user_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        
+    def test_user_detail_permissions(self):
+        """
+        Test user detail permissions
+        """
+        # Test admin access to any user's details
+        self.api_client.force_authenticate(user=self.admin_user)
+        user_detail_url = reverse('user-detail', args=[self.broker_user.id])
+        response = self.api_client.get(user_detail_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        # Test user access to their own details
+        self.api_client.force_authenticate(user=self.broker_user)
+        user_detail_url = reverse('user-detail', args=[self.broker_user.id])
+        response = self.api_client.get(user_detail_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        # Test user access to another user's details (should be forbidden)
+        self.api_client.force_authenticate(user=self.broker_user)
+        user_detail_url = reverse('user-detail', args=[self.client_user.id])
+        response = self.api_client.get(user_detail_url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         
     def test_get_notification_preferences(self):

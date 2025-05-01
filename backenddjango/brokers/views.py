@@ -42,7 +42,7 @@ class BranchViewSet(viewsets.ModelViewSet):
         Get all brokers for a branch
         """
         branch = self.get_object()
-        brokers = branch.brokers.all()
+        brokers = branch.branch_brokers.all()
         serializer = BrokerListSerializer(brokers, many=True)
         return Response(serializer.data)
     
@@ -52,7 +52,7 @@ class BranchViewSet(viewsets.ModelViewSet):
         Get all BDMs for a branch
         """
         branch = self.get_object()
-        bdms = branch.bdms.all()
+        bdms = branch.branch_bdms.all()
         serializer = BDMSerializer(bdms, many=True)
         return Response(serializer.data)
 

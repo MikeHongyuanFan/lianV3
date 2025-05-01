@@ -366,3 +366,18 @@ class ApplicationBorrowerSerializer(serializers.Serializer):
         child=serializers.IntegerField(),
         min_length=1
     )
+
+class ApplicationListSerializer(serializers.ModelSerializer):
+    """Serializer for listing applications with summary information"""
+    stage_display = serializers.CharField(source='get_stage_display', read_only=True)
+    borrower_count = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Application
+        fields = [
+            'id', 'reference_number', 'loan_amount', 'stage', 'stage_display',
+            'application_type', 'created_at', 'estimated_settlement_date', 'borrower_count'
+        ]
+    
+    def get_borrower_count(self, obj):
+        return obj.borrowers.count()

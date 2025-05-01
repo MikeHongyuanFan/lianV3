@@ -31,8 +31,8 @@ This document outlines the use cases for the authentication APIs in the CRM Loan
 - **Response Example (200 OK)**:
   ```json
   {
-    "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
     "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
+    "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
     "user_id": 42,
     "email": "user@example.com",
     "role": "broker",
@@ -99,7 +99,7 @@ This document outlines the use cases for the authentication APIs in the CRM Loan
 - **Description**: New user registers an account in the system
 - **Preconditions**: Email is not already registered
 - **Steps**:
-  1. User provides registration details (email, password, name, role)
+  1. User provides registration details (email, password, first_name, last_name, role)
   2. System validates input data
   3. System creates new user account
   4. System generates JWT access and refresh tokens
@@ -110,7 +110,6 @@ This document outlines the use cases for the authentication APIs in the CRM Loan
   {
     "email": "newuser@example.com",
     "password": "securepassword123",
-    "password2": "securepassword123",
     "first_name": "Jane",
     "last_name": "Doe",
     "role": "client"
@@ -142,7 +141,6 @@ This document outlines the use cases for the authentication APIs in the CRM Loan
   {
     "email": "existing@example.com",
     "password": "securepassword123",
-    "password2": "securepassword123",
     "first_name": "Jane",
     "last_name": "Doe",
     "role": "client"
@@ -151,38 +149,11 @@ This document outlines the use cases for the authentication APIs in the CRM Loan
 - **Response Example (400 Bad Request)**:
   ```json
   {
-    "email": ["User with this email already exists."]
+    "email": ["user with this email address already exists."]
   }
   ```
 
-#### 2.3 Failed Registration (Password Mismatch)
-- **Actor**: New user
-- **Description**: User attempts to register with non-matching passwords
-- **Preconditions**: None
-- **Steps**:
-  1. User provides registration details with mismatched passwords
-  2. System validates input and finds passwords don't match
-  3. System returns validation error
-- **Postconditions**: No new user is created
-- **Request Example**:
-  ```json
-  {
-    "email": "newuser@example.com",
-    "password": "securepassword123",
-    "password2": "differentpassword",
-    "first_name": "Jane",
-    "last_name": "Doe",
-    "role": "client"
-  }
-  ```
-- **Response Example (400 Bad Request)**:
-  ```json
-  {
-    "password2": ["Passwords must match."]
-  }
-  ```
-
-#### 2.4 Failed Registration (Invalid Role)
+#### 2.3 Failed Registration (Invalid Role)
 - **Actor**: New user
 - **Description**: User attempts to register with an invalid role
 - **Preconditions**: None
@@ -196,7 +167,6 @@ This document outlines the use cases for the authentication APIs in the CRM Loan
   {
     "email": "newuser@example.com",
     "password": "securepassword123",
-    "password2": "securepassword123",
     "first_name": "Jane",
     "last_name": "Doe",
     "role": "invalid_role"
@@ -205,7 +175,7 @@ This document outlines the use cases for the authentication APIs in the CRM Loan
 - **Response Example (400 Bad Request)**:
   ```json
   {
-    "role": ["Invalid role. Choose from: admin, broker, bd, client."]
+    "role": ["\"invalid_role\" is not a valid choice."]
   }
   ```
 
@@ -259,7 +229,8 @@ This document outlines the use cases for the authentication APIs in the CRM Loan
 - **Response Example (401 Unauthorized)**:
   ```json
   {
-    "detail": "Token is invalid or expired"
+    "detail": "Token is invalid or expired",
+    "code": "token_not_valid"
   }
   ```
 
