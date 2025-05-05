@@ -2,6 +2,14 @@ from rest_framework import serializers
 from .models import User, Notification, NotificationPreference
 
 
+class UserLoginSerializer(serializers.Serializer):
+    """
+    Serializer for user login
+    """
+    email = serializers.EmailField()
+    password = serializers.CharField(style={'input_type': 'password'})
+
+
 class UserSerializer(serializers.ModelSerializer):
     """
     Serializer for User model
