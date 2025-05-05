@@ -1,370 +1,241 @@
+# API Documentation for CRM Loan Management System
+
+This document provides detailed information about the API endpoints available in the CRM Loan Management System. The API is built using Django REST Framework and follows RESTful principles.
+
+## Authentication
+
+The API uses JWT (JSON Web Token) authentication. To access protected endpoints, you need to include the JWT token in the Authorization header:
+
+```
+Authorization: Bearer <your_token>
+```
+
+### Authentication Endpoints
+
+- **POST /api/users/login/**: Obtain JWT token by providing username and password
+- **POST /api/users/refresh/**: Refresh JWT token
+- **POST /api/users/register/**: Register a new user
+- **GET /api/users/me/**: Get current user information
+
+## Applications
+
+Applications are the core entity in the system, representing loan applications.
+
+### Endpoints
+
+- **GET /api/applications/**: List all applications
+- **POST /api/applications/**: Create a new application
+- **GET /api/applications/{id}/**: Get application details
+- **PUT /api/applications/{id}/**: Update application
+- **PATCH /api/applications/{id}/**: Partially update application
+- **DELETE /api/applications/{id}/**: Delete application
+- **POST /api/applications/{id}/status/**: Update application status
+- **GET /api/applications/{id}/documents/**: List application documents
+- **POST /api/applications/{id}/documents/**: Upload document to application
+- **GET /api/applications/{id}/notes/**: List application notes
+- **POST /api/applications/{id}/notes/**: Add note to application
+- **GET /api/applications/{id}/fees/**: List application fees
+- **POST /api/applications/{id}/fees/**: Add fee to application
+- **GET /api/applications/{id}/repayments/**: List application repayments
+- **POST /api/applications/{id}/repayments/**: Add repayment to application
+- **GET /api/applications/{id}/ledger/**: Get application ledger entries
 
-# CRM Loan Management System API Documentation
+## Borrowers
 
-## Overview
+Borrowers represent individuals or companies applying for loans.
 
-This document provides a comprehensive overview of all API services in the CRM Loan Management System, including their references, functions, and 
-relationships. The system is built with Django and Django REST Framework on the backend, with Vue 3 and Pinia on the frontend.
+### Endpoints
 
-## Authentication Services
+- **GET /api/borrowers/**: List all borrowers
+- **POST /api/borrowers/**: Create a new borrower
+- **GET /api/borrowers/{id}/**: Get borrower details
+- **PUT /api/borrowers/{id}/**: Update borrower
+- **PATCH /api/borrowers/{id}/**: Partially update borrower
+- **DELETE /api/borrowers/{id}/**: Delete borrower
+- **GET /api/borrowers/{id}/applications/**: List borrower applications
+- **GET /api/borrowers/{id}/assets/**: List borrower assets
+- **POST /api/borrowers/{id}/assets/**: Add asset to borrower
+- **GET /api/borrowers/{id}/liabilities/**: List borrower liabilities
+- **POST /api/borrowers/{id}/liabilities/**: Add liability to borrower
+- **GET /api/borrowers/{id}/guarantors/**: List borrower guarantors
+- **POST /api/borrowers/{id}/guarantors/**: Add guarantor to borrower
+- **GET /api/borrowers/{id}/financial-summary/**: Get borrower financial summary
 
-### JWT Authentication API
+## Brokers
 
-Reference: /api/auth/
+Brokers represent intermediaries who submit loan applications on behalf of borrowers.
 
-Functions:
-• POST /api/auth/token/ - Obtain JWT token pair (access and refresh tokens)
-• POST /api/auth/token/refresh/ - Refresh access token
-• POST /api/auth/token/verify/ - Verify token validity
+### Endpoints
 
-Relationships:
-• Used by all frontend services for authentication
-• Required for accessing protected API endpoints
-• Integrated with user roles and permissions system
+- **GET /api/brokers/**: List all brokers
+- **POST /api/brokers/**: Create a new broker
+- **GET /api/brokers/{id}/**: Get broker details
+- **PUT /api/brokers/{id}/**: Update broker
+- **PATCH /api/brokers/{id}/**: Partially update broker
+- **DELETE /api/brokers/{id}/**: Delete broker
+- **GET /api/brokers/{id}/applications/**: List broker applications
+- **GET /api/brokers/branches/**: List all branches
+- **POST /api/brokers/branches/**: Create a new branch
+- **GET /api/brokers/branches/{id}/**: Get branch details
+- **PUT /api/brokers/branches/{id}/**: Update branch
+- **DELETE /api/brokers/branches/{id}/**: Delete branch
+- **GET /api/brokers/bdms/**: List all BDMs (Business Development Managers)
+- **POST /api/brokers/bdms/**: Create a new BDM
+- **GET /api/brokers/bdms/{id}/**: Get BDM details
+- **PUT /api/brokers/bdms/{id}/**: Update BDM
+- **DELETE /api/brokers/bdms/{id}/**: Delete BDM
 
-## User Management Services
+## Documents
 
-### User API
+Documents represent files attached to applications, borrowers, or other entities.
 
-Reference: /api/users/
+### Endpoints
 
-Functions:
-• GET /api/users/ - List all users (admin only)
-• POST /api/users/ - Create new user
-• GET /api/users/{id}/ - Retrieve user details
-• PUT /api/users/{id}/ - Update user details
-• DELETE /api/users/{id}/ - Delete user (admin only)
-• GET /api/users/me/ - Get current user profile
+- **GET /api/documents/**: List all documents
+- **POST /api/documents/**: Upload a new document
+- **GET /api/documents/{id}/**: Get document details
+- **PUT /api/documents/{id}/**: Update document metadata
+- **DELETE /api/documents/{id}/**: Delete document
+- **GET /api/documents/{id}/download/**: Download document file
+- **POST /api/documents/{id}/versions/**: Create a new version of a document
+- **GET /api/documents/{id}/versions/**: List document versions
 
-Relationships:
-• Connected to Broker, BDM, and Borrower models through one-to-one relationships
-• Used by authentication services for user validation
-• Referenced by notification services for user targeting
+## Products
 
-### Notification API
+Products represent loan products offered by the company.
 
-Reference: /api/notifications/
+### Endpoints
 
-Functions:
-• GET /api/notifications/ - List notifications for current user
-• GET /api/notifications/{id}/ - Get notification details
-• PUT /api/notifications/{id}/read/ - Mark notification as read
-• PUT /api/notifications/read-all/ - Mark all notifications as read
-• GET /api/notifications/unread-count/ - Get count of unread notifications
+- **GET /api/products/**: List all products
+- **POST /api/products/**: Create a new product
+- **GET /api/products/{id}/**: Get product details
+- **PUT /api/products/{id}/**: Update product
+- **PATCH /api/products/{id}/**: Partially update product
+- **DELETE /api/products/{id}/**: Delete product
+- **GET /api/products/{id}/applications/**: List applications for a product
 
-Relationships:
-• Connected to User model (notifications belong to users)
-• Used by WebSocket services for real-time notifications
-• Referenced by application status changes, repayment reminders, and document uploads
+## Reports
 
-### Notification Preferences API
+Reports provide aggregated data and analytics.
 
-Reference: /api/notification-preferences/
+### Endpoints
 
-Functions:
-• GET /api/notification-preferences/ - Get current user's notification preferences
-• PUT /api/notification-preferences/ - Update notification preferences
+- **GET /api/reports/repayment-compliance/**: Get repayment compliance report
+- **GET /api/reports/application-volume/**: Get application volume report
+- **GET /api/reports/application-status/**: Get application status report
 
-Relationships:
-• Connected to User model (one-to-one)
-• Used by notification service to determine delivery methods
-• Controls email and in-app notification behavior
+## Reminders
 
-## Application Management Services
+Reminders are notifications scheduled for future delivery.
 
-### Application API
+### Endpoints
 
-Reference: /api/applications/
+- **GET /api/reminders/**: List all reminders
+- **POST /api/reminders/**: Create a new reminder
+- **GET /api/reminders/{id}/**: Get reminder details
+- **PUT /api/reminders/{id}/**: Update reminder
+- **DELETE /api/reminders/{id}/**: Delete reminder
+- **POST /api/reminders/{id}/send-now/**: Send reminder immediately
 
-Functions:
-• GET /api/applications/ - List applications (filtered by user role)
-• POST /api/applications/ - Create new application
-• GET /api/applications/{id}/ - Get application details
-• PUT /api/applications/{id}/ - Update application
-• DELETE /api/applications/{id}/ - Delete application
-• PUT /api/applications/{id}/stage/ - Update application stage
-• POST /api/applications/{id}/sign/ - Process signature for application
-• GET /api/applications/stats/ - Get application statistics
+## Notifications
 
-Relationships:
-• Connected to Borrower models (many-to-many)
-• Connected to Broker model (foreign key)
-• Connected to BDM model (foreign key)
-• Referenced by Documents, Repayments, Notes, and Fees
-• Triggers notifications on status changes
+Notifications inform users about events in the system.
 
-### Application Search API
+### Endpoints
 
-Reference: /api/applications/search/
+- **GET /api/users/notifications/**: List user notifications
+- **GET /api/users/notifications/count/**: Get unread notification count
+- **POST /api/users/notifications/{id}/read/**: Mark notification as read
+- **POST /api/users/notifications/read-all/**: Mark all notifications as read
 
-Functions:
-• GET /api/applications/search/ - Search applications with filters
+## WebSockets
 
-Relationships:
-• Uses Application model
-• Provides advanced filtering capabilities for the frontend
+The system uses WebSockets for real-time notifications. WebSocket connections are authenticated using JWT tokens.
 
-## Borrower Management Services
+### WebSocket Endpoints
 
-### Borrower API
+- **ws://localhost:8000/ws/notifications/**: Notifications WebSocket endpoint
 
-Reference: /api/borrowers/
+## Data Models
 
-Functions:
-• GET /api/borrowers/ - List borrowers
-• POST /api/borrowers/ - Create new borrower
-• GET /api/borrowers/{id}/ - Get borrower details
-• PUT /api/borrowers/{id}/ - Update borrower
-• DELETE /api/borrowers/{id}/ - Delete borrower
-• GET /api/borrowers/{id}/financial-summary/ - Get borrower financial summary
+The API is built around the following core data models:
 
-Relationships:
-• Connected to User model (optional one-to-one)
-• Connected to Application models (many-to-many)
-• Referenced by Assets and Liabilities
-• Referenced by Guarantors
-
-### Asset API
+- **User**: System users with different roles (admin, staff, broker, borrower)
+- **Application**: Loan applications with status workflow
+- **Borrower**: Individual or company applying for a loan
+- **Guarantor**: Individual or company guaranteeing a loan
+- **Broker**: Intermediary submitting applications
+- **Document**: Files attached to applications or other entities
+- **Product**: Loan products offered by the company
+- **Fee**: Fees associated with applications
+- **Repayment**: Scheduled repayments for loans
+- **Notification**: System notifications for users
+- **Reminder**: Scheduled reminders for future actions
 
-Reference: /api/assets/
+## Error Handling
 
-Functions:
-• GET /api/assets/ - List assets for a borrower
-• POST /api/assets/ - Create new asset
-• GET /api/assets/{id}/ - Get asset details
-• PUT /api/assets/{id}/ - Update asset
-• DELETE /api/assets/{id}/ - Delete asset
+The API returns standard HTTP status codes:
 
-Relationships:
-• Connected to Borrower model (foreign key)
-• Used in financial summary calculations
+- **200 OK**: Request succeeded
+- **201 Created**: Resource created successfully
+- **400 Bad Request**: Invalid request parameters
+- **401 Unauthorized**: Authentication required
+- **403 Forbidden**: Permission denied
+- **404 Not Found**: Resource not found
+- **500 Internal Server Error**: Server error
 
-### Liability API
+Error responses include a JSON body with error details:
 
-Reference: /api/liabilities/
+```json
+{
+  "detail": "Error message",
+  "code": "error_code",
+  "errors": {
+    "field_name": ["Error message for field"]
+  }
+}
+```
 
-Functions:
-• GET /api/liabilities/ - List liabilities for a borrower
-• POST /api/liabilities/ - Create new liability
-• GET /api/liabilities/{id}/ - Get liability details
-• PUT /api/liabilities/{id}/ - Update liability
-• DELETE /api/liabilities/{id}/ - Delete liability
+## Pagination
 
-Relationships:
-• Connected to Borrower model (foreign key)
-• Used in financial summary calculations
+List endpoints support pagination with the following query parameters:
 
-### Guarantor API
-
-Reference: /api/guarantors/
+- **page**: Page number (default: 1)
+- **page_size**: Number of items per page (default: 10)
 
-Functions:
-• GET /api/guarantors/ - List guarantors for an application
-• POST /api/guarantors/ - Create new guarantor
-• GET /api/guarantors/{id}/ - Get guarantor details
-• PUT /api/guarantors/{id}/ - Update guarantor
-• DELETE /api/guarantors/{id}/ - Delete guarantor
+Paginated responses include:
 
-Relationships:
-• Connected to Borrower model (foreign key)
-• Connected to Application model (foreign key)
+```json
+{
+  "count": 100,
+  "next": "http://api.example.com/items/?page=3",
+  "previous": "http://api.example.com/items/?page=1",
+  "results": [
+    // items
+  ]
+}
+```
 
-## Broker Management Services
+## Filtering and Sorting
 
-### Broker API
+Many list endpoints support filtering and sorting:
 
-Reference: /api/brokers/
+- **Filtering**: Use query parameters matching field names (e.g., `?status=approved`)
+- **Sorting**: Use the `ordering` parameter (e.g., `?ordering=created_at` or `?ordering=-created_at` for descending)
 
-Functions:
-• GET /api/brokers/ - List brokers
-• POST /api/brokers/ - Create new broker
-• GET /api/brokers/{id}/ - Get broker details
-• PUT /api/brokers/{id}/ - Update broker
-• DELETE /api/brokers/{id}/ - Delete broker
-• GET /api/brokers/{id}/applications/ - Get broker's applications
-• GET /api/brokers/{id}/commissions/ - Get broker's commissions
+## API Versioning
 
-Relationships:
-• Connected to User model (one-to-one)
-• Connected to Branch model (foreign key)
-• Referenced by Application model
-• Referenced by Commission model
+The API is versioned through the URL path. The current version is v1, which is implicit in the API paths.
 
-### Branch API
-
-Reference: /api/branches/
+## Rate Limiting
 
-Functions:
-• GET /api/branches/ - List branches
-• POST /api/branches/ - Create new branch
-• GET /api/branches/{id}/ - Get branch details
-• PUT /api/branches/{id}/ - Update branch
-• DELETE /api/branches/{id}/ - Delete branch
-• GET /api/branches/{id}/brokers/ - Get brokers in branch
-• GET /api/branches/{id}/bdms/ - Get BDMs in branch
+API requests are rate-limited to prevent abuse. The limits are:
 
-Relationships:
-• Referenced by Broker model
-• Referenced by BDM model
+- **Authenticated users**: 100 requests per minute
+- **Anonymous users**: 20 requests per minute
 
-### BDM (Business Development Manager) API
+Rate limit headers are included in responses:
 
-Reference: /api/bdms/
-
-Functions:
-• GET /api/bdms/ - List BDMs
-• POST /api/bdms/ - Create new BDM
-• GET /api/bdms/{id}/ - Get BDM details
-• PUT /api/bdms/{id}/ - Update BDM
-• DELETE /api/bdms/{id}/ - Delete BDM
-• GET /api/bdms/{id}/applications/ - Get BDM's applications
-
-Relationships:
-• Connected to User model (one-to-one)
-• Connected to Branch model (foreign key)
-• Referenced by Application model
-
-## Document Management Services
-
-### Document API
-
-Reference: /api/documents/
-
-Functions:
-• GET /api/documents/ - List documents for an application
-• POST /api/documents/ - Upload new document
-• GET /api/documents/{id}/ - Get document details
-• PUT /api/documents/{id}/ - Update document metadata
-• DELETE /api/documents/{id}/ - Delete document
-• GET /api/documents/{id}/download/ - Download document
-• POST /api/documents/generate/{template}/ - Generate document from template
-
-Relationships:
-• Connected to Application model (foreign key)
-• Triggers notifications on document upload
-• Referenced by signature processes
-
-### Note API
-
-Reference: /api/notes/
-
-Functions:
-• GET /api/notes/ - List notes for an application
-• POST /api/notes/ - Create new note
-• GET /api/notes/{id}/ - Get note details
-• PUT /api/notes/{id}/ - Update note
-• DELETE /api/notes/{id}/ - Delete note
-• GET /api/notes/reminders/ - Get notes with upcoming reminders
-
-Relationships:
-• Connected to Application model (foreign key)
-• Triggers reminder notifications based on remind_date
-
-## Financial Services
-
-### Fee API
-
-Reference: /api/fees/
-
-Functions:
-• GET /api/fees/ - List fees for an application
-• POST /api/fees/ - Create new fee
-• GET /api/fees/{id}/ - Get fee details
-• PUT /api/fees/{id}/ - Update fee
-• DELETE /api/fees/{id}/ - Delete fee
-• POST /api/fees/standard/ - Create standard fees for an application
-
-Relationships:
-• Connected to Application model (foreign key)
-• Referenced in financial calculations
-
-### Repayment API
-
-Reference: /api/repayments/
-
-Functions:
-• GET /api/repayments/ - List repayments for an application
-• POST /api/repayments/ - Create new repayment
-• GET /api/repayments/{id}/ - Get repayment details
-• PUT /api/repayments/{id}/ - Update repayment
-• DELETE /api/repayments/{id}/ - Delete repayment
-• POST /api/repayments/schedule/ - Generate repayment schedule
-• GET /api/repayments/upcoming/ - Get upcoming repayments
-• GET /api/repayments/overdue/ - Get overdue repayments
-
-Relationships:
-• Connected to Application model (foreign key)
-• Triggers notifications for upcoming and overdue repayments
-
-### Commission API
-
-Reference: /api/commissions/
-
-Functions:
-• GET /api/commissions/ - List commissions
-• POST /api/commissions/ - Create new commission
-• GET /api/commissions/{id}/ - Get commission details
-• PUT /api/commissions/{id}/ - Update commission
-• DELETE /api/commissions/{id}/ - Delete commission
-• POST /api/commissions/calculate/ - Calculate commission for an application
-
-Relationships:
-• Connected to Application model (foreign key)
-• Connected to Broker model (foreign key)
-• Referenced in financial reports
-
-## Real-time Services
-
-### WebSocket Notification Service
-
-Reference: /ws/notifications/
-
-Functions:
-• Real-time notification delivery
-• Unread notification count updates
-• Connection authentication via JWT
-
-Relationships:
-• Connected to User model for authentication
-• Connected to Notification model for data
-• Used by frontend notification center
-
-## Reporting Services
-
-### Report API
-
-Reference: /api/reports/
-
-Functions:
-• GET /api/reports/applications/ - Get application reports
-• GET /api/reports/repayments/ - Get repayment compliance reports
-• GET /api/reports/brokers/ - Get broker performance reports
-• GET /api/reports/revenue/ - Get revenue reports
-
-Relationships:
-• Uses data from Applications, Repayments, Brokers, and Fees
-• Provides aggregated data for dashboard visualizations
-
-## API Relationships Diagram
-
-User ─┬─ Broker ─┬─ Application ─┬─ Document
-      │          │               ├─ Note
-      │          │               ├─ Fee
-      │          │               ├─ Repayment
-      │          │               └─ Commission
-      │          │
-      │          └─ Branch
-      │
-      ├─ BDM ────┬─ Application
-      │          │
-      │          └─ Branch
-      │
-      ├─ Borrower ┬─ Application
-      │           ├─ Asset
-      │           ├─ Liability
-      │           └─ Guarantor
-      │
-      └─ Notification ─── NotificationPreference
-                      │
-                      └─── WebSocket Connection
-
+- **X-RateLimit-Limit**: Maximum requests per period
+- **X-RateLimit-Remaining**: Remaining requests in current period
+- **X-RateLimit-Reset**: Seconds until rate limit reset

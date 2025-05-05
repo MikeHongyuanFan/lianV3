@@ -27,4 +27,13 @@ urlpatterns = [
     
     # Application sign
     path('<int:pk>/sign/', views.ApplicationViewSet.as_view({'post': 'sign'}), name='application-sign'),
+    
+    # Application loan extension
+    path('<int:pk>/extend-loan/', views.ApplicationViewSet.as_view({'post': 'extend_loan'}), name='application-extend-loan'),
+    
+    # Funding calculation
+    path('<int:pk>/funding-calculation/', views.ApplicationViewSet.as_view({'post': 'funding_calculation'}), name='application-funding-calculation'),
+    
+    # Funding calculation history
+    path('<int:pk>/funding-calculation-history/', views.ApplicationViewSet.as_view({'get': 'funding_calculation_history'}), name='application-funding-calculation-history'),
 ]

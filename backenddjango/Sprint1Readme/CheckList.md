@@ -6,18 +6,16 @@
  - Perform product delete action.
 
 ## Relationships##
- - Product connnect to application, one application can have ? products?(Unknown)
- - One product can be owned by mutipual applications? (Unknown)
- - Relationship to borrowers(Unknown)
- - Relationship to brokers(Unknown)
- - Relationship to branches (Unknown)
- - Relationship to document (Unknown)
- - Relationship to note (Unknown)
+ - Product connnect to application, one application can have 1  ? products?(Mutipual application)
+ - One product can be owned by mutipual applications? (Yes)
+ - Relationship to borrowers (Connect Borrower to many product)
+ - Relationship to brokers non 
+ - Relationship to branches (non)
+ - Relationship to document (yes one document have mutipual product)
  
 ## Input fields##
- - No information provided for product input fields
- - No information provided for get action for receving data for each apis
-
+ 
+List of names. 
 ### Calculator### 
 
 The Funding Calculator system enhances the CRM Loan Management System by providing:
@@ -50,7 +48,7 @@ The Funding Calculator system enhances the CRM Loan Management System by providi
     "security_type": "residential",
     "security_value": 650000.00,
 
-    Calculator action: Receive data input from previous stage? or manually input again? 
+    Automaticly input Calculator action: Receive data input from previous stage? or manually input again? 
 
     "borrowers": [
       {
@@ -125,7 +123,7 @@ Allow users to send emails that appear from another user (e.g., assistants sendi
    - Validations: user permissions, email format
 
 5. **UI**
-   - Dropdown on email form to select sender identity (if permitted)
+   - Dropdown on email form to select sender identity (if permitted) 
 
 ### Where for this api service, we need to verify with client is this API functional design is correctly implemented the client's needs.###
 
@@ -134,3 +132,8 @@ Allow users to send emails that appear from another user (e.g., assistants sendi
 
 ### Stage Name Updates
 What will be the new updated stage names? 
+Sent to Lender/ Funding Table Issued/ ILOO Issued/ ILOO Signed, Commitment Fee Paid/ App Submitted/ Valuation Ordered/ Valuation Received/ More Info Required/ Formal Approval/ Loan Docs Instructed/ Loan Docs Issued/ Loan Docs Signed/ Settlement Conditions/ Settled / Closed
+### Email Generate docs file function
+What we need to check with client is: 
+- The generated document should be downloaded YES? Or store in the system? YES
+

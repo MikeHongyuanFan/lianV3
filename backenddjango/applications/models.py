@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.utils.crypto import get_random_string
+from django.utils import timezone
+from django.db.models import JSONField
 from brokers.models import Broker, Branch, BDM
 
 
@@ -17,11 +19,22 @@ class Application(models.Model):
     """
     STAGE_CHOICES = [
         ('inquiry', 'Inquiry'),
-        ('pre_approval', 'Pre-Approval'),
-        ('valuation', 'Valuation'),
+        ('sent_to_lender', 'Sent to Lender'),
+        ('funding_table_issued', 'Funding Table Issued'),
+        ('iloo_issued', 'ILOO Issued'),
+        ('iloo_signed', 'ILOO Signed'),
+        ('commitment_fee_paid', 'Commitment Fee Paid'),
+        ('app_submitted', 'App Submitted'),
+        ('valuation_ordered', 'Valuation Ordered'),
+        ('valuation_received', 'Valuation Received'),
+        ('more_info_required', 'More Info Required'),
         ('formal_approval', 'Formal Approval'),
-        ('settlement', 'Settlement'),
-        ('funded', 'Funded'),
+        ('loan_docs_instructed', 'Loan Docs Instructed'),
+        ('loan_docs_issued', 'Loan Docs Issued'),
+        ('loan_docs_signed', 'Loan Docs Signed'),
+        ('settlement_conditions', 'Settlement Conditions'),
+        ('settled', 'Settled'),
+        ('closed', 'Closed'),
         ('declined', 'Declined'),
         ('withdrawn', 'Withdrawn'),
     ]
@@ -45,7 +58,8 @@ class Application(models.Model):
     
     # Basic application details
     reference_number = models.CharField(max_length=20, unique=True, default=generate_reference_number)
-    stage = models.CharField(max_length=20, choices=STAGE_CHOICES, default='inquiry')
+    stage = models.CharField(max_length=25, choices=STAGE_CHOICES, default='inquiry')
+    stage_last_updated = models.DateTimeField(default=timezone.now)  # Track when stage was last updated
     application_type = models.CharField(max_length=20, choices=APPLICATION_TYPE_CHOICES, null=True, blank=True)
     purpose = models.TextField(null=True, blank=True, default='')
     
@@ -56,6 +70,9 @@ class Application(models.Model):
     repayment_frequency = models.CharField(max_length=20, choices=REPAYMENT_FREQUENCY_CHOICES, default='monthly')
     product_id = models.CharField(max_length=50, null=True, blank=True)
     estimated_settlement_date = models.DateField(null=True, blank=True)
+    
+    # Funding calculation result
+    funding_result = JSONField(null=True, blank=True, help_text="Stores the current funding calculation result")
     
     # Relationships
     broker = models.ForeignKey(Broker, on_delete=models.SET_NULL, null=True, related_name='broker_applications')
@@ -104,6 +121,14 @@ class Application(models.Model):
         # Generate reference number if not provided
         if not self.reference_number:
             self.reference_number = generate_reference_number()
+        
+        # Check if stage has changed
+        if self.pk:
+            old_instance = Application.objects.get(pk=self.pk)
+            if old_instance.stage != self.stage:
+                from django.utils import timezone
+                self.stage_last_updated = timezone.now()
+        
         super().save(*args, **kwargs)
 
 class Document(models.Model):
@@ -170,6 +195,24 @@ class Fee(models.Model):
         fee_type = self.get_fee_type_display() if self.fee_type else "Fee"
         amount = self.amount if self.amount else 0
         return f"{fee_type} - {amount}"
+
+
+class FundingCalculationHistory(models.Model):
+    """
+    Model for storing funding calculation history for auditing and compliance
+    """
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='funding_calculations')
+    calculation_input = JSONField(help_text="Full set of manual input fields used during calculation")
+    calculation_result = JSONField(help_text="Computed funding breakdown (all fees, funds available)")
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name='funding_calculations')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name_plural = "Funding calculation histories"
+
+    def __str__(self):
+        return f"Funding calculation for {self.application.reference_number} at {self.created_at}"
 
 
 class Repayment(models.Model):

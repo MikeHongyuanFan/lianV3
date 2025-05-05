@@ -3,12 +3,14 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Application, Document, Fee, Repayment
+from .models import Application, Document, Fee, Repayment, FundingCalculationHistory
 from .serializers import (
     ApplicationDetailSerializer, ApplicationCreateSerializer,
-    ApplicationStageUpdateSerializer, ApplicationBorrowerSerializer
+    ApplicationStageUpdateSerializer, ApplicationBorrowerSerializer,
+    LoanExtensionSerializer, FundingCalculationInputSerializer,
+    FundingCalculationHistorySerializer
 )
-from .services import update_application_stage, process_signature_data
+from .services import update_application_stage, process_signature_data, extend_loan, calculate_funding
 from users.permissions import IsAdmin, IsAdminOrBroker, IsAdminOrBD, IsOwnerOrAdmin
 from documents.models import Note, Ledger
 from documents.serializers import NoteSerializer, DocumentSerializer, FeeSerializer, RepaymentSerializer, LedgerSerializer
@@ -77,6 +79,12 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         elif self.action == 'sign':
             from .serializers import ApplicationSignatureSerializer
             return ApplicationSignatureSerializer
+        elif self.action == 'extend_loan':
+            return LoanExtensionSerializer
+        elif self.action == 'funding_calculation':
+            return FundingCalculationInputSerializer
+        elif self.action == 'funding_calculation_history':
+            return FundingCalculationHistorySerializer
         return ApplicationDetailSerializer
     
     def get_permissions(self):
@@ -87,6 +95,8 @@ class ApplicationViewSet(viewsets.ModelViewSet):
             permission_classes = [IsAuthenticated, IsAdminOrBroker]
         elif self.action in ['update_stage']:
             permission_classes = [IsAuthenticated, IsAdminOrBD]
+        elif self.action in ['extend_loan']:
+            permission_classes = [IsAuthenticated, IsAdmin]
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
@@ -506,3 +516,78 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         
         # Return updated application
         return Response(ApplicationDetailSerializer(updated_application, context={'request': request}).data)
+        
+    @action(detail=True, methods=['post'])
+    def funding_calculation(self, request, pk=None):
+        """
+        Create or update funding calculation for an application
+        """
+        application = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        try:
+            # Call the service function to calculate funding
+            calculation_result, funding_history = calculate_funding(
+                application=application,
+                calculation_input=serializer.validated_data,
+                user=request.user
+            )
+            
+            # Create note about funding calculation
+            Note.objects.create(
+                application=application,
+                content=f"Funding calculation performed: Total fees ${calculation_result['total_fees']}, Funds available ${calculation_result['funds_available']}",
+                created_by=request.user
+            )
+            
+            # Return the calculation result
+            return Response({
+                'calculation_result': calculation_result,
+                'application': ApplicationDetailSerializer(application, context={'request': request}).data
+            })
+            
+        except ValueError as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'error': f"An unexpected error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    @action(detail=True, methods=['get'])
+    def funding_calculation_history(self, request, pk=None):
+        """
+        Get funding calculation history for an application
+        """
+        application = self.get_object()
+        history = FundingCalculationHistory.objects.filter(application=application).order_by('-created_at')
+        serializer = FundingCalculationHistorySerializer(history, many=True, context={'request': request})
+        return Response(serializer.data)
+        
+    @action(detail=True, methods=['post'])
+    def extend_loan(self, request, pk=None):
+        """
+        Extend a loan with new terms and regenerate repayment schedule
+        """
+        application = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        try:
+            # Call the service function to extend the loan
+            updated_application, new_repayments = extend_loan(
+                application_id=pk,
+                new_rate=serializer.validated_data['new_rate'],
+                new_loan_amount=serializer.validated_data['new_loan_amount'],
+                new_repayment=serializer.validated_data['new_repayment'],
+                user=request.user
+            )
+            
+            # Return the updated application with repayments
+            return Response({
+                'application': ApplicationDetailSerializer(updated_application, context={'request': request}).data,
+                'repayments': RepaymentSerializer(new_repayments, many=True, context={'request': request}).data
+            })
+            
+        except ValueError as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'error': f"An unexpected error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

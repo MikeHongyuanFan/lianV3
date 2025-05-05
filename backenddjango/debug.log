@@ -2510,3 +2510,1178 @@ Traceback (most recent call last):
     raise SuspiciousFileOperation(
 django.core.exceptions.SuspiciousFileOperation: The joined path (/tmp/tmpod3hydja.pdf) is located outside of the base path component (/app/media)
 WARNING 2025-04-25 01:08:39,879 log Bad Request: /api/documents/documents/1/download/
+WARNING 2025-05-01 04:57:52,424 log Bad Request: /api/applications/1/extend-loan/
+WARNING 2025-05-01 04:57:52,426 log Bad Request: /api/applications/1/extend-loan/
+WARNING 2025-05-01 04:57:52,428 log Bad Request: /api/applications/1/extend-loan/
+WARNING 2025-05-01 04:57:52,596 log Not Found: /api/applications/99999/extend-loan/
+WARNING 2025-05-01 04:57:52,927 log Not Found: /api/applications/1/extend-loan/
+WARNING 2025-05-01 04:59:37,621 log Bad Request: /api/applications/1/extend-loan/
+WARNING 2025-05-01 04:59:37,624 log Bad Request: /api/applications/1/extend-loan/
+WARNING 2025-05-01 04:59:37,625 log Bad Request: /api/applications/1/extend-loan/
+WARNING 2025-05-01 04:59:37,800 log Not Found: /api/applications/99999/extend-loan/
+WARNING 2025-05-01 04:59:38,169 log Forbidden: /api/applications/1/extend-loan/
+WARNING 2025-05-01 05:49:52,755 log Unauthorized: /api/products/products/
+WARNING 2025-05-01 07:15:30,552 log Forbidden: /api/reminders/
+WARNING 2025-05-01 07:15:31,972 log Not Found: /api/reminders/1/
+WARNING 2025-05-01 07:15:32,477 log Bad Request: /api/reminders/
+WARNING 2025-05-01 07:15:32,479 log Bad Request: /api/reminders/
+WARNING 2025-05-01 07:17:56,289 log Forbidden: /api/reminders/
+WARNING 2025-05-01 07:17:57,695 log Not Found: /api/reminders/1/
+WARNING 2025-05-01 07:17:58,200 log Bad Request: /api/reminders/
+WARNING 2025-05-01 07:17:58,203 log Bad Request: /api/reminders/
+WARNING 2025-05-01 07:24:38,989 log Forbidden: /api/reminders/
+WARNING 2025-05-01 07:24:40,339 log Not Found: /api/reminders/1/
+WARNING 2025-05-01 07:24:40,846 log Bad Request: /api/reminders/
+ERROR 2025-05-02 00:34:47,023 serializers Error performing initial funding calculation: Object of type Decimal is not JSON serializable
+ERROR 2025-05-02 00:34:47,265 log Internal Server Error: /api/applications/1/funding-calculation/
+ERROR 2025-05-02 00:34:47,436 log Internal Server Error: /api/applications/1/funding-calculation/
+ERROR 2025-05-02 00:34:47,445 log Internal Server Error: /api/applications/1/funding-calculation-history/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/views.py", line 531, in funding_calculation
+    calculation_result, funding_history = calculate_funding(
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/services.py", line 606, in calculate_funding
+    funding_calculation_history = FundingCalculationHistory.objects.create(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/compiler.py", line 1821, in execute_sql
+    for sql, params in self.as_sql():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/compiler.py", line 1745, in as_sql
+    value_rows = [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/compiler.py", line 1746, in <listcomp>
+    [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/compiler.py", line 1747, in <listcomp>
+    self.prepare_value(field, self.pre_save_val(field, obj))
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/compiler.py", line 1686, in prepare_value
+    return field.get_db_prep_save(value, connection=self.connection)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/fields/json.py", line 136, in get_db_prep_save
+    return self.get_db_prep_value(value, connection)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/fields/json.py", line 131, in get_db_prep_value
+    return connection.ops.adapt_json_value(value, self.encoder)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/backends/base/operations.py", line 584, in adapt_json_value
+    return json.dumps(value, cls=encoder)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Decimal is not JSON serializable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/views.py", line 560, in funding_calculation_history
+    application = self.get_object()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/generics.py", line 96, in get_object
+    obj = get_object_or_404(queryset, **filter_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/generics.py", line 19, in get_object_or_404
+    return _get_object_or_404(queryset, *filter_args, **filter_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 633, in get
+    num = len(clone)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 380, in __len__
+    self._fetch_all()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/backends/utils.py", line 83, in _execute
+    self.db.validate_no_broken_transaction()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/backends/base/base.py", line 531, in validate_no_broken_transaction
+    raise TransactionManagementError(
+django.db.transaction.TransactionManagementError: An error occurred in the current transaction. You can't execute queries until the end of the 'atomic' block.
+WARNING 2025-05-02 03:20:44,603 log Bad Request: /api/applications/applications/
+ERROR 2025-05-02 03:20:46,612 log Internal Server Error: /api/applications/applications/1/fees/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/views.py", line 271, in fees
+    print(f"DEBUG: Serialized data: {serializer.data}")
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/documents/serializers.py", line 54, in get_status
+    if obj.paid_date:
+AttributeError: 'Fee' object has no attribute 'paid_date'
+WARNING 2025-05-02 03:20:49,282 log Unauthorized: /api/applications/applications/
+ERROR 2025-05-02 03:20:49,936 log Internal Server Error: /api/applications/applications/1/record_payment/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/views.py", line 392, in record_payment
+    Ledger.objects.create(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 656, in create
+    obj = self.model(**kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/fields/related_descriptors.py", line 266, in __set__
+    raise ValueError(
+ValueError: Cannot assign "<Repayment: Repayment 2025-06-01 - 1500.00>": "Ledger.related_repayment" must be a "Repayment" instance.
+WARNING 2025-05-02 03:20:52,785 log Unauthorized: /api/applications/applications/1/
+WARNING 2025-05-02 03:20:52,950 log Not Found: /api/applications/applications/1/
+WARNING 2025-05-02 03:20:54,929 log Method Not Allowed: /api/applications/1/stage/
+WARNING 2025-05-02 03:20:55,578 log Method Not Allowed: /api/applications/1/stage/
+WARNING 2025-05-02 03:20:56,235 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-05-02 03:27:36,534 log Unauthorized: /api/applications/applications/
+ERROR 2025-05-02 03:27:37,217 log Internal Server Error: /api/applications/applications/1/record_payment/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/views.py", line 392, in record_payment
+    Ledger.objects.create(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 656, in create
+    obj = self.model(**kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/fields/related_descriptors.py", line 266, in __set__
+    raise ValueError(
+ValueError: Cannot assign "<Repayment: Repayment 2025-06-01 - 1500.00>": "Ledger.related_repayment" must be a "Repayment" instance.
+WARNING 2025-05-02 03:27:39,989 log Unauthorized: /api/applications/applications/1/
+WARNING 2025-05-02 03:27:40,158 log Not Found: /api/applications/applications/1/
+WARNING 2025-05-02 03:27:43,489 log Bad Request: /api/applications/validate-schema/
+ERROR 2025-05-02 03:30:17,534 log Internal Server Error: /api/applications/applications/1/fees/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/views.py", line 271, in fees
+    print(f"DEBUG: Serialized data: {serializer.data}")
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/documents/serializers.py", line 54, in get_status
+    if obj.paid_date:
+AttributeError: 'Fee' object has no attribute 'paid_date'
+WARNING 2025-05-02 03:30:20,228 log Unauthorized: /api/applications/applications/
+WARNING 2025-05-02 03:30:22,916 log Unauthorized: /api/applications/applications/1/
+WARNING 2025-05-02 03:30:23,080 log Not Found: /api/applications/applications/1/
+WARNING 2025-05-02 03:30:26,411 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-05-02 03:32:35,888 log Unauthorized: /api/applications/applications/
+WARNING 2025-05-02 03:32:38,790 log Unauthorized: /api/applications/applications/1/
+WARNING 2025-05-02 03:32:38,957 log Not Found: /api/applications/applications/1/
+WARNING 2025-05-02 03:32:42,368 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-05-02 04:29:49,000 log Forbidden: /api/borrowers/
+WARNING 2025-05-02 04:29:52,023 log Not Found: /api/borrowers/1/
+WARNING 2025-05-02 04:30:01,023 log Not Found: /api/borrowers/1/
+WARNING 2025-05-02 04:30:04,033 log Not Found: /api/borrowers/1/
+WARNING 2025-05-02 04:30:07,074 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-05-02 04:30:07,075 log Not Found: /api/borrowers/company/
+WARNING 2025-05-02 04:30:08,554 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-05-02 04:30:08,555 log Not Found: /api/borrowers/company/
+WARNING 2025-05-02 04:30:10,044 log Not Found: /api/borrowers/1/applications/
+WARNING 2025-05-02 04:30:10,045 log Forbidden: /api/borrowers/4/financial-summary/
+WARNING 2025-05-02 04:30:10,045 log Not Found: /api/borrowers/company/
+WARNING 2025-05-02 04:30:11,709 log Not Found: /api/borrowers/company/
+WARNING 2025-05-02 04:30:16,197 log Unauthorized: /api/borrowers/1/applications/
+WARNING 2025-05-02 04:30:16,197 log Unauthorized: /api/borrowers/1/guarantors/
+WARNING 2025-05-02 04:30:16,198 log Unauthorized: /api/borrowers/1/financial-summary/
+WARNING 2025-05-02 04:30:16,198 log Unauthorized: /api/borrowers/company/
+WARNING 2025-05-02 04:33:47,131 log Forbidden: /api/borrowers/
+WARNING 2025-05-02 04:33:50,144 log Not Found: /api/borrowers/1/
+WARNING 2025-05-02 04:33:59,004 log Not Found: /api/borrowers/1/
+WARNING 2025-05-02 04:34:01,964 log Not Found: /api/borrowers/1/
+WARNING 2025-05-02 04:34:04,996 log Not Found: /api/borrowers/company/
+WARNING 2025-05-02 04:34:06,474 log Not Found: /api/borrowers/company/
+WARNING 2025-05-02 04:34:07,960 log Forbidden: /api/borrowers/4/financial-summary/
+WARNING 2025-05-02 04:34:07,961 log Not Found: /api/borrowers/company/
+WARNING 2025-05-02 04:34:09,588 log Not Found: /api/borrowers/company/
+WARNING 2025-05-02 04:34:14,021 log Unauthorized: /api/borrowers/1/applications/
+WARNING 2025-05-02 04:34:14,022 log Unauthorized: /api/borrowers/1/guarantors/
+WARNING 2025-05-02 04:34:14,022 log Unauthorized: /api/borrowers/1/financial-summary/
+WARNING 2025-05-02 04:34:14,023 log Unauthorized: /api/borrowers/company/
+WARNING 2025-05-02 04:36:50,159 log Forbidden: /api/borrowers/
+WARNING 2025-05-02 04:36:53,154 log Not Found: /api/borrowers/1/
+WARNING 2025-05-02 04:37:02,167 log Not Found: /api/borrowers/1/
+WARNING 2025-05-02 04:37:05,155 log Not Found: /api/borrowers/1/
+WARNING 2025-05-02 04:37:11,116 log Unauthorized: /api/borrowers/1/applications/
+WARNING 2025-05-02 04:37:11,117 log Unauthorized: /api/borrowers/1/guarantors/
+WARNING 2025-05-02 04:37:11,117 log Unauthorized: /api/borrowers/1/financial-summary/
+WARNING 2025-05-02 04:37:11,118 log Unauthorized: /api/borrowers/company/
+ERROR 2025-05-02 05:41:27,327 log Internal Server Error: /api/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/serializers.py", line 38, in get_application_count
+    return obj.applications.count()
+AttributeError: 'Broker' object has no attribute 'applications'
+WARNING 2025-05-02 05:41:28,694 log Not Found: /api/brokers/1/
+WARNING 2025-05-02 05:41:29,381 log Not Found: /api/brokers/1/
+WARNING 2025-05-02 05:41:30,065 log Forbidden: /api/brokers/
+WARNING 2025-05-02 05:41:31,417 log Forbidden: /api/brokers/1/
+WARNING 2025-05-02 05:41:32,603 log Forbidden: /api/brokers/1/
+WARNING 2025-05-02 05:41:32,773 log Bad Request: /api/brokers/
+ERROR 2025-05-02 05:41:36,162 log Internal Server Error: /api/brokers/1/applications/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/views.py", line 108, in applications
+    applications = broker.applications.all().order_by('-created_at')
+AttributeError: 'Broker' object has no attribute 'applications'
+ERROR 2025-05-02 05:41:36,876 log Internal Server Error: /api/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/serializers.py", line 38, in get_application_count
+    return obj.applications.count()
+AttributeError: 'Broker' object has no attribute 'applications'
+ERROR 2025-05-02 05:41:37,659 log Internal Server Error: /api/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/serializers.py", line 38, in get_application_count
+    return obj.applications.count()
+AttributeError: 'Broker' object has no attribute 'applications'
+ERROR 2025-05-02 05:41:38,405 log Internal Server Error: /api/brokers/branches/1/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/views.py", line 47, in brokers
+    return Response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/serializers.py", line 38, in get_application_count
+    return obj.applications.count()
+AttributeError: 'Broker' object has no attribute 'applications'
+ERROR 2025-05-02 05:41:40,492 log Internal Server Error: /api/brokers/1/applications/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/views.py", line 108, in applications
+    applications = broker.applications.all().order_by('-created_at')
+AttributeError: 'Broker' object has no attribute 'applications'
+ERROR 2025-05-02 05:41:41,859 log Internal Server Error: /api/brokers/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/mixins.py", line 38, in list
+    queryset = self.filter_queryset(self.get_queryset())
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/brokers/views.py", line 90, in get_queryset
+    return queryset.filter(bdms=user)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1464, in build_filter
+    self.check_related_objects(join_info.final_field, value, join_info.opts)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1275, in check_related_objects
+    self.check_query_object_type(value, opts, field)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/db/models/sql/query.py", line 1252, in check_query_object_type
+    raise ValueError(
+ValueError: Cannot query "user79@example.com": Must be "BDM" instance.
+WARNING 2025-05-02 05:46:46,413 log Not Found: /api/brokers/1/
+WARNING 2025-05-02 05:46:47,088 log Not Found: /api/brokers/1/
+WARNING 2025-05-02 05:46:47,755 log Forbidden: /api/brokers/
+WARNING 2025-05-02 05:46:49,095 log Forbidden: /api/brokers/1/
+WARNING 2025-05-02 05:46:50,302 log Forbidden: /api/brokers/1/
+WARNING 2025-05-02 05:46:50,471 log Bad Request: /api/brokers/
+WARNING 2025-05-02 05:47:35,463 log Not Found: /api/brokers/1/
+WARNING 2025-05-02 05:47:36,127 log Not Found: /api/brokers/1/
+WARNING 2025-05-02 05:47:36,790 log Forbidden: /api/brokers/
+WARNING 2025-05-02 05:47:38,124 log Forbidden: /api/brokers/1/
+WARNING 2025-05-02 05:47:39,288 log Forbidden: /api/brokers/1/
+WARNING 2025-05-02 05:47:39,453 log Bad Request: /api/brokers/
+WARNING 2025-05-02 06:27:32,675 log Unsupported Media Type: /api/documents/documents/1/
+WARNING 2025-05-02 06:27:34,020 log Not Found: /api/documents/documents/9999/download/
+WARNING 2025-05-02 06:27:42,843 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-05-02 06:27:43,507 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-05-02 06:27:46,954 log Not Found: /api/documents/repayments/9999/mark-paid/
+WARNING 2025-05-02 06:27:48,953 log Forbidden: /api/documents/repayments/1/mark-paid/
+WARNING 2025-05-02 06:31:54,759 log Unsupported Media Type: /api/documents/documents/1/
+WARNING 2025-05-02 06:31:56,094 log Not Found: /api/documents/documents/9999/download/
+WARNING 2025-05-02 06:32:04,805 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-05-02 06:32:05,471 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-05-02 06:32:09,026 log Not Found: /api/documents/repayments/9999/mark-paid/
+WARNING 2025-05-02 06:32:11,095 log Forbidden: /api/documents/repayments/1/mark-paid/
+WARNING 2025-05-02 06:33:21,364 log Unsupported Media Type: /api/documents/documents/1/
+WARNING 2025-05-02 06:33:21,366 log Unsupported Media Type: /api/documents/documents/1/
+WARNING 2025-05-02 06:33:22,701 log Not Found: /api/documents/documents/9999/download/
+WARNING 2025-05-02 06:33:31,332 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-05-02 06:33:31,999 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-05-02 06:33:35,329 log Not Found: /api/documents/repayments/9999/mark-paid/
+WARNING 2025-05-02 06:33:37,334 log Forbidden: /api/documents/repayments/1/mark-paid/
+WARNING 2025-05-02 06:36:04,905 log Not Found: /api/documents/documents/9999/download/
+WARNING 2025-05-02 06:36:13,545 log Not Found: /api/documents/fees/9999/mark-paid/
+WARNING 2025-05-02 06:36:14,209 log Forbidden: /api/documents/fees/1/mark-paid/
+WARNING 2025-05-02 06:36:17,736 log Not Found: /api/documents/repayments/9999/mark-paid/
+WARNING 2025-05-02 06:36:19,719 log Forbidden: /api/documents/repayments/1/mark-paid/
+WARNING 2025-05-02 23:40:22,301 log Unauthorized: /api/products/products/
+WARNING 2025-05-02 23:40:22,634 log Unauthorized: /api/products/products/1/
+WARNING 2025-05-02 23:40:22,964 log Unauthorized: /api/products/products/1/
+WARNING 2025-05-02 23:40:23,288 log Unauthorized: /api/products/products/
+WARNING 2025-05-02 23:40:23,618 log Unauthorized: /api/products/products/1/
+WARNING 2025-05-02 23:40:27,950 log Bad Request: /api/products/products/1/
+WARNING 2025-05-02 23:43:52,918 log Unauthorized: /api/products/products/
+WARNING 2025-05-02 23:43:53,249 log Unauthorized: /api/products/products/1/
+WARNING 2025-05-02 23:43:53,575 log Unauthorized: /api/products/products/1/
+WARNING 2025-05-02 23:43:53,907 log Unauthorized: /api/products/products/
+WARNING 2025-05-02 23:43:54,242 log Unauthorized: /api/products/products/1/
+WARNING 2025-05-02 23:43:58,630 log Bad Request: /api/products/products/1/
+WARNING 2025-05-02 23:46:42,155 log Unauthorized: /api/products/products/
+WARNING 2025-05-02 23:46:42,482 log Unauthorized: /api/products/products/1/
+WARNING 2025-05-02 23:46:42,814 log Unauthorized: /api/products/products/1/
+WARNING 2025-05-02 23:46:43,138 log Unauthorized: /api/products/products/
+WARNING 2025-05-02 23:46:43,462 log Unauthorized: /api/products/products/1/
+WARNING 2025-05-02 23:46:47,830 log Bad Request: /api/products/products/1/
+WARNING 2025-05-02 23:49:42,146 log Unauthorized: /api/products/products/
+WARNING 2025-05-02 23:49:42,476 log Unauthorized: /api/products/products/1/
+WARNING 2025-05-02 23:49:42,808 log Unauthorized: /api/products/products/1/
+WARNING 2025-05-02 23:49:43,137 log Unauthorized: /api/products/products/
+WARNING 2025-05-02 23:49:43,471 log Unauthorized: /api/products/products/1/
+INFO 2025-05-04 06:41:25,105 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 06:41:36,259 basehttp "GET /api/swagger/ HTTP/1.1" 200 4725
+ERROR 2025-05-04 06:41:37,070 log Internal Server Error: /api/schema/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 84, in get
+    return self._get_schema_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 285, in get_schema
+    paths=self.parse(request, public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 256, in parse
+    operation = view.schema.get_operation(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 100, in get_operation
+    request_body = self._get_request_body()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1321, in _get_request_body
+    schema, partial_request_body_required = self._get_request_for_media_type(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1353, in _get_request_for_media_type
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1048, in _map_basic_serializer
+    schema = self._map_serializer_field(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 679, in _map_serializer_field
+    schema = self._unwrap_list_serializer(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1429, in _unwrap_list_serializer
+    result = self._unwrap_list_serializer(serializer.child, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1426, in _unwrap_list_serializer
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1042, in _map_basic_serializer
+    for field in serializer.fields.values():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `relationship_to_borrower` is not valid for model `Guarantor`.
+ERROR 2025-05-04 06:41:37,084 basehttp "GET /api/schema/ HTTP/1.1" 500 145
+ERROR 2025-05-04 06:41:37,129 log Internal Server Error: /api/schema/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 84, in get
+    return self._get_schema_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 285, in get_schema
+    paths=self.parse(request, public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 256, in parse
+    operation = view.schema.get_operation(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 100, in get_operation
+    request_body = self._get_request_body()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1321, in _get_request_body
+    schema, partial_request_body_required = self._get_request_for_media_type(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1353, in _get_request_for_media_type
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1048, in _map_basic_serializer
+    schema = self._map_serializer_field(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 679, in _map_serializer_field
+    schema = self._unwrap_list_serializer(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1429, in _unwrap_list_serializer
+    result = self._unwrap_list_serializer(serializer.child, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1426, in _unwrap_list_serializer
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1042, in _map_basic_serializer
+    for field in serializer.fields.values():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `relationship_to_borrower` is not valid for model `Guarantor`.
+ERROR 2025-05-04 06:41:37,129 basehttp "GET /api/schema/ HTTP/1.1" 500 145
+INFO 2025-05-04 06:43:56,019 autoreload /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/serializers.py changed, reloading.
+INFO 2025-05-04 06:43:56,550 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 06:44:05,666 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 06:44:18,512 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 06:44:56,877 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 06:45:06,900 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 06:45:20,769 basehttp "GET /api/swagger/ HTTP/1.1" 200 4725
+ERROR 2025-05-04 06:45:20,924 log Internal Server Error: /api/schema/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 84, in get
+    return self._get_schema_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 285, in get_schema
+    paths=self.parse(request, public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 256, in parse
+    operation = view.schema.get_operation(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 100, in get_operation
+    request_body = self._get_request_body()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1321, in _get_request_body
+    schema, partial_request_body_required = self._get_request_for_media_type(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1353, in _get_request_for_media_type
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1048, in _map_basic_serializer
+    schema = self._map_serializer_field(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 679, in _map_serializer_field
+    schema = self._unwrap_list_serializer(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1429, in _unwrap_list_serializer
+    result = self._unwrap_list_serializer(serializer.child, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1426, in _unwrap_list_serializer
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1042, in _map_basic_serializer
+    for field in serializer.fields.values():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `business_type` is not valid for model `Borrower`.
+ERROR 2025-05-04 06:45:20,938 basehttp "GET /api/schema/ HTTP/1.1" 500 145
+ERROR 2025-05-04 06:45:20,973 log Internal Server Error: /api/schema/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 84, in get
+    return self._get_schema_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 285, in get_schema
+    paths=self.parse(request, public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 256, in parse
+    operation = view.schema.get_operation(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 100, in get_operation
+    request_body = self._get_request_body()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1321, in _get_request_body
+    schema, partial_request_body_required = self._get_request_for_media_type(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1353, in _get_request_for_media_type
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1048, in _map_basic_serializer
+    schema = self._map_serializer_field(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 679, in _map_serializer_field
+    schema = self._unwrap_list_serializer(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1429, in _unwrap_list_serializer
+    result = self._unwrap_list_serializer(serializer.child, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1426, in _unwrap_list_serializer
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1042, in _map_basic_serializer
+    for field in serializer.fields.values():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `business_type` is not valid for model `Borrower`.
+ERROR 2025-05-04 06:45:20,974 basehttp "GET /api/schema/ HTTP/1.1" 500 145
+INFO 2025-05-04 06:47:47,059 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 06:48:21,046 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 06:49:04,668 basehttp "GET /api/swagger/ HTTP/1.1" 200 4725
+ERROR 2025-05-04 06:49:04,864 log Internal Server Error: /api/schema/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 84, in get
+    return self._get_schema_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 285, in get_schema
+    paths=self.parse(request, public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 256, in parse
+    operation = view.schema.get_operation(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 100, in get_operation
+    request_body = self._get_request_body()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1321, in _get_request_body
+    schema, partial_request_body_required = self._get_request_for_media_type(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1353, in _get_request_for_media_type
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1048, in _map_basic_serializer
+    schema = self._map_serializer_field(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 679, in _map_serializer_field
+    schema = self._unwrap_list_serializer(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1429, in _unwrap_list_serializer
+    result = self._unwrap_list_serializer(serializer.child, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1426, in _unwrap_list_serializer
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1042, in _map_basic_serializer
+    for field in serializer.fields.values():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `business_type` is not valid for model `Borrower`.
+ERROR 2025-05-04 06:49:04,880 basehttp "GET /api/schema/ HTTP/1.1" 500 145
+ERROR 2025-05-04 06:49:04,910 log Internal Server Error: /api/schema/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 84, in get
+    return self._get_schema_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 285, in get_schema
+    paths=self.parse(request, public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 256, in parse
+    operation = view.schema.get_operation(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 100, in get_operation
+    request_body = self._get_request_body()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1321, in _get_request_body
+    schema, partial_request_body_required = self._get_request_for_media_type(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1353, in _get_request_for_media_type
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1048, in _map_basic_serializer
+    schema = self._map_serializer_field(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 679, in _map_serializer_field
+    schema = self._unwrap_list_serializer(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1429, in _unwrap_list_serializer
+    result = self._unwrap_list_serializer(serializer.child, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1426, in _unwrap_list_serializer
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1042, in _map_basic_serializer
+    for field in serializer.fields.values():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `business_type` is not valid for model `Borrower`.
+ERROR 2025-05-04 06:49:04,911 basehttp "GET /api/schema/ HTTP/1.1" 500 145
+INFO 2025-05-04 06:49:14,034 basehttp "GET /api/redoc/ HTTP/1.1" 200 746
+ERROR 2025-05-04 06:49:15,246 log Internal Server Error: /api/schema/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 84, in get
+    return self._get_schema_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 285, in get_schema
+    paths=self.parse(request, public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 256, in parse
+    operation = view.schema.get_operation(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 100, in get_operation
+    request_body = self._get_request_body()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1321, in _get_request_body
+    schema, partial_request_body_required = self._get_request_for_media_type(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1353, in _get_request_for_media_type
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1048, in _map_basic_serializer
+    schema = self._map_serializer_field(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 679, in _map_serializer_field
+    schema = self._unwrap_list_serializer(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1429, in _unwrap_list_serializer
+    result = self._unwrap_list_serializer(serializer.child, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1426, in _unwrap_list_serializer
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1042, in _map_basic_serializer
+    for field in serializer.fields.values():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `business_type` is not valid for model `Borrower`.
+WARNING 2025-05-04 06:49:15,247 log Not Found: /favicon.ico
+WARNING 2025-05-04 06:49:15,248 basehttp "GET /favicon.ico HTTP/1.1" 404 179
+ERROR 2025-05-04 06:49:15,248 basehttp "GET /api/schema/ HTTP/1.1" 500 145
+ERROR 2025-05-04 06:49:24,693 log Internal Server Error: /api/schema/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 84, in get
+    return self._get_schema_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/views.py", line 92, in _get_schema_response
+    data=generator.get_schema(request=request, public=self.serve_public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 285, in get_schema
+    paths=self.parse(request, public),
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/generators.py", line 256, in parse
+    operation = view.schema.get_operation(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 100, in get_operation
+    request_body = self._get_request_body()
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1321, in _get_request_body
+    schema, partial_request_body_required = self._get_request_for_media_type(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1353, in _get_request_for_media_type
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1048, in _map_basic_serializer
+    schema = self._map_serializer_field(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 679, in _map_serializer_field
+    schema = self._unwrap_list_serializer(field, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1429, in _unwrap_list_serializer
+    result = self._unwrap_list_serializer(serializer.child, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1426, in _unwrap_list_serializer
+    component = self.resolve_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1648, in resolve_serializer
+    component.schema = self._map_serializer(serializer, direction, bypass_extensions)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 949, in _map_serializer
+    schema = self._map_basic_serializer(serializer, direction)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/drf_spectacular/openapi.py", line 1042, in _map_basic_serializer
+    for field in serializer.fields.values():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1076, in get_fields
+    field_class, field_kwargs = self.build_field(
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1222, in build_field
+    return self.build_unknown_field(field_name, model_class)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 1340, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `business_type` is not valid for model `Borrower`.
+ERROR 2025-05-04 06:49:24,694 basehttp "GET /api/schema/ HTTP/1.1" 500 145
+INFO 2025-05-04 06:49:28,606 basehttp "GET /redoc/ HTTP/1.1" 200 940
+WARNING 2025-05-04 06:49:28,675 log Not Found: /static/drf-yasg/redoc-init.js
+WARNING 2025-05-04 06:49:28,675 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-04 06:49:28,675 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-04 06:49:28,676 log Not Found: /static/drf-yasg/redoc/redoc.min.js
+WARNING 2025-05-04 06:49:28,676 basehttp "GET /static/drf-yasg/style.css HTTP/1.1" 404 179
+WARNING 2025-05-04 06:49:28,677 basehttp "GET /static/drf-yasg/redoc/redoc.min.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:49:28,677 basehttp "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:49:28,678 basehttp "GET /static/drf-yasg/redoc-init.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:49:28,681 log Not Found: /static/drf-yasg/redoc/redoc-logo.png
+WARNING 2025-05-04 06:49:28,681 basehttp "GET /static/drf-yasg/redoc/redoc-logo.png HTTP/1.1" 404 179
+INFO 2025-05-04 06:50:59,304 basehttp "GET /swagger/ HTTP/1.1" 200 2170
+WARNING 2025-05-04 06:50:59,352 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-04 06:50:59,353 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-05-04 06:50:59,354 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-04 06:50:59,354 basehttp "GET /static/drf-yasg/style.css HTTP/1.1" 404 179
+WARNING 2025-05-04 06:50:59,355 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-05-04 06:50:59,356 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-05-04 06:50:59,356 basehttp "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:50:59,356 basehttp "GET /static/drf-yasg/swagger-ui-dist/swagger-ui.css HTTP/1.1" 404 179
+WARNING 2025-05-04 06:50:59,357 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-04 06:50:59,357 basehttp "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:50:59,358 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-05-04 06:50:59,358 basehttp "GET /static/drf-yasg/swagger-ui-init.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:50:59,358 basehttp "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:50:59,359 basehttp "GET /static/drf-yasg/immutable.min.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:50:59,369 log Not Found: /static/drf-yasg/swagger-ui-dist/favicon-32x32.png
+WARNING 2025-05-04 06:50:59,369 basehttp "GET /static/drf-yasg/swagger-ui-dist/favicon-32x32.png HTTP/1.1" 404 179
+WARNING 2025-05-04 06:51:00,848 log Not Found: /accounts/login/
+WARNING 2025-05-04 06:51:00,848 basehttp "GET /accounts/login/?next=/swagger/ HTTP/1.1" 404 179
+INFO 2025-05-04 06:51:05,887 basehttp "GET /redoc/ HTTP/1.1" 200 940
+WARNING 2025-05-04 06:51:05,939 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-04 06:51:05,939 basehttp "GET /static/drf-yasg/style.css HTTP/1.1" 404 179
+WARNING 2025-05-04 06:51:05,941 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-04 06:51:05,942 log Not Found: /static/drf-yasg/redoc-init.js
+WARNING 2025-05-04 06:51:05,943 log Not Found: /static/drf-yasg/redoc/redoc.min.js
+WARNING 2025-05-04 06:51:05,943 basehttp "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:51:05,944 basehttp "GET /static/drf-yasg/redoc/redoc.min.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:51:05,944 basehttp "GET /static/drf-yasg/redoc-init.js HTTP/1.1" 404 179
+INFO 2025-05-04 06:51:08,062 basehttp "GET /redoc/ HTTP/1.1" 200 940
+WARNING 2025-05-04 06:51:08,071 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-04 06:51:08,073 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-04 06:51:08,073 log Not Found: /static/drf-yasg/redoc-init.js
+WARNING 2025-05-04 06:51:08,074 basehttp "GET /static/drf-yasg/style.css HTTP/1.1" 404 179
+WARNING 2025-05-04 06:51:08,075 log Not Found: /static/drf-yasg/redoc/redoc.min.js
+WARNING 2025-05-04 06:51:08,076 basehttp "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:51:08,076 basehttp "GET /static/drf-yasg/redoc-init.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:51:08,076 basehttp "GET /static/drf-yasg/redoc/redoc.min.js HTTP/1.1" 404 179
+INFO 2025-05-04 06:51:08,646 basehttp "GET /redoc/ HTTP/1.1" 200 940
+WARNING 2025-05-04 06:51:08,654 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-04 06:51:08,655 basehttp "GET /static/drf-yasg/style.css HTTP/1.1" 404 179
+WARNING 2025-05-04 06:51:08,656 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-04 06:51:08,657 log Not Found: /static/drf-yasg/redoc-init.js
+WARNING 2025-05-04 06:51:08,659 log Not Found: /static/drf-yasg/redoc/redoc.min.js
+WARNING 2025-05-04 06:51:08,659 basehttp "GET /static/drf-yasg/redoc-init.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:51:08,659 basehttp "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 404 179
+WARNING 2025-05-04 06:51:08,660 basehttp "GET /static/drf-yasg/redoc/redoc.min.js HTTP/1.1" 404 179
+INFO 2025-05-04 06:58:39,579 autoreload /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/serializers.py changed, reloading.
+INFO 2025-05-04 06:58:40,118 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 07:02:35,928 autoreload Watching for file changes with StatReloader
+INFO 2025-05-04 07:03:20,699 basehttp "GET /api/swagger/ HTTP/1.1" 200 4725
+INFO 2025-05-04 07:03:21,184 basehttp "GET /api/schema/ HTTP/1.1" 200 429994
+WARNING 2025-05-04 07:05:26,093 log Unauthorized: /api/applications/1/funding-calculation/
+WARNING 2025-05-04 07:05:26,095 basehttp "POST /api/applications/1/funding-calculation/ HTTP/1.1" 401 58
+WARNING 2025-05-04 07:10:40,524 log Unauthorized: /api/applications/1/funding-calculation-history/
+WARNING 2025-05-04 07:10:40,525 basehttp "GET /api/applications/1/funding-calculation-history/ HTTP/1.1" 401 58
+INFO 2025-05-04 08:01:07,230 autoreload /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/users/views.py changed, reloading.
+INFO 2025-05-04 08:01:07,893 autoreload Watching for file changes with StatReloader
+INFO 2025-05-05 01:32:53,390 autoreload /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/users/serializers.py changed, reloading.
+INFO 2025-05-05 01:32:54,026 autoreload Watching for file changes with StatReloader
+INFO 2025-05-05 01:33:11,220 autoreload Watching for file changes with StatReloader
+INFO 2025-05-05 01:35:24,717 autoreload Watching for file changes with StatReloader
+INFO 2025-05-05 01:38:12,154 autoreload Watching for file changes with StatReloader
+INFO 2025-05-05 01:41:17,693 autoreload /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/users/views.py changed, reloading.
+INFO 2025-05-05 01:41:18,300 autoreload Watching for file changes with StatReloader

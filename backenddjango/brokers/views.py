@@ -87,7 +87,10 @@ class BrokerViewSet(viewsets.ModelViewSet):
         if user.role == 'admin':
             return queryset
         elif user.role == 'bd':
-            return queryset.filter(bdms=user)
+            # BD users can see brokers assigned to their BDM profile
+            if hasattr(user, 'bdm_profile'):
+                return queryset.filter(bdms__id=user.bdm_profile.id)
+            return queryset.none()
         elif user.role == 'broker':
             # Brokers can only see their own profile
             if hasattr(user, 'broker_profile'):
@@ -105,7 +108,7 @@ class BrokerViewSet(viewsets.ModelViewSet):
         """
         broker = self.get_object()
         from applications.serializers import ApplicationListSerializer
-        applications = broker.applications.all().order_by('-created_at')
+        applications = broker.broker_applications.all().order_by('-created_at')
         serializer = ApplicationListSerializer(applications, many=True)
         return Response(serializer.data)
     

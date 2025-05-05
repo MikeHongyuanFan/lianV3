@@ -119,6 +119,7 @@ backenddjango/
 ├── brokers/          # Broker management app
 ├── crm_backend/      # Main project settings
 ├── documents/        # Document management app
+├── products/         # Product management app
 ├── users/            # User authentication app
 ├── tests/            # Test suite
 │   ├── integration/  # Integration tests
@@ -151,6 +152,7 @@ frontendVUE/
 - Loan application management with multi-step form process
 - Borrower and guarantor information management
 - Document generation and management
+- Product management with application, document, and borrower associations
 - Fee and repayment tracking
 - Comprehensive notification system for application status changes
 - Electronic signature processing and validation

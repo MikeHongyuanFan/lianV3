@@ -5,6 +5,7 @@ from model_utils import FieldTracker
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
+from users.services import create_notification
 
 
 def document_upload_path(instance, filename):
@@ -88,16 +89,29 @@ class Note(models.Model):
     application = models.ForeignKey('applications.Application', on_delete=models.CASCADE, related_name='notes', null=True, blank=True)
     borrower = models.ForeignKey('borrowers.Borrower', on_delete=models.SET_NULL, null=True, blank=True, related_name='notes')
     
+    # Assignment
+    assigned_to = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_notes')
+    
     # Metadata
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    # Track changes to assigned_to field
+    tracker = FieldTracker(fields=['assigned_to'])
     
     class Meta:
         ordering = ['-created_at']
     
     def __str__(self):
         return self.title
+        
+    def save(self, *args, **kwargs):
+        # Check if assigned_to has changed
+        if self.tracker.has_changed('assigned_to'):
+            self._assigned_to_changed = True
+        
+        super().save(*args, **kwargs)
 
 
 class Fee(models.Model):
@@ -203,3 +217,28 @@ class Ledger(models.Model):
     
     def __str__(self):
         return f"{self.get_transaction_type_display()} - ${self.amount}"
+
+
+@receiver(post_save, sender=Note)
+def note_assignment_notification(sender, instance, created, **kwargs):
+    """
+    Send notification when a note is assigned to a user
+    """
+    # Check if the note has been assigned to someone
+    if instance.assigned_to and instance.created_by:
+        # Track changes to assigned_to field
+        if hasattr(instance, '_assigned_to_changed'):
+            # This is a new assignment or reassignment
+            if instance.assigned_to != instance.created_by:
+                # Create notification for the assignee
+                create_notification(
+                    user=instance.assigned_to,
+                    title=f"Note assigned to you: {instance.title}",
+                    message=f"Note titled '{instance.title}' was assigned to you by {instance.created_by.get_full_name() or instance.created_by.email}",
+                    notification_type='note_reminder',
+                    related_object_id=instance.id,
+                    related_object_type='note'
+                )
+            
+            # Clear the flag
+            delattr(instance, '_assigned_to_changed')

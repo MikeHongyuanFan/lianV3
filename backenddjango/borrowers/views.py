@@ -11,7 +11,7 @@ from .serializers import (
     GuarantorSerializer
 )
 from .filters import BorrowerFilter, GuarantorFilter
-from users.permissions import IsAdmin, IsAdminOrBroker
+from users.permissions import IsAdmin, IsAdminOrBrokerOrBD
 
 
 class BorrowerViewSet(viewsets.ModelViewSet):
@@ -31,7 +31,7 @@ class BorrowerViewSet(viewsets.ModelViewSet):
     
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            permission_classes = [IsAuthenticated, IsAdminOrBroker]
+            permission_classes = [IsAuthenticated, IsAdminOrBrokerOrBD]
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
@@ -43,7 +43,7 @@ class BorrowerViewSet(viewsets.ModelViewSet):
         # Filter borrowers based on user role
         if user.role == 'admin':
             return queryset
-        elif user.role == 'broker':
+        elif user.role in ['broker', 'bd']:
             return queryset.filter(created_by=user)
         elif user.role == 'client':
             # Clients can only see their own borrower profile
@@ -89,7 +89,7 @@ class GuarantorViewSet(viewsets.ModelViewSet):
     
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            permission_classes = [IsAuthenticated, IsAdminOrBroker]
+            permission_classes = [IsAuthenticated, IsAdminOrBrokerOrBD]
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
@@ -101,7 +101,7 @@ class GuarantorViewSet(viewsets.ModelViewSet):
         # Filter guarantors based on user role
         if user.role == 'admin':
             return queryset
-        elif user.role == 'broker':
+        elif user.role in ['broker', 'bd']:
             return queryset.filter(created_by=user)
         elif user.role == 'client':
             # Clients can only see guarantors associated with their borrower profile
@@ -123,12 +123,14 @@ class GuarantorViewSet(viewsets.ModelViewSet):
         applications = guarantor.guaranteed_applications.all().order_by('-created_at')
         serializer = ApplicationListSerializer(applications, many=True)
         return Response(serializer.data)
+
+
 class CompanyBorrowerListView(generics.ListAPIView):
     """
     View for listing company borrowers
     """
     serializer_class = BorrowerListSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminOrBrokerOrBD]
     
     def get_queryset(self):
         return Borrower.objects.filter(is_company=True)
@@ -138,7 +140,7 @@ class BorrowerFinancialSummaryView(APIView):
     """
     View for getting a borrower's financial summary
     """
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminOrBrokerOrBD]
     
     def get(self, request, pk):
         """

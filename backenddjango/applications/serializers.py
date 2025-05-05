@@ -1,11 +1,12 @@
 from rest_framework import serializers
-from .models import Application, Document, Fee, Repayment
+from .models import Application, Document, Fee, Repayment, FundingCalculationHistory
 from borrowers.models import Borrower, Guarantor
 from .validators import validate_company_borrower
 from django.db import transaction
 from users.serializers import UserSerializer
 from brokers.serializers import BrokerDetailSerializer as BrokerSerializer, BDMSerializer, BranchSerializer
 from documents.serializers import DocumentSerializer, NoteSerializer, FeeSerializer, RepaymentSerializer, LedgerSerializer
+from decimal import Decimal
 
 class AddressSerializer(serializers.Serializer):
     street = serializers.CharField(max_length=255)
@@ -76,7 +77,7 @@ class GuarantorSerializer(serializers.ModelSerializer):
         model = Guarantor
         fields = [
             'id', 'first_name', 'last_name', 'email', 'phone', 'date_of_birth',
-            'address', 'guarantor_type', 'relationship_to_borrower'
+            'address', 'guarantor_type', 'borrower', 'application'
         ]
     
     def get_address(self, obj):
@@ -119,9 +120,8 @@ class CompanyBorrowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Borrower
         fields = [
-            'id', 'company_name', 'company_abn', 'company_acn', 'business_type',
-            'years_in_business', 'industry', 'registered_address',
-            'directors', 'financial_info'
+            'id', 'company_name', 'company_abn', 'company_acn',
+            'registered_address', 'directors', 'financial_info'
         ]
     
     def validate(self, data):
@@ -163,10 +163,28 @@ class QSInfoSerializer(serializers.Serializer):
     email = serializers.EmailField(required=False, allow_blank=True)
     notes = serializers.CharField(allow_blank=True, required=False)
 
+class FundingCalculationInputSerializer(serializers.Serializer):
+    """
+    Serializer for funding calculation input fields
+    """
+    establishment_fee_rate = serializers.DecimalField(max_digits=5, decimal_places=2, required=True)
+    capped_interest_months = serializers.IntegerField(min_value=1, default=9)
+    monthly_line_fee_rate = serializers.DecimalField(max_digits=5, decimal_places=2, required=True)
+    brokerage_fee_rate = serializers.DecimalField(max_digits=5, decimal_places=2, required=True)
+    application_fee = serializers.DecimalField(max_digits=10, decimal_places=2, required=True)
+    due_diligence_fee = serializers.DecimalField(max_digits=10, decimal_places=2, required=True)
+    legal_fee_before_gst = serializers.DecimalField(max_digits=10, decimal_places=2, required=True)
+    valuation_fee = serializers.DecimalField(max_digits=10, decimal_places=2, required=True)
+    monthly_account_fee = serializers.DecimalField(max_digits=10, decimal_places=2, required=True)
+    working_fee = serializers.DecimalField(max_digits=10, decimal_places=2, required=False, default=0)
+
 class ApplicationCreateSerializer(serializers.ModelSerializer):
     borrowers = BorrowerSerializer(many=True, required=False)
     guarantors = GuarantorSerializer(many=True, required=False)
     company_borrowers = CompanyBorrowerSerializer(many=True, required=False)
+    
+    # Add funding calculation input fields
+    funding_calculation_input = FundingCalculationInputSerializer(required=False)
     
     class Meta:
         model = Application
@@ -177,13 +195,15 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
             'stage', 'branch_id', 'bd_id', 'borrowers', 'guarantors',
             'company_borrowers', 'security_address', 'security_type', 'security_value',
             'valuer_company_name', 'valuer_contact_name', 'valuer_phone',
-            'valuer_email', 'qs_company_name', 'qs_contact_name', 'qs_phone', 'qs_email'
+            'valuer_email', 'qs_company_name', 'qs_contact_name', 'qs_phone', 'qs_email',
+            'funding_calculation_input'
         ]
     
     def create(self, validated_data):
         borrowers_data = validated_data.pop('borrowers', [])
         guarantors_data = validated_data.pop('guarantors', [])
         company_borrowers_data = validated_data.pop('company_borrowers', [])
+        funding_calculation_input = validated_data.pop('funding_calculation_input', None)
         
         # Process new_borrowers data if present in the request
         new_borrowers = validated_data.pop('new_borrowers', [])
@@ -261,6 +281,29 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
             
             application.save()
             
+            # Perform funding calculation if input is provided
+            if funding_calculation_input and application.loan_amount and application.interest_rate and application.security_value:
+                from .services import calculate_funding
+                try:
+                    calculation_result, funding_history = calculate_funding(
+                        application=application,
+                        calculation_input=funding_calculation_input,
+                        user=validated_data.get('created_by')
+                    )
+                    
+                    # Create note about funding calculation
+                    from documents.models import Note
+                    Note.objects.create(
+                        application=application,
+                        content=f"Initial funding calculation performed: Total fees ${calculation_result['total_fees']}, Funds available ${calculation_result['funds_available']}",
+                        created_by=validated_data.get('created_by')
+                    )
+                except Exception as e:
+                    # Log the error but don't fail the application creation
+                    import logging
+                    logger = logging.getLogger(__name__)
+                    logger.error(f"Error performing initial funding calculation: {str(e)}")
+            
             # Create notification for new application
             from users.models import Notification
             if application.bd_id:
@@ -331,6 +374,9 @@ class ApplicationDetailSerializer(serializers.ModelSerializer):
             # Signature and PDF
             'signed_by', 'signature_date', 'uploaded_pdf_path',
             
+            # Funding calculation
+            'funding_result',
+            
             # Metadata
             'created_by_details'
         ]
@@ -381,3 +427,67 @@ class ApplicationListSerializer(serializers.ModelSerializer):
     
     def get_borrower_count(self, obj):
         return obj.borrowers.count()
+
+
+class FundingCalculationHistorySerializer(serializers.ModelSerializer):
+    """
+    Serializer for funding calculation history
+    """
+    created_by_details = UserSerializer(source='created_by', read_only=True)
+    
+    class Meta:
+        model = FundingCalculationHistory
+        fields = [
+            'id', 'application', 'calculation_input', 'calculation_result', 
+            'created_by', 'created_by_details', 'created_at'
+        ]
+        read_only_fields = ['created_by', 'created_at']
+
+
+class FundingCalculationResultSerializer(serializers.Serializer):
+    """
+    Serializer for funding calculation result
+    """
+    establishment_fee = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    capped_interest = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    line_fee = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    brokerage_fee = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    legal_fee = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    application_fee = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    due_diligence_fee = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    valuation_fee = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    monthly_account_fee = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    working_fee = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    total_fees = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+    funds_available = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+
+
+class LoanExtensionSerializer(serializers.Serializer):
+    """
+    Serializer for extending a loan with new terms
+    """
+    new_rate = serializers.DecimalField(max_digits=5, decimal_places=2, required=True)
+    new_loan_amount = serializers.DecimalField(max_digits=12, decimal_places=2, required=True)
+    new_repayment = serializers.DecimalField(max_digits=10, decimal_places=2, required=True)
+    
+    def validate(self, data):
+        """
+        Validate the loan extension data
+        """
+        # Ensure new_rate is positive
+        if data['new_rate'] <= Decimal('0'):
+            raise serializers.ValidationError({"new_rate": "Interest rate must be greater than 0"})
+        
+        # Ensure new_loan_amount is positive
+        if data['new_loan_amount'] <= Decimal('0'):
+            raise serializers.ValidationError({"new_loan_amount": "Loan amount must be greater than 0"})
+        
+        # Ensure new_repayment is positive
+        if data['new_repayment'] <= Decimal('0'):
+            raise serializers.ValidationError({"new_repayment": "Repayment amount must be greater than 0"})
+        
+        # Ensure new_repayment is less than new_loan_amount
+        if data['new_repayment'] >= data['new_loan_amount']:
+            raise serializers.ValidationError({"new_repayment": "Repayment amount must be less than loan amount"})
+        
+        return data

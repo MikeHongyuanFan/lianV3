@@ -8,7 +8,8 @@ from rest_framework.views import APIView
 from .models import User, Notification, NotificationPreference
 from .serializers import (
     UserSerializer, UserCreateSerializer, NotificationSerializer, 
-    NotificationListSerializer, NotificationPreferenceSerializer
+    NotificationListSerializer, NotificationPreferenceSerializer,
+    UserLoginSerializer
 )
 from .permissions import IsAdmin, IsSelfOrAdmin
 from .services import get_or_create_notification_preferences
@@ -18,7 +19,12 @@ import logging
 
 # Set up logger
 logger = logging.getLogger(__name__)
+from drf_spectacular.utils import extend_schema
 
+@extend_schema(
+    request=UserLoginSerializer,
+    responses={200: {"type": "object", "properties": {"refresh": {"type": "string"}, "access": {"type": "string"}}}}
+)
 class LoginView(APIView):
     """
     API endpoint for user login

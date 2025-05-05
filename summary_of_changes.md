@@ -1,87 +1,47 @@
-# Summary of Changes
+# Summary of Changes to Reports API OpenAPI Specification
 
-## Issues Identified and Fixed
+## 1. Schema Definitions
+- **Added Repayment Model Definition**: Created a new schema for the Repayment model that includes:
+  - `status` field with enum values: `scheduled`, `paid`, `missed`, `partial`
+  - `payment_amount` field with appropriate type and description
+  - Other relevant fields from the Repayment model
 
-### 1. Broker API Use Cases Documentation Verification
+## 2. Endpoint Documentation
+- **Updated Base URL**: Changed from `/api` to `/api/v1/reports` to match the actual implementation
+- **Enhanced Permission Requirements**: Added explicit mention that all endpoints require the `IsAuthenticated` permission class in the 403 response descriptions and security scheme documentation
 
-In the file `/workspace/backenddjango/brokers/views.py`, we fixed discrepancies between the documented API use cases and the actual implementation:
+## 3. Query Parameters
+- **Improved Parameter Documentation**: Enhanced descriptions of existing query parameters to better explain their purpose and usage
+- **Parameter Validation**: Added enum values and format specifications where appropriate
 
-- **Problem**: The BranchViewSet's 'brokers' action used `branch.brokers.all()` but the model relationship was defined with `related_name='branch_brokers'`
-- **Solution**: Updated the 'brokers' action to use `branch.branch_brokers.all()` to match the model definition
+## 4. Response Structures
+- **Updated Active Stages List**: Added comprehensive list of active stages in the ApplicationStatusReport schema to match the implementation:
+  ```
+  inquiry, sent_to_lender, funding_table_issued, iloo_issued, iloo_signed, 
+  commitment_fee_paid, app_submitted, valuation_ordered, valuation_received, 
+  more_info_required, formal_approval, loan_docs_instructed, loan_docs_issued, 
+  loan_docs_signed, settlement_conditions
+  ```
+- **Added Placeholder Values Note**: Added explicit documentation that the `avg_time_in_stage` field contains placeholder values (all zeros) in the current implementation
 
-- **Problem**: The BranchViewSet's 'bdms' action used `branch.bdms.all()` but the model relationship was defined with `related_name='branch_bdms'`
-- **Solution**: Updated the 'bdms' action to use `branch.branch_bdms.all()` to match the model definition
+## 5. Implementation Details
+- **Added Calculation Methods**: Enhanced descriptions to explain how metrics are calculated:
+  - Compliance rates: `paid_on_time / total_repayments * 100`
+  - Payment rates: `amount_paid / amount_due * 100`
+  - Conversion rates: Various formulas documented
+- **Added Error Handling Information**: Added notes about division by zero handling in various rate calculations
 
-- **Added Tests**: Created a new test file `/workspace/backenddjango/tests/unit/test_broker_api.py` to verify that the branch-related API endpoints work correctly with the updated code
+## 6. Examples and Documentation
+- **Updated Example Values**: Aligned example values with the actual implementation
+- **Enhanced Field Descriptions**: Added more detailed descriptions for fields, including:
+  - How they are calculated
+  - What they represent
+  - Source fields from the database
 
-### 2. Role-Based Access Control for Client Users
+## 7. Security and Authentication
+- **Enhanced Authentication Documentation**: Added more details about the authentication mechanisms:
+  - Specified that JWT is the primary authentication method
+  - Mentioned that Django REST Framework also supports other authentication methods
+- **Added Permission Requirements**: Clarified that all endpoints require the `IsAuthenticated` permission class
 
-In the file `/workspace/backenddjango/applications/views.py`, we implemented proper filtering for client users:
-
-- **Problem**: The ApplicationViewSet didn't filter applications for client users, allowing them to potentially see applications they shouldn't have access to.
-- **Solution**: Implemented a `get_queryset` method in the ApplicationViewSet that filters applications for client users to only show applications they're associated with as borrowers.
-
-```python
-def get_queryset(self):
-    """
-    Filter applications based on user role:
-    - Admin, BD, Broker: All applications
-    - Client: Only applications they're associated with
-    """
-    queryset = Application.objects.all().order_by('-created_at')
-    
-    # If user is a client, only show applications they're associated with
-    if self.request.user.role == 'client':
-        from borrowers.models import Borrower
-        borrower = Borrower.objects.filter(user=self.request.user).first()
-        if borrower:
-            return queryset.filter(borrowers=borrower)
-        return Application.objects.none()
-    
-    return queryset
-```
-
-### 2. Enhanced Role-Based Access Control Tests
-
-In the file `/workspace/backenddjango/tests/integration/test_api_connections.py`, we enhanced the role-based access control tests:
-
-- **Problem**: The test didn't verify that client users could only see applications they're associated with.
-- **Solution**: Enhanced the `test_role_based_access` method to verify that client users can only see applications they're associated with and cannot see applications they're not associated with.
-
-### 3. Enhanced API Error Handling Tests
-
-In the file `/workspace/backenddjango/tests/integration/test_api_connections.py`, we enhanced the API error handling tests:
-
-- **Problem**: The test didn't comprehensively test error scenarios.
-- **Solution**: Enhanced the `test_api_error_handling` method to test more error scenarios, including:
-  - Validation errors when updating an application with invalid data
-  - Forbidden access when a client tries to access an application they're not associated with
-
-### 4. Enhanced Cross-Service Communication Tests
-
-In the file `/workspace/backenddjango/tests/integration/test_api_connections.py`, we enhanced the cross-service communication tests:
-
-- **Problem**: The test didn't comprehensively verify interactions between different services.
-- **Solution**: Enhanced the `test_cross_service_communication` method to:
-  - Verify that an application is created with a borrower
-  - Verify that a note is created and associated with an application
-  - Test adding a fee and verifying it's correctly associated with an application
-  - Test ledger entries to verify they're correctly associated with an application
-
-## Testing
-
-We were unable to run the tests directly due to environment issues, but we've fixed the known issues in the code. The changes we've made should resolve the issues mentioned in the request.
-
-To verify the fixes, you should run the tests using the following commands:
-
-```bash
-# For backend tests
-cd backenddjango
-python manage.py test tests.integration
-
-# For frontend tests
-cd frontendVUE
-npm run test
-```
-
-These commands will run the tests and verify that our fixes have resolved the issues.
+These improvements make the OpenAPI document more accurately reflect the actual implementation and provide better guidance for API consumers.

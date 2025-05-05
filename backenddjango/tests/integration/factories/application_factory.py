@@ -80,7 +80,7 @@ class SubmittedApplicationFactory(ApplicationFactory):
     Factory for submitted applications.
     """
     
-    stage = 'submitted'
+    stage = 'app_submitted'
     created_at = factory.Faker('date_time_this_month')
     updated_at = factory.LazyAttribute(lambda obj: obj.created_at + timedelta(days=random.randint(1, 3)))
 
@@ -90,7 +90,7 @@ class ApprovedApplicationFactory(ApplicationFactory):
     Factory for approved applications.
     """
     
-    stage = 'approved'
+    stage = 'formal_approval'
     created_at = factory.Faker('date_time_this_month')
     updated_at = factory.LazyAttribute(lambda obj: obj.created_at + timedelta(days=random.randint(3, 10)))
     
@@ -108,7 +108,7 @@ class RejectedApplicationFactory(ApplicationFactory):
     Factory for rejected applications.
     """
     
-    stage = 'rejected'
+    stage = 'declined'
     created_at = factory.Faker('date_time_this_month')
     updated_at = factory.LazyAttribute(lambda obj: obj.created_at + timedelta(days=random.randint(3, 10)))
 
@@ -118,7 +118,7 @@ class FundedApplicationFactory(ApplicationFactory):
     Factory for funded applications.
     """
     
-    stage = 'funded'
+    stage = 'settled'
     created_at = factory.Faker('date_time_this_month')
     updated_at = factory.LazyAttribute(lambda obj: obj.created_at + timedelta(days=random.randint(10, 20)))
     

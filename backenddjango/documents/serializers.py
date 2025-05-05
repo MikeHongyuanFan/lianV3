@@ -28,6 +28,7 @@ class NoteSerializer(serializers.ModelSerializer):
     Serializer for notes
     """
     created_by_name = serializers.StringRelatedField(source='created_by')
+    assigned_to_name = serializers.StringRelatedField(source='assigned_to')
     
     class Meta:
         model = Note

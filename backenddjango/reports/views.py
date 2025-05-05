@@ -236,8 +236,13 @@ class ApplicationStatusReportView(APIView):
             applications = applications.filter(created_at__lte=end_date)
         
         # Calculate status metrics
-        active_stages = ['inquiry', 'pre_approval', 'valuation', 'formal_approval']
-        settled_stages = ['settlement', 'funded']
+        active_stages = [
+            'inquiry', 'sent_to_lender', 'funding_table_issued', 'iloo_issued', 
+            'iloo_signed', 'commitment_fee_paid', 'app_submitted', 'valuation_ordered', 
+            'valuation_received', 'more_info_required', 'formal_approval', 'loan_docs_instructed', 
+            'loan_docs_issued', 'loan_docs_signed', 'settlement_conditions'
+        ]
+        settled_stages = ['settled', 'closed']
         
         total_active = applications.filter(stage__in=active_stages).count()
         total_settled = applications.filter(stage__in=settled_stages).count()

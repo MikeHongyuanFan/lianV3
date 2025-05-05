@@ -35,7 +35,8 @@ class BrokerListSerializer(serializers.ModelSerializer):
         return obj.branch.name if obj.branch else None
     
     def get_application_count(self, obj):
-        return obj.applications.count()
+        # Use the correct related_name from Application model
+        return obj.broker_applications.count() if hasattr(obj, 'broker_applications') else 0
 
 
 class BrokerDetailSerializer(serializers.ModelSerializer):

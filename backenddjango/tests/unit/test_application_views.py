@@ -206,8 +206,8 @@ class TestApplicationViewSet:
         
         url = reverse('application-stage-update', args=[application.id])
         data = {
-            'stage': 'pre_approval',  # Use a valid stage from STAGE_CHOICES
-            'notes': 'Moving to pre-approval stage'
+            'stage': 'sent_to_lender',  # Use a valid stage from STAGE_CHOICES
+            'notes': 'Moving to sent to lender stage'
         }
         
         # Try to make the request, but don't assert on the status code yet
@@ -223,11 +223,11 @@ class TestApplicationViewSet:
             pytest.skip("Application stage endpoint not available")
             
         assert response.status_code == status.HTTP_200_OK
-        assert response.data['stage'] == 'pre_approval'
+        assert response.data['stage'] == 'sent_to_lender'
         
         # Verify the application stage was updated in the database
         application.refresh_from_db()
-        assert application.stage == 'pre_approval'
+        assert application.stage == 'sent_to_lender'
     
     def test_update_application_borrowers(self, admin_user, application, individual_borrower, company_borrower):
         """Test updating an application's borrowers."""
@@ -308,7 +308,7 @@ class TestApplicationViewSet:
         )
         Application.objects.create(
             reference_number="FILTER-TEST-002",
-            stage="pre_approval",
+            stage="sent_to_lender",
             loan_amount=600000,
             loan_term=360,
             interest_rate=4.5,
@@ -333,8 +333,8 @@ class TestApplicationViewSet:
         assert len(response.data['results']) == 1
         assert response.data['results'][0]['reference_number'] == 'FILTER-TEST-001'
         
-        # Filter by stage=pre_approval
-        url = reverse('application-list') + '?stage=pre_approval'
+        # Filter by stage=sent_to_lender
+        url = reverse('application-list') + '?stage=sent_to_lender'
         response = client.get(url)
         
         # Print response for debugging
