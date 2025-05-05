@@ -1,20 +1,20 @@
-import django_filters
+from django_filters import FilterSet, NumberFilter, DateFilter, CharFilter, ChoiceFilter
 from django.db.models import Q
 from .models import Application
 
 
-class ApplicationFilter(django_filters.FilterSet):
+class ApplicationFilter(FilterSet):
     """
     Custom filter for applications with advanced filtering options
     """
-    min_loan_amount = django_filters.NumberFilter(field_name="loan_amount", lookup_expr='gte')
-    max_loan_amount = django_filters.NumberFilter(field_name="loan_amount", lookup_expr='lte')
-    min_interest_rate = django_filters.NumberFilter(field_name="interest_rate", lookup_expr='gte')
-    max_interest_rate = django_filters.NumberFilter(field_name="interest_rate", lookup_expr='lte')
-    created_after = django_filters.DateFilter(field_name="created_at", lookup_expr='gte')
-    created_before = django_filters.DateFilter(field_name="created_at", lookup_expr='lte')
-    search = django_filters.CharFilter(method='search_filter')
-    stage = django_filters.ChoiceFilter(choices=Application.STAGE_CHOICES)
+    min_loan_amount = NumberFilter(field_name="loan_amount", lookup_expr='gte')
+    max_loan_amount = NumberFilter(field_name="loan_amount", lookup_expr='lte')
+    min_interest_rate = NumberFilter(field_name="interest_rate", lookup_expr='gte')
+    max_interest_rate = NumberFilter(field_name="interest_rate", lookup_expr='lte')
+    created_after = DateFilter(field_name="created_at", lookup_expr='gte')
+    created_before = DateFilter(field_name="created_at", lookup_expr='lte')
+    search = CharFilter(method='search_filter')
+    stage = ChoiceFilter(choices=Application.STAGE_CHOICES)
     
     class Meta:
         model = Application
