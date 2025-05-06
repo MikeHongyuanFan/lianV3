@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Document, Note, Fee, Repayment, Ledger
+from .models import Document, Note, Fee, Repayment, Ledger, NoteComment
 
 
 class DocumentSerializer(serializers.ModelSerializer):
@@ -15,12 +15,24 @@ class DocumentSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['file_name', 'file_size', 'file_type', 'version', 'created_by', 'created_at', 'updated_at']
     
-    def get_file_url(self, obj):
+    def get_file_url(self, obj) -> str:
         if obj.file:
             request = self.context.get('request')
             if request:
                 return request.build_absolute_uri(obj.file.url)
         return None
+
+
+class NoteCommentSerializer(serializers.ModelSerializer):
+    """
+    Serializer for note comments
+    """
+    created_by_name = serializers.StringRelatedField(source='created_by')
+    
+    class Meta:
+        model = NoteComment
+        fields = ['id', 'note', 'content', 'created_by', 'created_by_name', 'created_at', 'updated_at']
+        read_only_fields = ['created_by', 'created_at', 'updated_at']
 
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -29,6 +41,7 @@ class NoteSerializer(serializers.ModelSerializer):
     """
     created_by_name = serializers.StringRelatedField(source='created_by')
     assigned_to_name = serializers.StringRelatedField(source='assigned_to')
+    comments = NoteCommentSerializer(many=True, read_only=True)
     
     class Meta:
         model = Note
@@ -50,12 +63,12 @@ class FeeSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['created_by', 'created_at', 'updated_at']
     
-    def get_status(self, obj):
+    def get_status(self, obj) -> str:
         if obj.paid_date:
             return 'paid'
         return 'pending'
     
-    def get_invoice_url(self, obj):
+    def get_invoice_url(self, obj) -> str:
         if obj.invoice:
             request = self.context.get('request')
             if request:
@@ -76,7 +89,7 @@ class RepaymentSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['created_by', 'created_at', 'updated_at', 'reminder_sent', 'overdue_3_day_sent', 'overdue_7_day_sent', 'overdue_10_day_sent']
     
-    def get_status(self, obj):
+    def get_status(self, obj) -> str:
         if obj.paid_date:
             return 'paid'
         
@@ -94,7 +107,7 @@ class RepaymentSerializer(serializers.ModelSerializer):
         
         return 'scheduled'
     
-    def get_invoice_url(self, obj):
+    def get_invoice_url(self, obj) -> str:
         if obj.invoice:
             request = self.context.get('request')
             if request:
@@ -117,3 +130,14 @@ class LedgerSerializer(serializers.ModelSerializer):
             'amount', 'description', 'transaction_date', 'related_fee',
             'related_fee_type', 'related_repayment', 'created_by', 'created_by_name', 'created_at'
         ]
+
+
+class ApplicationLedgerSerializer(serializers.Serializer):
+    """
+    Serializer for application ledger summary
+    """
+    ledger_entries = LedgerSerializer(many=True)
+    total_funded = serializers.DecimalField(max_digits=15, decimal_places=2)
+    total_repaid = serializers.DecimalField(max_digits=15, decimal_places=2)
+    total_fees = serializers.DecimalField(max_digits=15, decimal_places=2)
+    balance = serializers.DecimalField(max_digits=15, decimal_places=2)

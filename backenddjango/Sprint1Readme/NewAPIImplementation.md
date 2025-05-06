@@ -10,8 +10,11 @@ Enable users to send documents to clients for e-signature via DocuSign.
 1. **DocuSign Developer Account Setup**
    - Create DocuSign developer account.
    - Generate integration key, secret, and configure redirect URIs.
-Integration key:783bcc77-f364-4d22-800d-f988e9b2b20e
+   User ID 0500040d-c49a-453b-95dd-40302fd1bdca
+   API accountID b23f1b1d-e370-43ec-a8e6-1533d837ec0a
+Integration key:783bcc77-f364-4d22-800d-f988e9b2b20e	
 secret key: ed6ed069-7ef8-469c-b3ba-2f2dbe2f0d13
+Account base URL: https://demo.docusign.net
 2. **Backend Integration**
    - Install SDK: `docusign-esign` Python package.
    - Create `EnvelopeService` to:
@@ -98,7 +101,7 @@ Allow users to send emails that appear from another user (e.g., assistants sendi
 For detail information, check; 
 /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/NewFeatureCalculator.md 
 
-## 4. 📄 Mail Merge and Export as Word
+## 4. Missing Mail Merge and Export as Word
 
 ### Template System:
 - Store templates in DB or `templates/docs/*.docx`

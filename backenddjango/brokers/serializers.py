@@ -31,10 +31,10 @@ class BrokerListSerializer(serializers.ModelSerializer):
             'phone', 'branch_name', 'application_count'
         ]
     
-    def get_branch_name(self, obj):
+    def get_branch_name(self, obj) -> str:
         return obj.branch.name if obj.branch else None
     
-    def get_application_count(self, obj):
+    def get_application_count(self, obj) -> int:
         # Use the correct related_name from Application model
         return obj.broker_applications.count() if hasattr(obj, 'broker_applications') else 0
 

@@ -3,6 +3,12 @@
 ## Milestone 1: Critical Missing Components (Weeks 1-2)
 
 ### 1. DocuSign Integration
+0. ** Connection detail: **
+User ID 0500040d-c49a-453b-95dd-40302fd1bdca
+   API accountID b23f1b1d-e370-43ec-a8e6-1533d837ec0a
+Integration key:783bcc77-f364-4d22-800d-f988e9b2b20e	
+secret key: ed6ed069-7ef8-469c-b3ba-2f2dbe2f0d13
+Account base URL: https://demo.docusign.net
 1. **Day 1-2: Setup & Authentication**
    - Create DocuSign developer account
    - Install `docusign-esign` Python package
@@ -35,7 +41,7 @@
    - Implement request validation and security controls
    - Add tests for the endpoint
 
-## Milestone 2: Calculator API Improvements (Week 3)
+## Milestone 2: Calculator API Improvements (Week 3) Done
 
 1. **Day 11-12: Model & Logic Updates**
    - Add new fields to calculator model:
@@ -77,17 +83,17 @@
 
 ## Milestone 4: Notification & Reminder Enhancements (Week 5)
 
-1. **Day 22-23: Stagnation Reminders**
+1. **Day 22-23: Stagnation Reminders** doen
    - Create Celery task `check_stagnant_applications()`
    - Implement notification generation logic
    - Set up daily schedule in Celery Beat
 
-2. **Day 24-25: Note Assignment**
+2. **Day 24-25: Note Assignment** done
    - Add `assigned_to` field to Notes model
    - Create migration for database update
    - Implement notification logic for note assignment
 
-3. **Day 26-27: Email Reminders**
+3. **Day 26-27: Email Reminders** done 
    - Create `Reminder` model
    - Implement Celery task for checking and sending reminders
    - Add API endpoints for managing reminders
@@ -99,16 +105,16 @@ receive the email with the sender being Benson. When client replies to email it 
 email to Benson NOT Ivan.
 ## Milestone 5: Application Enhancements (Week 6)
 
-1. **Day 28: Stage Name Updates**
+1. **Day 28: Stage Name Updates** Done
    - Update stage choice constants
    - Create migration for mapping old stages to new ones
    - Update serializers and views
 
-2. **Day 29: Product Column**
+2. **Day 29: Product Column** Done
    - Add `product_name` field to application serializer
    - Update API responses to include product information 
 
-3. **Day 30: Loan Extension API**
+3. **Day 30: Loan Extension API** Done
    - Create `POST /api/applications/{id}/extend-loan/` endpoint
    - Implement logic for loan extension and repayment recalculation
    - Add tests for loan extension functionality

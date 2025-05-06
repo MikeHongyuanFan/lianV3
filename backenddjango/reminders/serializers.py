@@ -22,12 +22,12 @@ class ReminderSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['created_by', 'is_sent', 'sent_at', 'error_message', 'created_at', 'updated_at']
     
-    def get_send_as_user_email(self, obj):
+    def get_send_as_user_email(self, obj) -> str:
         if obj.send_as_user:
             return obj.send_as_user.email
         return None
     
-    def get_reply_to_user_email(self, obj):
+    def get_reply_to_user_email(self, obj) -> str:
         if obj.reply_to_user:
             return obj.reply_to_user.email
         return None

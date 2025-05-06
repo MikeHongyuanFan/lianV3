@@ -9,12 +9,12 @@ cd backenddjango
 
 # Generate YAML schema
 echo "Generating YAML schema..."
-python manage.py spectacular --file schema.yaml
+python3 manage.py spectacular --file schema.yaml
 echo "YAML schema generated at backenddjango/schema.yaml"
 
 # Generate JSON schema
 echo "Generating JSON schema..."
-python manage.py spectacular --file schema.json --format openapi-json
+python3 manage.py spectacular --file schema.json --format openapi-json
 echo "JSON schema generated at backenddjango/schema.json"
 
 echo "Schema generation complete!"

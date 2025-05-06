@@ -4,7 +4,7 @@ from django.utils import timezone
 from datetime import timedelta
 from rest_framework import generics, status, permissions
 from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 
 from applications.models import Application, Repayment
@@ -16,11 +16,12 @@ from .serializers import (
 )
 
 
-class RepaymentComplianceReportView(APIView):
+class RepaymentComplianceReportView(GenericAPIView):
     """
     API endpoint for repayment compliance reports
     """
     permission_classes = [permissions.IsAuthenticated]
+    serializer_class = RepaymentComplianceReportSerializer
     
     def get(self, request, format=None):
         # Get query parameters for filtering
@@ -121,11 +122,12 @@ class RepaymentComplianceReportView(APIView):
         return Response(serializer.data)
 
 
-class ApplicationVolumeReportView(APIView):
+class ApplicationVolumeReportView(GenericAPIView):
     """
     API endpoint for application volume reports
     """
     permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ApplicationVolumeReportSerializer
     
     def get(self, request, format=None):
         # Get query parameters for filtering
@@ -215,11 +217,12 @@ class ApplicationVolumeReportView(APIView):
         return Response(serializer.data)
 
 
-class ApplicationStatusReportView(APIView):
+class ApplicationStatusReportView(GenericAPIView):
     """
     API endpoint for application status reports
     """
     permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ApplicationStatusReportSerializer
     
     def get(self, request, format=None):
         # Get query parameters for filtering

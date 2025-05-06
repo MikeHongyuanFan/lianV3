@@ -66,11 +66,36 @@ def validate_company_borrower(company_data):
     """
     errors = {}
     
-    # Required fields
+    # Validate required fields and identifiers
+    errors.update(_validate_required_fields(company_data))
+    errors.update(_validate_identifiers(company_data))
+    
+    # Validate business type and years
+    errors.update(_validate_business_details(company_data))
+    
+    # Validate financial information
+    errors.update(_validate_financial_info(company_data))
+    
+    # Validate address information
+    errors.update(_validate_address(company_data))
+    
+    # Validate directors information
+    errors.update(_validate_directors(company_data))
+    
+    return errors
+
+def _validate_required_fields(company_data):
+    """Validate required company fields"""
+    errors = {}
     required_fields = ['company_name', 'abn', 'acn', 'business_type', 'industry']
     for field in required_fields:
         if not company_data.get(field):
             errors[field] = f'{field.replace("_", " ").title()} is required'
+    return errors
+
+def _validate_identifiers(company_data):
+    """Validate ABN and ACN"""
+    errors = {}
     
     # ABN validation
     if company_data.get('abn'):
@@ -85,6 +110,12 @@ def validate_company_borrower(company_data):
             validate_acn(company_data['acn'])
         except ValidationError as e:
             errors['acn'] = str(e)
+            
+    return errors
+
+def _validate_business_details(company_data):
+    """Validate business type and years in business"""
+    errors = {}
     
     # Business type validation
     valid_business_types = [
@@ -102,8 +133,13 @@ def validate_company_borrower(company_data):
                 errors['years_in_business'] = 'Years in business cannot be negative'
         except (ValueError, TypeError):
             errors['years_in_business'] = 'Years in business must be a number'
+            
+    return errors
+
+def _validate_financial_info(company_data):
+    """Validate financial information"""
+    errors = {}
     
-    # Financial information validation
     financial_fields = ['annual_revenue', 'net_profit', 'assets', 'liabilities']
     if 'financial_info' in company_data:
         for field in financial_fields:
@@ -114,8 +150,13 @@ def validate_company_borrower(company_data):
                         errors[f'financial_info.{field}'] = f'{field.replace("_", " ").title()} cannot be negative'
                 except (ValueError, TypeError):
                     errors[f'financial_info.{field}'] = f'{field.replace("_", " ").title()} must be a number'
+                    
+    return errors
+
+def _validate_address(company_data):
+    """Validate company address"""
+    errors = {}
     
-    # Address validation
     if 'registered_address' in company_data:
         address = company_data['registered_address']
         address_fields = ['street', 'city', 'state', 'postal_code', 'country']
@@ -127,8 +168,13 @@ def validate_company_borrower(company_data):
         if address.get('country', '').lower() == 'australia' and address.get('postal_code'):
             if not re.match(r'^\d{4}$', str(address['postal_code'])):
                 errors['registered_address.postal_code'] = 'Australian postal code must be 4 digits'
+                
+    return errors
+
+def _validate_directors(company_data):
+    """Validate company directors"""
+    errors = {}
     
-    # Directors validation
     if 'directors' in company_data and company_data['directors']:
         for i, director in enumerate(company_data['directors']):
             if not director.get('first_name'):
@@ -139,5 +185,5 @@ def validate_company_borrower(company_data):
             # Email validation
             if director.get('email') and not re.match(r'^[^\s@]+@[^\s@]+\.[^\s@]+$', director['email']):
                 errors[f'directors[{i}].email'] = 'Invalid email format'
-    
+                
     return errors

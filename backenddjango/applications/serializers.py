@@ -33,7 +33,7 @@ class BorrowerSerializer(serializers.ModelSerializer):
             'residency_status', 'referral_source', 'tags'
         ]
     
-    def get_address(self, obj):
+    def get_address(self, obj) -> dict:
         return {
             'street': obj.residential_address or '',
             'city': '',
@@ -42,7 +42,7 @@ class BorrowerSerializer(serializers.ModelSerializer):
             'country': ''
         }
     
-    def get_employment_info(self, obj):
+    def get_employment_info(self, obj) -> dict:
         return {
             'employer': obj.employer_name or '',
             'position': obj.job_title or '',
@@ -80,7 +80,7 @@ class GuarantorSerializer(serializers.ModelSerializer):
             'address', 'guarantor_type', 'borrower', 'application'
         ]
     
-    def get_address(self, obj):
+    def get_address(self, obj) -> dict:
         return {
             'street': obj.address or '',
             'city': '',
@@ -381,24 +381,24 @@ class ApplicationDetailSerializer(serializers.ModelSerializer):
             'created_by_details'
         ]
     
-    def get_documents(self, obj):
+    def get_documents(self, obj) -> list:
         documents = Document.objects.filter(application=obj)
         return DocumentSerializer(documents, many=True, context=self.context).data
     
-    def get_notes(self, obj):
+    def get_notes(self, obj) -> list:
         from documents.models import Note
         notes = Note.objects.filter(application=obj).order_by('-created_at')
         return NoteSerializer(notes, many=True, context=self.context).data
     
-    def get_fees(self, obj):
+    def get_fees(self, obj) -> list:
         fees = Fee.objects.filter(application=obj)
         return FeeSerializer(fees, many=True, context=self.context).data
     
-    def get_repayments(self, obj):
+    def get_repayments(self, obj) -> list:
         repayments = Repayment.objects.filter(application=obj).order_by('due_date')
         return RepaymentSerializer(repayments, many=True, context=self.context).data
     
-    def get_ledger_entries(self, obj):
+    def get_ledger_entries(self, obj) -> list:
         from documents.models import Ledger
         ledger_entries = Ledger.objects.filter(application=obj).order_by('-transaction_date')
         return LedgerSerializer(ledger_entries, many=True, context=self.context).data
@@ -425,7 +425,7 @@ class ApplicationListSerializer(serializers.ModelSerializer):
             'application_type', 'created_at', 'estimated_settlement_date', 'borrower_count'
         ]
     
-    def get_borrower_count(self, obj):
+    def get_borrower_count(self, obj) -> int:
         return obj.borrowers.count()
 
 

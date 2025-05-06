@@ -1,8 +1,8 @@
 from django.template.loader import render_to_string
 from django.conf import settings
 import os
-import uuid
-from datetime import datetime
+from uuid import uuid4
+from django.utils import timezone
 from weasyprint import HTML
 from .models import Document
 
@@ -76,7 +76,7 @@ def generate_guarantor_letter(guarantor_id, user):
         'guarantor': guarantor,
         'application': application,
         'borrower': guarantor.borrower,
-        'generated_date': datetime.now().strftime('%d/%m/%Y'),
+        'generated_date': timezone.now().strftime('%d/%m/%Y'),
     }
     
     # Generate document
@@ -122,7 +122,7 @@ def generate_company_borrower_documents(borrower_id, user):
     context = {
         'borrower': borrower,
         'application': application,
-        'generated_date': datetime.now().strftime('%d/%m/%Y'),
+        'generated_date': timezone.now().strftime('%d/%m/%Y'),
     }
     
     company_declaration = generate_document_from_template(

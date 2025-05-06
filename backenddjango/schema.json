@@ -2303,14 +2303,21 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "No response body"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BorrowerFinancialSummary"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
         },
         "/api/borrowers/{id}/guarantors/": {
             "get": {
-                "operationId": "borrowers_guarantors_retrieve_2",
+                "operationId": "borrowers_guarantors_by_borrower_id",
                 "description": "Get all guarantors for a borrower",
                 "parameters": [
                     {
@@ -2454,7 +2461,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/PaginatedGuarantorList"
+                                    "$ref": "#/components/schemas/PaginatedBorrowerGuarantorList"
                                 }
                             }
                         },
@@ -2472,17 +2479,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/GuarantorRequest"
+                                "$ref": "#/components/schemas/BorrowerGuarantorRequest"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/GuarantorRequest"
+                                "$ref": "#/components/schemas/BorrowerGuarantorRequest"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/GuarantorRequest"
+                                "$ref": "#/components/schemas/BorrowerGuarantorRequest"
                             }
                         }
                     }
@@ -2500,7 +2507,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Guarantor"
+                                    "$ref": "#/components/schemas/BorrowerGuarantor"
                                 }
                             }
                         },
@@ -2511,7 +2518,7 @@
         },
         "/api/borrowers/guarantors/{id}/": {
             "get": {
-                "operationId": "borrowers_guarantors_retrieve",
+                "operationId": "borrower_guarantor_detail",
                 "description": "API endpoint for managing guarantors",
                 "parameters": [
                     {
@@ -2540,7 +2547,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Guarantor"
+                                    "$ref": "#/components/schemas/BorrowerGuarantor"
                                 }
                             }
                         },
@@ -2569,17 +2576,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/GuarantorRequest"
+                                "$ref": "#/components/schemas/BorrowerGuarantorRequest"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/GuarantorRequest"
+                                "$ref": "#/components/schemas/BorrowerGuarantorRequest"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/GuarantorRequest"
+                                "$ref": "#/components/schemas/BorrowerGuarantorRequest"
                             }
                         }
                     }
@@ -2597,7 +2604,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Guarantor"
+                                    "$ref": "#/components/schemas/BorrowerGuarantor"
                                 }
                             }
                         },
@@ -2626,17 +2633,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedGuarantorRequest"
+                                "$ref": "#/components/schemas/PatchedBorrowerGuarantorRequest"
                             }
                         },
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedGuarantorRequest"
+                                "$ref": "#/components/schemas/PatchedBorrowerGuarantorRequest"
                             }
                         },
                         "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/PatchedGuarantorRequest"
+                                "$ref": "#/components/schemas/PatchedBorrowerGuarantorRequest"
                             }
                         }
                     }
@@ -2654,7 +2661,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Guarantor"
+                                    "$ref": "#/components/schemas/BorrowerGuarantor"
                                 }
                             }
                         },
@@ -2725,7 +2732,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Guarantor"
+                                    "$ref": "#/components/schemas/BorrowerGuarantor"
                                 }
                             }
                         },
@@ -3813,7 +3820,7 @@
         "/api/documents/applications/{application_id}/ledger/": {
             "get": {
                 "operationId": "documents_applications_ledger_retrieve",
-                "description": "Get ledger entries for an application",
+                "description": "API endpoint for getting the ledger for an application",
                 "parameters": [
                     {
                         "in": "path",
@@ -3837,7 +3844,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "No response body"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApplicationLedger"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -3897,6 +3911,15 @@
                             ]
                         },
                         "description": "* `application_form` - Application Form\n* `indicative_letter` - Indicative Letter\n* `formal_approval` - Formal Approval\n* `valuation_report` - Valuation Report\n* `qs_report` - Quantity Surveyor Report\n* `id_verification` - ID Verification\n* `bank_statement` - Bank Statement\n* `payslip` - Payslip\n* `tax_return` - Tax Return\n* `contract` - Contract\n* `other` - Other"
+                    },
+                    {
+                        "name": "ordering",
+                        "required": false,
+                        "in": "query",
+                        "description": "Which field to use when ordering the results.",
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "name": "page",
@@ -4025,7 +4048,7 @@
             },
             "put": {
                 "operationId": "documents_documents_update",
-                "description": "Update a document",
+                "description": "API endpoint for managing documents",
                 "parameters": [
                     {
                         "in": "path",
@@ -4163,7 +4186,7 @@
         "/api/documents/documents/{id}/create-version/": {
             "post": {
                 "operationId": "documents_documents_create_version_create",
-                "description": "Create a new version of a document",
+                "description": "API endpoint for creating a new version of a document",
                 "parameters": [
                     {
                         "in": "path",
@@ -4177,6 +4200,21 @@
                 "tags": [
                     "documents"
                 ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DocumentRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DocumentRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "security": [
                     {
                         "jwtAuth": []
@@ -4187,7 +4225,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "No response body"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Document"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -4295,6 +4340,15 @@
                         "name": "min_amount",
                         "schema": {
                             "type": "number"
+                        }
+                    },
+                    {
+                        "name": "ordering",
+                        "required": false,
+                        "in": "query",
+                        "description": "Which field to use when ordering the results.",
+                        "schema": {
+                            "type": "string"
                         }
                     },
                     {
@@ -4577,7 +4631,7 @@
         "/api/documents/fees/{id}/mark-paid/": {
             "post": {
                 "operationId": "documents_fees_mark_paid_create",
-                "description": "Mark a fee as paid",
+                "description": "API endpoint for marking a fee as paid",
                 "parameters": [
                     {
                         "in": "path",
@@ -4585,6 +4639,201 @@
                         "schema": {
                             "type": "integer"
                         },
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "documents"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FeeRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FeeRequest"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FeeRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Fee"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/documents/note-comments/": {
+            "get": {
+                "operationId": "documents_note_comments_list",
+                "description": "API endpoint for managing note comments",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "created_after",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "created_before",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "created_by",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "note",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "ordering",
+                        "required": false,
+                        "in": "query",
+                        "description": "Which field to use when ordering the results.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "required": false,
+                        "in": "query",
+                        "description": "A page number within the paginated result set.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "required": false,
+                        "in": "query",
+                        "description": "A search term.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "documents"
+                ],
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaginatedNoteCommentList"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "operationId": "documents_note_comments_create",
+                "description": "API endpoint for managing note comments",
+                "tags": [
+                    "documents"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NoteCommentRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NoteCommentRequest"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NoteCommentRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoteComment"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/documents/note-comments/{id}/": {
+            "get": {
+                "operationId": "documents_note_comments_retrieve",
+                "description": "API endpoint for managing note comments",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this note comment.",
                         "required": true
                     }
                 ],
@@ -4601,6 +4850,159 @@
                 ],
                 "responses": {
                     "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoteComment"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "put": {
+                "operationId": "documents_note_comments_update",
+                "description": "API endpoint for managing note comments",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this note comment.",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "documents"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NoteCommentRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NoteCommentRequest"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NoteCommentRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoteComment"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "documents_note_comments_partial_update",
+                "description": "API endpoint for managing note comments",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this note comment.",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "documents"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PatchedNoteCommentRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PatchedNoteCommentRequest"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PatchedNoteCommentRequest"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoteComment"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "documents_note_comments_destroy",
+                "description": "API endpoint for managing note comments",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this note comment.",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "documents"
+                ],
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "204": {
                         "description": "No response body"
                     }
                 }
@@ -4639,6 +5041,15 @@
                         "schema": {
                             "type": "string",
                             "format": "date"
+                        }
+                    },
+                    {
+                        "name": "ordering",
+                        "required": false,
+                        "in": "query",
+                        "description": "Which field to use when ordering the results.",
+                        "schema": {
+                            "type": "string"
                         }
                     },
                     {
@@ -4916,6 +5327,105 @@
                 }
             }
         },
+        "/api/documents/notes/{id}/add_comment/": {
+            "post": {
+                "operationId": "documents_notes_add_comment_create",
+                "description": "Add a comment to a note",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this note.",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "documents"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NoteRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NoteRequest"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NoteRequest"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Note"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/documents/notes/{id}/comments/": {
+            "get": {
+                "operationId": "documents_notes_comments_retrieve",
+                "description": "Get all comments for a note",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "A unique integer value identifying this note.",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "documents"
+                ],
+                "security": [
+                    {
+                        "jwtAuth": []
+                    },
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Note"
+                                }
+                            }
+                        },
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/api/documents/repayments/": {
             "get": {
                 "operationId": "documents_repayments_list",
@@ -4966,12 +5476,30 @@
                         }
                     },
                     {
+                        "name": "ordering",
+                        "required": false,
+                        "in": "query",
+                        "description": "Which field to use when ordering the results.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "page",
                         "required": false,
                         "in": "query",
                         "description": "A page number within the paginated result set.",
                         "schema": {
                             "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "required": false,
+                        "in": "query",
+                        "description": "A search term.",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -5236,7 +5764,7 @@
         "/api/documents/repayments/{id}/mark-paid/": {
             "post": {
                 "operationId": "documents_repayments_mark_paid_create",
-                "description": "Mark a repayment as paid",
+                "description": "API endpoint for marking a repayment as paid",
                 "parameters": [
                     {
                         "in": "path",
@@ -5250,6 +5778,26 @@
                 "tags": [
                     "documents"
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RepaymentRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RepaymentRequest"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RepaymentRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "security": [
                     {
                         "jwtAuth": []
@@ -5260,7 +5808,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "No response body"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Repayment"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -5942,7 +6497,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "No response body"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApplicationStatusReport"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -5964,7 +6526,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "No response body"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApplicationVolumeReport"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -5986,7 +6555,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "No response body"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RepaymentComplianceReport"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -5998,6 +6574,26 @@
                 "tags": [
                     "users"
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserLoginRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserLoginRequest"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserLoginRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "security": [
                     {
                         "jwtAuth": []
@@ -6009,7 +6605,22 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "No response body"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "refresh": {
+                                            "type": "string"
+                                        },
+                                        "access": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -6067,6 +6678,26 @@
                 "tags": [
                     "users"
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserCreateRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserCreateRequest"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserCreateRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "security": [
                     {
                         "jwtAuth": []
@@ -6078,7 +6709,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "No response body"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserCreate"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -6164,6 +6802,30 @@
                 "description": "API endpoint for listing user notifications",
                 "parameters": [
                     {
+                        "in": "query",
+                        "name": "is_read",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "notification_type",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "application_status",
+                                "document_uploaded",
+                                "note_reminder",
+                                "repayment_overdue",
+                                "repayment_upcoming",
+                                "signature_required",
+                                "system"
+                            ]
+                        },
+                        "description": "* `application_status` - Application Status Change\n* `repayment_upcoming` - Repayment Upcoming\n* `repayment_overdue` - Repayment Overdue\n* `note_reminder` - Note Reminder\n* `document_uploaded` - Document Uploaded\n* `signature_required` - Signature Required\n* `system` - System Notification"
+                    },
+                    {
                         "name": "ordering",
                         "required": false,
                         "in": "query",
@@ -6212,6 +6874,30 @@
                 "operationId": "users_notifications_viewset_list",
                 "description": "API endpoint for managing notifications",
                 "parameters": [
+                    {
+                        "in": "query",
+                        "name": "is_read",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "notification_type",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "application_status",
+                                "document_uploaded",
+                                "note_reminder",
+                                "repayment_overdue",
+                                "repayment_upcoming",
+                                "signature_required",
+                                "system"
+                            ]
+                        },
+                        "description": "* `application_status` - Application Status Change\n* `repayment_upcoming` - Repayment Upcoming\n* `repayment_overdue` - Repayment Overdue\n* `note_reminder` - Note Reminder\n* `document_uploaded` - Document Uploaded\n* `signature_required` - Signature Required\n* `system` - System Notification"
+                    },
                     {
                         "name": "ordering",
                         "required": false,
@@ -6265,7 +6951,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -6304,7 +6990,7 @@
                         "in": "path",
                         "name": "id",
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         },
                         "required": true
                     }
@@ -6449,7 +7135,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "No response body"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotificationList"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -6461,6 +7154,26 @@
                 "tags": [
                     "users"
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificationRequest"
+                            }
+                        },
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificationRequest"
+                            }
+                        },
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "security": [
                     {
                         "jwtAuth": []
@@ -6471,7 +7184,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "No response body"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Notification"
+                                }
+                            }
+                        },
+                        "description": ""
                     }
                 }
             }
@@ -7424,23 +8144,28 @@
                         "readOnly": true
                     },
                     "documents": {
-                        "type": "string",
+                        "type": "array",
+                        "items": {},
                         "readOnly": true
                     },
                     "notes": {
-                        "type": "string",
+                        "type": "array",
+                        "items": {},
                         "readOnly": true
                     },
                     "fees": {
-                        "type": "string",
+                        "type": "array",
+                        "items": {},
                         "readOnly": true
                     },
                     "repayments": {
-                        "type": "string",
+                        "type": "array",
+                        "items": {},
                         "readOnly": true
                     },
                     "ledger_entries": {
-                        "type": "string",
+                        "type": "array",
+                        "items": {},
                         "readOnly": true
                     },
                     "security_address": {
@@ -7715,6 +8440,45 @@
                     }
                 }
             },
+            "ApplicationLedger": {
+                "type": "object",
+                "description": "Serializer for application ledger summary",
+                "properties": {
+                    "ledger_entries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Ledger"
+                        }
+                    },
+                    "total_funded": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,13}(?:\\.\\d{0,2})?$"
+                    },
+                    "total_repaid": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,13}(?:\\.\\d{0,2})?$"
+                    },
+                    "total_fees": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,13}(?:\\.\\d{0,2})?$"
+                    },
+                    "balance": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,13}(?:\\.\\d{0,2})?$"
+                    }
+                },
+                "required": [
+                    "balance",
+                    "ledger_entries",
+                    "total_fees",
+                    "total_funded",
+                    "total_repaid"
+                ]
+            },
             "ApplicationSignature": {
                 "type": "object",
                 "description": "Serializer for application signature",
@@ -7793,6 +8557,60 @@
                     "stage"
                 ]
             },
+            "ApplicationStatusReport": {
+                "type": "object",
+                "description": "Serializer for application status report data",
+                "properties": {
+                    "total_active": {
+                        "type": "integer"
+                    },
+                    "total_settled": {
+                        "type": "integer"
+                    },
+                    "total_declined": {
+                        "type": "integer"
+                    },
+                    "total_withdrawn": {
+                        "type": "integer"
+                    },
+                    "active_by_stage": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "integer"
+                        }
+                    },
+                    "avg_time_in_stage": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "number",
+                            "format": "double"
+                        }
+                    },
+                    "inquiry_to_approval_rate": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "approval_to_settlement_rate": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "overall_success_rate": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "required": [
+                    "active_by_stage",
+                    "approval_to_settlement_rate",
+                    "avg_time_in_stage",
+                    "inquiry_to_approval_rate",
+                    "overall_success_rate",
+                    "total_active",
+                    "total_declined",
+                    "total_settled",
+                    "total_withdrawn"
+                ]
+            },
             "ApplicationTypeEnum": {
                 "enum": [
                     "residential",
@@ -7804,6 +8622,60 @@
                 ],
                 "type": "string",
                 "description": "* `residential` - Residential\n* `commercial` - Commercial\n* `construction` - Construction\n* `refinance` - Refinance\n* `investment` - Investment\n* `smsf` - SMSF"
+            },
+            "ApplicationVolumeReport": {
+                "type": "object",
+                "description": "Serializer for application volume report data",
+                "properties": {
+                    "total_applications": {
+                        "type": "integer"
+                    },
+                    "total_loan_amount": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,12}(?:\\.\\d{0,2})?$"
+                    },
+                    "average_loan_amount": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,10}(?:\\.\\d{0,2})?$"
+                    },
+                    "stage_breakdown": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "integer"
+                        }
+                    },
+                    "time_breakdown": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {}
+                        }
+                    },
+                    "bd_breakdown": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {}
+                        }
+                    },
+                    "type_breakdown": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "required": [
+                    "average_loan_amount",
+                    "bd_breakdown",
+                    "stage_breakdown",
+                    "time_breakdown",
+                    "total_applications",
+                    "total_loan_amount",
+                    "type_breakdown"
+                ]
             },
             "BDM": {
                 "type": "object",
@@ -7941,11 +8813,13 @@
                         "nullable": true
                     },
                     "address": {
-                        "type": "string",
+                        "type": "object",
+                        "additionalProperties": {},
                         "readOnly": true
                     },
                     "employment_info": {
-                        "type": "string",
+                        "type": "object",
+                        "additionalProperties": {},
                         "readOnly": true
                     },
                     "tax_id": {
@@ -8397,6 +9271,196 @@
                     }
                 }
             },
+            "BorrowerFinancialSummary": {
+                "type": "object",
+                "description": "Serializer for borrower financial summary",
+                "properties": {
+                    "total_applications": {
+                        "type": "integer"
+                    },
+                    "total_funded": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,13}(?:\\.\\d{0,2})?$"
+                    },
+                    "active_loans": {
+                        "type": "integer"
+                    },
+                    "active_loan_amount": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,13}(?:\\.\\d{0,2})?$"
+                    },
+                    "completed_loans": {
+                        "type": "integer"
+                    },
+                    "completed_loan_amount": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,13}(?:\\.\\d{0,2})?$"
+                    }
+                },
+                "required": [
+                    "active_loan_amount",
+                    "active_loans",
+                    "completed_loan_amount",
+                    "completed_loans",
+                    "total_applications",
+                    "total_funded"
+                ]
+            },
+            "BorrowerGuarantor": {
+                "type": "object",
+                "description": "Serializer for guarantor information",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "created_by": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        ],
+                        "readOnly": true
+                    },
+                    "guarantor_type": {
+                        "$ref": "#/components/schemas/GuarantorTypeEnum"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 100
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 100
+                    },
+                    "date_of_birth": {
+                        "type": "string",
+                        "format": "date",
+                        "nullable": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "nullable": true,
+                        "maxLength": 254
+                    },
+                    "phone": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 20
+                    },
+                    "address": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "company_name": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 255
+                    },
+                    "company_abn": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 20
+                    },
+                    "company_acn": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 20
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "borrower": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "application": {
+                        "type": "integer",
+                        "nullable": true
+                    }
+                },
+                "required": [
+                    "created_at",
+                    "created_by",
+                    "id",
+                    "updated_at"
+                ]
+            },
+            "BorrowerGuarantorRequest": {
+                "type": "object",
+                "description": "Serializer for guarantor information",
+                "properties": {
+                    "guarantor_type": {
+                        "$ref": "#/components/schemas/GuarantorTypeEnum"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 100
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 100
+                    },
+                    "date_of_birth": {
+                        "type": "string",
+                        "format": "date",
+                        "nullable": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "nullable": true,
+                        "maxLength": 254
+                    },
+                    "phone": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 20
+                    },
+                    "address": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "company_name": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 255
+                    },
+                    "company_abn": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 20
+                    },
+                    "company_acn": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 20
+                    },
+                    "borrower": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "application": {
+                        "type": "integer",
+                        "nullable": true
+                    }
+                }
+            },
             "BorrowerList": {
                 "type": "object",
                 "description": "Serializer for listing borrowers with minimal information",
@@ -8432,7 +9496,7 @@
                         "readOnly": true
                     },
                     "application_count": {
-                        "type": "string",
+                        "type": "integer",
                         "readOnly": true
                     }
                 },
@@ -8800,7 +9864,7 @@
                         "readOnly": true
                     },
                     "application_count": {
-                        "type": "string",
+                        "type": "integer",
                         "readOnly": true
                     }
                 },
@@ -9522,7 +10586,8 @@
                         "nullable": true
                     },
                     "address": {
-                        "type": "string",
+                        "type": "object",
+                        "additionalProperties": {},
                         "readOnly": true
                     },
                     "guarantor_type": {
@@ -9591,6 +10656,75 @@
                 ],
                 "type": "string",
                 "description": "* `individual` - Individual\n* `company` - Company"
+            },
+            "Ledger": {
+                "type": "object",
+                "description": "Serializer for ledger entries",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "application": {
+                        "type": "integer"
+                    },
+                    "transaction_type": {
+                        "$ref": "#/components/schemas/TransactionTypeEnum"
+                    },
+                    "transaction_type_display": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "amount": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,8}(?:\\.\\d{0,2})?$"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "transaction_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "related_fee": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "related_fee_type": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "related_repayment": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "created_by": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "created_by_name": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    }
+                },
+                "required": [
+                    "amount",
+                    "application",
+                    "created_at",
+                    "created_by_name",
+                    "description",
+                    "id",
+                    "related_fee_type",
+                    "transaction_type",
+                    "transaction_type_display"
+                ]
             },
             "LoanExtension": {
                 "type": "object",
@@ -9671,6 +10805,13 @@
                         "type": "string",
                         "readOnly": true
                     },
+                    "comments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NoteComment"
+                        },
+                        "readOnly": true
+                    },
                     "title": {
                         "type": "string",
                         "nullable": true,
@@ -9715,11 +10856,73 @@
                 },
                 "required": [
                     "assigned_to_name",
+                    "comments",
                     "created_at",
                     "created_by",
                     "created_by_name",
                     "id",
                     "updated_at"
+                ]
+            },
+            "NoteComment": {
+                "type": "object",
+                "description": "Serializer for note comments",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "readOnly": true
+                    },
+                    "note": {
+                        "type": "integer"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "created_by": {
+                        "type": "integer",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "created_by_name": {
+                        "type": "string",
+                        "readOnly": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true
+                    }
+                },
+                "required": [
+                    "content",
+                    "created_at",
+                    "created_by",
+                    "created_by_name",
+                    "id",
+                    "note",
+                    "updated_at"
+                ]
+            },
+            "NoteCommentRequest": {
+                "type": "object",
+                "description": "Serializer for note comments",
+                "properties": {
+                    "note": {
+                        "type": "integer"
+                    },
+                    "content": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "required": [
+                    "content",
+                    "note"
                 ]
             },
             "NoteRequest": {
@@ -10074,6 +11277,33 @@
                     }
                 }
             },
+            "PaginatedBorrowerGuarantorList": {
+                "type": "object",
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "example": 123
+                    },
+                    "next": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "uri",
+                        "example": "http://api.example.org/accounts/?page=4"
+                    },
+                    "previous": {
+                        "type": "string",
+                        "nullable": true,
+                        "format": "uri",
+                        "example": "http://api.example.org/accounts/?page=2"
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BorrowerGuarantor"
+                        }
+                    }
+                }
+            },
             "PaginatedBorrowerListList": {
                 "type": "object",
                 "properties": {
@@ -10209,7 +11439,7 @@
                     }
                 }
             },
-            "PaginatedGuarantorList": {
+            "PaginatedNoteCommentList": {
                 "type": "object",
                 "properties": {
                     "count": {
@@ -10231,7 +11461,7 @@
                     "results": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/Guarantor"
+                            "$ref": "#/components/schemas/NoteComment"
                         }
                     }
                 }
@@ -10767,6 +11997,68 @@
                     }
                 }
             },
+            "PatchedBorrowerGuarantorRequest": {
+                "type": "object",
+                "description": "Serializer for guarantor information",
+                "properties": {
+                    "guarantor_type": {
+                        "$ref": "#/components/schemas/GuarantorTypeEnum"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 100
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 100
+                    },
+                    "date_of_birth": {
+                        "type": "string",
+                        "format": "date",
+                        "nullable": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "nullable": true,
+                        "maxLength": 254
+                    },
+                    "phone": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 20
+                    },
+                    "address": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "company_name": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 255
+                    },
+                    "company_abn": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 20
+                    },
+                    "company_acn": {
+                        "type": "string",
+                        "nullable": true,
+                        "maxLength": 20
+                    },
+                    "borrower": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "application": {
+                        "type": "integer",
+                        "nullable": true
+                    }
+                }
+            },
             "PatchedBranchRequest": {
                 "type": "object",
                 "description": "Serializer for branch information",
@@ -10929,65 +12221,16 @@
                     }
                 }
             },
-            "PatchedGuarantorRequest": {
+            "PatchedNoteCommentRequest": {
                 "type": "object",
-                "description": "Serializer for guarantor information",
+                "description": "Serializer for note comments",
                 "properties": {
-                    "guarantor_type": {
-                        "$ref": "#/components/schemas/GuarantorTypeEnum"
+                    "note": {
+                        "type": "integer"
                     },
-                    "first_name": {
+                    "content": {
                         "type": "string",
-                        "nullable": true,
-                        "maxLength": 100
-                    },
-                    "last_name": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 100
-                    },
-                    "date_of_birth": {
-                        "type": "string",
-                        "format": "date",
-                        "nullable": true
-                    },
-                    "email": {
-                        "type": "string",
-                        "format": "email",
-                        "nullable": true,
-                        "maxLength": 254
-                    },
-                    "phone": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 20
-                    },
-                    "address": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "company_name": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 255
-                    },
-                    "company_abn": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 20
-                    },
-                    "company_acn": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 20
-                    },
-                    "borrower": {
-                        "type": "integer",
-                        "nullable": true
-                    },
-                    "application": {
-                        "type": "integer",
-                        "nullable": true
+                        "minLength": 1
                     }
                 }
             },
@@ -11489,6 +12732,65 @@
                     "updated_at"
                 ]
             },
+            "RepaymentComplianceReport": {
+                "type": "object",
+                "description": "Serializer for repayment compliance report data",
+                "properties": {
+                    "total_repayments": {
+                        "type": "integer"
+                    },
+                    "paid_on_time": {
+                        "type": "integer"
+                    },
+                    "paid_late": {
+                        "type": "integer"
+                    },
+                    "missed": {
+                        "type": "integer"
+                    },
+                    "compliance_rate": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "average_days_late": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "total_amount_due": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,10}(?:\\.\\d{0,2})?$"
+                    },
+                    "total_amount_paid": {
+                        "type": "string",
+                        "format": "decimal",
+                        "pattern": "^-?\\d{0,10}(?:\\.\\d{0,2})?$"
+                    },
+                    "payment_rate": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "monthly_breakdown": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {}
+                        }
+                    }
+                },
+                "required": [
+                    "average_days_late",
+                    "compliance_rate",
+                    "missed",
+                    "monthly_breakdown",
+                    "paid_late",
+                    "paid_on_time",
+                    "payment_rate",
+                    "total_amount_due",
+                    "total_amount_paid",
+                    "total_repayments"
+                ]
+            },
             "RepaymentFrequencyEnum": {
                 "enum": [
                     "weekly",
@@ -11603,6 +12905,17 @@
                     "refresh"
                 ]
             },
+            "TransactionTypeEnum": {
+                "enum": [
+                    "fee_created",
+                    "fee_paid",
+                    "repayment_scheduled",
+                    "repayment_received",
+                    "adjustment"
+                ],
+                "type": "string",
+                "description": "* `fee_created` - Fee Created\n* `fee_paid` - Fee Paid\n* `repayment_scheduled` - Repayment Scheduled\n* `repayment_received` - Repayment Received\n* `adjustment` - Adjustment"
+            },
             "User": {
                 "type": "object",
                 "description": "Serializer for User model",
@@ -11711,6 +13024,25 @@
                         "maxLength": 20
                     },
                     "username": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "required": [
+                    "email",
+                    "password"
+                ]
+            },
+            "UserLoginRequest": {
+                "type": "object",
+                "description": "Serializer for user login",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "minLength": 1
+                    },
+                    "password": {
                         "type": "string",
                         "minLength": 1
                     }

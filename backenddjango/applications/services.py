@@ -1,9 +1,9 @@
 from django.template.loader import render_to_string
 from django.conf import settings
 import os
-import uuid
-import json
-import jsonschema
+from uuid import uuid4
+from json import loads, dumps
+from jsonschema import validate, exceptions
 from datetime import datetime
 # Comment out weasyprint import to avoid dependency issues during testing
 # from weasyprint import HTML
@@ -58,7 +58,7 @@ def generate_document(application_id, document_type, user):
         'broker': application.broker,
         'branch': application.branch,
         'bd': application.bd,
-        'generated_date': datetime.now().strftime('%d/%m/%Y'),
+        'generated_date': timezone.now().strftime('%d/%m/%Y'),
     }
     
     html_content = render_to_string(template_info['template'], context)
@@ -195,8 +195,8 @@ def create_standard_fees(application_id, user):
     
     # Calculate due dates
     from datetime import timedelta
-    today = datetime.now().date()
-    
+    from django.utils import timezone
+    today = timezone.now().date()
     # Create fees
     fees = []
     for i, fee_data in enumerate(standard_fees):
@@ -229,8 +229,8 @@ def process_signature_data(application_id, signature_data, signed_by, signature_
         Updated Application object if successful, None otherwise
     """
     from .models import Application
-    import base64
-    import os
+    from base64 import b64decode
+    from os import makedirs, path
     from django.conf import settings
     from django.core.files.base import ContentFile
     
@@ -275,7 +275,7 @@ def validate_application_schema(data):
     Returns:
         (is_valid, errors) tuple
     """
-    import jsonschema
+    from jsonschema import validate, ValidationError
     
     # Define the JSON schema for application validation
     application_schema = {
@@ -359,9 +359,9 @@ def validate_application_schema(application_data):
     }
     
     try:
-        jsonschema.validate(instance=application_data, schema=schema)
+        validate(instance=application_data, schema=schema)
         return True, None
-    except jsonschema.exceptions.ValidationError as e:
+    except ValidationError as e:
         return False, str(e)
 
 
@@ -453,16 +453,17 @@ def extend_loan(application_id, new_rate, new_loan_amount, new_repayment, user):
         if monthly_interest > 0:
             # Using the formula for number of payments: n = log(P/P-Li)/log(1+i)
             # where P is payment, L is loan amount, i is monthly interest rate
-            import math
-            num_payments = math.log(new_repayment / (new_repayment - loan_amount * monthly_interest)) / math.log(1 + monthly_interest)
-            num_payments = math.ceil(num_payments)  # Round up to nearest whole number
+            from math import log, ceil
+            num_payments = log(new_repayment / (new_repayment - loan_amount * monthly_interest)) / log(1 + monthly_interest)
+            num_payments = ceil(num_payments)  # Round up to nearest whole number
         else:
             # If no interest, simple division
-            num_payments = math.ceil(loan_amount / new_repayment)
+            from math import ceil
+            num_payments = ceil(loan_amount / new_repayment)
         
         # Create repayment schedule
-        from datetime import datetime
-        start_date = datetime.now().date()
+        from django.utils import timezone
+        start_date = timezone.now().date()
         
         for i in range(1, num_payments + 1):
             # Calculate due date
@@ -505,6 +506,7 @@ def extend_loan(application_id, new_rate, new_loan_amount, new_repayment, user):
     
     # Create ledger entry for loan extension
     from documents.models import Ledger
+    from django.utils import timezone
     Ledger.objects.create(
         application=application,
         transaction_type='adjustment',
@@ -512,7 +514,7 @@ def extend_loan(application_id, new_rate, new_loan_amount, new_repayment, user):
         description=f"Loan extended with new terms: Rate: {old_rate}% -> {new_rate}%, "
                    f"Amount: ${old_loan_amount} -> ${new_loan_amount}, "
                    f"Repayment: ${old_repayment} -> ${new_repayment}",
-        transaction_date=datetime.now(),
+        transaction_date=timezone.now(),
         created_by=user
     )
     
@@ -635,7 +637,8 @@ def process_signature_data(application_id, signature_data, signed_by, user):
         # Update application with signature data
         application.signature_data = signature_data
         application.signed_by = signed_by
-        application.signature_date = datetime.now().date()
+        from django.utils import timezone
+        application.signature_date = timezone.now().date()
         application.save()
         
         # Create note about signature

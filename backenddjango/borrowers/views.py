@@ -3,15 +3,18 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Borrower, Guarantor
 from .serializers import (
     BorrowerListSerializer,
     BorrowerDetailSerializer,
-    GuarantorSerializer
+    GuarantorSerializer,
+    BorrowerFinancialSummarySerializer
 )
 from .filters import BorrowerFilter, GuarantorFilter
 from users.permissions import IsAdmin, IsAdminOrBrokerOrBD
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 
 
 class BorrowerViewSet(viewsets.ModelViewSet):
@@ -66,6 +69,7 @@ class BorrowerViewSet(viewsets.ModelViewSet):
         serializer = ApplicationListSerializer(applications, many=True)
         return Response(serializer.data)
     
+    @extend_schema(operation_id="borrowers_guarantors_by_borrower_id")
     @action(detail=True, methods=['get'])
     def guarantors(self, request, pk=None):
         """
@@ -112,6 +116,10 @@ class GuarantorViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
+    
+    @extend_schema(operation_id="borrower_guarantor_detail")
+    def retrieve(self, request, *args, **kwargs):
+        return super().retrieve(request, *args, **kwargs)
         
     @action(detail=True, methods=['get'])
     def guaranteed_applications(self, request, pk=None):
@@ -136,11 +144,12 @@ class CompanyBorrowerListView(generics.ListAPIView):
         return Borrower.objects.filter(is_company=True)
 
 
-class BorrowerFinancialSummaryView(APIView):
+class BorrowerFinancialSummaryView(GenericAPIView):
     """
     View for getting a borrower's financial summary
     """
     permission_classes = [IsAuthenticated, IsAdminOrBrokerOrBD]
+    serializer_class = BorrowerFinancialSummarySerializer
     
     def get(self, request, pk):
         """
@@ -150,6 +159,6 @@ class BorrowerFinancialSummaryView(APIView):
         summary = get_borrower_financial_summary(pk)
         
         if summary:
-            return Response(summary)
-        
-        return Response({'error': 'Borrower not found'}, status=status.HTTP_404_NOT_FOUND)
+            serializer = self.get_serializer(summary)
+            return Response(serializer.data)
+        return Response({"error": "Financial summary not found"}, status=status.HTTP_404_NOT_FOUND)

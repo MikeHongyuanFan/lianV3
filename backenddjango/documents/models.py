@@ -219,6 +219,25 @@ class Ledger(models.Model):
         return f"{self.get_transaction_type_display()} - ${self.amount}"
 
 
+class NoteComment(models.Model):
+    """
+    Model for comments on notes
+    """
+    note = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='comments')
+    content = models.TextField()
+    
+    # Metadata
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['created_at']
+    
+    def __str__(self):
+        return f"Comment on {self.note.title} by {self.created_by}"
+
+
 @receiver(post_save, sender=Note)
 def note_assignment_notification(sender, instance, created, **kwargs):
     """
@@ -242,3 +261,22 @@ def note_assignment_notification(sender, instance, created, **kwargs):
             
             # Clear the flag
             delattr(instance, '_assigned_to_changed')
+
+
+@receiver(post_save, sender=NoteComment)
+def note_comment_notification(sender, instance, created, **kwargs):
+    """
+    Send notification when a comment is added to a note
+    """
+    if created and instance.note.assigned_to and instance.created_by:
+        # Only send notification if the comment was created by someone other than the assignee
+        if instance.note.assigned_to != instance.created_by:
+            # Create notification for the assignee
+            create_notification(
+                user=instance.note.assigned_to,
+                title=f"New comment on note: {instance.note.title}",
+                message=f"A new comment was added to note '{instance.note.title}' by {instance.created_by.get_full_name() or instance.created_by.email}",
+                notification_type='note_comment',
+                related_object_id=instance.note.id,
+                related_object_type='note'
+            )

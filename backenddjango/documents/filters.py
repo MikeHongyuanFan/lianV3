@@ -1,6 +1,6 @@
 import django_filters
 from django.db.models import Q
-from .models import Document, Note, Fee, Repayment
+from .models import Document, Note, Fee, Repayment, NoteComment
 
 
 class DocumentFilter(django_filters.FilterSet):
@@ -88,3 +88,27 @@ class RepaymentFilter(django_filters.FilterSet):
             'application', 'min_amount', 'max_amount',
             'due_after', 'due_before', 'is_paid'
         ]
+
+
+class NoteCommentFilter(django_filters.FilterSet):
+    """
+    Custom filter for note comments with advanced filtering options
+    """
+    search = django_filters.CharFilter(method='search_filter')
+    created_after = django_filters.DateFilter(field_name="created_at", lookup_expr='gte')
+    created_before = django_filters.DateFilter(field_name="created_at", lookup_expr='lte')
+    
+    class Meta:
+        model = NoteComment
+        fields = [
+            'note', 'created_by', 'search',
+            'created_after', 'created_before'
+        ]
+    
+    def search_filter(self, queryset, name, value):
+        """
+        Search across multiple fields
+        """
+        return queryset.filter(
+            Q(content__icontains=value)
+        )

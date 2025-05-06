@@ -7,6 +7,7 @@ router.register(r'documents', views.DocumentViewSet, basename='document')
 router.register(r'notes', views.NoteViewSet, basename='note')
 router.register(r'fees', views.FeeViewSet, basename='fee')
 router.register(r'repayments', views.RepaymentViewSet, basename='repayment')
+router.register(r'note-comments', views.NoteCommentViewSet, basename='note-comment')
 
 urlpatterns = router.urls + [
     path('documents/<int:pk>/create-version/', views.DocumentCreateVersionView.as_view(), name='document-create-version'),

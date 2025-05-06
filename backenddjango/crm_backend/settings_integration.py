@@ -3,7 +3,7 @@ Integration test settings for CRM Loan Management System.
 This file extends the base settings and configures the environment for integration tests.
 """
 
-from .settings import *
+from .settings import DATABASES, REST_FRAMEWORK, MIDDLEWARE, SIMPLE_JWT, BASE_DIR
 
 # Use in-memory SQLite database for faster test execution
 DATABASES = {
@@ -46,8 +46,8 @@ PASSWORD_HASHERS = [
 MIDDLEWARE = [m for m in MIDDLEWARE if 'CsrfViewMiddleware' not in m]
 
 # Configure media root for test file uploads
-import tempfile
-MEDIA_ROOT = tempfile.mkdtemp()
+from tempfile import mkdtemp
+MEDIA_ROOT = mkdtemp()
 
 # Configure email backend for testing
 EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'

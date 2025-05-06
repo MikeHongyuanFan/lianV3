@@ -16,10 +16,10 @@ from .services import get_or_create_notification_preferences
 from django.contrib.auth import authenticate
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView, ListAPIView
 import logging
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 
 # Set up logger
 logger = logging.getLogger(__name__)
-from drf_spectacular.utils import extend_schema
 
 @extend_schema(
     request=UserLoginSerializer,
@@ -30,6 +30,7 @@ class LoginView(APIView):
     API endpoint for user login
     """
     permission_classes = [AllowAny]
+    serializer_class = UserLoginSerializer
     
     def post(self, request):
         email = request.data.get('email')
@@ -58,6 +59,7 @@ class RegisterView(APIView):
     API endpoint for user registration
     """
     permission_classes = [AllowAny]
+    serializer_class = UserCreateSerializer
     
     def post(self, request):
         try:
@@ -123,6 +125,8 @@ class NotificationListView(ListAPIView):
     ordering = ['-created_at']
     
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Notification.objects.none()
         return Notification.objects.filter(user=self.request.user)
 
 
@@ -131,6 +135,7 @@ class NotificationMarkReadView(APIView):
     API endpoint for marking notifications as read
     """
     permission_classes = [IsAuthenticated]
+    serializer_class = NotificationSerializer
     
     def post(self, request):
         notification_id = request.data.get('notification_id')
@@ -154,6 +159,7 @@ class NotificationCountView(APIView):
     API endpoint for getting unread notification count
     """
     permission_classes = [IsAuthenticated]
+    serializer_class = NotificationListSerializer
     
     def get(self, request):
         count = Notification.objects.filter(user=request.user, is_read=False).count()
@@ -238,13 +244,20 @@ class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
     ordering = ['-created_at']
     
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Notification.objects.none()
         return Notification.objects.filter(user=self.request.user)
+    
+    @extend_schema(parameters=[OpenApiParameter("id", int, OpenApiParameter.PATH)])
+    def retrieve(self, request, *args, **kwargs):
+        return super().retrieve(request, *args, **kwargs)
     
     def get_serializer_class(self):
         if self.action == 'list':
             return NotificationListSerializer
         return NotificationSerializer
     
+    @extend_schema(parameters=[OpenApiParameter("id", int, OpenApiParameter.PATH)])
     @action(detail=True, methods=['post'])
     def mark_as_read(self, request, pk=None):
         """

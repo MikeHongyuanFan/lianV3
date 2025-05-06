@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Borrower, Guarantor
 from users.serializers import UserSerializer
+from drf_spectacular.utils import extend_schema_serializer
 
 
 class BorrowerListSerializer(serializers.ModelSerializer):
@@ -14,7 +15,7 @@ class BorrowerListSerializer(serializers.ModelSerializer):
             'phone', 'created_at', 'application_count'
         ]
     
-    def get_application_count(self, obj):
+    def get_application_count(self, obj) -> int:
         return obj.borrower_applications.count()
 
 
@@ -34,6 +35,19 @@ class BorrowerDetailSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
+class BorrowerFinancialSummarySerializer(serializers.Serializer):
+    """Serializer for borrower financial summary"""
+    total_applications = serializers.IntegerField()
+    total_funded = serializers.DecimalField(max_digits=15, decimal_places=2)
+    active_loans = serializers.IntegerField()
+    active_loan_amount = serializers.DecimalField(max_digits=15, decimal_places=2)
+    completed_loans = serializers.IntegerField()
+    completed_loan_amount = serializers.DecimalField(max_digits=15, decimal_places=2)
+
+
+from drf_spectacular.utils import extend_schema_serializer
+
+@extend_schema_serializer(component_name="BorrowerGuarantor")
 class GuarantorSerializer(serializers.ModelSerializer):
     """Serializer for guarantor information"""
     created_by = UserSerializer(read_only=True)

@@ -1390,10 +1390,14 @@ paths:
       - Bearer: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BorrowerFinancialSummary'
+          description: ''
   /api/borrowers/{id}/guarantors/:
     get:
-      operationId: borrowers_guarantors_retrieve_2
+      operationId: borrowers_guarantors_by_borrower_id
       description: Get all guarantors for a borrower
       parameters:
       - in: path
@@ -1482,7 +1486,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedGuarantorList'
+                $ref: '#/components/schemas/PaginatedBorrowerGuarantorList'
           description: ''
     post:
       operationId: borrowers_guarantors_create
@@ -1493,13 +1497,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GuarantorRequest'
+              $ref: '#/components/schemas/BorrowerGuarantorRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/GuarantorRequest'
+              $ref: '#/components/schemas/BorrowerGuarantorRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/GuarantorRequest'
+              $ref: '#/components/schemas/BorrowerGuarantorRequest'
       security:
       - jwtAuth: []
       - Bearer: []
@@ -1508,11 +1512,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Guarantor'
+                $ref: '#/components/schemas/BorrowerGuarantor'
           description: ''
   /api/borrowers/guarantors/{id}/:
     get:
-      operationId: borrowers_guarantors_retrieve
+      operationId: borrower_guarantor_detail
       description: API endpoint for managing guarantors
       parameters:
       - in: path
@@ -1531,7 +1535,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Guarantor'
+                $ref: '#/components/schemas/BorrowerGuarantor'
           description: ''
     put:
       operationId: borrowers_guarantors_update
@@ -1549,13 +1553,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GuarantorRequest'
+              $ref: '#/components/schemas/BorrowerGuarantorRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/GuarantorRequest'
+              $ref: '#/components/schemas/BorrowerGuarantorRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/GuarantorRequest'
+              $ref: '#/components/schemas/BorrowerGuarantorRequest'
       security:
       - jwtAuth: []
       - Bearer: []
@@ -1564,7 +1568,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Guarantor'
+                $ref: '#/components/schemas/BorrowerGuarantor'
           description: ''
     patch:
       operationId: borrowers_guarantors_partial_update
@@ -1582,13 +1586,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchedGuarantorRequest'
+              $ref: '#/components/schemas/PatchedBorrowerGuarantorRequest'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/PatchedGuarantorRequest'
+              $ref: '#/components/schemas/PatchedBorrowerGuarantorRequest'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PatchedGuarantorRequest'
+              $ref: '#/components/schemas/PatchedBorrowerGuarantorRequest'
       security:
       - jwtAuth: []
       - Bearer: []
@@ -1597,7 +1601,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Guarantor'
+                $ref: '#/components/schemas/BorrowerGuarantor'
           description: ''
     delete:
       operationId: borrowers_guarantors_destroy
@@ -1638,7 +1642,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Guarantor'
+                $ref: '#/components/schemas/BorrowerGuarantor'
           description: ''
   /api/brokers/:
     get:
@@ -2268,7 +2272,7 @@ paths:
   /api/documents/applications/{application_id}/ledger/:
     get:
       operationId: documents_applications_ledger_retrieve
-      description: Get ledger entries for an application
+      description: API endpoint for getting the ledger for an application
       parameters:
       - in: path
         name: application_id
@@ -2282,7 +2286,11 @@ paths:
       - Bearer: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationLedger'
+          description: ''
   /api/documents/documents/:
     get:
       operationId: documents_documents_list
@@ -2334,6 +2342,12 @@ paths:
           * `tax_return` - Tax Return
           * `contract` - Contract
           * `other` - Other
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
       - name: page
         required: false
         in: query
@@ -2407,7 +2421,7 @@ paths:
           description: ''
     put:
       operationId: documents_documents_update
-      description: Update a document
+      description: API endpoint for managing documents
       parameters:
       - in: path
         name: id
@@ -2487,7 +2501,7 @@ paths:
   /api/documents/documents/{id}/create-version/:
     post:
       operationId: documents_documents_create_version_create
-      description: Create a new version of a document
+      description: API endpoint for creating a new version of a document
       parameters:
       - in: path
         name: id
@@ -2496,12 +2510,25 @@ paths:
         required: true
       tags:
       - documents
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DocumentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DocumentRequest'
+        required: true
       security:
       - jwtAuth: []
       - Bearer: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+          description: ''
   /api/documents/documents/{id}/download/:
     get:
       operationId: documents_documents_download_retrieve
@@ -2574,6 +2601,12 @@ paths:
         name: min_amount
         schema:
           type: number
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
       - name: page
         required: false
         in: query
@@ -2736,7 +2769,7 @@ paths:
   /api/documents/fees/{id}/mark-paid/:
     post:
       operationId: documents_fees_mark_paid_create
-      description: Mark a fee as paid
+      description: API endpoint for marking a fee as paid
       parameters:
       - in: path
         name: id
@@ -2745,11 +2778,215 @@ paths:
         required: true
       tags:
       - documents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FeeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FeeRequest'
+        required: true
       security:
       - jwtAuth: []
       - Bearer: []
       responses:
         '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fee'
+          description: ''
+  /api/documents/note-comments/:
+    get:
+      operationId: documents_note_comments_list
+      description: API endpoint for managing note comments
+      parameters:
+      - in: query
+        name: created_after
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: created_before
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: created_by
+        schema:
+          type: integer
+      - in: query
+        name: note
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - documents
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedNoteCommentList'
+          description: ''
+    post:
+      operationId: documents_note_comments_create
+      description: API endpoint for managing note comments
+      tags:
+      - documents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteCommentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NoteCommentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NoteCommentRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteComment'
+          description: ''
+  /api/documents/note-comments/{id}/:
+    get:
+      operationId: documents_note_comments_retrieve
+      description: API endpoint for managing note comments
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this note comment.
+        required: true
+      tags:
+      - documents
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteComment'
+          description: ''
+    put:
+      operationId: documents_note_comments_update
+      description: API endpoint for managing note comments
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this note comment.
+        required: true
+      tags:
+      - documents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteCommentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NoteCommentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NoteCommentRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteComment'
+          description: ''
+    patch:
+      operationId: documents_note_comments_partial_update
+      description: API endpoint for managing note comments
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this note comment.
+        required: true
+      tags:
+      - documents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedNoteCommentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedNoteCommentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedNoteCommentRequest'
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteComment'
+          description: ''
+    delete:
+      operationId: documents_note_comments_destroy
+      description: API endpoint for managing note comments
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this note comment.
+        required: true
+      tags:
+      - documents
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '204':
           description: No response body
   /api/documents/notes/:
     get:
@@ -2774,6 +3011,12 @@ paths:
         schema:
           type: string
           format: date
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
       - name: page
         required: false
         in: query
@@ -2931,6 +3174,63 @@ paths:
       responses:
         '204':
           description: No response body
+  /api/documents/notes/{id}/add_comment/:
+    post:
+      operationId: documents_notes_add_comment_create
+      description: Add a comment to a note
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this note.
+        required: true
+      tags:
+      - documents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NoteRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NoteRequest'
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+          description: ''
+  /api/documents/notes/{id}/comments/:
+    get:
+      operationId: documents_notes_comments_retrieve
+      description: Get all comments for a note
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this note.
+        required: true
+      tags:
+      - documents
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+          description: ''
   /api/documents/repayments/:
     get:
       operationId: documents_repayments_list
@@ -2962,12 +3262,24 @@ paths:
         name: min_amount
         schema:
           type: number
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
       - name: page
         required: false
         in: query
         description: A page number within the paginated result set.
         schema:
           type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
       tags:
       - documents
       security:
@@ -3118,7 +3430,7 @@ paths:
   /api/documents/repayments/{id}/mark-paid/:
     post:
       operationId: documents_repayments_mark_paid_create
-      description: Mark a repayment as paid
+      description: API endpoint for marking a repayment as paid
       parameters:
       - in: path
         name: id
@@ -3127,12 +3439,28 @@ paths:
         required: true
       tags:
       - documents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepaymentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RepaymentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RepaymentRequest'
+        required: true
       security:
       - jwtAuth: []
       - Bearer: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repayment'
+          description: ''
   /api/products/products/:
     get:
       operationId: products_products_list
@@ -3536,7 +3864,11 @@ paths:
       - Bearer: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationStatusReport'
+          description: ''
   /api/reports/application-volume/:
     get:
       operationId: reports_application_volume_retrieve
@@ -3548,7 +3880,11 @@ paths:
       - Bearer: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationVolumeReport'
+          description: ''
   /api/reports/repayment-compliance/:
     get:
       operationId: reports_repayment_compliance_retrieve
@@ -3560,20 +3896,45 @@ paths:
       - Bearer: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepaymentComplianceReport'
+          description: ''
   /api/users/auth/login/:
     post:
       operationId: users_auth_login_create
       description: API endpoint for user login
       tags:
       - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserLoginRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserLoginRequest'
+        required: true
       security:
       - jwtAuth: []
       - Bearer: []
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  refresh:
+                    type: string
+                  access:
+                    type: string
+          description: ''
   /api/users/auth/refresh/:
     post:
       operationId: users_auth_refresh_create
@@ -3609,13 +3970,29 @@ paths:
       description: API endpoint for user registration
       tags:
       - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+        required: true
       security:
       - jwtAuth: []
       - Bearer: []
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCreate'
+          description: ''
   /api/users/notification-preferences/:
     get:
       operationId: users_notification_preferences_retrieve
@@ -3663,6 +4040,30 @@ paths:
       operationId: users_notifications_list
       description: API endpoint for listing user notifications
       parameters:
+      - in: query
+        name: is_read
+        schema:
+          type: boolean
+      - in: query
+        name: notification_type
+        schema:
+          type: string
+          enum:
+          - application_status
+          - document_uploaded
+          - note_reminder
+          - repayment_overdue
+          - repayment_upcoming
+          - signature_required
+          - system
+        description: |-
+          * `application_status` - Application Status Change
+          * `repayment_upcoming` - Repayment Upcoming
+          * `repayment_overdue` - Repayment Overdue
+          * `note_reminder` - Note Reminder
+          * `document_uploaded` - Document Uploaded
+          * `signature_required` - Signature Required
+          * `system` - System Notification
       - name: ordering
         required: false
         in: query
@@ -3692,6 +4093,30 @@ paths:
       operationId: users_notifications_viewset_list
       description: API endpoint for managing notifications
       parameters:
+      - in: query
+        name: is_read
+        schema:
+          type: boolean
+      - in: query
+        name: notification_type
+        schema:
+          type: string
+          enum:
+          - application_status
+          - document_uploaded
+          - note_reminder
+          - repayment_overdue
+          - repayment_upcoming
+          - signature_required
+          - system
+        description: |-
+          * `application_status` - Application Status Change
+          * `repayment_upcoming` - Repayment Upcoming
+          * `repayment_overdue` - Repayment Overdue
+          * `note_reminder` - Note Reminder
+          * `document_uploaded` - Document Uploaded
+          * `signature_required` - Signature Required
+          * `system` - System Notification
       - name: ordering
         required: false
         in: query
@@ -3724,7 +4149,7 @@ paths:
       - in: path
         name: id
         schema:
-          type: string
+          type: integer
         required: true
       tags:
       - users
@@ -3746,7 +4171,7 @@ paths:
       - in: path
         name: id
         schema:
-          type: string
+          type: integer
         required: true
       tags:
       - users
@@ -3827,19 +4252,39 @@ paths:
       - Bearer: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationList'
+          description: ''
   /api/users/notifications/mark-read/:
     post:
       operationId: users_notifications_mark_read_create
       description: API endpoint for marking notifications as read
       tags:
       - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NotificationRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NotificationRequest'
+        required: true
       security:
       - jwtAuth: []
       - Bearer: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+          description: ''
   /api/users/profile/:
     get:
       operationId: users_profile_retrieve
@@ -4461,19 +4906,24 @@ components:
           - $ref: '#/components/schemas/Branch'
           readOnly: true
         documents:
-          type: string
+          type: array
+          items: {}
           readOnly: true
         notes:
-          type: string
+          type: array
+          items: {}
           readOnly: true
         fees:
-          type: string
+          type: array
+          items: {}
           readOnly: true
         repayments:
-          type: string
+          type: array
+          items: {}
           readOnly: true
         ledger_entries:
-          type: string
+          type: array
+          items: {}
           readOnly: true
         security_address:
           type: string
@@ -4685,6 +5135,36 @@ components:
         funding_result:
           nullable: true
           description: Stores the current funding calculation result
+    ApplicationLedger:
+      type: object
+      description: Serializer for application ledger summary
+      properties:
+        ledger_entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ledger'
+        total_funded:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,13}(?:\.\d{0,2})?$
+        total_repaid:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,13}(?:\.\d{0,2})?$
+        total_fees:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,13}(?:\.\d{0,2})?$
+        balance:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,13}(?:\.\d{0,2})?$
+      required:
+      - balance
+      - ledger_entries
+      - total_fees
+      - total_funded
+      - total_repaid
     ApplicationSignature:
       type: object
       description: Serializer for application signature
@@ -4739,6 +5219,46 @@ components:
           type: string
       required:
       - stage
+    ApplicationStatusReport:
+      type: object
+      description: Serializer for application status report data
+      properties:
+        total_active:
+          type: integer
+        total_settled:
+          type: integer
+        total_declined:
+          type: integer
+        total_withdrawn:
+          type: integer
+        active_by_stage:
+          type: object
+          additionalProperties:
+            type: integer
+        avg_time_in_stage:
+          type: object
+          additionalProperties:
+            type: number
+            format: double
+        inquiry_to_approval_rate:
+          type: number
+          format: double
+        approval_to_settlement_rate:
+          type: number
+          format: double
+        overall_success_rate:
+          type: number
+          format: double
+      required:
+      - active_by_stage
+      - approval_to_settlement_rate
+      - avg_time_in_stage
+      - inquiry_to_approval_rate
+      - overall_success_rate
+      - total_active
+      - total_declined
+      - total_settled
+      - total_withdrawn
     ApplicationTypeEnum:
       enum:
       - residential
@@ -4755,6 +5275,46 @@ components:
         * `refinance` - Refinance
         * `investment` - Investment
         * `smsf` - SMSF
+    ApplicationVolumeReport:
+      type: object
+      description: Serializer for application volume report data
+      properties:
+        total_applications:
+          type: integer
+        total_loan_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,12}(?:\.\d{0,2})?$
+        average_loan_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        stage_breakdown:
+          type: object
+          additionalProperties:
+            type: integer
+        time_breakdown:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        bd_breakdown:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        type_breakdown:
+          type: object
+          additionalProperties:
+            type: integer
+      required:
+      - average_loan_amount
+      - bd_breakdown
+      - stage_breakdown
+      - time_breakdown
+      - total_applications
+      - total_loan_amount
+      - type_breakdown
     BDM:
       type: object
       description: Serializer for BDM information
@@ -4857,10 +5417,12 @@ components:
           format: date
           nullable: true
         address:
-          type: string
+          type: object
+          additionalProperties: {}
           readOnly: true
         employment_info:
-          type: string
+          type: object
+          additionalProperties: {}
           readOnly: true
         tax_id:
           type: string
@@ -5173,6 +5735,151 @@ components:
         user:
           type: integer
           nullable: true
+    BorrowerFinancialSummary:
+      type: object
+      description: Serializer for borrower financial summary
+      properties:
+        total_applications:
+          type: integer
+        total_funded:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,13}(?:\.\d{0,2})?$
+        active_loans:
+          type: integer
+        active_loan_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,13}(?:\.\d{0,2})?$
+        completed_loans:
+          type: integer
+        completed_loan_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,13}(?:\.\d{0,2})?$
+      required:
+      - active_loan_amount
+      - active_loans
+      - completed_loan_amount
+      - completed_loans
+      - total_applications
+      - total_funded
+    BorrowerGuarantor:
+      type: object
+      description: Serializer for guarantor information
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_by:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          readOnly: true
+        guarantor_type:
+          $ref: '#/components/schemas/GuarantorTypeEnum'
+        first_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        last_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        date_of_birth:
+          type: string
+          format: date
+          nullable: true
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        phone:
+          type: string
+          nullable: true
+          maxLength: 20
+        address:
+          type: string
+          nullable: true
+        company_name:
+          type: string
+          nullable: true
+          maxLength: 255
+        company_abn:
+          type: string
+          nullable: true
+          maxLength: 20
+        company_acn:
+          type: string
+          nullable: true
+          maxLength: 20
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        borrower:
+          type: integer
+          nullable: true
+        application:
+          type: integer
+          nullable: true
+      required:
+      - created_at
+      - created_by
+      - id
+      - updated_at
+    BorrowerGuarantorRequest:
+      type: object
+      description: Serializer for guarantor information
+      properties:
+        guarantor_type:
+          $ref: '#/components/schemas/GuarantorTypeEnum'
+        first_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        last_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        date_of_birth:
+          type: string
+          format: date
+          nullable: true
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        phone:
+          type: string
+          nullable: true
+          maxLength: 20
+        address:
+          type: string
+          nullable: true
+        company_name:
+          type: string
+          nullable: true
+          maxLength: 255
+        company_abn:
+          type: string
+          nullable: true
+          maxLength: 20
+        company_acn:
+          type: string
+          nullable: true
+          maxLength: 20
+        borrower:
+          type: integer
+          nullable: true
+        application:
+          type: integer
+          nullable: true
     BorrowerList:
       type: object
       description: Serializer for listing borrowers with minimal information
@@ -5202,7 +5909,7 @@ components:
           format: date-time
           readOnly: true
         application_count:
-          type: string
+          type: integer
           readOnly: true
       required:
       - application_count
@@ -5471,7 +6178,7 @@ components:
           type: string
           readOnly: true
         application_count:
-          type: string
+          type: integer
           readOnly: true
       required:
       - application_count
@@ -6054,7 +6761,8 @@ components:
           format: date
           nullable: true
         address:
-          type: string
+          type: object
+          additionalProperties: {}
           readOnly: true
         guarantor_type:
           $ref: '#/components/schemas/GuarantorTypeEnum'
@@ -6107,6 +6815,59 @@ components:
       description: |-
         * `individual` - Individual
         * `company` - Company
+    Ledger:
+      type: object
+      description: Serializer for ledger entries
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        application:
+          type: integer
+        transaction_type:
+          $ref: '#/components/schemas/TransactionTypeEnum'
+        transaction_type_display:
+          type: string
+          readOnly: true
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        description:
+          type: string
+        transaction_date:
+          type: string
+          format: date-time
+          nullable: true
+        related_fee:
+          type: integer
+          nullable: true
+        related_fee_type:
+          type: string
+          readOnly: true
+        related_repayment:
+          type: integer
+          nullable: true
+        created_by:
+          type: integer
+          nullable: true
+        created_by_name:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - amount
+      - application
+      - created_at
+      - created_by_name
+      - description
+      - id
+      - related_fee_type
+      - transaction_type
+      - transaction_type_display
     LoanExtension:
       type: object
       description: Serializer for extending a loan with new terms
@@ -6174,6 +6935,11 @@ components:
         assigned_to_name:
           type: string
           readOnly: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteComment'
+          readOnly: true
         title:
           type: string
           nullable: true
@@ -6208,11 +6974,58 @@ components:
           nullable: true
       required:
       - assigned_to_name
+      - comments
       - created_at
       - created_by
       - created_by_name
       - id
       - updated_at
+    NoteComment:
+      type: object
+      description: Serializer for note comments
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        note:
+          type: integer
+        content:
+          type: string
+        created_by:
+          type: integer
+          readOnly: true
+          nullable: true
+        created_by_name:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - content
+      - created_at
+      - created_by
+      - created_by_name
+      - id
+      - note
+      - updated_at
+    NoteCommentRequest:
+      type: object
+      description: Serializer for note comments
+      properties:
+        note:
+          type: integer
+        content:
+          type: string
+          minLength: 1
+      required:
+      - content
+      - note
     NoteRequest:
       type: object
       description: Serializer for notes
@@ -6475,6 +7288,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BDM'
+    PaginatedBorrowerGuarantorList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/BorrowerGuarantor'
     PaginatedBorrowerListList:
       type: object
       properties:
@@ -6575,7 +7408,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Fee'
-    PaginatedGuarantorList:
+    PaginatedNoteCommentList:
       type: object
       properties:
         count:
@@ -6594,7 +7427,7 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/Guarantor'
+            $ref: '#/components/schemas/NoteComment'
     PaginatedNoteList:
       type: object
       properties:
@@ -6986,6 +7819,54 @@ components:
         user:
           type: integer
           nullable: true
+    PatchedBorrowerGuarantorRequest:
+      type: object
+      description: Serializer for guarantor information
+      properties:
+        guarantor_type:
+          $ref: '#/components/schemas/GuarantorTypeEnum'
+        first_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        last_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        date_of_birth:
+          type: string
+          format: date
+          nullable: true
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        phone:
+          type: string
+          nullable: true
+          maxLength: 20
+        address:
+          type: string
+          nullable: true
+        company_name:
+          type: string
+          nullable: true
+          maxLength: 255
+        company_abn:
+          type: string
+          nullable: true
+          maxLength: 20
+        company_acn:
+          type: string
+          nullable: true
+          maxLength: 20
+        borrower:
+          type: integer
+          nullable: true
+        application:
+          type: integer
+          nullable: true
     PatchedBranchRequest:
       type: object
       description: Serializer for branch information
@@ -7109,54 +7990,15 @@ components:
           nullable: true
         application:
           type: integer
-    PatchedGuarantorRequest:
+    PatchedNoteCommentRequest:
       type: object
-      description: Serializer for guarantor information
+      description: Serializer for note comments
       properties:
-        guarantor_type:
-          $ref: '#/components/schemas/GuarantorTypeEnum'
-        first_name:
-          type: string
-          nullable: true
-          maxLength: 100
-        last_name:
-          type: string
-          nullable: true
-          maxLength: 100
-        date_of_birth:
-          type: string
-          format: date
-          nullable: true
-        email:
-          type: string
-          format: email
-          nullable: true
-          maxLength: 254
-        phone:
-          type: string
-          nullable: true
-          maxLength: 20
-        address:
-          type: string
-          nullable: true
-        company_name:
-          type: string
-          nullable: true
-          maxLength: 255
-        company_abn:
-          type: string
-          nullable: true
-          maxLength: 20
-        company_acn:
-          type: string
-          nullable: true
-          maxLength: 20
-        borrower:
+        note:
           type: integer
-          nullable: true
-        application:
-          type: integer
-          nullable: true
+        content:
+          type: string
+          minLength: 1
     PatchedNoteRequest:
       type: object
       description: Serializer for notes
@@ -7539,6 +8381,51 @@ components:
       - reminder_sent
       - status
       - updated_at
+    RepaymentComplianceReport:
+      type: object
+      description: Serializer for repayment compliance report data
+      properties:
+        total_repayments:
+          type: integer
+        paid_on_time:
+          type: integer
+        paid_late:
+          type: integer
+        missed:
+          type: integer
+        compliance_rate:
+          type: number
+          format: double
+        average_days_late:
+          type: number
+          format: double
+        total_amount_due:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        total_amount_paid:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        payment_rate:
+          type: number
+          format: double
+        monthly_breakdown:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+      required:
+      - average_days_late
+      - compliance_rate
+      - missed
+      - monthly_breakdown
+      - paid_late
+      - paid_on_time
+      - payment_rate
+      - total_amount_due
+      - total_amount_paid
+      - total_repayments
     RepaymentFrequencyEnum:
       enum:
       - weekly
@@ -7661,6 +8548,20 @@ components:
           minLength: 1
       required:
       - refresh
+    TransactionTypeEnum:
+      enum:
+      - fee_created
+      - fee_paid
+      - repayment_scheduled
+      - repayment_received
+      - adjustment
+      type: string
+      description: |-
+        * `fee_created` - Fee Created
+        * `fee_paid` - Fee Paid
+        * `repayment_scheduled` - Repayment Scheduled
+        * `repayment_received` - Repayment Received
+        * `adjustment` - Adjustment
     User:
       type: object
       description: Serializer for User model
@@ -7744,6 +8645,20 @@ components:
           nullable: true
           maxLength: 20
         username:
+          type: string
+          minLength: 1
+      required:
+      - email
+      - password
+    UserLoginRequest:
+      type: object
+      description: Serializer for user login
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        password:
           type: string
           minLength: 1
       required:
