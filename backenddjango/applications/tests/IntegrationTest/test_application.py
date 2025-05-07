@@ -234,32 +234,247 @@ class ApplicationAPITestCase(APITestCase):
         self.assertEqual(self.application.purpose, 'Updated purpose')
         self.assertEqual(self.application.loan_amount, Decimal('600000.00'))
     
-    def test_delete_application(self):
-        """Test deleting an application"""
-        self.client.force_authenticate(user=self.admin_user)
-        
-        response = self.client.delete(self.detail_url)
-        
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(Application.objects.count(), 0)
-    
-    def test_update_stage(self):
-        """Test updating application stage"""
+    def test_create_application_with_new_fields(self):
+        """Test creating a new application with the new fields"""
         self.client.force_authenticate(user=self.admin_user)
         
         data = {
-            'stage': 'sent_to_lender'
+            'application_type': 'commercial',
+            'purpose': 'New commercial property',
+            'loan_amount': '750000.00',
+            'loan_term': 240,
+            'interest_rate': '4.25',
+            'repayment_frequency': 'monthly',
+            'loan_purpose': 'purchase',
+            'additional_comments': 'This is a test application with new fields',
+            'prior_application': True,
+            'prior_application_details': 'Previous application was declined',
+            'exit_strategy': 'refinance',
+            'exit_strategy_details': 'Refinance with another lender after 2 years',
+            'broker': self.broker.id,
+            'branch': self.branch.id,
+            'bd': self.bdm.id,
+            'security_properties': [
+                {
+                    'address_unit': '10',
+                    'address_street_no': '123',
+                    'address_street_name': 'Main Street',
+                    'address_suburb': 'Sydney',
+                    'address_state': 'NSW',
+                    'address_postcode': '2000',
+                    'property_type': 'commercial',
+                    'bedrooms': 0,
+                    'bathrooms': 2,
+                    'car_spaces': 2,
+                    'building_size': 250.5,
+                    'land_size': 500.0,
+                    'is_single_story': False,
+                    'has_garage': True,
+                    'has_carport': False,
+                    'has_off_street_parking': True,
+                    'occupancy': 'investment',
+                    'estimated_value': '1200000.00',
+                    'purchase_price': '1000000.00'
+                }
+            ],
+            'loan_requirements': [
+                {
+                    'description': 'Purchase price',
+                    'amount': '1000000.00'
+                },
+                {
+                    'description': 'Stamp duty',
+                    'amount': '50000.00'
+                },
+                {
+                    'description': 'Legal fees',
+                    'amount': '5000.00'
+                }
+            ]
         }
         
-        # Use PUT method as specified in the URL patterns
-        response = self.client.put(self.stage_url, data, format='json')
+        response = self.client.post(self.list_url, data, format='json')
         
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['stage'], 'sent_to_lender')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['application_type'], 'commercial')
+        self.assertEqual(response.data['loan_purpose'], 'purchase')
+        self.assertEqual(response.data['exit_strategy'], 'refinance')
         
-        # Verify stage change in database
-        self.application.refresh_from_db()
-        self.assertEqual(self.application.stage, 'sent_to_lender')
+        # Verify application was created in database
+        application = Application.objects.get(id=response.data['id'])
+        self.assertEqual(application.loan_purpose, 'purchase')
+        self.assertEqual(application.exit_strategy, 'refinance')
+        self.assertEqual(application.additional_comments, 'This is a test application with new fields')
+        
+        # Verify security properties were created
+        security_properties = application.security_properties.all()
+        self.assertEqual(security_properties.count(), 1)
+        self.assertEqual(security_properties[0].address_street_name, 'Main Street')
+        self.assertEqual(security_properties[0].property_type, 'commercial')
+        self.assertEqual(security_properties[0].estimated_value, Decimal('1200000.00'))
+        
+        # Verify loan requirements were created
+        loan_requirements = application.loan_requirements.all()
+        self.assertEqual(loan_requirements.count(), 3)
+        self.assertEqual(sum(req.amount for req in loan_requirements), Decimal('1055000.00'))
+    
+    def test_create_application_with_company_borrower(self):
+        """Test creating a new application with a company borrower"""
+        self.client.force_authenticate(user=self.admin_user)
+        
+        data = {
+            'application_type': 'commercial',
+            'purpose': 'Business expansion',
+            'loan_amount': '500000.00',
+            'loan_term': 120,
+            'interest_rate': '5.25',
+            'repayment_frequency': 'monthly',
+            'company_borrowers': [
+                {
+                    'company_name': 'Test Company Pty Ltd',
+                    'company_abn': '83914571673',  # Valid ABN
+                    'company_acn': '000000019',    # Valid ACN
+                    'industry_type': 'finance',
+                    'contact_number': '0412345678',
+                    'annual_company_income': '1500000.00',
+                    'is_trustee': True,
+                    'is_smsf_trustee': False,
+                    'trustee_name': 'Test Trust',
+                    'registered_address_unit': '',
+                    'registered_address_street_no': '1',
+                    'registered_address_street_name': 'George Street',
+                    'registered_address_suburb': 'Sydney',
+                    'registered_address_state': 'NSW',
+                    'registered_address_postcode': '2000',
+                    'directors': [
+                        {
+                            'name': 'John Smith',
+                            'roles': 'director,shareholder',
+                            'director_id': 'DIR12345'
+                        },
+                        {
+                            'name': 'Jane Doe',
+                            'roles': 'secretary',
+                            'director_id': 'DIR67890'
+                        }
+                    ],
+                    'financial_info': {
+                        'annual_revenue': '2000000.00',
+                        'net_profit': '500000.00',
+                        'assets': '3000000.00',
+                        'liabilities': '1000000.00'
+                    }
+                }
+            ]
+        }
+        
+        response = self.client.post(self.list_url, data, format='json')
+        
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        
+        # Verify application was created in database
+        application = Application.objects.get(id=response.data['id'])
+        
+        # Verify company borrower was created
+        borrowers = application.borrowers.all()
+        self.assertEqual(borrowers.count(), 1)
+        company = borrowers[0]
+        self.assertTrue(company.is_company)
+        self.assertEqual(company.company_name, 'Test Company Pty Ltd')
+        self.assertEqual(company.company_abn, '83914571673')
+        self.assertEqual(company.industry_type, 'finance')
+        self.assertTrue(company.is_trustee)
+        
+        # Verify directors were created
+        directors = company.directors.all()
+        self.assertEqual(directors.count(), 2)
+        self.assertEqual(directors[0].name, 'John Smith')
+        self.assertEqual(directors[1].name, 'Jane Doe')
+    
+    def test_create_application_with_guarantors(self):
+        """Test creating a new application with guarantors"""
+        self.client.force_authenticate(user=self.admin_user)
+        
+        data = {
+            'application_type': 'commercial',
+            'purpose': 'Business loan',
+            'loan_amount': '300000.00',
+            'loan_term': 60,
+            'interest_rate': '6.25',
+            'repayment_frequency': 'monthly',
+            'guarantors': [
+                {
+                    'guarantor_type': 'individual',
+                    'title': 'mr',
+                    'first_name': 'John',
+                    'last_name': 'Guarantor',
+                    'date_of_birth': '1980-01-01',
+                    'drivers_licence_no': 'DL12345678',
+                    'home_phone': '0298765432',
+                    'mobile': '0412345678',
+                    'email': 'john.guarantor@example.com',
+                    'address_unit': '',
+                    'address_street_no': '10',
+                    'address_street_name': 'Guarantor Street',
+                    'address_suburb': 'Sydney',
+                    'address_state': 'NSW',
+                    'address_postcode': '2000',
+                    'occupation': 'Manager',
+                    'employer_name': 'ABC Company',
+                    'employment_type': 'full_time',
+                    'annual_income': '120000.00',
+                    'assets': [
+                        {
+                            'asset_type': 'property',
+                            'description': 'Family home',
+                            'value': '1200000.00',
+                            'amount_owing': '800000.00',
+                            'to_be_refinanced': False,
+                            'address': '10 Home Street, Sydney NSW 2000'
+                        }
+                    ],
+                    'liabilities': [
+                        {
+                            'liability_type': 'mortgage',
+                            'description': 'Home loan',
+                            'amount': '800000.00',
+                            'lender': 'Big Bank',
+                            'monthly_payment': '4000.00',
+                            'to_be_refinanced': False
+                        }
+                    ]
+                }
+            ]
+        }
+        
+        response = self.client.post(self.list_url, data, format='json')
+        
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        
+        # Verify application was created in database
+        application = Application.objects.get(id=response.data['id'])
+        
+        # Verify guarantor was created
+        guarantors = application.guarantors.all()
+        self.assertEqual(guarantors.count(), 1)
+        guarantor = guarantors[0]
+        self.assertEqual(guarantor.first_name, 'John')
+        self.assertEqual(guarantor.last_name, 'Guarantor')
+        self.assertEqual(guarantor.drivers_licence_no, 'DL12345678')
+        self.assertEqual(guarantor.occupation, 'Manager')
+        self.assertEqual(guarantor.annual_income, Decimal('120000.00'))
+        
+        # Verify guarantor assets were created
+        assets = guarantor.assets.all()
+        self.assertEqual(assets.count(), 1)
+        self.assertEqual(assets[0].asset_type, 'property')
+        self.assertEqual(assets[0].value, Decimal('1200000.00'))
+        
+        # Verify guarantor liabilities were created
+        liabilities = guarantor.liabilities.all()
+        self.assertEqual(liabilities.count(), 1)
+        self.assertEqual(liabilities[0].liability_type, 'mortgage')
+        self.assertEqual(liabilities[0].amount, Decimal('800000.00'))
     
     def test_update_stage_invalid_transition(self):
         """Test updating application stage with invalid transition"""

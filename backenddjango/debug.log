@@ -4493,3 +4493,230 @@ INFO 2025-05-06 00:46:06,219 basehttp "GET /api/swagger/ HTTP/1.1" 200 4725
 INFO 2025-05-06 00:46:06,747 basehttp "GET /api/schema/ HTTP/1.1" 200 476056
 INFO 2025-05-06 00:46:36,292 autoreload /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/documents/views.py changed, reloading.
 INFO 2025-05-06 00:46:36,799 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 04:52:34,230 autoreload /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/models.py changed, reloading.
+INFO 2025-05-06 04:52:35,157 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 04:56:31,886 autoreload /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/serializers.py changed, reloading.
+INFO 2025-05-06 04:56:32,512 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 05:01:13,024 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-06 05:02:05,056 log Bad Request: /api/applications/applications/
+WARNING 2025-05-06 05:02:09,723 log Unauthorized: /api/applications/applications/
+WARNING 2025-05-06 05:02:12,382 log Unauthorized: /api/applications/applications/1/
+WARNING 2025-05-06 05:02:12,548 log Not Found: /api/applications/applications/1/
+WARNING 2025-05-06 05:02:15,247 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-05-06 05:02:48,078 log Bad Request: /api/applications/applications/
+WARNING 2025-05-06 05:03:17,585 log Bad Request: /api/applications/applications/
+WARNING 2025-05-06 05:05:44,658 log Bad Request: /api/applications/applications/
+WARNING 2025-05-06 05:08:55,269 log Unauthorized: /api/applications/applications/
+WARNING 2025-05-06 05:08:57,965 log Unauthorized: /api/applications/applications/1/
+WARNING 2025-05-06 05:08:58,133 log Not Found: /api/applications/applications/1/
+WARNING 2025-05-06 05:09:00,798 log Bad Request: /api/applications/validate-schema/
+WARNING 2025-05-06 05:10:09,226 log Unauthorized: /api/applications/applications/
+WARNING 2025-05-06 05:10:12,158 log Unauthorized: /api/applications/applications/1/
+WARNING 2025-05-06 05:10:12,321 log Not Found: /api/applications/applications/1/
+WARNING 2025-05-06 05:10:14,958 log Bad Request: /api/applications/validate-schema/
+INFO 2025-05-06 05:51:01,839 autoreload /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/serializers.py changed, reloading.
+INFO 2025-05-06 05:51:02,514 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 05:51:26,320 autoreload /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/serializers.py changed, reloading.
+INFO 2025-05-06 05:51:26,871 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 05:53:17,341 autoreload /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/crm_backend/settings.py changed, reloading.
+INFO 2025-05-06 05:53:17,895 autoreload Watching for file changes with StatReloader
+INFO 2025-05-06 05:53:45,837 basehttp "GET /api/swagger/ HTTP/1.1" 200 4656
+INFO 2025-05-06 05:53:46,171 basehttp "GET /api/schema/ HTTP/1.1" 200 468543
+WARNING 2025-05-06 06:49:19,300 log Not Found: /api/
+WARNING 2025-05-06 06:49:30,396 log Not Found: /api/v1/
+WARNING 2025-05-06 06:50:52,540 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-05-06 06:50:52,546 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-05-06 06:50:52,546 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-06 06:50:52,548 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-06 06:50:52,549 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-06 06:50:52,551 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-05-06 06:50:52,552 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-05-06 06:50:52,608 log Not Found: /static/drf-yasg/swagger-ui-dist/favicon-32x32.png
+WARNING 2025-05-06 06:50:54,559 log Not Found: /accounts/login/
+WARNING 2025-05-06 06:51:09,314 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-05-06 06:51:09,318 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-05-06 06:51:09,321 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-06 06:51:09,321 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-06 06:51:09,322 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-05-06 06:51:09,326 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-05-06 06:51:09,334 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-06 06:51:11,019 log Not Found: /accounts/login/
+WARNING 2025-05-06 06:52:17,057 log Method Not Allowed: /api/users/auth/login/
+INFO 2025-05-06 06:52:32,396 views Login attempt for email: test@example.com
+WARNING 2025-05-06 06:52:32,553 log Unauthorized: /api/users/auth/login/
+WARNING 2025-05-06 06:52:38,099 log Method Not Allowed: /api/users/auth/login/
+WARNING 2025-05-06 06:52:38,158 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-06 06:52:38,162 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-06 06:52:38,165 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-06 06:52:38,165 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-06 06:52:38,167 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-06 06:52:38,168 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-06 06:52:38,169 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-06 06:52:38,170 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-06 06:52:38,170 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-06 06:52:38,171 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-06 06:52:38,173 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+INFO 2025-05-06 06:52:51,524 views Login attempt for email: fanhongyuan897@gmail.com
+WARNING 2025-05-06 06:52:51,736 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-06 06:52:51,741 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-06 06:52:51,743 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-06 06:52:51,745 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-06 06:52:51,746 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-06 06:52:51,748 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-06 06:52:51,748 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-06 06:52:51,749 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-06 06:52:51,750 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-06 06:52:51,750 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-06 06:52:51,755 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+INFO 2025-05-06 06:53:21,830 views Login attempt for email: fanhongyuan897@gmail.com
+WARNING 2025-05-06 06:59:33,968 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-06 06:59:33,972 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-05-06 06:59:33,974 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-05-06 06:59:33,976 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-06 06:59:33,978 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-05-06 06:59:34,158 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-05-06 06:59:34,169 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-06 06:59:35,548 log Method Not Allowed: /api/users/auth/login/
+WARNING 2025-05-06 06:59:35,583 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-06 06:59:35,584 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-06 06:59:35,587 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-06 06:59:35,587 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-06 06:59:35,588 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-06 06:59:35,589 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-06 06:59:35,591 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-06 06:59:35,592 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-06 06:59:35,593 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-06 06:59:35,594 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-06 06:59:35,596 log Not Found: /static/rest_framework/css/bootstrap.min.css
+INFO 2025-05-06 06:59:43,858 views Login attempt for email: fanhongyuan897@gmail.com
+WARNING 2025-05-06 06:59:44,106 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-06 06:59:44,112 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-06 06:59:44,116 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-06 06:59:44,119 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-06 06:59:44,121 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-06 06:59:44,122 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-06 06:59:44,124 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-06 06:59:44,126 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-06 06:59:44,128 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-06 06:59:44,128 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-06 06:59:44,133 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-06 07:00:10,924 log Not Found: /accounts/login/api/users/auth/login/
+WARNING 2025-05-06 07:00:11,592 log Not Found: /accounts/login/api/users/auth/login/
+WARNING 2025-05-06 07:00:12,137 log Not Found: /accounts/login/api/users/auth/login/
+WARNING 2025-05-06 07:00:12,938 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-06 07:00:12,941 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-06 07:00:15,110 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-06 07:00:15,110 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-06 07:00:15,110 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-05-06 07:00:15,113 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-05-06 07:00:15,113 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-05-06 07:00:15,117 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-06 07:00:15,117 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-05-06 07:00:15,677 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-06 07:00:15,677 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-06 07:00:15,677 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-05-06 07:00:15,679 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-06 07:00:15,679 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-05-06 07:00:15,681 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-05-06 07:00:15,684 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-05-06 07:00:16,271 log Method Not Allowed: /api/users/auth/login/
+WARNING 2025-05-06 07:00:16,289 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-06 07:00:16,290 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-06 07:00:16,290 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-06 07:00:16,292 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-06 07:00:16,295 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-06 07:00:16,295 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-06 07:00:16,296 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-06 07:00:16,298 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-06 07:00:16,298 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-06 07:00:16,298 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-06 07:00:16,300 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-06 07:00:31,508 log Unauthorized: /api/users/
+WARNING 2025-05-06 07:00:31,534 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-06 07:00:31,535 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-06 07:00:31,536 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-06 07:00:31,537 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-06 07:00:31,538 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-06 07:00:31,543 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-06 07:00:31,543 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-06 07:00:31,544 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-06 07:00:31,549 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-06 07:00:31,550 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-06 07:00:31,550 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-06 07:00:38,649 log Unauthorized: /api/users/
+WARNING 2025-05-06 07:00:38,669 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-06 07:00:38,680 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-06 07:00:38,680 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-06 07:00:38,681 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-06 07:00:38,683 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-06 07:00:38,687 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-06 07:00:38,689 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-06 07:00:38,689 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-06 07:00:38,690 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-06 07:00:38,690 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-06 07:00:38,691 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-06 07:00:39,329 log Unauthorized: /api/users/
+INFO 2025-05-06 07:01:29,613 views Login attempt for email: fanhongyuan897@gmail.com
+WARNING 2025-05-06 07:01:29,783 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-06 07:01:29,789 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-06 07:01:29,792 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-06 07:01:29,795 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-06 07:01:29,797 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-06 07:01:29,798 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-06 07:01:29,798 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-06 07:01:29,801 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-06 07:01:29,801 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-06 07:01:29,801 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-06 07:01:29,803 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-06 07:03:40,257 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-06 07:03:40,261 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-05-06 07:03:40,264 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-06 07:03:40,263 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-06 07:03:40,269 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-05-06 07:03:40,270 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-05-06 07:03:40,271 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-05-06 07:03:41,732 log Method Not Allowed: /api/users/auth/login/
+WARNING 2025-05-06 07:03:41,747 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-06 07:03:41,757 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-06 07:03:41,757 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-06 07:03:41,760 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-06 07:03:41,761 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-06 07:03:41,763 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-06 07:03:41,763 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-06 07:03:41,765 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-06 07:03:41,766 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-06 07:03:41,767 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-06 07:03:41,767 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-06 07:03:50,129 log Unauthorized: /api/users/
+WARNING 2025-05-06 07:03:50,148 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-06 07:03:50,151 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-06 07:03:50,151 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-06 07:03:50,156 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-06 07:03:50,156 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-06 07:03:50,159 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-06 07:03:50,160 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-06 07:03:50,162 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-06 07:03:50,163 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-06 07:03:50,163 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-06 07:03:50,166 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-06 07:03:59,434 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-05-06 07:03:59,438 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-05-06 07:03:59,442 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-06 07:03:59,443 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-06 07:03:59,446 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-06 07:03:59,446 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-05-06 07:03:59,452 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-05-06 07:56:43,172 log Not Found: /static/drf-yasg/redoc-init.js
+WARNING 2025-05-06 07:56:43,178 log Not Found: /static/drf-yasg/redoc/redoc.min.js
+WARNING 2025-05-06 07:56:43,213 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-06 07:56:43,237 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-06 07:56:43,246 log Not Found: /static/drf-yasg/redoc/redoc-logo.png
+WARNING 2025-05-06 07:56:46,313 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-06 07:56:46,317 log Not Found: /static/drf-yasg/redoc/redoc.min.js
+WARNING 2025-05-06 07:56:46,319 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-06 07:56:46,320 log Not Found: /static/drf-yasg/redoc-init.js
+WARNING 2025-05-06 07:56:46,830 log Not Found: /static/drf-yasg/redoc-init.js
+WARNING 2025-05-06 07:56:46,831 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-06 07:56:46,832 log Not Found: /static/drf-yasg/redoc/redoc.min.js
+WARNING 2025-05-06 07:56:46,832 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-06 07:56:56,991 log Not Found: /apiredoc/

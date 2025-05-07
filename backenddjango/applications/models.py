@@ -56,6 +56,24 @@ class Application(models.Model):
         ('annually', 'Annually'),
     ]
     
+    LOAN_PURPOSE_CHOICES = [
+        ('purchase', 'Purchase'),
+        ('refinance', 'Refinance'),
+        ('construction', 'Construction'),
+        ('equity_release', 'Equity Release'),
+        ('debt_consolidation', 'Debt Consolidation'),
+        ('business_expansion', 'Business Expansion'),
+        ('working_capital', 'Working Capital'),
+        ('other', 'Other'),
+    ]
+    
+    EXIT_STRATEGY_CHOICES = [
+        ('sale', 'Sale of Property'),
+        ('refinance', 'Refinance'),
+        ('income', 'Income/Cash Flow'),
+        ('other', 'Other'),
+    ]
+    
     # Basic application details
     reference_number = models.CharField(max_length=20, unique=True, default=generate_reference_number)
     stage = models.CharField(max_length=25, choices=STAGE_CHOICES, default='inquiry')
@@ -70,6 +88,16 @@ class Application(models.Model):
     repayment_frequency = models.CharField(max_length=20, choices=REPAYMENT_FREQUENCY_CHOICES, default='monthly')
     product_id = models.CharField(max_length=50, null=True, blank=True)
     estimated_settlement_date = models.DateField(null=True, blank=True)
+    
+    # Loan purpose details
+    loan_purpose = models.CharField(max_length=50, choices=LOAN_PURPOSE_CHOICES, null=True, blank=True)
+    additional_comments = models.TextField(null=True, blank=True)
+    prior_application = models.BooleanField(default=False)
+    prior_application_details = models.TextField(null=True, blank=True)
+    
+    # Exit strategy
+    exit_strategy = models.CharField(max_length=50, choices=EXIT_STRATEGY_CHOICES, null=True, blank=True)
+    exit_strategy_details = models.TextField(null=True, blank=True)
     
     # Funding calculation result
     funding_result = JSONField(null=True, blank=True, help_text="Stores the current funding calculation result")
@@ -101,7 +129,7 @@ class Application(models.Model):
     qs_email = models.EmailField(null=True, blank=True)
     qs_report_date = models.DateField(null=True, blank=True)
     
-    # Security property details
+    # Security property details (legacy fields)
     security_address = models.TextField(null=True, blank=True)
     security_type = models.CharField(max_length=50, null=True, blank=True)
     security_value = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
@@ -130,6 +158,100 @@ class Application(models.Model):
                 self.stage_last_updated = timezone.now()
         
         super().save(*args, **kwargs)
+
+
+class SecurityProperty(models.Model):
+    """
+    Model for security properties
+    """
+    PROPERTY_TYPE_CHOICES = [
+        ('residential', 'Residential'),
+        ('commercial', 'Commercial'),
+        ('industrial', 'Industrial'),
+        ('retail', 'Retail'),
+        ('land', 'Land'),
+        ('rural', 'Rural'),
+        ('other', 'Other'),
+    ]
+    
+    OCCUPANCY_CHOICES = [
+        ('owner_occupied', 'Owner Occupied'),
+        ('investment', 'Investment Property'),
+    ]
+    
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='security_properties')
+    
+    # Property address
+    address_unit = models.CharField(max_length=20, null=True, blank=True)
+    address_street_no = models.CharField(max_length=20, null=True, blank=True)
+    address_street_name = models.CharField(max_length=100, null=True, blank=True)
+    address_suburb = models.CharField(max_length=100, null=True, blank=True)
+    address_state = models.CharField(max_length=50, null=True, blank=True)
+    address_postcode = models.CharField(max_length=10, null=True, blank=True)
+    
+    # Mortgage details
+    current_mortgagee = models.CharField(max_length=255, null=True, blank=True)
+    first_mortgage = models.CharField(max_length=255, null=True, blank=True)
+    second_mortgage = models.CharField(max_length=255, null=True, blank=True)
+    current_debt_position = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    
+    # Property type
+    property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES, null=True, blank=True)
+    
+    # Description
+    bedrooms = models.PositiveIntegerField(null=True, blank=True)
+    bathrooms = models.PositiveIntegerField(null=True, blank=True)
+    car_spaces = models.PositiveIntegerField(null=True, blank=True)
+    building_size = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, help_text="Size in square meters")
+    land_size = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, help_text="Size in square meters")
+    
+    # Structure
+    is_single_story = models.BooleanField(default=True)
+    has_garage = models.BooleanField(default=False)
+    has_carport = models.BooleanField(default=False)
+    has_off_street_parking = models.BooleanField(default=False)
+    
+    # Occupancy
+    occupancy = models.CharField(max_length=20, choices=OCCUPANCY_CHOICES, null=True, blank=True)
+    
+    # Valuation
+    estimated_value = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    purchase_price = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    
+    # Metadata
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        address_parts = [
+            self.address_unit,
+            self.address_street_no,
+            self.address_street_name,
+            self.address_suburb,
+            self.address_state,
+            self.address_postcode
+        ]
+        address = ' '.join(filter(None, address_parts))
+        return f"{address} - {self.estimated_value}"
+
+
+class LoanRequirement(models.Model):
+    """
+    Model for loan requirements
+    """
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, related_name='loan_requirements')
+    description = models.CharField(max_length=255)
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    
+    # Metadata
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f"{self.description} - {self.amount}"
+
 
 class Document(models.Model):
     """

@@ -6,7 +6,7 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h7f3#$%^&*()_+asdfghjkl;qwertyuiop'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-h7f3#$%^&*()_+asdfghjkl;qwertyuiop')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', '0') == '1'
@@ -75,12 +75,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'crm_backend.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Check if DATABASE_URL is set (for Docker/production environment)
+if os.environ.get('DATABASE_URL'):
+    # Use PostgreSQL in Docker/production
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('DB_NAME', 'crm_db'),
+            'USER': os.environ.get('DB_USER', 'postgres'),
+            'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'),
+            'HOST': os.environ.get('DB_HOST', 'db'),
+            'PORT': os.environ.get('DB_PORT', '5432'),
+        }
     }
-}
+else:
+    # Use SQLite for local development without Docker
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -120,9 +135,24 @@ AUTH_USER_MODEL = 'users.User'
 
 # Channels settings
 ASGI_APPLICATION = 'crm_backend.asgi.application'
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+
+# Check if REDIS_HOST is set (for Docker/production environment)
+if os.environ.get('REDIS_HOST'):
+    # Use Redis channel layer for production
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels_redis.core.RedisChannelLayer',
+            'CONFIG': {
+                'hosts': [(os.environ.get('REDIS_HOST', 'redis'), 
+                          int(os.environ.get('REDIS_PORT', 6379)))],
+            },
+        },
+    }
+else:
+    # Use in-memory channel layer for development
+    CHANNEL_LAYERS = {
+        'default': {
+            'BACKEND': 'channels.layers.InMemoryChannelLayer',
     },
 }
 
@@ -266,3 +296,20 @@ SPECTACULAR_SETTINGS = {
         {'name': 'reminders', 'description': 'Reminder operations'},
     ],
 }
+
+# DRF Spectacular settings
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'CRM Loan Management API',
+    'DESCRIPTION': 'API for CRM Loan Management System',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'ENUM_NAME_OVERRIDES': {
+        'EmploymentTypeEnum': 'borrowers.models.Borrower.EMPLOYMENT_TYPE_CHOICES',
+        'GuarantorEmploymentTypeEnum': 'borrowers.models.Guarantor.EMPLOYMENT_TYPE_CHOICES',
+    }
+}
+
+# Login URL settings
+LOGIN_URL = '/api/users/auth/login/'
+LOGIN_REDIRECT_URL = '/swagger/'
+LOGOUT_REDIRECT_URL = '/swagger/'

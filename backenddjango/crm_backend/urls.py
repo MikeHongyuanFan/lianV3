@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework import permissions
@@ -26,6 +27,9 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    # Django auth URLs for Swagger UI
+    path('accounts/login/', lambda request: redirect('api/users/auth/login/'), name='login'),
+
     path('admin/', admin.site.urls),
     
     # API endpoints

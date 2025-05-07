@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import Application, Document, Fee, Repayment, FundingCalculationHistory
-from borrowers.models import Borrower, Guarantor
+from .models import Application, Document, Fee, Repayment, FundingCalculationHistory, SecurityProperty, LoanRequirement
+from borrowers.models import Borrower, Guarantor, Director, Asset, Liability
 from .validators import validate_company_borrower
 from django.db import transaction
 from users.serializers import UserSerializer
@@ -70,33 +70,48 @@ class BorrowerSerializer(serializers.ModelSerializer):
         
         return borrower
 
+class ApplicationAssetSerializer(serializers.ModelSerializer):
+    """Asset serializer specifically for application context"""
+    class Meta:
+        model = Asset
+        fields = ['id', 'asset_type', 'description', 'value']
+
+class ApplicationLiabilitySerializer(serializers.ModelSerializer):
+    """Liability serializer specifically for application context"""
+    class Meta:
+        model = Liability
+        fields = ['id', 'liability_type', 'description', 'amount', 'monthly_payment']
+
 class GuarantorSerializer(serializers.ModelSerializer):
-    address = serializers.SerializerMethodField()
+    assets = ApplicationAssetSerializer(many=True, required=False)
+    liabilities = ApplicationLiabilitySerializer(many=True, required=False)
     
     class Meta:
         model = Guarantor
         fields = [
-            'id', 'first_name', 'last_name', 'email', 'phone', 'date_of_birth',
-            'address', 'guarantor_type', 'borrower', 'application'
+            'id', 'guarantor_type', 'title', 'first_name', 'last_name', 'date_of_birth',
+            'drivers_licence_no', 'home_phone', 'mobile', 'email',
+            'address_unit', 'address_street_no', 'address_street_name',
+            'address_suburb', 'address_state', 'address_postcode',
+            'occupation', 'employer_name', 'employment_type', 'annual_income',
+            'company_name', 'company_abn', 'company_acn',
+            'borrower', 'application', 'assets', 'liabilities'
         ]
     
-    def get_address(self, obj) -> dict:
-        return {
-            'street': obj.address or '',
-            'city': '',
-            'state': '',
-            'postal_code': '',
-            'country': ''
-        }
-    
     def create(self, validated_data):
-        address_data = validated_data.pop('address', None)
+        assets_data = validated_data.pop('assets', [])
+        liabilities_data = validated_data.pop('liabilities', [])
         
+        # Create the guarantor
         guarantor = Guarantor.objects.create(**validated_data)
         
-        if address_data:
-            guarantor.address = address_data.get('street', '')
-            guarantor.save()
+        # Create assets
+        for asset_data in assets_data:
+            Asset.objects.create(guarantor=guarantor, **asset_data)
+        
+        # Create liabilities
+        for liability_data in liabilities_data:
+            Liability.objects.create(guarantor=guarantor, **liability_data)
         
         return guarantor
 
@@ -106,22 +121,72 @@ class FinancialInfoSerializer(serializers.Serializer):
     assets = serializers.DecimalField(max_digits=12, decimal_places=2)
     liabilities = serializers.DecimalField(max_digits=12, decimal_places=2)
 
-class DirectorSerializer(serializers.Serializer):
-    first_name = serializers.CharField(max_length=100)
-    last_name = serializers.CharField(max_length=100)
-    email = serializers.EmailField(allow_blank=True, required=False)
-    phone = serializers.CharField(max_length=20, allow_blank=True, required=False)
+class DirectorSerializer(serializers.ModelSerializer):
+    """
+    Serializer for company directors
+    """
+    class Meta:
+        model = Director
+        fields = ['id', 'name', 'roles', 'director_id']
+
+
+class AssetSerializer(serializers.ModelSerializer):
+    """
+    Serializer for assets
+    """
+    class Meta:
+        model = Asset
+        fields = ['id', 'asset_type', 'description', 'value', 'amount_owing', 'to_be_refinanced', 'address']
+
+
+class LiabilitySerializer(serializers.ModelSerializer):
+    """
+    Serializer for liabilities
+    """
+    class Meta:
+        model = Liability
+        fields = ['id', 'liability_type', 'description', 'amount', 'lender', 'monthly_payment', 'to_be_refinanced']
+
+
+class SecurityPropertySerializer(serializers.ModelSerializer):
+    """
+    Serializer for security properties
+    """
+    class Meta:
+        model = SecurityProperty
+        fields = [
+            'id', 'address_unit', 'address_street_no', 'address_street_name', 'address_suburb', 
+            'address_state', 'address_postcode', 'current_mortgagee', 'first_mortgage', 
+            'second_mortgage', 'current_debt_position', 'property_type', 'bedrooms', 
+            'bathrooms', 'car_spaces', 'building_size', 'land_size', 'is_single_story', 
+            'has_garage', 'has_carport', 'has_off_street_parking', 'occupancy', 
+            'estimated_value', 'purchase_price'
+        ]
+
+
+class LoanRequirementSerializer(serializers.ModelSerializer):
+    """
+    Serializer for loan requirements
+    """
+    class Meta:
+        model = LoanRequirement
+        fields = ['id', 'description', 'amount']
 
 class CompanyBorrowerSerializer(serializers.ModelSerializer):
-    registered_address = AddressSerializer()
-    financial_info = FinancialInfoSerializer()
-    directors = DirectorSerializer(many=True)
+    directors = DirectorSerializer(many=True, required=False)
+    financial_info = FinancialInfoSerializer(required=False)
+    assets = AssetSerializer(many=True, required=False)
+    liabilities = LiabilitySerializer(many=True, required=False)
     
     class Meta:
         model = Borrower
         fields = [
-            'id', 'company_name', 'company_abn', 'company_acn',
-            'registered_address', 'directors', 'financial_info'
+            'id', 'company_name', 'company_abn', 'company_acn', 'industry_type',
+            'contact_number', 'annual_company_income', 'is_trustee', 'is_smsf_trustee',
+            'trustee_name', 'registered_address_unit', 'registered_address_street_no',
+            'registered_address_street_name', 'registered_address_suburb',
+            'registered_address_state', 'registered_address_postcode',
+            'directors', 'financial_info', 'assets', 'liabilities'
         ]
     
     def validate(self, data):
@@ -132,15 +197,30 @@ class CompanyBorrowerSerializer(serializers.ModelSerializer):
         return data
     
     def create(self, validated_data):
-        registered_address = validated_data.pop('registered_address')
-        financial_info = validated_data.pop('financial_info')
-        directors = validated_data.pop('directors')
+        directors_data = validated_data.pop('directors', [])
+        financial_info = validated_data.pop('financial_info', None)
+        assets_data = validated_data.pop('assets', [])
+        liabilities_data = validated_data.pop('liabilities', [])
         
+        # Create the company borrower
         company = Borrower.objects.create(is_company=True, **validated_data)
-        company.registered_address = registered_address
-        company.financial_info = financial_info
-        company.directors = directors
-        company.save()
+        
+        # Create directors
+        for director_data in directors_data:
+            Director.objects.create(borrower=company, **director_data)
+        
+        # Store financial info as JSON
+        if financial_info:
+            company.financial_info = financial_info
+            company.save()
+        
+        # Create assets
+        for asset_data in assets_data:
+            Asset.objects.create(borrower=company, **asset_data)
+        
+        # Create liabilities
+        for liability_data in liabilities_data:
+            Liability.objects.create(borrower=company, **liability_data)
         
         return company
 
@@ -178,10 +258,13 @@ class FundingCalculationInputSerializer(serializers.Serializer):
     monthly_account_fee = serializers.DecimalField(max_digits=10, decimal_places=2, required=True)
     working_fee = serializers.DecimalField(max_digits=10, decimal_places=2, required=False, default=0)
 
+
 class ApplicationCreateSerializer(serializers.ModelSerializer):
     borrowers = BorrowerSerializer(many=True, required=False)
     guarantors = GuarantorSerializer(many=True, required=False)
     company_borrowers = CompanyBorrowerSerializer(many=True, required=False)
+    security_properties = SecurityPropertySerializer(many=True, required=False)
+    loan_requirements = LoanRequirementSerializer(many=True, required=False)
     
     # Add funding calculation input fields
     funding_calculation_input = FundingCalculationInputSerializer(required=False)
@@ -193,7 +276,9 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
             'interest_rate', 'purpose', 'repayment_frequency',
             'application_type', 'product_id', 'estimated_settlement_date',
             'stage', 'branch_id', 'bd_id', 'borrowers', 'guarantors',
-            'company_borrowers', 'security_address', 'security_type', 'security_value',
+            'company_borrowers', 'security_properties', 'loan_requirements',
+            'loan_purpose', 'additional_comments', 'prior_application',
+            'prior_application_details', 'exit_strategy', 'exit_strategy_details',
             'valuer_company_name', 'valuer_contact_name', 'valuer_phone',
             'valuer_email', 'qs_company_name', 'qs_contact_name', 'qs_phone', 'qs_email',
             'funding_calculation_input'
@@ -203,6 +288,8 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
         borrowers_data = validated_data.pop('borrowers', [])
         guarantors_data = validated_data.pop('guarantors', [])
         company_borrowers_data = validated_data.pop('company_borrowers', [])
+        security_properties_data = validated_data.pop('security_properties', [])
+        loan_requirements_data = validated_data.pop('loan_requirements', [])
         funding_calculation_input = validated_data.pop('funding_calculation_input', None)
         
         # Process new_borrowers data if present in the request
@@ -244,7 +331,7 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
             for guarantor_data in guarantors_data:
                 guarantor_serializer = GuarantorSerializer(data=guarantor_data)
                 guarantor_serializer.is_valid(raise_exception=True)
-                guarantor = guarantor_serializer.save()
+                guarantor = guarantor_serializer.save(application=application)
                 application.guarantors.add(guarantor)
             
             # Process guarantor_data if present
@@ -253,12 +340,24 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
                 # Create a new guarantor
                 guarantor = Guarantor.objects.create(
                     guarantor_type=guarantor_data.get('guarantor_type', ''),
+                    title=guarantor_data.get('title', ''),
                     first_name=guarantor_data.get('first_name', ''),
                     last_name=guarantor_data.get('last_name', ''),
                     date_of_birth=guarantor_data.get('date_of_birth'),
+                    drivers_licence_no=guarantor_data.get('drivers_licence_no', ''),
+                    home_phone=guarantor_data.get('home_phone', ''),
+                    mobile=guarantor_data.get('mobile', ''),
                     email=guarantor_data.get('email', ''),
-                    phone=guarantor_data.get('phone', ''),
-                    address=guarantor_data.get('address', ''),
+                    address_unit=guarantor_data.get('address_unit', ''),
+                    address_street_no=guarantor_data.get('address_street_no', ''),
+                    address_street_name=guarantor_data.get('address_street_name', ''),
+                    address_suburb=guarantor_data.get('address_suburb', ''),
+                    address_state=guarantor_data.get('address_state', ''),
+                    address_postcode=guarantor_data.get('address_postcode', ''),
+                    occupation=guarantor_data.get('occupation', ''),
+                    employer_name=guarantor_data.get('employer_name', ''),
+                    employment_type=guarantor_data.get('employment_type', ''),
+                    annual_income=guarantor_data.get('annual_income', 0),
                     application=application,
                     created_by=validated_data.get('created_by')
                 )
@@ -278,6 +377,20 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
                 company_serializer.is_valid(raise_exception=True)
                 company = company_serializer.save()
                 application.borrowers.add(company)  # Add to borrowers since it's a Borrower model with is_company=True
+            
+            # Create security properties
+            for security_property_data in security_properties_data:
+                SecurityProperty.objects.create(
+                    application=application,
+                    **security_property_data
+                )
+            
+            # Create loan requirements
+            for loan_requirement_data in loan_requirements_data:
+                LoanRequirement.objects.create(
+                    application=application,
+                    **loan_requirement_data
+                )
             
             application.save()
             
@@ -317,12 +430,16 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
             
             return application
 
+
+
 class ApplicationDetailSerializer(serializers.ModelSerializer):
     # Basic application fields are included by default
     
     # Related entities
     borrowers = BorrowerSerializer(many=True, read_only=True)
     guarantors = GuarantorSerializer(many=True, read_only=True)
+    security_properties = SecurityPropertySerializer(many=True, read_only=True)
+    loan_requirements = LoanRequirementSerializer(many=True, read_only=True)
     
     # Documents and notes
     documents = serializers.SerializerMethodField()
@@ -351,8 +468,16 @@ class ApplicationDetailSerializer(serializers.ModelSerializer):
             'application_type', 'product_id', 'estimated_settlement_date',
             'stage', 'stage_display', 'created_at', 'updated_at',
             
+            # Loan purpose details
+            'loan_purpose', 'additional_comments', 'prior_application',
+            'prior_application_details',
+            
+            # Exit strategy
+            'exit_strategy', 'exit_strategy_details',
+            
             # Related entities
             'borrowers', 'guarantors', 'broker', 'bd', 'branch',
+            'security_properties', 'loan_requirements',
             
             # Documents and notes
             'documents', 'notes',
@@ -360,7 +485,7 @@ class ApplicationDetailSerializer(serializers.ModelSerializer):
             # Financial tracking
             'fees', 'repayments', 'ledger_entries',
             
-            # Security property details
+            # Security property details (legacy fields)
             'security_address', 'security_type', 'security_value',
             
             # Valuer information
