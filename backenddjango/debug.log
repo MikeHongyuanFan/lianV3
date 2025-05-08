@@ -4720,3 +4720,361 @@ WARNING 2025-05-06 07:56:46,831 log Not Found: /static/drf-yasg/insQ.min.js
 WARNING 2025-05-06 07:56:46,832 log Not Found: /static/drf-yasg/redoc/redoc.min.js
 WARNING 2025-05-06 07:56:46,832 log Not Found: /static/drf-yasg/style.css
 WARNING 2025-05-06 07:56:56,991 log Not Found: /apiredoc/
+INFO 2025-05-07 07:06:19,148 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-08 00:05:04,982 log Not Found: /api/
+WARNING 2025-05-08 00:06:07,793 log Method Not Allowed: /api/users/auth/login/
+INFO 2025-05-08 00:06:24,987 views Login attempt for email: test@example.com
+WARNING 2025-05-08 00:06:25,126 log Unauthorized: /api/users/auth/login/
+WARNING 2025-05-08 00:06:43,137 log Unauthorized: /api/applications/
+WARNING 2025-05-08 00:32:19,008 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-08 00:32:19,014 log Not Found: /static/admin/css/login.css
+WARNING 2025-05-08 00:32:19,015 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-08 00:32:19,017 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-08 00:32:19,018 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-08 00:32:19,024 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-08 00:32:19,057 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-08 00:32:26,430 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-08 00:32:26,434 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-08 00:32:26,439 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-08 00:32:26,439 log Not Found: /static/admin/css/login.css
+WARNING 2025-05-08 00:32:26,440 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-08 00:32:26,441 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-08 00:32:26,448 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-08 00:32:46,359 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-08 00:32:46,362 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-08 00:32:46,366 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-08 00:32:46,367 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-08 00:32:46,369 log Not Found: /static/admin/css/login.css
+WARNING 2025-05-08 00:32:46,371 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-08 00:32:46,374 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-08 00:32:53,320 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-08 00:32:53,328 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-05-08 00:32:53,329 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-08 00:32:53,331 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-05-08 00:32:53,331 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-05-08 00:32:53,333 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-08 00:32:53,335 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-05-08 00:32:54,847 log Method Not Allowed: /api/users/auth/login/
+WARNING 2025-05-08 00:32:54,861 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-08 00:32:54,871 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-08 00:32:54,871 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-08 00:32:54,873 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-08 00:32:54,874 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-08 00:32:54,876 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-08 00:32:54,874 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-08 00:32:54,876 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-08 00:32:54,878 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-08 00:32:54,878 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-08 00:32:54,880 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-08 00:33:53,041 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-08 00:33:53,044 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-05-08 00:33:53,046 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-08 00:33:53,048 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-08 00:33:53,049 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-05-08 00:33:53,053 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-05-08 00:33:53,053 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-05-08 00:33:54,107 log Method Not Allowed: /api/users/auth/login/
+WARNING 2025-05-08 00:33:54,122 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-08 00:33:54,122 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-08 00:33:54,123 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-08 00:33:54,125 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-08 00:33:54,127 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-08 00:33:54,129 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-08 00:33:54,129 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-08 00:33:54,130 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-08 00:33:54,130 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-08 00:33:54,132 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-08 00:33:54,133 log Not Found: /static/rest_framework/js/prettify-min.js
+INFO 2025-05-08 00:34:00,963 views Login attempt for email: admin@example.com
+WARNING 2025-05-08 00:34:01,106 log Unauthorized: /api/users/auth/login/
+WARNING 2025-05-08 00:34:01,138 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-08 00:34:01,140 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-08 00:34:01,144 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-08 00:34:01,146 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-08 00:34:01,148 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-08 00:34:01,148 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-08 00:34:01,149 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-08 00:34:01,150 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-08 00:34:01,151 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-08 00:34:01,150 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-08 00:34:01,152 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-08 00:34:56,080 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-08 00:34:56,083 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-08 00:34:56,085 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-08 00:34:56,087 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-08 00:34:56,090 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-08 00:34:56,090 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-08 00:34:56,093 log Not Found: /static/admin/css/login.css
+WARNING 2025-05-08 00:35:04,362 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-08 00:35:04,366 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-08 00:35:04,367 log Not Found: /static/admin/css/dashboard.css
+WARNING 2025-05-08 00:35:04,367 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-08 00:35:04,368 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-08 00:35:04,369 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-08 00:35:04,376 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-08 00:35:34,641 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui.css
+WARNING 2025-05-08 00:35:34,648 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+WARNING 2025-05-08 00:35:34,653 log Not Found: /static/drf-yasg/immutable.min.js
+WARNING 2025-05-08 00:35:34,657 log Not Found: /static/drf-yasg/insQ.min.js
+WARNING 2025-05-08 00:35:34,660 log Not Found: /static/drf-yasg/swagger-ui-init.js
+WARNING 2025-05-08 00:35:34,664 log Not Found: /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+WARNING 2025-05-08 00:35:34,666 log Not Found: /static/drf-yasg/style.css
+WARNING 2025-05-08 00:35:36,023 log Method Not Allowed: /api/users/auth/login/
+WARNING 2025-05-08 00:35:36,040 log Not Found: /static/rest_framework/css/bootstrap.min.css
+WARNING 2025-05-08 00:35:36,040 log Not Found: /static/rest_framework/css/prettify.css
+WARNING 2025-05-08 00:35:36,040 log Not Found: /static/rest_framework/css/bootstrap-tweaks.css
+WARNING 2025-05-08 00:35:36,042 log Not Found: /static/rest_framework/css/default.css
+WARNING 2025-05-08 00:35:36,043 log Not Found: /static/rest_framework/js/jquery-3.7.1.min.js
+WARNING 2025-05-08 00:35:36,045 log Not Found: /static/rest_framework/js/ajax-form.js
+WARNING 2025-05-08 00:35:36,047 log Not Found: /static/rest_framework/js/csrf.js
+WARNING 2025-05-08 00:35:36,047 log Not Found: /static/rest_framework/js/bootstrap.min.js
+WARNING 2025-05-08 00:35:36,047 log Not Found: /static/rest_framework/js/prettify-min.js
+WARNING 2025-05-08 00:35:36,048 log Not Found: /static/rest_framework/js/default.js
+WARNING 2025-05-08 00:35:36,050 log Not Found: /static/rest_framework/js/load-ajax-form.js
+WARNING 2025-05-08 00:35:41,096 log Not Found: /apiswagger/
+WARNING 2025-05-08 01:37:29,640 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-08 01:37:29,678 log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+WARNING 2025-05-08 01:37:29,680 log Not Found: /static/admin/js/jquery.init.js
+WARNING 2025-05-08 01:37:29,682 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-08 01:37:29,683 log Not Found: /static/admin/css/changelists.css
+WARNING 2025-05-08 01:37:29,685 log Not Found: /static/admin/js/core.js
+WARNING 2025-05-08 01:37:29,687 log Not Found: /static/admin/js/admin/RelatedObjectLookups.js
+WARNING 2025-05-08 01:37:29,691 log Not Found: /static/admin/js/actions.js
+WARNING 2025-05-08 01:37:29,694 log Not Found: /static/admin/js/urlify.js
+WARNING 2025-05-08 01:37:29,698 log Not Found: /static/admin/js/prepopulate.js
+WARNING 2025-05-08 01:37:29,703 log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+WARNING 2025-05-08 01:37:29,705 log Not Found: /static/admin/img/search.svg
+WARNING 2025-05-08 01:37:29,706 log Not Found: /static/admin/img/icon-yes.svg
+WARNING 2025-05-08 01:37:29,732 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-08 01:37:29,743 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-08 01:37:29,749 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-08 01:37:29,753 log Not Found: /static/admin/js/filters.js
+WARNING 2025-05-08 01:37:29,753 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-08 01:37:29,770 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-08 01:37:29,779 log Not Found: /static/admin/img/icon-yes.svg
+WARNING 2025-05-08 01:37:36,393 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-08 01:37:36,397 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-08 01:37:36,399 log Not Found: /static/admin/css/dashboard.css
+WARNING 2025-05-08 01:37:36,399 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-08 01:37:36,400 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-08 01:37:36,402 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-08 01:37:36,404 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-08 01:37:40,795 log Not Found: /static/admin/css/changelists.css
+WARNING 2025-05-08 02:33:53,227 log Not Found: /api/applications/99999/generate-pdf/
+WARNING 2025-05-08 02:44:03,869 log Not Found: /api/applications/99999/generate-pdf/
+ERROR 2025-05-08 02:44:50,794 pdf_generation Error generating PDF: No Application matches the given query.
+ERROR 2025-05-08 02:44:50,794 log Internal Server Error: /api/applications/99999/generate-pdf/
+ERROR 2025-05-08 02:46:23,835 pdf_generation PDF template not found: PDF template not found
+ERROR 2025-05-08 02:46:23,835 log Internal Server Error: /api/applications/1/generate-pdf/
+ERROR 2025-05-08 02:46:24,007 pdf_generation Error generating PDF: Something went wrong
+ERROR 2025-05-08 02:46:24,007 log Internal Server Error: /api/applications/1/generate-pdf/
+ERROR 2025-05-08 02:46:24,512 pdf_generation Error generating PDF: No Application matches the given query.
+ERROR 2025-05-08 02:46:24,512 log Internal Server Error: /api/applications/99999/generate-pdf/
+WARNING 2025-05-08 02:46:24,682 log Bad Request: /api/applications/1/generate-pdf/
+ERROR 2025-05-08 02:51:24,059 pdf_generation PDF template not found: PDF template not found
+ERROR 2025-05-08 02:51:24,060 log Internal Server Error: /api/applications/1/generate-pdf/
+ERROR 2025-05-08 02:51:24,239 pdf_generation Error generating PDF: Something went wrong
+ERROR 2025-05-08 02:51:24,239 log Internal Server Error: /api/applications/1/generate-pdf/
+WARNING 2025-05-08 02:51:24,745 log Not Found: /api/applications/99999/generate-pdf/
+WARNING 2025-05-08 02:51:24,915 log Bad Request: /api/applications/1/generate-pdf/
+INFO 2025-05-08 04:34:47,805 pdf_filler Filling PDF form with data: {'reference_number': 'APP-MOCK-2025', 'loan_amount': Decimal('750000.00'), 'loan_term': 36, 'interest_rate': Decimal('5.75'), 'loan_purpose': 'Purchase', 'exit_strategy': 'Sale of Property', 'additional_comments': 'This is a comprehensive mock application for testing PDF generation', 'repayment_frequency': 'Monthly', 'security_address': '123 Investment Property, Brisbane QLD 4000', 'security_type': 'residential', 'security_value': Decimal('950000.00'), 'borrower_first_name': 'John', 'borrower_last_name': 'Smith', 'borrower_email': 'john.smith@example.com', 'borrower_phone': '0412345678', 'borrower_residential_address': '42 Main Street, Sydney NSW 2000', 'borrower_annual_income': Decimal('120000.00'), 'company_name': 'Acme Corporation Pty Ltd', 'company_abn': '12345678901', 'company_acn': '123456789', 'company_address': '100 Business Park Drive, Melbourne VIC 3000', 'annual_company_income': Decimal('1500000.00')}
+INFO 2025-05-08 04:40:31,942 pdf_filler Filling PDF form with data: {'reference_number': 'APP-MOCK-2025', 'loan_amount': Decimal('750000.00'), 'loan_term': 36, 'interest_rate': Decimal('5.75'), 'loan_purpose': 'Purchase', 'exit_strategy': 'Sale of Property', 'additional_comments': 'This is a comprehensive mock application for testing PDF generation', 'repayment_frequency': 'Monthly', 'security_address': '123 Investment Property, Brisbane QLD 4000', 'security_type': 'residential', 'security_value': Decimal('950000.00'), 'borrower_first_name': 'John', 'borrower_last_name': 'Smith', 'borrower_email': 'john.smith@example.com', 'borrower_phone': '0412345678', 'borrower_residential_address': '42 Main Street, Sydney NSW 2000', 'borrower_annual_income': Decimal('120000.00'), 'company_name': 'Acme Corporation Pty Ltd', 'company_abn': '12345678901', 'company_acn': '123456789', 'company_address': '100 Business Park Drive, Melbourne VIC 3000', 'annual_company_income': Decimal('1500000.00')}
+DEBUG 2025-05-08 04:40:31,943 pdf_filler Filling field Text1 with value: APP-MOCK-2025
+DEBUG 2025-05-08 04:40:31,943 pdf_filler Filling field Text2 with value: 750000.00
+DEBUG 2025-05-08 04:40:31,943 pdf_filler Filling field Text3 with value: 36
+DEBUG 2025-05-08 04:40:31,943 pdf_filler Filling field Text4 with value: 5.75
+DEBUG 2025-05-08 04:40:31,943 pdf_filler Filling field Text5 with value: Purchase
+DEBUG 2025-05-08 04:40:31,943 pdf_filler Filling field Text6 with value: Sale of Property
+DEBUG 2025-05-08 04:40:31,943 pdf_filler Filling field Text7 with value: This is a comprehensive mock application for testing PDF generation
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,944 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,945 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,946 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,947 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,948 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,949 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,950 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,951 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,951 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,951 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,951 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,951 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,951 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,951 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,951 pdf_filler Missing field None, using N/A
+DEBUG 2025-05-08 04:40:31,951 pdf_filler Missing field None, using N/A
+INFO 2025-05-08 04:40:32,031 pdf_filler PDF generated successfully at: /Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/media/application_forms/4_filled.pdf
+ERROR 2025-05-08 04:41:27,032 pdf_generation PDF template not found: PDF template not found
+ERROR 2025-05-08 04:41:27,032 log Internal Server Error: /api/applications/1/generate-pdf/
+ERROR 2025-05-08 04:41:27,207 pdf_generation Error generating PDF: Something went wrong
+ERROR 2025-05-08 04:41:27,208 log Internal Server Error: /api/applications/1/generate-pdf/
+WARNING 2025-05-08 04:41:27,708 log Not Found: /api/applications/99999/generate-pdf/
+WARNING 2025-05-08 04:41:27,876 log Bad Request: /api/applications/1/generate-pdf/
+WARNING 2025-05-08 10:37:42,679 log Not Found: /
+WARNING 2025-05-08 10:37:42,984 log Not Found: /favicon.ico
