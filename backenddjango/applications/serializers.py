@@ -8,6 +8,13 @@ from brokers.serializers import BrokerDetailSerializer as BrokerSerializer, BDMS
 from documents.serializers import DocumentSerializer, NoteSerializer, FeeSerializer, RepaymentSerializer, LedgerSerializer
 from decimal import Decimal
 
+class GeneratePDFSerializer(serializers.Serializer):
+    """
+    Serializer for PDF generation endpoint
+    """
+    template_name = serializers.CharField(required=False)
+    output_format = serializers.ChoiceField(choices=['pdf', 'docx'], default='pdf', required=False)
+
 class AddressSerializer(serializers.Serializer):
     street = serializers.CharField(max_length=255)
     city = serializers.CharField(max_length=100)
