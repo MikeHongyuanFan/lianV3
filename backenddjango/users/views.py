@@ -4,12 +4,13 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
 from rest_framework.views import APIView
 from .models import User, Notification, NotificationPreference
 from .serializers import (
     UserSerializer, UserCreateSerializer, NotificationSerializer, 
     NotificationListSerializer, NotificationPreferenceSerializer,
-    UserLoginSerializer
+    UserLoginSerializer, PasswordResetRequestSerializer, PasswordResetConfirmSerializer
 )
 from .permissions import IsAdmin, IsSelfOrAdmin
 from .services import get_or_create_notification_preferences
@@ -17,9 +18,44 @@ from django.contrib.auth import authenticate
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView, ListAPIView
 import logging
 from drf_spectacular.utils import extend_schema, OpenApiParameter
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Set up logger
 logger = logging.getLogger(__name__)
+
+
+@extend_schema(
+    responses={200: {"type": "object", "properties": {"detail": {"type": "string"}}}}
+)
+class LogoutView(APIView):
+    """
+    API endpoint for user logout
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        try:
+            # Get the refresh token from request data
+            refresh_token = request.data.get('refresh')
+            
+            if not refresh_token:
+                return Response({"error": "Refresh token is required"}, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Blacklist the refresh token
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            
+            logger.info(f"User {request.user.email} logged out successfully")
+            return Response({"detail": "Successfully logged out"}, status=status.HTTP_200_OK)
+        except Exception as e:
+            logger.error(f"Logout error: {str(e)}")
+            return Response({"error": "Invalid token or token already blacklisted"}, 
+                           status=status.HTTP_400_BAD_REQUEST)
+
 
 @extend_schema(
     request=UserLoginSerializer,
@@ -322,3 +358,98 @@ class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
         """
         count = self.get_queryset().filter(is_read=False).count()
         return Response({'unread_count': count})
+
+
+@extend_schema(
+    request=PasswordResetRequestSerializer,
+    responses={200: {"type": "object", "properties": {"detail": {"type": "string"}}}}
+)
+class PasswordResetRequestView(APIView):
+    """
+    API endpoint for requesting a password reset
+    """
+    permission_classes = [AllowAny]
+    serializer_class = PasswordResetRequestSerializer
+    
+    def post(self, request):
+        serializer = PasswordResetRequestSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            
+            try:
+                user = User.objects.get(email=email)
+                
+                # Generate token
+                token_generator = PasswordResetTokenGenerator()
+                token = token_generator.make_token(user)
+                uid = urlsafe_base64_encode(force_bytes(user.pk))
+                
+                # Build reset URL
+                scheme = request.scheme
+                host = request.get_host()
+                reset_url = f"{scheme}://{host}/reset-password-confirm/?uid={uid}&token={token}"
+                
+                # Send email
+                subject = "Password Reset Request"
+                message = f"Please click the link below to reset your password:\n\n{reset_url}"
+                from_email = settings.DEFAULT_FROM_EMAIL
+                recipient_list = [email]
+                
+                send_mail(subject, message, from_email, recipient_list)
+                
+                logger.info(f"Password reset email sent to {email}")
+                return Response({"detail": "Password reset email has been sent."}, status=status.HTTP_200_OK)
+            except User.DoesNotExist:
+                # Return success even if user doesn't exist for security reasons
+                logger.info(f"Password reset requested for non-existent email: {email}")
+                return Response({"detail": "Password reset email has been sent."}, status=status.HTTP_200_OK)
+            except Exception as e:
+                logger.error(f"Error sending password reset email: {str(e)}")
+                return Response({"error": "Failed to send password reset email."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema(
+    request=PasswordResetConfirmSerializer,
+    responses={200: {"type": "object", "properties": {"detail": {"type": "string"}}}}
+)
+class PasswordResetConfirmView(APIView):
+    """
+    API endpoint for confirming a password reset
+    """
+    permission_classes = [AllowAny]
+    serializer_class = PasswordResetConfirmSerializer
+    
+    def post(self, request):
+        serializer = PasswordResetConfirmSerializer(data=request.data)
+        if serializer.is_valid():
+            uid = serializer.validated_data['uid']
+            token = serializer.validated_data['token']
+            new_password = serializer.validated_data['new_password']
+            
+            try:
+                # Decode the user ID
+                user_id = force_str(urlsafe_base64_decode(uid))
+                user = User.objects.get(pk=user_id)
+                
+                # Verify the token
+                token_generator = PasswordResetTokenGenerator()
+                if token_generator.check_token(user, token):
+                    # Set the new password
+                    user.set_password(new_password)
+                    user.save()
+                    
+                    logger.info(f"Password reset successful for user {user.email}")
+                    return Response({"detail": "Password has been reset successfully."}, status=status.HTTP_200_OK)
+                else:
+                    logger.warning(f"Invalid password reset token for user {user.email}")
+                    return Response({"error": "Invalid token."}, status=status.HTTP_400_BAD_REQUEST)
+            except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+                logger.warning(f"Invalid password reset UID: {uid}")
+                return Response({"error": "Invalid reset link."}, status=status.HTTP_400_BAD_REQUEST)
+            except Exception as e:
+                logger.error(f"Error during password reset: {str(e)}")
+                return Response({"error": "Failed to reset password."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

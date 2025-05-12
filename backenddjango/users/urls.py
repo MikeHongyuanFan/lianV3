@@ -11,8 +11,11 @@ router.register(r'notifications-viewset', views.NotificationViewSet, basename='n
 urlpatterns = [
     # Authentication
     path('auth/login/', views.LoginView.as_view(), name='login'),
+    path('auth/logout/', views.LogoutView.as_view(), name='logout'),
     path('auth/register/', views.RegisterView.as_view(), name='register'),
     path('auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('auth/reset-password-request/', views.PasswordResetRequestView.as_view(), name='reset-password-request'),
+    path('auth/reset-password-confirm/', views.PasswordResetConfirmView.as_view(), name='reset-password-confirm'),
     
     # User profile
     path('profile/', views.UserProfileView.as_view(), name='user-profile'),

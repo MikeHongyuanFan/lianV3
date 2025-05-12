@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import User, Notification, NotificationPreference
+from django.contrib.auth.password_validation import validate_password
 
 
 class UserLoginSerializer(serializers.Serializer):
@@ -8,6 +9,22 @@ class UserLoginSerializer(serializers.Serializer):
     """
     email = serializers.EmailField()
     password = serializers.CharField(style={'input_type': 'password'})
+
+
+class PasswordResetRequestSerializer(serializers.Serializer):
+    """
+    Serializer for password reset request
+    """
+    email = serializers.EmailField()
+
+
+class PasswordResetConfirmSerializer(serializers.Serializer):
+    """
+    Serializer for password reset confirmation
+    """
+    uid = serializers.CharField()
+    token = serializers.CharField()
+    new_password = serializers.CharField(validators=[validate_password])
 
 
 class UserSerializer(serializers.ModelSerializer):

@@ -7398,3 +7398,24 @@ DEBUG 2025-05-08 13:22:13,892 pdf_filler Missing field None, using N/A
 DEBUG 2025-05-08 13:22:13,892 pdf_filler Missing field None, using N/A
 INFO 2025-05-08 13:22:13,964 pdf_filler PDF generated successfully at: /var/folders/ny/p1b7h5516x34l3qfnxgzb2v00000gn/T/tmpoiujh3b8/application_forms/2_filled.pdf
 WARNING 2025-05-08 13:22:13,965 log Bad Request: /api/applications/2/generate-pdf/
+INFO 2025-05-12 00:53:44,180 views Password reset email sent to test@example.com
+INFO 2025-05-12 00:53:44,187 views Password reset requested for non-existent email: nonexistent@example.com
+INFO 2025-05-12 00:53:44,531 views Password reset successful for user test@example.com
+WARNING 2025-05-12 00:53:44,870 views Invalid password reset token for user test@example.com
+WARNING 2025-05-12 00:53:44,870 log Bad Request: /api/users/auth/reset-password-confirm/
+WARNING 2025-05-12 00:53:45,198 views Invalid password reset UID: invalid-uid
+WARNING 2025-05-12 00:53:45,198 log Bad Request: /api/users/auth/reset-password-confirm/
+INFO 2025-05-12 01:00:55,562 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 01:05:56,072 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 01:07:14,427 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 01:07:59,608 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 01:08:52,741 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-12 01:13:00,068 log Not Found: /
+WARNING 2025-05-12 01:13:00,600 log Not Found: /favicon.ico
+WARNING 2025-05-12 01:13:04,149 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-12 01:13:04,156 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-12 01:13:04,161 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-12 01:13:04,162 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-12 01:13:04,163 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-12 01:13:04,167 log Not Found: /static/admin/css/login.css
+WARNING 2025-05-12 01:13:04,167 log Not Found: /static/admin/css/nav_sidebar.css
