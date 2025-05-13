@@ -11,6 +11,9 @@ urlpatterns = [
     # Include router URLs
     path('', include(router.urls)),
     
+    # Enhanced application list endpoint
+    path('enhanced-applications/', ApplicationViewSet.as_view({'get': 'enhanced_list'}), name='enhanced-application-list'),
+    
     # Application creation with cascade
     path('create-with-cascade/', ApplicationViewSet.as_view({'post': 'create'}), name='application-list-create'),
     

@@ -23,7 +23,7 @@ Applications are the core entity in the system, representing loan applications.
 
 ### Endpoints
 
-- **GET /api/applications/**: List all applications
+- **GET /api/applications/enhanced-applications/**: Get enhanced application list with additional fields
 - **POST /api/applications/**: Create a new application
 - **GET /api/applications/{id}/**: Get application details
 - **PUT /api/applications/{id}/**: Update application

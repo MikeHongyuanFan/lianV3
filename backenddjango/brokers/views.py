@@ -176,6 +176,17 @@ class BDMViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
     
+    @action(detail=False, methods=['post'])
+    def create_with_branch(self, request):
+        """
+        Create a BDM with branch information in a single request
+        """
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(created_by=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
     @action(detail=True, methods=['get'])
     def applications(self, request, pk=None):
         """

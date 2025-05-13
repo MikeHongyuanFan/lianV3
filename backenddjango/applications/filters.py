@@ -15,14 +15,15 @@ class ApplicationFilter(FilterSet):
     created_before = DateFilter(field_name="created_at", lookup_expr='lte')
     search = CharFilter(method='search_filter')
     stage = ChoiceFilter(choices=Application.STAGE_CHOICES)
+    reference_number = CharFilter(lookup_expr='icontains')
     
     class Meta:
         model = Application
         fields = [
-            'stage', 'application_type', 'broker', 'bd', 'branch',
+            'stage', 'application_type', 'broker', 'bd', 'bd_id', 'branch', 'branch_id',
             'min_loan_amount', 'max_loan_amount', 'min_interest_rate', 
             'max_interest_rate', 'created_after', 'created_before',
-            'repayment_frequency'
+            'repayment_frequency', 'reference_number'
         ]
     
     def search_filter(self, queryset, name, value):

@@ -8,6 +8,50 @@ from brokers.serializers import BrokerDetailSerializer as BrokerSerializer, BDMS
 from documents.serializers import DocumentSerializer, NoteSerializer, FeeSerializer, RepaymentSerializer, LedgerSerializer
 from decimal import Decimal
 
+class SolvencyEnquiriesSerializer(serializers.Serializer):
+    """
+    Serializer for solvency enquiries summary
+    """
+    has_solvency_issues = serializers.BooleanField(read_only=True)
+    solvency_issues_count = serializers.IntegerField(read_only=True)
+    solvency_issues_summary = serializers.CharField(read_only=True)
+    
+    def to_representation(self, instance):
+        # Count how many solvency issues are marked as True
+        solvency_fields = [
+            'has_pending_litigation', 'has_unsatisfied_judgements', 'has_been_bankrupt',
+            'has_been_refused_credit', 'has_outstanding_ato_debt', 'has_outstanding_tax_returns',
+            'has_payment_arrangements'
+        ]
+        
+        issues_count = sum(1 for field in solvency_fields if getattr(instance, field, False))
+        has_issues = issues_count > 0
+        
+        # Create a summary of the issues
+        issues_summary = []
+        if instance.has_pending_litigation:
+            issues_summary.append("Has pending/past litigation")
+        if instance.has_unsatisfied_judgements:
+            issues_summary.append("Has unsatisfied judgements")
+        if instance.has_been_bankrupt:
+            issues_summary.append("Has bankruptcy history")
+        if instance.has_been_refused_credit:
+            issues_summary.append("Has been refused credit")
+        if instance.has_outstanding_ato_debt:
+            issues_summary.append("Has outstanding ATO debt")
+        if instance.has_outstanding_tax_returns:
+            issues_summary.append("Has outstanding tax returns")
+        if instance.has_payment_arrangements:
+            issues_summary.append("Has payment arrangements")
+        
+        summary = ", ".join(issues_summary) if issues_summary else "No solvency issues"
+        
+        return {
+            'has_solvency_issues': has_issues,
+            'solvency_issues_count': issues_count,
+            'solvency_issues_summary': summary
+        }
+
 class GeneratePDFSerializer(serializers.Serializer):
     """
     Serializer for PDF generation endpoint
@@ -81,13 +125,13 @@ class ApplicationAssetSerializer(serializers.ModelSerializer):
     """Asset serializer specifically for application context"""
     class Meta:
         model = Asset
-        fields = ['id', 'asset_type', 'description', 'value']
+        fields = ['id', 'asset_type', 'description', 'value', 'bg_type']
 
 class ApplicationLiabilitySerializer(serializers.ModelSerializer):
     """Liability serializer specifically for application context"""
     class Meta:
         model = Liability
-        fields = ['id', 'liability_type', 'description', 'amount', 'monthly_payment']
+        fields = ['id', 'liability_type', 'description', 'amount', 'monthly_payment', 'bg_type']
 
 class GuarantorSerializer(serializers.ModelSerializer):
     assets = ApplicationAssetSerializer(many=True, required=False)
@@ -143,7 +187,7 @@ class AssetSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Asset
-        fields = ['id', 'asset_type', 'description', 'value', 'amount_owing', 'to_be_refinanced', 'address']
+        fields = ['id', 'asset_type', 'description', 'value', 'amount_owing', 'to_be_refinanced', 'address', 'bg_type']
 
 
 class LiabilitySerializer(serializers.ModelSerializer):
@@ -152,7 +196,7 @@ class LiabilitySerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Liability
-        fields = ['id', 'liability_type', 'description', 'amount', 'lender', 'monthly_payment', 'to_be_refinanced']
+        fields = ['id', 'liability_type', 'description', 'amount', 'lender', 'monthly_payment', 'to_be_refinanced', 'bg_type']
 
 
 class SecurityPropertySerializer(serializers.ModelSerializer):
@@ -288,7 +332,11 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
             'prior_application_details', 'exit_strategy', 'exit_strategy_details',
             'valuer_company_name', 'valuer_contact_name', 'valuer_phone',
             'valuer_email', 'qs_company_name', 'qs_contact_name', 'qs_phone', 'qs_email',
-            'funding_calculation_input'
+            'funding_calculation_input',
+            # General Solvency Enquiries
+            'has_pending_litigation', 'has_unsatisfied_judgements', 'has_been_bankrupt',
+            'has_been_refused_credit', 'has_outstanding_ato_debt', 'has_outstanding_tax_returns',
+            'has_payment_arrangements', 'solvency_enquiries_details'
         ]
     
     def create(self, validated_data):
@@ -482,6 +530,11 @@ class ApplicationDetailSerializer(serializers.ModelSerializer):
             # Exit strategy
             'exit_strategy', 'exit_strategy_details',
             
+            # General Solvency Enquiries
+            'has_pending_litigation', 'has_unsatisfied_judgements', 'has_been_bankrupt',
+            'has_been_refused_credit', 'has_outstanding_ato_debt', 'has_outstanding_tax_returns',
+            'has_payment_arrangements', 'solvency_enquiries_details',
+            
             # Related entities
             'borrowers', 'guarantors', 'broker', 'bd', 'branch',
             'security_properties', 'loan_requirements',
@@ -549,16 +602,101 @@ class ApplicationListSerializer(serializers.ModelSerializer):
     """Serializer for listing applications with summary information"""
     stage_display = serializers.CharField(source='get_stage_display', read_only=True)
     borrower_count = serializers.SerializerMethodField()
+    borrower_name = serializers.SerializerMethodField()
+    guarantor_name = serializers.SerializerMethodField()
+    bdm_name = serializers.SerializerMethodField()
+    security_address = serializers.SerializerMethodField()
+    purpose = serializers.CharField(source='loan_purpose', read_only=True)
+    product_name = serializers.SerializerMethodField()
+    updated_at = serializers.DateTimeField(read_only=True)
+    solvency_issues = serializers.SerializerMethodField()
     
     class Meta:
         model = Application
         fields = [
-            'id', 'reference_number', 'loan_amount', 'stage', 'stage_display',
-            'application_type', 'created_at', 'estimated_settlement_date', 'borrower_count'
+            'id', 'reference_number', 'borrower_name', 'stage', 'stage_display',
+            'bdm_name', 'guarantor_name', 'purpose', 'product_name', 'security_address',
+            'loan_amount', 'estimated_settlement_date', 'updated_at', 'created_at',
+            'application_type', 'borrower_count', 'solvency_issues'
         ]
     
     def get_borrower_count(self, obj) -> int:
         return obj.borrowers.count()
+    
+    def get_borrower_name(self, obj) -> str:
+        """Get the primary borrower name(s)"""
+        borrowers = obj.borrowers.all()
+        if not borrowers:
+            return ""
+        
+        names = []
+        for borrower in borrowers:
+            if borrower.is_company:
+                if borrower.company_name:
+                    names.append(borrower.company_name)
+            else:
+                name = f"{borrower.first_name} {borrower.last_name}".strip()
+                if name:
+                    names.append(name)
+        
+        return ", ".join(names) if names else ""
+    
+    def get_guarantor_name(self, obj) -> str:
+        """Get the guarantor name(s)"""
+        guarantors = obj.guarantors.all()
+        if not guarantors:
+            return ""
+        
+        names = []
+        for guarantor in guarantors:
+            name = f"{guarantor.first_name} {guarantor.last_name}".strip()
+            if name:
+                names.append(name)
+        
+        return ", ".join(names) if names else ""
+    
+    def get_bdm_name(self, obj) -> str:
+        """Get the BDM name"""
+        if hasattr(obj, 'bd') and obj.bd:
+            return obj.bd.name
+        return ""
+    
+    def get_security_address(self, obj) -> str:
+        """Get the security property address"""
+        # First try to get from security_properties
+        from applications.models import SecurityProperty
+        security_properties = SecurityProperty.objects.filter(application=obj)
+        if security_properties:
+            prop = security_properties[0]
+            address_parts = [
+                prop.address_unit,
+                prop.address_street_no,
+                prop.address_street_name,
+                prop.address_suburb,
+                prop.address_state,
+                prop.address_postcode
+            ]
+            address = " ".join(part for part in address_parts if part)
+            return address
+        
+        # Fall back to legacy field
+        return obj.security_address or ""
+    
+    def get_product_name(self, obj) -> str:
+        """Get the product name"""
+        if obj.product_id:
+            try:
+                from products.models import Product
+                product = Product.objects.get(id=obj.product_id)
+                return product.name
+            except:
+                return f"Product {obj.product_id}"
+        return ""
+        
+    def get_solvency_issues(self, obj) -> dict:
+        """Get solvency issues summary"""
+        serializer = SolvencyEnquiriesSerializer(obj)
+        return serializer.data
 
 
 class FundingCalculationHistorySerializer(serializers.ModelSerializer):

@@ -7419,3 +7419,245 @@ WARNING 2025-05-12 01:13:04,162 log Not Found: /static/admin/js/theme.js
 WARNING 2025-05-12 01:13:04,163 log Not Found: /static/admin/js/nav_sidebar.js
 WARNING 2025-05-12 01:13:04,167 log Not Found: /static/admin/css/login.css
 WARNING 2025-05-12 01:13:04,167 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-12 01:29:59,812 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-12 01:29:59,817 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-12 01:29:59,817 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-12 01:29:59,818 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-12 01:29:59,820 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-12 01:29:59,821 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-12 01:29:59,833 log Not Found: /static/admin/css/login.css
+WARNING 2025-05-12 02:15:09,060 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-12 02:15:09,063 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-12 02:15:09,065 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-12 02:15:09,066 log Not Found: /static/admin/css/dashboard.css
+WARNING 2025-05-12 02:15:09,068 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-12 02:15:09,070 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-12 02:15:09,226 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-12 02:15:09,257 log Not Found: /favicon.ico
+WARNING 2025-05-12 02:15:30,551 log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+WARNING 2025-05-12 02:15:30,554 log Not Found: /static/admin/css/forms.css
+WARNING 2025-05-12 02:15:30,558 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-12 02:15:30,560 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-12 02:15:30,562 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-12 02:15:30,564 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-12 02:15:30,566 log Not Found: /static/admin/js/calendar.js
+WARNING 2025-05-12 02:15:30,567 log Not Found: /static/admin/js/jquery.init.js
+WARNING 2025-05-12 02:15:30,569 log Not Found: /static/admin/js/admin/DateTimeShortcuts.js
+WARNING 2025-05-12 02:15:30,569 log Not Found: /static/admin/js/core.js
+WARNING 2025-05-12 02:15:30,571 log Not Found: /static/admin/js/admin/RelatedObjectLookups.js
+WARNING 2025-05-12 02:15:30,574 log Not Found: /static/admin/js/SelectBox.js
+WARNING 2025-05-12 02:15:30,575 log Not Found: /static/admin/js/SelectFilter2.js
+WARNING 2025-05-12 02:15:30,575 log Not Found: /static/admin/js/actions.js
+WARNING 2025-05-12 02:15:30,581 log Not Found: /static/admin/js/urlify.js
+WARNING 2025-05-12 02:15:30,582 log Not Found: /static/admin/js/prepopulate.js
+WARNING 2025-05-12 02:15:30,583 log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+WARNING 2025-05-12 02:15:30,585 log Not Found: /static/admin/img/icon-addlink.svg
+WARNING 2025-05-12 02:15:30,586 log Not Found: /static/admin/js/prepopulate_init.js
+WARNING 2025-05-12 02:15:30,591 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-12 02:15:30,593 log Not Found: /static/admin/js/change_form.js
+WARNING 2025-05-12 02:15:30,596 log Not Found: /static/admin/img/icon-addlink.svg
+WARNING 2025-05-12 02:15:30,597 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-12 02:15:30,597 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-12 02:15:33,578 log Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-05-12 02:15:33,580 log Not Found: /static/admin/css/forms.css
+WARNING 2025-05-12 02:15:33,580 log Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-05-12 02:15:33,581 log Not Found: /static/admin/css/base.css
+WARNING 2025-05-12 02:15:33,583 log Not Found: /static/admin/js/vendor/jquery/jquery.min.js
+WARNING 2025-05-12 02:15:33,583 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-12 02:15:33,584 log Not Found: /static/admin/js/calendar.js
+WARNING 2025-05-12 02:15:33,585 log Not Found: /static/admin/js/jquery.init.js
+WARNING 2025-05-12 02:15:33,586 log Not Found: /static/admin/js/admin/DateTimeShortcuts.js
+WARNING 2025-05-12 02:15:33,586 log Not Found: /static/admin/js/core.js
+WARNING 2025-05-12 02:15:33,587 log Not Found: /static/admin/js/admin/RelatedObjectLookups.js
+WARNING 2025-05-12 02:15:33,589 log Not Found: /static/admin/js/SelectBox.js
+WARNING 2025-05-12 02:15:33,589 log Not Found: /static/admin/js/actions.js
+WARNING 2025-05-12 02:15:33,591 log Not Found: /static/admin/js/SelectFilter2.js
+WARNING 2025-05-12 02:15:33,591 log Not Found: /static/admin/js/urlify.js
+WARNING 2025-05-12 02:15:33,592 log Not Found: /static/admin/js/prepopulate.js
+WARNING 2025-05-12 02:15:33,592 log Not Found: /static/admin/js/vendor/xregexp/xregexp.min.js
+WARNING 2025-05-12 02:15:33,594 log Not Found: /static/admin/js/prepopulate_init.js
+WARNING 2025-05-12 02:15:33,594 log Not Found: /static/admin/img/icon-addlink.svg
+WARNING 2025-05-12 02:15:33,597 log Not Found: /static/admin/css/responsive.css
+WARNING 2025-05-12 02:15:33,597 log Not Found: /static/admin/js/theme.js
+WARNING 2025-05-12 02:15:33,597 log Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-05-12 02:15:33,598 log Not Found: /static/admin/js/change_form.js
+WARNING 2025-05-12 03:55:37,391 log Unauthorized: /api/borrowers/guarantors/
+WARNING 2025-05-12 03:55:37,624 runserver HTTP GET /api/borrowers/guarantors/ 401 [0.65, 192.168.65.1:23054]
+INFO 2025-05-12 04:08:41,339 runserver HTTP GET /api/swagger/ 200 [0.09, 192.168.65.1:45791]
+INFO 2025-05-12 04:08:42,166 runserver HTTP GET /api/schema/ 200 [0.59, 192.168.65.1:45791]
+INFO 2025-05-12 07:24:10,792 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-05-12 07:24:13,671 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 07:25:29,146 autoreload /app/applications/views/application_views.py changed, reloading.
+INFO 2025-05-12 07:25:30,015 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 07:26:10,462 autoreload /app/applications/urls.py changed, reloading.
+INFO 2025-05-12 07:26:11,333 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 07:26:51,809 autoreload /app/applications/views/application_views.py changed, reloading.
+INFO 2025-05-12 07:26:52,692 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 07:27:23,854 autoreload /app/applications/views/application_views.py changed, reloading.
+INFO 2025-05-12 07:27:24,785 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 07:28:04,266 autoreload /app/applications/urls.py changed, reloading.
+INFO 2025-05-12 07:28:05,294 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 07:35:40,976 runserver HTTP GET /api/swagger/ 200 [0.14, 192.168.65.1:35952]
+INFO 2025-05-12 07:35:41,442 runserver HTTP GET /api/schema/ 200 [0.27, 192.168.65.1:35952]
+INFO 2025-05-12 07:42:43,326 autoreload /app/applications/serializers.py changed, reloading.
+ons/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/views/application_views.py", line 200, in enhanced_list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/serializers.py", line 607, in get_bdm_name
+    return f"{obj.bd.first_name} {obj.bd.last_name}".strip()
+AttributeError: 'BDM' object has no attribute 'first_name'
+ERROR 2025-05-12 07:42:21,972 log Internal Server Error: /api/applications/enhanced-applications/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/views/application_views.py", line 200, in enhanced_list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/serializers.py", line 613, in get_security_address
+    security_properties = obj.securityproperty_set.all()
+AttributeError: 'Application' object has no attribute 'securityproperty_set'
+ERROR 2025-05-12 07:42:22,250 log Internal Server Error: /api/applications/enhanced-applications/
+Traceback (most recent call last):
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/views/application_views.py", line 200, in enhanced_list
+    return self.get_paginated_response(serializer.data)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 768, in data
+    ret = super().data
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 686, in to_representation
+    return [
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 687, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/Users/hongyuanfan/Library/Python/3.9/lib/python/site-packages/rest_framework/fields.py", line 1838, in to_representation
+    return method(value)
+  File "/Users/hongyuanfan/Downloads/lianV3-501a294797023b7f3fa802ddb963f1a4b1577785/backenddjango/applications/serializers.py", line 607, in get_bdm_name
+    return f"{obj.bd.first_name} {obj.bd.last_name}".strip()
+AttributeError: 'BDM' object has no attribute 'first_name'
+WARNING 2025-05-12 07:42:22,501 log Unauthorized: /api/applications/enhanced-applications/
+INFO 2025-05-12 07:42:44,562 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 07:43:14,829 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-05-12 07:43:15,740 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-12 07:43:38,875 log Unauthorized: /api/applications/enhanced-applications/
+INFO 2025-05-12 07:44:24,195 autoreload /app/applications/views/application_views.py changed, reloading.
+INFO 2025-05-12 07:44:25,058 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-12 07:46:36,114 log Unauthorized: /api/applications/enhanced-applications/
+WARNING 2025-05-12 07:48:45,704 log Unauthorized: /api/applications/enhanced-applications/
+WARNING 2025-05-12 07:49:37,736 log Unauthorized: /api/applications/enhanced-applications/
+INFO 2025-05-12 07:50:01,800 runserver HTTP GET /api/swagger/ 200 [0.12, 192.168.65.1:32454]
+INFO 2025-05-12 07:50:02,331 runserver HTTP GET /api/schema/ 200 [0.33, 192.168.65.1:32454]
+INFO 2025-05-12 23:47:28,081 autoreload /app/borrowers/models.py changed, reloading.
+INFO 2025-05-12 23:47:29,448 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 23:48:00,945 autoreload /app/borrowers/models.py changed, reloading.
+INFO 2025-05-12 23:48:01,808 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 23:48:43,408 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-05-12 23:48:44,364 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 23:49:33,570 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-05-12 23:49:34,452 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 23:49:51,398 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-05-12 23:49:52,370 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 23:51:46,320 runserver HTTP GET /api/swagger/ 200 [0.27, 192.168.65.1:21219]
+INFO 2025-05-12 23:51:46,951 runserver HTTP GET /api/schema/ 200 [0.37, 192.168.65.1:21219]
+INFO 2025-05-12 23:57:28,664 autoreload /app/applications/models.py changed, reloading.
+INFO 2025-05-12 23:57:29,812 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 23:58:24,833 autoreload /app/applications/models.py changed, reloading.
+INFO 2025-05-12 23:58:25,769 autoreload Watching for file changes with StatReloader
+INFO 2025-05-12 23:59:12,686 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-05-12 23:59:13,539 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 00:00:24,307 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-05-13 00:00:25,133 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 00:03:25,351 autoreload /app/applications/admin.py changed, reloading.
+INFO 2025-05-13 00:03:26,367 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 00:04:26,581 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-05-13 00:04:27,431 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 00:04:56,665 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-05-13 00:04:57,466 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 00:05:52,638 autoreload /app/applications/serializers.py changed, reloading.
+INFO 2025-05-13 00:05:53,653 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 00:08:03,089 autoreload /app/applications/migrations/0006_add_solvency_enquiries.py changed, reloading.
+INFO 2025-05-13 00:08:04,383 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 00:08:33,714 autoreload /app/applications/migrations/0008_add_solvency_enquiries.py changed, reloading.
+INFO 2025-05-13 00:08:34,534 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 00:15:40,446 autoreload /app/applications/migrations/0006_add_solvency_enquiries.py changed, reloading.
+INFO 2025-05-13 00:15:41,465 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 00:16:50,045 autoreload /app/applications/migrations/0008_add_solvency_enquiries.py changed, reloading.
+INFO 2025-05-13 00:16:50,947 autoreload Watching for file changes with StatReloader
+WARNING 2025-05-13 00:23:55,870 log Unauthorized: /api/borrowers/
+INFO 2025-05-13 01:00:15,968 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 01:01:04,523 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 01:01:49,881 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 01:02:17,817 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 01:04:01,813 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 01:04:40,757 runserver HTTP GET /api/swagger/ 200 [0.11, 192.168.65.1:25415]
+INFO 2025-05-13 01:04:41,232 runserver HTTP GET /api/schema/ 200 [0.33, 192.168.65.1:25415]

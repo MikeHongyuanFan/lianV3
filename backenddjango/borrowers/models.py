@@ -165,6 +165,11 @@ class Asset(models.Model):
         ('other', 'Other'),
     ]
     
+    BORROWER_GUARANTOR_CHOICES = [
+        ('bg1', 'B/G1'),
+        ('bg2', 'B/G2'),
+    ]
+    
     borrower = models.ForeignKey(Borrower, on_delete=models.CASCADE, related_name='assets', null=True, blank=True)
     guarantor = models.ForeignKey('Guarantor', on_delete=models.CASCADE, related_name='assets', null=True, blank=True)
     asset_type = models.CharField(max_length=20, choices=ASSET_TYPE_CHOICES, default='other')
@@ -173,6 +178,7 @@ class Asset(models.Model):
     amount_owing = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
     to_be_refinanced = models.BooleanField(default=False)
     address = models.TextField(null=True, blank=True, help_text="For property assets")
+    bg_type = models.CharField(max_length=10, choices=BORROWER_GUARANTOR_CHOICES, default='bg1', help_text="Indicates if this asset belongs to B/G1 or B/G2")
     
     # Metadata
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
@@ -197,6 +203,11 @@ class Liability(models.Model):
         ('other', 'Other'),
     ]
     
+    BORROWER_GUARANTOR_CHOICES = [
+        ('bg1', 'B/G1'),
+        ('bg2', 'B/G2'),
+    ]
+    
     borrower = models.ForeignKey(Borrower, on_delete=models.CASCADE, related_name='liabilities', null=True, blank=True)
     guarantor = models.ForeignKey('Guarantor', on_delete=models.CASCADE, related_name='liabilities', null=True, blank=True)
     liability_type = models.CharField(max_length=20, choices=LIABILITY_TYPE_CHOICES)
@@ -205,6 +216,7 @@ class Liability(models.Model):
     lender = models.CharField(max_length=100, null=True, blank=True)
     monthly_payment = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     to_be_refinanced = models.BooleanField(default=False)
+    bg_type = models.CharField(max_length=10, choices=BORROWER_GUARANTOR_CHOICES, default='bg1', help_text="Indicates if this liability belongs to B/G1 or B/G2")
     
     # Metadata
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)

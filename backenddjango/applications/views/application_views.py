@@ -1,6 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django.db.models import Prefetch
 from ..models import Application
 
 class ApplicationViewSet(viewsets.ModelViewSet):
@@ -8,6 +9,22 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     ViewSet for viewing and editing Application instances.
     """
     queryset = Application.objects.all()
+    
+    def get_queryset(self):
+        """
+        Get the queryset with optimized prefetching for list and detail views
+        """
+        queryset = Application.objects.all()
+        
+        if self.action == 'list':
+            # Optimize the list view with prefetches for the enhanced fields
+            queryset = queryset.select_related('bd').prefetch_related(
+                'borrowers',
+                'guarantors',
+                'securityproperty_set'
+            )
+        
+        return queryset
     
     def get_serializer_class(self):
         from ..serializers import (
@@ -164,6 +181,31 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         serializer = FundingCalculationHistorySerializer(history, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    @action(detail=False, methods=['get'])
+    def enhanced_list(self, request):
+        """
+        Enhanced list view with additional fields for the application dashboard
+        """
+        queryset = self.get_queryset()
+        
+        # Apply filters if provided
+        from ..filters import ApplicationFilter
+        filtered_queryset = ApplicationFilter(request.GET, queryset=queryset).qs
+        
+        # Apply pagination
+        page_size = request.query_params.get('page_size', 10)
+        paginator = self.paginator
+        if paginator is not None:
+            paginator.page_size = page_size
+            
+        page = self.paginate_queryset(filtered_queryset)
+        if page is not None:
+            from ..serializers import ApplicationListSerializer
+            serializer = ApplicationListSerializer(page, many=True, context={'request': request})
+            return self.get_paginated_response(serializer.data)
+        
+        serializer = ApplicationListSerializer(filtered_queryset, many=True, context={'request': request})
+        return Response(serializer.data)
     @action(detail=False, methods=['post'])
     def validate_schema(self, request):
         # This is a placeholder for schema validation
